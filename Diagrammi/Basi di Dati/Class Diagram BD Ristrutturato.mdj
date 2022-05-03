@@ -2533,12 +2533,12 @@
 										"$ref": "AAAAAAGACZLiUgcE8n8="
 									},
 									"font": "Arial;13;0",
-									"left": 368,
+									"left": 376,
 									"top": 448,
 									"width": 19.5126953125,
 									"height": 13,
-									"alpha": -0.30929221164956644,
-									"distance": 36.138621999185304,
+									"alpha": -0.3546582670974576,
+									"distance": 43.93176527297759,
 									"hostEdge": {
 										"$ref": "AAAAAAGACZLiUwcHzFE="
 									},
@@ -2597,16 +2597,16 @@
 										"$ref": "AAAAAAGACZLiUgcFCTo="
 									},
 									"font": "Arial;13;0",
-									"left": 439,
-									"top": 400,
+									"left": 440,
+									"top": 408,
 									"width": 19.5126953125,
 									"height": 13,
-									"alpha": 0.6189530039479598,
-									"distance": 16.15549442140351,
+									"alpha": 0.7435625064953937,
+									"distance": 22.80350850198276,
 									"hostEdge": {
 										"$ref": "AAAAAAGACZLiUwcHzFE="
 									},
-									"text": "1"
+									"text": "1..*"
 								},
 								{
 									"_type": "UMLQualifierCompartmentView",
@@ -4428,7 +4428,7 @@
 								"reference": {
 									"$ref": "AAAAAAGACX+TiOD4Ohg="
 								},
-								"multiplicity": "1"
+								"multiplicity": "1..*"
 							}
 						},
 						{
