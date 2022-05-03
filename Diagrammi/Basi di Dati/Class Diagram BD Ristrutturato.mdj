@@ -2543,7 +2543,7 @@
 										"$ref": "AAAAAAGACZLiUwcHzFE="
 									},
 									"edgePosition": 2,
-									"text": "1..*"
+									"text": "2..*"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4417,7 +4417,7 @@
 								"reference": {
 									"$ref": "AAAAAAGACY21SfwPzDw="
 								},
-								"multiplicity": "1..*"
+								"multiplicity": "2..*"
 							},
 							"end2": {
 								"_type": "UMLAssociationEnd",
