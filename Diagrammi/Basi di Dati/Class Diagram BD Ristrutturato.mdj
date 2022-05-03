@@ -1748,7 +1748,7 @@
 											"top": 203,
 											"width": 167,
 											"height": 13,
-											"text": "+CAP: INTEGER",
+											"text": "+CAP: VARCHAR[12]",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4351,7 +4351,8 @@
 								"$ref": "AAAAAAGACYhUIevzOVs="
 							},
 							"name": "CAP",
-							"type": "INTEGER"
+							"type": "VARCHAR",
+							"multiplicity": "12"
 						},
 						{
 							"_type": "UMLAttribute",
