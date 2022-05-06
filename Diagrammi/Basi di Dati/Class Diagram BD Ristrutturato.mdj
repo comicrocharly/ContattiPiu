@@ -1625,7 +1625,7 @@
 											"top": 135,
 											"width": 167,
 											"height": 13,
-											"text": "Indirizzi"
+											"text": "Indirizzo"
 										},
 										{
 											"_type": "LabelView",
@@ -4245,7 +4245,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Indirizzi",
+					"name": "Indirizzo",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
