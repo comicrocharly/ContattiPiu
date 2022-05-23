@@ -2011,7 +2011,7 @@
 											"top": 493,
 											"width": 171.361328125,
 											"height": 13,
-											"text": "+Prefisso: VARCHAR[5]",
+											"text": "+Prefisso{PK}: VARCHAR[5]",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4246,7 +4246,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGACY21SfwPzDw="
 							},
-							"name": "Prefisso",
+							"name": "Prefisso{PK}",
 							"type": "VARCHAR",
 							"multiplicity": "5"
 						},
