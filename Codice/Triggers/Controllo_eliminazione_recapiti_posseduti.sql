@@ -1,3 +1,5 @@
+/*Il trigger impedisce l'eliminazione di recapiti nel caso in cui ne rimangano solo due. Prima viene fatto un controllo sulla chiave esterna riferita a Contatto per assicurarsi non si tratti di una DELETE CASCADE*/
+
 CREATE OR REPLACE FUNCTION controllo_eliminazione_recapiti_posseduti() RETURNS TRIGGER AS $controllo_eliminazione_recapiti_posseduti$
 
 DECLARE

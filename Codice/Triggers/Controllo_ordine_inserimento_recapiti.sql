@@ -1,3 +1,4 @@
+/*Il trigger controlla che l'inserimento dei recapiti avvenga nell'ordine corretto: prima Fisso, poi Mobile*/
 CREATE OR REPLACE FUNCTION controllo_ordine_inserimento_recapiti() RETURNS TRIGGER AS $controllo_ordine_inserimento_recapiti$
 
 DECLARE

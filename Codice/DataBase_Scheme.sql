@@ -144,7 +144,7 @@ CREATE TABLE MessagingPR(
     
     Fornitore VARCHAR(50),
     
-    Indirizzo VARCHAR(100) NOT NULL,
+    Indirizzo VARCHAR(319) NOT NULL,
 
 FOREIGN KEY (Indirizzo) REFERENCES Email (Indirizzo),
 

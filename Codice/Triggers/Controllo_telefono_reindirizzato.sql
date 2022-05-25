@@ -1,3 +1,4 @@
+/*Il trigger controlla che il reindirizzamento su Recapito avvenga sencondo le direttive date*/
 CREATE OR REPLACE FUNCTION controllo_telefono_reindirizzato() RETURNS TRIGGER AS $controllo_telefono_reindirizzato$
 
 DECLARE
