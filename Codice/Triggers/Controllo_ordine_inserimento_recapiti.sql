@@ -16,18 +16,20 @@ SELECT COUNT (Numero) INTO cont
 FROM Recapito
 WHERE Cont_ID = new.Cont_ID;
 
-IF(Cont = 0) THEN
+IF(Cont = 0 AND Tipo_in = 'Mobile') THEN
 
-IF(Tipo_in = Mobile) THEN 
 RAISE EXCEPTION 'Inserire prima un Fisso';
 
-ELSEIF (Cont = 1) THEN
+END IF;
+
+IF (Cont = 1 AND Tipo_in = 'Fisso') THEN
+
 RAISE EXCEPTION 'Inserire un Mobile';
 
 END IF;
-END IF;
 
-RETURN NULL;
+
+RETURN NEW;
 
 END;
 

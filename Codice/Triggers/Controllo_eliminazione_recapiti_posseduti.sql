@@ -8,13 +8,13 @@ cont INTEGER := 0;
 
 BEGIN
 
-IF(EXISTS(
+IF EXISTS(
 
 SELECT *
 FROM Contatto AS Cont
-WHERE Cont.Cont_ID = old.Cont_ID;
+WHERE Cont.Cont_ID = old.Cont_ID
 
-) THEN (
+) THEN 
 
 SELECT COUNT (Numero) INTO cont
 FROM Recapito
@@ -25,11 +25,11 @@ RAISE EXCEPTION 'Il contatto possiede solo due Telefoni';
 
 END IF;
 
-)
+
 
 END IF;
 
-RETURN NULL;
+RETURN OLD;
 
 END;
 
