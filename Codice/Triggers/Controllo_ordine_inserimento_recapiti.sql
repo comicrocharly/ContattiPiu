@@ -1,4 +1,4 @@
-/*Il trigger controlla che l'inserimento dei recapiti avvenga nell'ordine corretto: prima Fisso, poi Mobile*/
+/*Il trigger controlla che l'inserimento dei recapiti avvenga nell'ordine corretto: prima Fisso, poi Mobile. In oltre controlla che venga mantenuto l'ordine anche su aggiornamento*/
 CREATE OR REPLACE FUNCTION controllo_ordine_inserimento_recapiti() RETURNS TRIGGER AS $controllo_ordine_inserimento_recapiti$
 
 DECLARE
@@ -37,6 +37,6 @@ $controllo_ordine_inserimento_recapiti$
 
 LANGUAGE plpgsql;
 
-CREATE TRIGGER CONTROLLO_ORDINE_INSERIMENTO_RECAPITI BEFORE INSERT ON RECAPITO
+CREATE TRIGGER CONTROLLO_ORDINE_INSERIMENTO_RECAPITI BEFORE INSERT OR UPDATE ON RECAPITO
 
 FOR EACH ROW EXECUTE FUNCTION controllo_ordine_inserimento_recapiti();

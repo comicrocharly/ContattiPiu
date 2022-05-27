@@ -20,8 +20,8 @@ SELECT COUNT (Numero) INTO cont
 FROM Recapito
 WHERE Cont_ID = old.Cont_ID;
 
-IF(Cont = 2) THEN
-RAISE EXCEPTION 'Il contatto possiede solo due Telefoni';
+IF(Cont <= 2) THEN
+RAISE EXCEPTION 'Il contatto possiede solo due o meno recapiti';
 
 END IF;
 

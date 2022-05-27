@@ -1,4 +1,4 @@
-/*Il trigger controlla che il reindirizzamento su Recapito avvenga sencondo le direttive date*/
+/* Il trigger controlla che il tipo di numero reindirzzato sia sempre esatto sia in modifica che inserimento*/
 CREATE OR REPLACE FUNCTION controllo_telefono_reindirizzato() RETURNS TRIGGER AS $controllo_telefono_reindirizzato$
 
 DECLARE
@@ -39,6 +39,6 @@ END;
 $controllo_telefono_reindirizzato$ LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE TRIGGER CONTROLLO_TELEFONO_REINDIRIZZATO AFTER INSERT ON RECAPITO
+CREATE OR REPLACE TRIGGER CONTROLLO_TELEFONO_REINDIRIZZATO AFTER INSERT OR UPDATE ON RECAPITO
 
 FOR EACH ROW EXECUTE FUNCTION controllo_telefono_reindirizzato();
