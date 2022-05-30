@@ -1,5 +1,5 @@
 /* Il seguente trigger controlla se nessun'altro utente sta utilizzando il numero da eliminare e procedere quindi all'eliminazione del numero dal database*/
-/* Inoltre controlla che l'utente al quale si sta tentando di cancellare questo numero non lo stia utilizzando come numero di reindirizzamento da fisso a mobile */
+/* Inoltre controlla che l'utente al quale si sta tentando di cancellare questo numero non lo stia utilizzando come numero di reindirizzamento */
 
 
 CREATE OR REPLACE FUNCTION controllo_delete_telefono() RETURNS TRIGGER AS $controllo_delete_telefono$
