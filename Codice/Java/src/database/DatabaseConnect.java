@@ -8,16 +8,19 @@ public class DatabaseConnect {
 	private Connection connection = null;
 	private String nome = "postgres";
 	private String password = "admin";
-	private String url = "jdbc:postgresql://localhost:5432/ContattiPiu";
+	private String url = "jdbc:postgresql://localhost:5432/postgres";
 	private String driver = "org.postgresql.Driver";
-	String failed = "DB Connection failed.";
-	String success = "DB Connection succesful.";
+	String failed = "DB Connection failed";
+	String success = "DB Connection succesful";
 	
 	
 	public DatabaseConnect() throws SQLException {
 		try {
 			Class.forName(getDriver());
 			setConnection(DriverManager.getConnection(getUrl(), getNome(), password));
+			
+			if(connection!=null)
+				System.out.println(success);
 
 		} catch (ClassNotFoundException ex) {
 			System.out.println("DB Connection failed: " + ex.getMessage());
