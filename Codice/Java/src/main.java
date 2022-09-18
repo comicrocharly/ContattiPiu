@@ -25,6 +25,8 @@ public class main {
 		System.out.println("Ciao " + connect.getUrl());
 		
 			System.out.println(contatto.getNome());
+			
+			System.out.println(contatto.getCognome());
 		
 		
 		
