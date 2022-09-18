@@ -24,12 +24,9 @@ public class main {
 		
 		System.out.println("Ciao " + connect.getUrl());
 		
-			System.out.println(contatto.getNome());
-			
-			System.out.println(contatto.getCognome());
-		
-		
-		
+		System.out.println(contatto.getNome(2));
+		System.out.println(contatto.getCognome(2));
+		System.out.println(contatto.getIndirizzoP(2).getClass());	
 		
 	}
 

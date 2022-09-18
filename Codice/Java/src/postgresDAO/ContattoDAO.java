@@ -1,16 +1,14 @@
 package postgresDAO;
 
 import java.sql.*;
-import model.*;
 import database.DatabaseConnect;
 
 public class ContattoDAO {
-	
-	private Connection link;
-	private Contatto c;
+
+	private Connection link = null;
 
 	public ContattoDAO() {
-		
+
 		try {
 			link = DatabaseConnect.getInstance().getConnection();
 		} catch (SQLException e) {
@@ -18,52 +16,25 @@ public class ContattoDAO {
 			System.out.println("Connection failed.");
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	public String getNome() {
-		
-		PreparedStatement ps;
-		String s = null;
-		
-		try {
-			ps = link.prepareStatement(
-					"SELECT nome " 
-					+ "FROM contatto");
-			
-			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				if(s==null)
-					s = rs.getString("nome") + " ";
-				s += rs.getString("nome") + " ";
-			}
-			
-			rs.close();
-			return s;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-		
-	}
-	
-	public String getCognome() {
+
+
+	private String getAttr(int Cont_ID, String Attr) {
 
 		PreparedStatement ps;
 		String s = null;
+
 		try {
 			ps = link.prepareStatement(
-					"SELECT cognome " 
-					+ "FROM contatto");
-
+					"SELECT "+ Attr +" " 
+							+ "FROM contatto "
+							+ "WHERE cont_id = '"+Cont_ID+"'");
 			ResultSet rs = ps.executeQuery();
+
 			while(rs.next()) {
 				if(s==null)
-					s = rs.getString("cognome") + " ";
-				s += rs.getString("cognome") + " ";
+					s = rs.getString(Attr);
 			}
 
 			rs.close();
@@ -76,64 +47,30 @@ public class ContattoDAO {
 		}
 
 	}
-	
-	public String getIndFoto() {
-
-
-		PreparedStatement ps;
-		String s = null;
-		try {
-			ps = link.prepareStatement(
-					"SELECT Ind_Foto " 
-					+ "FROM contatto");
-
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				if(s==null)
-					s = rs.getString("Ind_Foto") + " ";
-				s += rs.getString("Ind_Foto") + " ";
-			}
-
-			rs.close();
-			return s;
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-
-	
+	public String getNome(int Cont_ID) {
+		
+		String Attr="nome";
+		return getAttr(Cont_ID,Attr);
 	}
-	
-	public String getIndirizzoP() {
 
-
-		PreparedStatement ps;
-		String s = null;
-		try {
-			ps = link.prepareStatement(
-					"SELECT Ind_Foto " 
-					+ "FROM contatto");
-
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				if(s==null)
-					s = rs.getString("Indirizzo_P") + " ";
-				s += rs.getString("Indirizzo_P") + " ";
-			}
-
-			rs.close();
-			return s;
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-
-	
+	public String getCognome(int Cont_ID) {
+		
+		String Attr="cognome";
+		return getAttr(Cont_ID,Attr);
 	}
+
+	public String getIndFoto(int Cont_ID) {
+
+		String Attr="Ind_Foto";
+		return getAttr(Cont_ID,Attr);
+	}
+
+	public Integer getIndirizzoP(int Cont_ID) {
+
+		String Attr="Indirizzo_P";
+		return Integer.valueOf(getAttr(Cont_ID,Attr));
+	}
+
 }
 
 
