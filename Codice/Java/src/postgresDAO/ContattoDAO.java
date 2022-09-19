@@ -49,13 +49,13 @@ public class ContattoDAO {
 	}
 	public String getNome(int Cont_ID) {
 		
-		String Attr="nome";
+		String Attr="Nome";
 		return getAttr(Cont_ID,Attr);
 	}
 
 	public String getCognome(int Cont_ID) {
 		
-		String Attr="cognome";
+		String Attr="Cognome";
 		return getAttr(Cont_ID,Attr);
 	}
 
@@ -65,7 +65,7 @@ public class ContattoDAO {
 		return getAttr(Cont_ID,Attr);
 	}
 
-	public Integer getIndirizzoP(int Cont_ID) {
+	public Integer getIndizzoP(int Cont_ID) {
 
 		String Attr="Indirizzo_P";
 		return Integer.valueOf(getAttr(Cont_ID,Attr));
