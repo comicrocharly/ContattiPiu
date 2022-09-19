@@ -10,7 +10,7 @@ public class main {
 		// TODO Auto-generated method stub
 		
 		DatabaseConnect connect = null;
-		ContattoDAO contatto = null;
+		PostContattoDAO contatto = null;
 		
 		try {
 			connect = new DatabaseConnect();
@@ -19,7 +19,7 @@ public class main {
 			e.printStackTrace();
 		}
 
-		contatto = new ContattoDAO();
+		contatto = new PostContattoDAO();
 		
 		
 		System.out.println("Ciao " + connect.getUrl());
