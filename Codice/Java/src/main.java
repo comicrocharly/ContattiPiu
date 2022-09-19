@@ -27,6 +27,9 @@ public class main {
 		System.out.println(contatto.getNome(2));
 		System.out.println(contatto.getCognome(2));
 		System.out.println(contatto.getIndirizzoP(2).getClass());	
+		System.out.println(contatto.getContID());
+		
+		contatto.setContatto("Carlo", "Rossi", 10);
 		
 	}
 

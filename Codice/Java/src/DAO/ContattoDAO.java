@@ -1,10 +1,10 @@
 package DAO;
 
-<<<<<<< HEAD
-public interface ContattoDAO {
-	public void getNonso();
-=======
+import java.util.ArrayList;
+
 public interface ContattoDAO{
+	
+	public ArrayList<String> getContID();
 		
 	public String getNome(int Cont_ID);
 	
@@ -14,5 +14,4 @@ public interface ContattoDAO{
 	
 	public Integer getIndirizzoP(int Cont_ID);
 	
->>>>>>> branch 'main' of https://github.com/comicrocharly/ContattiPiu.git
 }
