@@ -1,13 +1,15 @@
 package postgresDAO;
 
 import java.sql.*;
+
+import DAO.ContattoDAO;
 import database.DatabaseConnect;
 
-public class ContattoDAO {
+public class PostContattoDAO implements ContattoDAO {
 
 	private Connection link = null;
 
-	public ContattoDAO() {
+	public PostContattoDAO() {
 
 		try {
 			link = DatabaseConnect.getInstance().getConnection();
@@ -47,15 +49,16 @@ public class ContattoDAO {
 		}
 
 	}
+	
 	public String getNome(int Cont_ID) {
 		
-		String Attr="Nome";
+		String Attr="nome";
 		return getAttr(Cont_ID,Attr);
 	}
 
 	public String getCognome(int Cont_ID) {
 		
-		String Attr="Cognome";
+		String Attr="cognome";
 		return getAttr(Cont_ID,Attr);
 	}
 
@@ -65,7 +68,7 @@ public class ContattoDAO {
 		return getAttr(Cont_ID,Attr);
 	}
 
-	public Integer getIndizzoP(int Cont_ID) {
+	public Integer getIndirizzoP(int Cont_ID) {
 
 		String Attr="Indirizzo_P";
 		return Integer.valueOf(getAttr(Cont_ID,Attr));
