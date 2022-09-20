@@ -22,21 +22,21 @@ public class PostContattoDAO implements ContattoDAO {
 	}
 
 
-	private String getAttr(int ContID, String Attr) {
+	private String getAttr(int contID, String attr) {
 
 		PreparedStatement ps;
 		String s = null;
 
 		try {
 			ps = link.prepareStatement(
-					"SELECT "+ Attr +" " 
+					"SELECT "+ attr +" " 
 							+ "FROM contatto "
-							+ "WHERE Cont_ID = '"+ContID+"'");
+							+ "WHERE Cont_ID = '"+contID+"'");
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()) {
 				if(s==null)
-					s = rs.getString(Attr);
+					s = rs.getString(attr);
 			}
 
 			rs.close();
@@ -49,12 +49,14 @@ public class PostContattoDAO implements ContattoDAO {
 		}
 
 	}
-
-	//get All ContID
+	
+	
+	//Da aggiornare con return un oggetto arraylist<contatto>
+	//get All contID
 	public ArrayList<String> getContID() {
 
 		PreparedStatement ps;
-		ArrayList<String> ContID = new ArrayList<String>();
+		ArrayList<String> contID = new ArrayList<String>();
 
 		try {
 			ps = link.prepareStatement(
@@ -64,12 +66,12 @@ public class PostContattoDAO implements ContattoDAO {
 
 			while(rs.next()) {
 
-				ContID.add(rs.getString("Cont_ID"));
+				contID.add(rs.getString("Cont_ID"));
 
 			}
 
 			rs.close();
-			return ContID;
+			return contID;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -79,43 +81,43 @@ public class PostContattoDAO implements ContattoDAO {
 
 	}
 
-	public String getNome(int ContID) {
+	public String getNome(int contID) {
 
-		String Attr="nome";
-		return getAttr(ContID,Attr);
+		String attr="nome";
+		return getAttr(contID,attr);
 	}
 
-	public String getCognome(int ContID) {
+	public String getCognome(int contID) {
 
-		String Attr="cognome";
-		return getAttr(ContID,Attr);
+		String attr="cognome";
+		return getAttr(contID,attr);
 	}
 
-	public String getIndFoto(int ContID) {
+	public String getIndFoto(int contID) {
 
-		String Attr="Ind_Foto";
-		return getAttr(ContID,Attr);
+		String attr="Ind_Foto";
+		return getAttr(contID,attr);
 	}
 
-	public Integer getIndirizzoP(int ContID) {
+	public Integer getIndirizzoP(int contID) {
 
-		String Attr="Indirizzo_P";
-		return Integer.valueOf(getAttr(ContID,Attr));
+		String attr="Indirizzo_P";
+		return Integer.valueOf(getAttr(contID,attr));
 	}
 
-	private void upAttr(int ContID, String Attr,String data) {
+	private void upAttr(int contID, String attr,String data) {
 
 		PreparedStatement ps;
 		int tmp = 0;
 
-		if(Attr == "Indirizzo_P") {
+		if(attr == "Indirizzo_P") {
 			tmp = Integer.valueOf(data);
 
 			try {
 				ps = link.prepareStatement(
 						"UPDATE Contatto " 
-								+ "SET "+Attr+" = '"+tmp+"' "
-								+ "WHERE ContID = '"+ContID+"'");
+								+ "SET "+attr+" = '"+tmp+"' "
+								+ "WHERE cont_ID = '"+contID+"'");
 
 				ps.executeUpdate();
 			} catch (SQLException e) {
@@ -131,8 +133,8 @@ public class PostContattoDAO implements ContattoDAO {
 			try {
 				ps = link.prepareStatement(
 						"UPDATE Contatto " 
-								+ "SET "+Attr+" = '"+data+"' "
-								+ "WHERE Cont_ID = '"+ContID+"'");
+								+ "SET "+attr+" = '"+data+"' "
+								+ "WHERE cont_ID = '"+contID+"'");
 				
 				ps.executeUpdate();
 			} catch (SQLException e) {
@@ -142,31 +144,31 @@ public class PostContattoDAO implements ContattoDAO {
 
 	}
 
-	public void  upNome(int ContID, String data) {
+	public void  upNome(int contID, String data) {
 
-		String Attr="nome";
-		upAttr(ContID,Attr,data);
+		String attr="nome";
+		upAttr(contID,attr,data);
 	}
 
-	public void  upCognome(int ContID, String data) {
+	public void  upCognome(int contID, String data) {
 
-		String Attr="cognome";
-		upAttr(ContID,Attr,data);
+		String attr="cognome";
+		upAttr(contID,attr,data);
 	}
 
-	public void  upIndFoto(int ContID, String data) {
+	public void  upIndFoto(int contID, String data) {
 
-		String Attr="Ind_Foto";
-		upAttr(ContID,Attr,data);
+		String attr="Ind_Foto";
+		upAttr(contID,attr,data);
 	}
 
-	public void upIndirizzoP(int ContID, String data) {
+	public void upIndirizzoP(int contID, String data) {
 
-		String Attr="Indirizzo_P";
-		upAttr(ContID,Attr,data);
+		String attr="Indirizzo_P";
+		upAttr(contID,attr,data);
 	}
 
-	public void setContatto(String Nome, String Cognome, String IndFoto, int IndirizzoP) {
+	public void setContatto(String nome, String cognome, String indFoto, int indirizzoP) {
 
 		PreparedStatement ps;
 
@@ -174,7 +176,7 @@ public class PostContattoDAO implements ContattoDAO {
 			ps = link.prepareStatement(
 					"INSERT INTO contatto " 
 							+ "(nome, cognome, ind_foto, indirizzo_p) "
-							+ "VALUES ('"+Nome+"', '"+Cognome+"', '"+IndFoto+"', '"+IndirizzoP+"');");
+							+ "VALUES ('"+nome+"', '"+cognome+"', '"+indFoto+"', '"+indirizzoP+"');");
 
 			ps.executeUpdate();
 
@@ -184,7 +186,7 @@ public class PostContattoDAO implements ContattoDAO {
 		}
 
 	}
-	public void setContatto(String Nome, String Cognome, int IndirizzoP) {
+	public void setContatto(String nome, String cognome, int indirizzoP) {
 
 		PreparedStatement ps;
 
@@ -192,7 +194,7 @@ public class PostContattoDAO implements ContattoDAO {
 			ps = link.prepareStatement(
 					"INSERT INTO contatto " 
 							+ "(nome, cognome, indirizzo_p) "
-							+ "VALUES ('"+Nome+"', '"+Cognome+"', '"+IndirizzoP+"');");
+							+ "VALUES ('"+nome+"', '"+cognome+"', '"+indirizzoP+"');");
 
 			ps.executeUpdate();
 
@@ -203,14 +205,14 @@ public class PostContattoDAO implements ContattoDAO {
 
 	}
 
-	public void delContatto(int ContID) {
+	public void delContatto(int contID) {
 
 		PreparedStatement ps;
 
 		try {
 			ps = link.prepareStatement(
 					"DELETE FROM Contatto "
-							+ "WHERE Cont_ID = '"+ContID+"'");
+							+ "WHERE Cont_ID = '"+contID+"'");
 
 			ps.executeUpdate();
 		} catch (SQLException e) {

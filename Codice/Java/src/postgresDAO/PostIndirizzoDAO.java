@@ -24,22 +24,22 @@ public class PostIndirizzoDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	private String getAttr(int AddrID, String Attr) {
+
+	private String getAttr(int addrID, String attr) {
 
 		PreparedStatement ps;
 		String s = null;
 
 		try {
 			ps = link.prepareStatement(
-					"SELECT "+ Attr +" " 
+					"SELECT "+ attr +" " 
 							+ "FROM Indirizzo "
-							+ "WHERE addr_id = '"+AddrID+"'");
+							+ "WHERE addr_id = '"+addrID+"'");
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()) {
 				if(s==null)
-					s = rs.getString(Attr);
+					s = rs.getString(attr);
 			}
 
 			rs.close();
@@ -57,7 +57,7 @@ public class PostIndirizzoDAO {
 	public ArrayList<String> getAddrID() {
 
 		PreparedStatement ps;
-		ArrayList<String> AddrID = new ArrayList<String>();
+		ArrayList<String> addrID = new ArrayList<String>();
 
 		try {
 			ps = link.prepareStatement(
@@ -67,12 +67,12 @@ public class PostIndirizzoDAO {
 
 			while(rs.next()) {
 
-				AddrID.add(rs.getString("Addr_ID"));
+				addrID.add(rs.getString("Addr_ID"));
 
 			}
 
 			rs.close();
-			return AddrID;
+			return addrID;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -82,38 +82,38 @@ public class PostIndirizzoDAO {
 
 	}
 
-	public String getCap(int AddrID) {
+	public String getCap(int addrID) {
 
-		String Attr="cap";
-		return getAttr(AddrID,Attr);
+		String attr="cap";
+		return getAttr(addrID,attr);
 	}
 
-	public String getCitta(int AddrID) {
+	public String getCitta(int addrID) {
 
-		String Attr="citta";
-		return getAttr(AddrID,Attr);
+		String attr="citta";
+		return getAttr(addrID,attr);
 	}
 
-	public String getNazione(int AddrID) {
+	public String getNazione(int addrID) {
 
-		String Attr="nazione";
-		return getAttr(AddrID,Attr);
+		String attr="nazione";
+		return getAttr(addrID,attr);
 	}
 
-	public String getVia(int AddrID) {
+	public String getVia(int addrID) {
 
-		String Attr="via";
-		return getAttr(AddrID,Attr);
+		String attr="via";
+		return getAttr(addrID,attr);
 	}
-	
-	public void delIndirizzo(int AddrID) {
+
+	public void delIndirizzo(int addrID) {
 
 		PreparedStatement ps;
 
 		try {
 			ps = link.prepareStatement(
 					"DELETE FROM Indirizzo "
-							+ "WHERE Addr_ID = '"+AddrID+"'");
+							+ "WHERE Addr_ID = '"+addrID+"'");
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -122,7 +122,7 @@ public class PostIndirizzoDAO {
 		}
 
 	}
-	
+
 	public void setContatto(String via, String citta, String cap, String nazione) {
 
 		PreparedStatement ps;
@@ -142,46 +142,46 @@ public class PostIndirizzoDAO {
 
 	}
 
-	private void upAttr(int AddrID, String Attr,String data) {
+	private void upAttr(int addrID, String attr,String data) {
 
 		PreparedStatement ps;
-			
-			try {
-				ps = link.prepareStatement(
-						"UPDATE Contatto " 
-								+ "SET "+Attr+" = '"+data+"' "
-								+ "WHERE Addr_ID = '"+AddrID+"'");
 
-				ps.executeUpdate();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			ps = link.prepareStatement(
+					"UPDATE Contatto " 
+							+ "SET "+attr+" = '"+data+"' "
+							+ "WHERE Addr_ID = '"+addrID+"'");
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
-	public void  upCap(int AddrID, String data) {
+	public void  upCap(int addrID, String data) {
 
-		String Attr="cap";
-		upAttr(AddrID,Attr,data);
+		String attr="cap";
+		upAttr(addrID,attr,data);
 	}
 
-	public void  upCitta(int AddrID, String data) {
+	public void  upCitta(int addrID, String data) {
 
-		String Attr="citta";
-		upAttr(AddrID,Attr,data);
+		String attr="citta";
+		upAttr(addrID,attr,data);
 	}
 
-	public void  upNazione(int AddrID, String data) {
+	public void  upNazione(int addrID, String data) {
 
-		String Attr="nazione";
-		upAttr(AddrID,Attr,data);
+		String attr="nazione";
+		upAttr(addrID,attr,data);
 	}
 
-	public void upVia(int AddrID, String data) {
+	public void upVia(int addrID, String data) {
 
-		String Attr="via";
-		upAttr(AddrID,Attr,data);
+		String attr="via";
+		upAttr(addrID,attr,data);
 	}
 
 }

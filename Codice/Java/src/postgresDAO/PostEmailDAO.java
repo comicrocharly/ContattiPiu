@@ -25,21 +25,21 @@ public class PostEmailDAO {
 		}
 
 
-		private String getAttr(String Indirizzo, String Attr) {
+		private String getAttr(String indirizzo, String attr) {
 
 			PreparedStatement ps;
 			String s = null;
 
 			try {
 				ps = link.prepareStatement(
-						"SELECT "+ Attr +" " 
+						"SELECT "+ attr +" " 
 								+ "FROM Email "
-								+ "WHERE Indirizzo = '"+Indirizzo+"'");
+								+ "WHERE indirizzo = '"+indirizzo+"'");
 				ResultSet rs = ps.executeQuery();
 
 				while(rs.next()) {
 					if(s==null)
-						s = rs.getString(Attr);
+						s = rs.getString(attr);
 				}
 
 				rs.close();
@@ -53,26 +53,26 @@ public class PostEmailDAO {
 
 		}
 
-		//get All Indirizzo
+		//get All indirizzo
 		public ArrayList<String> getEmail() {
 
 			PreparedStatement ps;
-			ArrayList<String> Indirizzo = new ArrayList<String>();
+			ArrayList<String> indirizzo = new ArrayList<String>();
 
 			try {
 				ps = link.prepareStatement(
-						"SELECT Indirizzo " 
+						"SELECT indirizzo " 
 								+ "FROM Email ");
 				ResultSet rs = ps.executeQuery();
 
 				while(rs.next()) {
 
-					Indirizzo.add(rs.getString("Indirizzo"));
+					indirizzo.add(rs.getString("indirizzo"));
 
 				}
 
 				rs.close();
-				return Indirizzo;
+				return indirizzo;
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -82,20 +82,20 @@ public class PostEmailDAO {
 
 		}
 
-		public String getIndirizzo(String Indirizzo) {
+		public String getIndirizzo(String indirizzo) {
 
-			String Attr="Indirizzo";
-			return getAttr(Indirizzo,Attr);
+			String attr="indirizzo";
+			return getAttr(indirizzo,attr);
 		}
 
-		public String getUtilizzo(String Indirizzo) {
+		public String getUtilizzo(String indirizzo) {
 
-			String Attr="utilizzo";
-			return getAttr(Indirizzo,Attr);
+			String attr="utilizzo";
+			return getAttr(indirizzo,attr);
 		}
 
 
-		private void upAttr(String Indirizzo, String Attr,String data) {
+		private void upAttr(String indirizzo, String attr,String data) {
 
 			PreparedStatement ps;
 
@@ -103,8 +103,8 @@ public class PostEmailDAO {
 			try {
 				ps = link.prepareStatement(
 						"UPDATE Email " 
-								+ "SET "+Attr+" = '"+data+"' "
-								+ "WHERE Indirizzo = '"+Indirizzo+"'");
+								+ "SET "+attr+" = '"+data+"' "
+								+ "WHERE indirizzo = '"+indirizzo+"'");
 
 				ps.executeUpdate();
 			} catch (SQLException e) {
@@ -117,29 +117,29 @@ public class PostEmailDAO {
 
 		}
 
-		public void  upIndirizzo(String Indirizzo, String data) {
+		public void  upIndirizzo(String indirizzo, String data) {
 
-			String Attr="indirizzo";
-			upAttr(Indirizzo,Attr,data);
+			String attr="indirizzo";
+			upAttr(indirizzo,attr,data);
 		}
 
-		public void  unUtilizzo(String Indirizzo, String data) {
+		public void  unUtilizzo(String indirizzo, String data) {
 
-			String Attr="utilizzo";
-			upAttr(Indirizzo,Attr,data);
+			String attr="utilizzo";
+			upAttr(indirizzo,attr,data);
 		}
 
 	
 
-		public void setEmail(String Indirizzo, String Utilizzo) {
+		public void setEmail(String indirizzo, String utilizzo) {
 
 			PreparedStatement ps;
 
 			try {
 				ps = link.prepareStatement(
 						"INSERT INTO Email " 
-								+ "(Indirizzo, Utilizzo) "
-								+ "VALUES ('"+Indirizzo+"', '"+Utilizzo+"' );");
+								+ "(indirizzo, utilizzo) "
+								+ "VALUES ('"+indirizzo+"', '"+utilizzo+"' );");
 
 				ps.executeUpdate();
 
@@ -149,7 +149,7 @@ public class PostEmailDAO {
 			}
 
 		}
-		public void setEmail(String Indirizzo) {
+		public void setEmail(String indirizzo) {
 
 			PreparedStatement ps;
 
@@ -157,7 +157,7 @@ public class PostEmailDAO {
 				ps = link.prepareStatement(
 						"INSERT INTO Email " 
 								+ "(indirizzo ) "
-								+ "VALUES ('"+Indirizzo+"');");
+								+ "VALUES ('"+indirizzo+"');");
 
 				ps.executeUpdate();
 
@@ -168,14 +168,14 @@ public class PostEmailDAO {
 
 		}
 
-		public void delEmail(String Indirizzo) {
+		public void delEmail(String indirizzo) {
 
 			PreparedStatement ps;
 
 			try {
 				ps = link.prepareStatement(
 						"DELETE FROM Email "
-								+ "WHERE Indirizzo = '"+Indirizzo+"'");
+								+ "WHERE indirizzo = '"+indirizzo+"'");
 
 				ps.executeUpdate();
 			} catch (SQLException e) {
