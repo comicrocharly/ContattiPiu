@@ -38,4 +38,12 @@ public class Contatto {
 	public Indirizzo getIndirizzo() {
 		return this.indirizzoP;
 	}
+	
+	public ArrayList<Gruppo> getGruppi(){
+		return this.gruppi;
+	}
+	
+	public void addGruppo(Gruppo gruppo) {
+		this.gruppi.add(gruppo);
+	}
 }

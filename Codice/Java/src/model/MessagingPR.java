@@ -1,8 +1,37 @@
 package model;
 
 public class MessagingPR {
-    int PR_ID;
-    String Nickname;
-    String Frase_Benvenuto;
-    String Fornitore;
+    private int prID;
+    private String nickname;
+    private String fraseBenvenuto;
+    private String fornitore;
+    private Email email;
+    
+    public MessagingPR(int prID,String nickname,String fraseBenvenuto,String fornitore,Email email) {
+    	this.prID=prID;
+    	this.nickname=nickname;
+    	this.fraseBenvenuto=fraseBenvenuto;
+    	this.fornitore=fornitore;
+    	this.email=email;
+    }
+    
+    public int getPrID() {
+    	return this.prID;
+    }
+    
+    public String getNickname() {
+    	return this.nickname;
+    }
+    
+    public String getFraseBenvenuto() {
+    	return this.fraseBenvenuto;
+    }
+    
+    public String getFornitore() {
+    	return this.fornitore;
+    }
+    
+    public Email getEmail() {
+    	return this.email;
+    }
 }
