@@ -8,10 +8,10 @@ public class main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
 		DatabaseConnect connect = null;
 		PostContattoDAO contatto = null;
-		
+
 		try {
 			connect = new DatabaseConnect();
 		} catch (SQLException e) {
@@ -20,17 +20,21 @@ public class main {
 		}
 
 		contatto = new PostContattoDAO();
-		
-		
+
+
 		System.out.println("Ciao " + connect.getUrl());
-		
+
 		System.out.println(contatto.getNome(2));
-		System.out.println(contatto.getCognome(2));
-		System.out.println(contatto.getIndirizzoP(2).getClass());	
 		System.out.println(contatto.getContID());
-		
-		contatto.setContatto("Carlo", "Rossi", 10);
-		
+
+		System.out.println(contatto.getNome(39));
+		contatto.upNome(40, "Lino");
+		System.out.println(contatto.getNome(40));
+
+
+
+
+
 	}
 
 }
