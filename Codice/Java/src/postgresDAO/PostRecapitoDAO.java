@@ -1,16 +1,16 @@
 package postgresDAO;
 
-import java.lang.reflect.UndeclaredThrowableException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.Recapito;
+import model.*;
 import postgresDAO.PostTelefonoDAO;
 import database.DatabaseConnect;
 import java.util.ArrayList;
 
 public class PostRecapitoDAO {
+	
 	private Connection link = null;
 
 	public PostRecapitoDAO() {
@@ -28,7 +28,7 @@ public class PostRecapitoDAO {
 
 	public ArrayList<Recapito> getRecapiti(int contID) {
 		
-		ArrayList<Recapito> rec = new  ArrayList<>();
+		ArrayList<Recapito> list = new  ArrayList<>();
 		
 		PreparedStatement ps;
 
@@ -40,11 +40,11 @@ public class PostRecapitoDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next())
-					rec.add((Recapito) rs.getObject("Numero_In, Numero_Out, Rec_ID"));
+					list.add((Recapito) rs.getObject("Numero_In, Numero_Out, Rec_ID"));
 
 			rs.close();
 			
-			return rec;
+			return list;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -86,27 +86,46 @@ public class PostRecapitoDAO {
 
 	}
 	
-	//racchiudere in un try/catch
-	public void setRecapito(String contID, String prefissoIn, String numeroIn, String prefissoOut, String numeroOut) {
-	
-		
+
+
+	//racchiudere in un try/catch per gestire l'eccezione generata dalla non esistenza del'oggetto telefono, magari con un propt di inserimento telefono
+	public void setRecapito(int contID, String prefissoIn, String numeroIn, String prefissoOut, String numeroOut) {
+
+
 		PreparedStatement ps;
 		if(checkTelefono(prefissoIn, numeroIn) && checkTelefono(prefissoOut, numeroOut)) {
+			try {
+				ps = link.prepareStatement(
+						"INSERT INTO Recapito " 
+								+ "(prefisso_In, prefisso_out, numero_in, numero_out, Cont_ID) "
+								+ "VALUES ('"+prefissoIn+"', '"+prefissoOut+"', '"+numeroIn+"', '"+numeroOut+"', '"+contID+"');");
+
+				ps.executeUpdate();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+
+		}
+	}
+	
+	public void delRecapito(int contID, String prefissoIn, String prefissoOut, String numeroIn, String numeroOut ) {
+		PreparedStatement ps;
+
 		try {
 			ps = link.prepareStatement(
-					"INSERT INTO contatto " 
-							+ "(nome, cognome, indirizzo_p) "
-							+ "VALUES ('"+contID+"', '"+prefissoIn+"', '"+numeroIn+"', '"+prefissoOut+"', '"+numeroOut+"');");
+					"DELETE FROM Contatto "
+							+ "WHERE Cont_ID = '"+contID+"' AND prefisso_In '"+prefissoIn+"'AND prefisso_out '"+prefissoOut+"'AND numero_in '"+numeroIn+"' AND numero_out'"+numeroOut+"'");
 
 			ps.executeUpdate();
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		}
-		
 	}
 }
+
 	
 		

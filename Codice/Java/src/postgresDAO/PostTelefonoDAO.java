@@ -52,6 +52,7 @@ public class PostTelefonoDAO {
 	}
 
 	public void setTelefono(String prefisso, String numero, String tipo) {
+		
 		PreparedStatement ps;
 
 		try {
