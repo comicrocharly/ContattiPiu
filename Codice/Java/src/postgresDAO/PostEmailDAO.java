@@ -5,7 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import DAO.EmailDAO;
+
+import dao.EmailDAO;
 import database.DatabaseConnect;
 
 public class PostEmailDAO {

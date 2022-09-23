@@ -2,7 +2,8 @@ package postgresDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
-import DAO.ContattoDAO;
+
+import dao.ContattoDAO;
 import database.DatabaseConnect;
 
 public class PostContattoDAO implements ContattoDAO {
