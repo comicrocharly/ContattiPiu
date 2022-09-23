@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Desktop;
+import gui.NewContact;
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -26,10 +27,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
+import javax.swing.JPanel;
+import javax.swing.JList;
+import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainWireframe {
 
 	private JFrame frame;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -69,13 +78,32 @@ public class MainWireframe {
 		menuBar.add(file);
 		
 		JMenuItem exit = new JMenuItem("Exit");
+		exit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		file.add(exit);
 		
 		JMenu edit = new JMenu("Edit");
 		menuBar.add(edit);
 		
-		JMenuItem modContatti = new JMenuItem("Modifica");
-		edit.add(modContatti);
+		JMenuItem aggiungi = new JMenuItem("Aggiungi");
+		aggiungi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				NewContact f = new NewContact();
+				
+				f.setVisible(true);
+			}
+		});
+		
+		
+		
+		
+		edit.add(aggiungi);
+		
+		JMenuItem rimuovi = new JMenuItem("Rimuovi");
+		edit.add(rimuovi);
 		
 		JMenu help = new JMenu("Help");
 		menuBar.add(help);
@@ -102,13 +130,13 @@ public class MainWireframe {
 		searchBar.setBounds(8, 8, 352, 22);
 		frame.getContentPane().add(searchBar);
 		
+		table = new JTable();
+		table.setBounds(8, 38, 327, 383);
+		frame.getContentPane().add(table);
+		
 		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(343, 38, 17, 375);
+		scrollBar.setBounds(343, 38, 17, 383);
 		frame.getContentPane().add(scrollBar);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(8, 38, 327, 375);
-		frame.getContentPane().add(scrollPane);
 	}
-	
 }
