@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import database.DatabaseConnect;
 import model.Gruppo;
-import model.Recapito;
+
 
 public class PostGruppoDAO {
 
