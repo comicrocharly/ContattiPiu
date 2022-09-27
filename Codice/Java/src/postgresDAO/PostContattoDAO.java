@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import dao.ContattoDAO;
 import database.DatabaseConnect;
+import model.Contatto;
 
 public class PostContattoDAO implements ContattoDAO {
 
@@ -221,6 +222,30 @@ public class PostContattoDAO implements ContattoDAO {
 			e.printStackTrace();
 		}
 
+	}
+
+
+	public void setContatto(Contatto c) {
+		// TODO Auto-generated method stub
+		
+		String nome = c.getNome();
+		String cognome = c.getCognome();
+		int indirizzoP = c.getIndirizzo().getAddrID();
+		
+		PreparedStatement ps;
+		try {
+			ps = link.prepareStatement(
+					"INSERT INTO contatto " 
+							+ "(nome, cognome, indirizzo_p) "
+							+ "VALUES ('"+nome+"', '"+cognome+"', '"+indirizzoP+"');");
+
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 
