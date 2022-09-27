@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import model.Indirizzo;
 import database.DatabaseConnect;
 
 public class PostIndirizzoDAO {
@@ -123,7 +123,13 @@ public class PostIndirizzoDAO {
 
 	}
 
-	public void setContatto(String via, String citta, String cap, String nazione) {
+	public void setIndirizzo(Indirizzo i) {
+		
+		String via = i.getVia();
+		String citta = i.getCitta();
+		String cap = i.getCap();
+		String nazione = i.getNazione();
+		
 
 		PreparedStatement ps;
 

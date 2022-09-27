@@ -10,13 +10,15 @@ public class Controller {
 	
 	private Contatto c;
 	private Indirizzo i;
+	private Telefono t;
 	
 	private DatabaseConnect connessione;
 	
 	//Inserisce un contatto in DB tramite DAO
+	
 	public void assignContatto() {
 		
-		setC(new Contatto(getC().getContID(), getC().getNome(), getC().getCognome(), getC().getIndFoto(), getC().getIndirizzo()));
+		setC(new Contatto(getC().getNome(), getC().getCognome(), getC().getIndFoto(), getC().getIndirizzo()));
 		PostContattoDAO contattoDAO = new PostContattoDAO();
 		contattoDAO.setContatto(getC());
 		
@@ -24,12 +26,20 @@ public class Controller {
 	
 	public void assignIndirizzo() {
 		
-		setI(new Indirizzo(getI().getAddrID(), getI().getCap(), getI().getCognome(), getI().getIndFoto(), getI().getIndirizzo()));
-		PostContattoDAO contattoDAO = new PostContattoDAO();
-		contattoDAO.setContatto(getI());
-		
+		setI(new Indirizzo(getI().getCap(), getI().getCitta(), getI().getNazione(), getI().getVia()));
+		PostIndirizzoDAO indirizzoDAO = new PostIndirizzoDAO();
+		indirizzoDAO.setIndirizzo(getI());
+
 	}
-	
+
+	public void assignTelefono() {
+
+		setT(new Telefono(getT().getPrefisso(), getT().getNumero(), getT().getTipo()));
+		PostTelefonoDAO telefonoDAO = new PostTelefonoDAO();
+		telefonoDAO.setTelefono(getT());
+
+	}
+
 	public boolean checkConnection() throws SQLException {
 
 		setConnessione(new DatabaseConnect());
@@ -68,6 +78,14 @@ public class Controller {
 	}
 	public void setI(Indirizzo i) {
 		this.i = i;
+	}
+
+	public Telefono getT() {
+		return t;
+	}
+
+	public void setT(Telefono t) {
+		this.t = t;
 	}
 
 

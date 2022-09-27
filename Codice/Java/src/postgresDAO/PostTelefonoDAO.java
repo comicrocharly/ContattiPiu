@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import model.Telefono;
 import database.DatabaseConnect;
 
 public class PostTelefonoDAO {
@@ -51,12 +51,14 @@ public class PostTelefonoDAO {
 
 	}
 
-	public void setTelefono(String prefisso, String numero, String tipo) {
-		
-		PreparedStatement ps;
+	public void setTelefono(Telefono telefono) {
+
+		String prefisso = telefono.getPrefisso();
+		String numero = telefono.getNumero();
+		String tipo = telefono.getTipo();
 
 		try {
-			ps = link.prepareStatement(
+			link.prepareStatement(
 					"INSERT INTO TELEFONO "
 							+ "(numero, prefisso, tipo) "
 							+ "VALUES ('"+numero+"', '"+prefisso+"', '"+tipo+"' );");

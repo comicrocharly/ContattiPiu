@@ -18,6 +18,15 @@ public class Contatto {
 		this.indirizzoP = indirizzoP;
 
 	}
+	
+	public Contatto(String nome, String cognome, String indFoto, Indirizzo indirizzoP) {
+
+		this.nome = nome;
+		this.cognome = cognome;
+		this.indFoto = indFoto;
+		this.indirizzoP = indirizzoP;
+
+	}
 
 	public int getContID() {
 		return this.contID;

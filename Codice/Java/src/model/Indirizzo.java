@@ -7,7 +7,7 @@ public class Indirizzo {
 	private String cap;
 	private String nazione;
 
-	public Indirizzo(int addrID, String via, String citta, String cap, String nazione) {
+	public Indirizzo(String via, String citta, String cap, String nazione) {
 		this.addrID = addrID;
 		this.via = via;
 		this.citta = citta;
