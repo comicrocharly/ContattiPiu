@@ -5,6 +5,11 @@ public class Gruppo {
 	 private String nomeG;
 	 private String descrizione;
 	 
+	 public Gruppo(String nomeG,String descrizione) {
+		 this.nomeG=nomeG;
+		 this.descrizione=descrizione;
+	 }
+	 
 	 public Gruppo(int groupID,String nomeG,String descrizione) {
 		 this.groupID=groupID;
 		 this.nomeG=nomeG;
