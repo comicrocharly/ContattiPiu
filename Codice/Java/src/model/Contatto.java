@@ -69,5 +69,6 @@ public class Contatto {
 	}
 	
 	public void addRecapito(Recapito recapito) {
+		this.recapiti.add(recapito);
 	}
 }
