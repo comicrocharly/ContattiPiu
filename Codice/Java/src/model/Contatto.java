@@ -7,6 +7,7 @@ public class Contatto {
 	private String cognome;
 	private String indFoto;
 	private Indirizzo indirizzoP;
+	private ArrayList<Recapito> recapiti;
 	private ArrayList<Gruppo> gruppi;
 	private ArrayList<Email> email;
 	private ArrayList<Indirizzo> indirizzi;
@@ -65,5 +66,8 @@ public class Contatto {
 	
 	public void addIndirizzo(Indirizzo indirizzo) {
 		this.indirizzi.add(indirizzo);
+	}
+	
+	public void addRecapito(Recapito recapito) {
 	}
 }
