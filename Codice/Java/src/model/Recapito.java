@@ -1,10 +1,31 @@
 package model;
 
 public class Recapito {
-	int Cont_ID;
-    int Rec_ID;
-    String Numero_Out;
-    String Numero_In;
-    String Prefisso_In;
-    String Prefisso_Out;
+	private int recID;
+	private Telefono telefonoIn;
+	private Telefono telefonoOut;
+
+	public Recapito(Telefono telefonoIn, Telefono telefonoOut) {
+		this.telefonoIn = telefonoIn;
+		this.telefonoOut = telefonoOut;
+	}
+
+	public Recapito(int recID, Telefono telefonoIn, Telefono telefonoOut) {
+		this.recID = recID;
+		this.telefonoIn = telefonoIn;
+		this.telefonoOut = telefonoOut;
+	}
+	
+	public Telefono getTelefonoIn() {
+		return this.telefonoIn;
+	}
+	
+	public Telefono getTelefonoOut() {
+		return this.telefonoOut;
+	}
+	
+	public int getRecID() {
+		return this.recID;
+	}
+
 }

@@ -2,10 +2,9 @@ package model;
 
 public class Telefono {
 
-	String Numero;
-	
-	String Prefisso;
-	String Tipo;
+	private String Numero;
+	private String Prefisso;
+	private String Tipo;
 	
 	public Telefono(String numero, String prefisso, String tipo) {
 		this.Numero = numero;
