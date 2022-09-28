@@ -1,13 +1,13 @@
 package model;
 
-public class MessagingPR {
+public class MessagingPr {
     private int prID;
     private String nickname;
     private String fraseBenvenuto;
     private String fornitore;
     private Email email;
     
-    public MessagingPR(int prID,String nickname,String fraseBenvenuto,String fornitore,Email email) {
+    public MessagingPr(int prID,String nickname,String fraseBenvenuto,String fornitore,Email email) {
     	this.prID=prID;
     	this.nickname=nickname;
     	this.fraseBenvenuto=fraseBenvenuto;

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import database.DatabaseConnect;
-import model.MessagingPR;
+import model.MessagingPr;
 
 public class PostMessagingPrDAO {
 	
@@ -25,9 +25,9 @@ public class PostMessagingPrDAO {
 
 	}
 	
-	public ArrayList<MessagingPR> getMessagingPR(String indirizzo){
+	public ArrayList<MessagingPr> getMessagingPR(String indirizzo){
 
-		ArrayList<MessagingPR> list = new  ArrayList<>();
+		ArrayList<MessagingPr> list = new  ArrayList<>();
 
 		PreparedStatement ps;
 
@@ -40,7 +40,7 @@ public class PostMessagingPrDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next())
-				list.add((MessagingPR) rs.getObject("email, fornitore, frase_Benvenuto, nickname, pr_ID"));
+				list.add((MessagingPr) rs.getObject("email, fornitore, frase_Benvenuto, nickname, pr_ID"));
 
 			rs.close();
 

@@ -1,8 +1,11 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Email {
 	private String indirizzo;
 	private String utilizzo;
+	private ArrayList<MessagingPr> messagingPr;
 	
 	public Email(String indirizzo,String utilizzo) {
 		this.indirizzo=indirizzo;
@@ -15,6 +18,12 @@ public class Email {
 
 	public String getUtilizzo() {
 		return this.utilizzo;
+	}
+	
+	public void addMessagingPr(MessagingPr messagingPr) {
+		
+		this.messagingPr.add(messagingPr);
+		
 	}
 
 }

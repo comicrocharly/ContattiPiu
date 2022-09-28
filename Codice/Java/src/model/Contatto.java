@@ -8,6 +8,9 @@ public class Contatto {
 	private String indFoto;
 	private Indirizzo indirizzoP;
 	private ArrayList<Gruppo> gruppi;
+	private ArrayList<Email> email;
+	private ArrayList<Indirizzo> indirizzi;
+	
 
 	public Contatto(int contID, String nome, String cognome, String indFoto, Indirizzo indirizzoP) {
 
@@ -54,5 +57,13 @@ public class Contatto {
 	
 	public void addGruppo(Gruppo gruppo) {
 		this.gruppi.add(gruppo);
+	}
+	
+	public void addEmail(Email email) {
+		this.email.add(email);
+	}
+	
+	public void addIndirizzo(Indirizzo indirizzo) {
+		this.indirizzi.add(indirizzo);
 	}
 }
