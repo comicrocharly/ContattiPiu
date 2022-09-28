@@ -5,14 +5,18 @@ public class MessagingPr {
     private String nickname;
     private String fraseBenvenuto;
     private String fornitore;
-    private Email email;
     
-    public MessagingPr(int prID,String nickname,String fraseBenvenuto,String fornitore,Email email) {
+    public MessagingPr(String nickname,String fraseBenvenuto,String fornitore) {
+    	this.nickname=nickname;
+    	this.fraseBenvenuto=fraseBenvenuto;
+    	this.fornitore=fornitore;
+    }
+    
+    public MessagingPr(int prID,String nickname,String fraseBenvenuto,String fornitore) {
     	this.prID=prID;
     	this.nickname=nickname;
     	this.fraseBenvenuto=fraseBenvenuto;
     	this.fornitore=fornitore;
-    	this.email=email;
     }
     
     public int getPrID() {
@@ -31,7 +35,4 @@ public class MessagingPr {
     	return this.fornitore;
     }
     
-    public Email getEmail() {
-    	return this.email;
-    }
 }
