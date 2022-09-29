@@ -14,6 +14,8 @@ import javax.swing.BoxLayout;
 import javax.swing.JEditorPane;
 
 import java.awt.GridBagLayout;
+import java.awt.PopupMenu;
+
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JToolBar;
@@ -34,6 +36,8 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JComboBox;
+import java.awt.Choice;
 
 public class MainWireframe {
 
@@ -68,7 +72,7 @@ public class MainWireframe {
 	 */
 	private void initialize() {
 		frame = new JFrame("ContattiPiù");
-		frame.setBounds(100, 100, 382, 480);
+		frame.setBounds(100, 100, 382, 485);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -83,6 +87,9 @@ public class MainWireframe {
 				System.exit(0);
 			}
 		});
+		
+		JMenuItem refresh = new JMenuItem("Refresh");
+		file.add(refresh);
 		file.add(exit);
 		
 		JMenu edit = new JMenu("Edit");
@@ -124,19 +131,28 @@ public class MainWireframe {
 		searchBar.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)
+					System.out.println(searchBar.getText());
 			}
 		});
-		searchBar.setText("Cerca");
-		searchBar.setBounds(8, 8, 352, 22);
+		searchBar.setBounds(8, 10, 278, 17);
 		frame.getContentPane().add(searchBar);
-		
+
 		table = new JTable();
-		table.setBounds(8, 38, 327, 383);
+		table.setBounds(8, 33, 327, 383);
 		frame.getContentPane().add(table);
 		
 		JScrollBar scrollBar = new JScrollBar();
-		scrollBar.setBounds(343, 38, 17, 383);
+		scrollBar.setBounds(345, 33, 17, 383);
 		frame.getContentPane().add(scrollBar);
 		
+		Choice choice = new Choice();
+		choice.setBounds(294, 10, 68, 17);
+		frame.getContentPane().add(choice);
+		
+		choice.add("Telefono");
+		choice.add("Nome");
+		choice.add("Email");
+		choice.add("Social");
 	}
 }

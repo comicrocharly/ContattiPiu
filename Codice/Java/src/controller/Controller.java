@@ -15,7 +15,6 @@ public class Controller {
 	private DatabaseConnect connessione;
 	
 	//Inserisce un contatto in DB tramite DAO
-	
 	public void assignContatto() {
 		
 		setC(new Contatto(getC().getNome(), getC().getCognome(), getC().getIndFoto(), getC().getIndirizzo()));

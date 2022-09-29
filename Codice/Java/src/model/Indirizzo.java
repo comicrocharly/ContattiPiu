@@ -16,6 +16,13 @@ public class Indirizzo {
 
 	}
 	
+	public Indirizzo(String via, String citta, String cap, String nazione) {
+		this.via = via;
+		this.citta = citta;
+		this.cap = cap;
+		this.nazione = nazione;
+	}
+
 	public int getAddrID() {
 		return this.addrID;
 	}
