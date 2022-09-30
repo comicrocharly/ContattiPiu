@@ -53,8 +53,7 @@ public class PostContattoDAO implements ContattoDAO {
 	}
 	
 	
-	//Da aggiornare con return un oggetto arraylist<contatto>
-	//get All contID
+	//Funzione che carica i contatti in memoria (da ultimare)
 	public ArrayList<Contatto> getContatti() {
 
 		PreparedStatement ps;
