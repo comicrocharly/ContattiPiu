@@ -24,6 +24,35 @@ public class PostIndirizzoDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public Indirizzo getIndirizzo(int addrID) {
+
+		PreparedStatement ps;
+
+		try {
+			ps = link.prepareStatement(
+					"SELECT *"
+							+ "FROM indirizzo " 
+							+ "WHERE Addr_ID = '"+addrID+"'");
+
+			ResultSet rs = ps.executeQuery();
+
+
+			Indirizzo i = new Indirizzo(rs.getInt(addrID), rs.getString("via"), rs.getString("citta"), rs.getString("cap"), rs.getString("nazione"));
+
+			return i;
+
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return null;
+
+	}
 
 	private String getAttr(int addrID, String attr) {
 

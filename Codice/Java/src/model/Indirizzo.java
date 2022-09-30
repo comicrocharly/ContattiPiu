@@ -42,4 +42,24 @@ public class Indirizzo {
 	public String getNazione() {
 		return this.nazione;
 	}
+	
+	public void setAddrID(int addrID) {
+		this.addrID = addrID;
+	}
+
+	public void setVia(String via) {
+		this.via = via;
+	}
+
+	public void setCitta(String citta) {
+		this.citta = citta;
+	}
+
+	public void setCap(String cap) {
+		this.cap = cap;
+	}
+
+	public void setNazione(String nazione) {
+		this.nazione = nazione;
+	}
 }

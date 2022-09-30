@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import dao.ContattoDAO;
 import database.DatabaseConnect;
-import model.Contatto;
+import model.*;
 
 public class PostContattoDAO implements ContattoDAO {
 
@@ -55,25 +55,32 @@ public class PostContattoDAO implements ContattoDAO {
 	
 	//Da aggiornare con return un oggetto arraylist<contatto>
 	//get All contID
-	public ArrayList<String> getContID() {
+	public ArrayList<Contatto> getContatti() {
 
 		PreparedStatement ps;
-		ArrayList<String> contID = new ArrayList<String>();
-
+		ArrayList<Contatto> cList = new ArrayList<Contatto>();
+		Contatto c = null;
+		Indirizzo i = null;
+		
 		try {
 			ps = link.prepareStatement(
-					"SELECT Cont_ID " 
+					"SELECT * " 
 							+ "FROM contatto ");
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()) {
-
-				contID.add(rs.getString("Cont_ID"));
-
+				c.setContID(rs.getInt("Cont_ID")); 
+				c.setNome(rs.getString("Nome"));
+				c.setCognome(rs.getString("Cognome"));
+				c.setIndFoto(rs.getString("Ind_Foto"));
+				i.setAddrID(rs.getInt("Indirizzo_P"));
+				c.setIndirizzoP(i);
+				cList.add(c);
+				//Work in progress
 			}
 
 			rs.close();
-			return contID;
+			return cList;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -246,6 +253,13 @@ public class PostContattoDAO implements ContattoDAO {
 			e.printStackTrace();
 		}
 		
+	}
+
+
+	@Override
+	public ArrayList<String> getContID() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

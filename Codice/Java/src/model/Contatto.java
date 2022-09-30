@@ -35,6 +35,10 @@ public class Contatto {
 	public int getContID() {
 		return this.contID;
 	}
+	
+	public void setContID(int contID) {
+		this.contID = contID;
+	}
 
 	public String getNome() {
 		return this.nome;
@@ -71,4 +75,26 @@ public class Contatto {
 	public void addRecapito(Recapito recapito) {
 		this.recapiti.add(recapito);
 	}
+	
+	public Indirizzo getIndirizzoP() {
+		return indirizzoP;
+	}
+
+	public void setIndirizzoP(Indirizzo indirizzoP) {
+		this.indirizzoP = indirizzoP;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	public void setIndFoto(String indFoto) {
+		this.indFoto = indFoto;
+	}
+
+	
 }

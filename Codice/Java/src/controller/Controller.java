@@ -1,6 +1,7 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import database.DatabaseConnect;
 import model.*;
@@ -11,8 +12,38 @@ public class Controller {
 	private Contatto c;
 	private Indirizzo i;
 	private Telefono t;
+	//Contatti da mostrare, anche in ricerca
+	private ArrayList<Contatto> cList;
 	
 	private DatabaseConnect connessione;
+	
+	public ArrayList<Contatto> searchContact(String type, String data) {
+		
+		ArrayList<Contatto> r = null;
+		
+		r = pullContacts();
+		
+		if(type.equals("Telefono")) {
+			
+		}
+		if(type.equals("Nome")) {
+
+		}
+		if(type.equals("Email")) {
+
+		}
+		if(type.equals("Social")) {
+
+		}
+
+		return this.cList = r;
+	}
+	
+	public ArrayList<Contatto> pullContacts() {
+		ArrayList<Contatto> r = null;
+		
+		return this.cList = r;
+	}
 	
 	//Inserisce un contatto in DB tramite DAO
 	public void assignContatto() {
