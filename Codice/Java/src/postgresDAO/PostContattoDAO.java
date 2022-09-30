@@ -55,21 +55,20 @@ public class PostContattoDAO implements ContattoDAO {
 	
 	//Funzione che carica i contatti in memoria (da ultimare)
 	public ArrayList<Contatto> getContatti() {
-
+		
+		ResultSet rs;
 		PreparedStatement ps;
 		ArrayList<Contatto> cList = new ArrayList<Contatto>();
-		Contatto c = null;
+		
 		
 		
 		try {
-			ps = link.prepareStatement(
-					"SELECT * " 
-							+ "FROM contatto ");
-			ResultSet rs = ps.executeQuery();
+			ps = link.prepareStatement("SELECT * FROM CONTATTO");
+			rs = ps.executeQuery();
 
 			while(rs.next()) {
-			c= new Contatto(rs.getInt(0),rs.getString(1),rs.getString(2),rs.getString(3));
-			cList.add(c);
+			cList.add(new Contatto(rs.getInt(0),rs.getString(1),rs.getString(2),rs.getString(3)));
+			
 			}
 
 			rs.close();
