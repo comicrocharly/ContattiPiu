@@ -60,7 +60,7 @@ public class PostContattoDAO implements ContattoDAO {
 		PreparedStatement ps;
 		ArrayList<Contatto> cList = new ArrayList<Contatto>();
 		Contatto c = null;
-		Indirizzo i = null;
+		
 		
 		try {
 			ps = link.prepareStatement(
@@ -69,26 +69,20 @@ public class PostContattoDAO implements ContattoDAO {
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()) {
-				c.setContID(rs.getInt("Cont_ID")); 
-				c.setNome(rs.getString("Nome"));
-				c.setCognome(rs.getString("Cognome"));
-				c.setIndFoto(rs.getString("Ind_Foto"));
-				i.setAddrID(rs.getInt("Indirizzo_P"));
-				c.setIndirizzoP(i);
-				cList.add(c);
-				//Work in progress
+			c= new Contatto(rs.getInt(0),rs.getString(1),rs.getString(2),rs.getString(3));
+			cList.add(c);
 			}
 
 			rs.close();
-			return cList;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
 		}
-
-	}
+		
+		return cList;
+		
+		}
 
 	public String getNome(int contID) {
 

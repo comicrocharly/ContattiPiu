@@ -22,6 +22,15 @@ public class Contatto {
 		this.indirizzoP = indirizzoP;
 
 	}
+	//Costruttore utile al caricamento dei contatti nell'ArrayList
+	public Contatto(int contID, String nome, String cognome, String indFoto) {
+
+		this.contID = contID;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.indFoto = indFoto;
+
+	}
 	
 	public Contatto(String nome, String cognome, String indFoto, Indirizzo indirizzoP) {
 
