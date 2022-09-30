@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import model.Telefono;
 import database.DatabaseConnect;
 
@@ -22,6 +24,30 @@ public class PostTelefonoDAO {
 
 	}
 
+	public ArrayList<Telefono> getListaNumeri() {
+
+		ArrayList<Telefono> listaNumeri = new ArrayList<Telefono>();
+		
+		PreparedStatement ps;
+		ResultSet rs;
+		
+		try {
+			ps= link.prepareStatement("SELECT * FROM TELEFONO");
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				listaNumeri.add(new Telefono(rs.getString(0),rs.getString(1),rs.getString(2)));
+			}
+			
+			rs.close();
+			
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		return listaNumeri;
+	}
 
 	public String getTipo(String numero, String prefisso) {
 
@@ -29,15 +55,11 @@ public class PostTelefonoDAO {
 		String s = null;
 
 		try {
-			ps = link.prepareStatement(
-					"SELECT tipo "
-							+ "FROM Telefono "
-							+ "WHERE numero = '"+numero+"' AND prefisso = '"+prefisso+"' ");
+			ps = link.prepareStatement("SELECT tipo " + "FROM Telefono " + "WHERE numero = '" + numero
+					+ "' AND prefisso = '" + prefisso + "' ");
 			ResultSet rs = ps.executeQuery();
 
-
 			s = rs.getString("tipo");
-
 
 			rs.close();
 
@@ -58,10 +80,8 @@ public class PostTelefonoDAO {
 		String tipo = telefono.getTipo();
 
 		try {
-			link.prepareStatement(
-					"INSERT INTO TELEFONO "
-							+ "(numero, prefisso, tipo) "
-							+ "VALUES ('"+numero+"', '"+prefisso+"', '"+tipo+"' );");
+			link.prepareStatement("INSERT INTO TELEFONO " + "(numero, prefisso, tipo) " + "VALUES ('" + numero + "', '"
+					+ prefisso + "', '" + tipo + "' );");
 
 		} catch (SQLException ignore) {
 
@@ -69,27 +89,24 @@ public class PostTelefonoDAO {
 	}
 
 	public boolean checkTelefono(String prefisso, String numero) {
-		
+
 		PreparedStatement ps;
-		
+
 		int tmp = 0;
-		
+
 		try {
-			ps = link.prepareStatement(
-					"SELECT COUNT(*)  AS C"
-							+ "FROM Telefono "
-							+ "WHERE numero = '"+numero+"' AND prefisso = '"+prefisso+"' ");
-			
+			ps = link.prepareStatement("SELECT COUNT(*)  AS C" + "FROM Telefono " + "WHERE numero = '" + numero
+					+ "' AND prefisso = '" + prefisso + "' ");
+
 			ResultSet rs = ps.executeQuery();
 
-
 			tmp = rs.getInt("C");
-			
+
 			rs.close();
 
-			if(tmp>1)
+			if (tmp > 1)
 				return true;
-			else 
+			else
 				return false;
 
 		} catch (SQLException e) {
@@ -99,6 +116,5 @@ public class PostTelefonoDAO {
 		}
 
 	}
-
 
 }
