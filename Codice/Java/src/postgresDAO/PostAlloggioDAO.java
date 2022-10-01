@@ -23,25 +23,27 @@ public class PostAlloggioDAO implements AlloggioDAO {
 		}
 	}
 
-	public ArrayList<int[]> getAlloggi() {
+	//La funzione restituisce un arraylist contenente gli ID degli indirizzi di contID
+	public ArrayList<Integer> getAlloggi(int contID) {
 
 		PreparedStatement ps;
 		ResultSet rs;
-		int [] contToInd;
-		ArrayList<int[]> alloggi=new ArrayList<int[]>();
+		ArrayList<Integer> alloggi=new ArrayList<Integer>();
 		
 		try {
 			
-			ps=link.prepareStatement("SELECT * FROM ALLOGGIO");
+			ps=link.prepareStatement("SELECT ADDR_ID FROM ALLOGGIO WHERE CONT_ID = ? ");
+			ps.setInt(1, contID);
 			
 			rs=ps.executeQuery();
 			
 			while(rs.next()) {
-				contToInd=new int[2];
-				contToInd[0]=rs.getInt(0);
-				contToInd[1]=rs.getInt(1);
-				alloggi.add(contToInd);
+				
+				alloggi.add(rs.getInt(0));
+				
 			}
+			
+			rs.close();
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -50,5 +52,6 @@ public class PostAlloggioDAO implements AlloggioDAO {
 		
 		return alloggi;
 	}
+	
 
 }
