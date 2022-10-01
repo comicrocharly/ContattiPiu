@@ -6,14 +6,14 @@ public class Contatto {
 	private String nome;
 	private String cognome;
 	private String indFoto;
-	private Indirizzo indirizzoP;
+	private int indirizzoP;
 	private ArrayList<Recapito> recapiti;
 	private ArrayList<Gruppo> gruppi;
 	private ArrayList<Email> email;
 	private ArrayList<Indirizzo> indirizzi;
 	
 
-	public Contatto(int contID, String nome, String cognome, String indFoto, Indirizzo indirizzoP) {
+	public Contatto(int contID, String nome, String cognome, String indFoto, int indirizzoP) {
 
 		this.contID = contID;
 		this.nome = nome;
@@ -32,7 +32,7 @@ public class Contatto {
 
 	}
 	
-	public Contatto(String nome, String cognome, String indFoto, Indirizzo indirizzoP) {
+	public Contatto(String nome, String cognome, String indFoto, int indirizzoP) {
 
 		this.nome = nome;
 		this.cognome = cognome;
@@ -61,9 +61,6 @@ public class Contatto {
 		return this.indFoto;
 	}
 
-	public Indirizzo getIndirizzo() {
-		return this.indirizzoP;
-	}
 	
 	public ArrayList<Gruppo> getGruppi(){
 		return this.gruppi;
@@ -85,11 +82,11 @@ public class Contatto {
 		this.recapiti.add(recapito);
 	}
 	
-	public Indirizzo getIndirizzoP() {
+	public int getIndirizzoP() {
 		return indirizzoP;
 	}
 
-	public void setIndirizzoP(Indirizzo indirizzoP) {
+	public void setIndirizzoP(int indirizzoP) {
 		this.indirizzoP = indirizzoP;
 	}
 
