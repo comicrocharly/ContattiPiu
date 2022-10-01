@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import dao.TelefonoDAO;
 import model.Telefono;
 import database.DatabaseConnect;
 
-public class PostTelefonoDAO {
+public class PostTelefonoDAO implements TelefonoDAO{
 	private Connection link = null;
 
 	public PostTelefonoDAO() {

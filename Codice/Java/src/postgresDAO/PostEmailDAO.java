@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import dao.EmailDAO;
 import database.DatabaseConnect;
 
-public class PostEmailDAO {
+public class PostEmailDAO implements EmailDAO{
 	
 		private Connection link = null;
 

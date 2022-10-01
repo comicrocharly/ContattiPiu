@@ -9,7 +9,9 @@ import postgresDAO.PostTelefonoDAO;
 import database.DatabaseConnect;
 import java.util.ArrayList;
 
-public class PostRecapitoDAO {
+import dao.RecapitoDAO;
+
+public class PostRecapitoDAO implements RecapitoDAO {
 	
 	private Connection link = null;
 

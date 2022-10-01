@@ -6,11 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import dao.GruppoDAO;
 import database.DatabaseConnect;
 import model.Gruppo;
 
 
-public class PostGruppoDAO {
+public class PostGruppoDAO implements GruppoDAO{
 
 	private Connection link = null;
 

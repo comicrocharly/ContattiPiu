@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import dao.AggregazioneDAO;
 import database.DatabaseConnect;
 import model.Gruppo;
 
-public class PostAggregazioneDAO {
+public class PostAggregazioneDAO implements AggregazioneDAO{
 	
 	private Connection link = null;
 	

@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import dao.MessagingPrDAO;
 import database.DatabaseConnect;
 import model.MessagingPr;
 
-public class PostMessagingPrDAO {
+public class PostMessagingPrDAO implements MessagingPrDAO {
 	
 	private Connection link = null;
 

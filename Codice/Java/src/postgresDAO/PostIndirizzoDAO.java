@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import dao.IndirizzoDAO;
 import model.Indirizzo;
 import database.DatabaseConnect;
 
-public class PostIndirizzoDAO {
+public class PostIndirizzoDAO implements IndirizzoDAO {
 
 	private Connection link = null;
 
