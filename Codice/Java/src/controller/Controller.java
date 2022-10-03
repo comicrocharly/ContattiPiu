@@ -40,6 +40,39 @@ public class Controller {
 		
 		gList = gruppoDAO.getGruppi();
 		
+		//Ciclo in cui si andranno a caricare gli arraylist dei contatti (Indirizzi,Email,Telefono,Gruppi)
+		for(Contatto cont: cList) {
+			
+			//Prima fase in cui sarà caricato l'arraylist degli indirizzi del contatto
+			PostAlloggioDAO alloggioDAO = new PostAlloggioDAO();
+			
+			ArrayList<Integer> alloggi = alloggioDAO.getAlloggi(cont.getContID());
+			
+			for(Integer alloggio: alloggi) {
+				for(Indirizzo indirizzo: iList) {
+					if(alloggio.intValue()==indirizzo.getAddrID()) {
+						cont.addIndirizzo(indirizzo);
+					}
+				}
+			}
+			
+			//Seconda fase in cui saranno caricati i gruppi nell'arraylist del contatto
+			
+			PostAggregazioneDAO aggregazione = new PostAggregazioneDAO();
+			
+			ArrayList<Integer> aggregazioni = aggregazione.getAggregazioni(cont.getContID());
+			
+			for(Integer a: aggregazioni) {
+				for(Gruppo g: gList) {
+					if(a.intValue()== g.getGroupID()) {
+						cont.addGruppo(g);
+					}
+				}
+			}
+			
+			
+		}
+		
 		return cList;
 		
 	}
