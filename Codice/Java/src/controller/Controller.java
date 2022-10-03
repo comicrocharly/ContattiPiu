@@ -19,7 +19,7 @@ public class Controller {
 
 	public ArrayList<Contatto> caricaRubrica(){
 		
-		ArrayList<Contatto> cList;
+		
 		ArrayList<Indirizzo> iList;
 		ArrayList<Gruppo> gList;
 		ArrayList<Telefono> tList;
