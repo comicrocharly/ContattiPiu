@@ -13,7 +13,7 @@ public class PostAlloggioDAO implements AlloggioDAO {
 
 	private Connection link = null;
 
-	PostAlloggioDAO() {
+	public PostAlloggioDAO() {
 		try {
 			link = DatabaseConnect.getInstance().getConnection();
 		} catch (SQLException e) {
