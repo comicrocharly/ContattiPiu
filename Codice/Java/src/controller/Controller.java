@@ -76,7 +76,15 @@ public class Controller {
 			
 			
 			
+			//Estrapoliamo le email del contatto dal DB passiamogliele sottoforma di ArrayList
+			PostEmailDAO emailDAO = new PostEmailDAO();
+			c.setEmail(emailDAO.getEmail(c.getContID()));
 			
+			//Associamo ad ogni email del contatto i profili di Messaging
+			PostMessagingPrDAO messagingPrDAO = new PostMessagingPrDAO();
+			for(Email e: c.getEmail()) {
+				e.setMessagingPr(messagingPrDAO.getMessagingPR(e.getIndirizzo()));
+			}
 			
 		}
 		

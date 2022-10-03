@@ -28,30 +28,31 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 	
 	public ArrayList<MessagingPr> getMessagingPR(String indirizzo){
 
-		ArrayList<MessagingPr> list = new  ArrayList<>();
+		ArrayList<MessagingPr> mList = new  ArrayList<MessagingPr>();
 
 		PreparedStatement ps;
+		ResultSet rs;
 
 		try {
-			ps = link.prepareStatement(
-					"SELECT * "
-							+ "FROM MessagingPR "
-							+ "WHERE Con	t_ID = '"+indirizzo+"'  ");
+			ps = link.prepareStatement("SELECT * FROM MESSAGINGPR WHERE INDIRIZZO = ? ");
+			ps.setString(1, indirizzo);
 
-			ResultSet rs = ps.executeQuery();
+			rs = ps.executeQuery();
 
 			while(rs.next())
-				list.add((MessagingPr) rs.getObject("email, fornitore, frase_Benvenuto, nickname, pr_ID"));
+				mList.add(new MessagingPr(rs.getInt(0),rs.getString(1),rs.getString(2),rs.getString(3)));
 
 			rs.close();
 
-			return list;
+			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
+		
+		return mList;
 	}
 	
 	public void setMessagingPR(String email, String fornitore, String fraseBenvenuto, String nickname) {

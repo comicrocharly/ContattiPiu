@@ -102,5 +102,11 @@ public class Contatto {
 		this.indFoto = indFoto;
 	}
 
+	public void setEmail(ArrayList<Email> eList) {
+		this.email=eList;
+	}
 	
+	public ArrayList<Email> getEmail(){
+		return this.email;
+	}
 }

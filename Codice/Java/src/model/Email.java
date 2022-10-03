@@ -25,5 +25,9 @@ public class Email {
 		this.messagingPr.add(messagingPr);
 		
 	}
+	
+	public void setMessagingPr(ArrayList<MessagingPr> messagingList) {
+		this.messagingPr=messagingList;
+	}
 
 }
