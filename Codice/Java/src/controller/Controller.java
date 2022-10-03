@@ -58,9 +58,9 @@ public class Controller {
 			
 			//Seconda fase in cui saranno caricati i gruppi nell'arraylist del contatto
 			
-			PostAggregazioneDAO aggregazione = new PostAggregazioneDAO();
+			PostAggregazioneDAO aggregazioneDAO = new PostAggregazioneDAO();
 			
-			ArrayList<Integer> aggregazioni = aggregazione.getAggregazioni(cont.getContID());
+			ArrayList<Integer> aggregazioni = aggregazioneDAO.getAggregazioni(cont.getContID());
 			
 			for(Integer a: aggregazioni) {
 				for(Gruppo g: gList) {
@@ -69,6 +69,13 @@ public class Controller {
 					}
 				}
 			}
+			
+			//Terza fase dove saranno caricari i numeri di telefono del contatto nel suo apposito arraylist
+			
+			PostRecapitoDAO recapitoDAO = new PostRecapitoDAO();
+			
+			
+			
 			
 			
 		}

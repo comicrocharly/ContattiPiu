@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import dao.EmailDAO;
 import database.DatabaseConnect;
+import model.Email;
 
 public class PostEmailDAO implements EmailDAO{
 	
@@ -23,6 +24,35 @@ public class PostEmailDAO implements EmailDAO{
 				e.printStackTrace();
 			}
 
+		}
+		
+		//Funzione che dato un ID Contatto ci restituisce sotto arraylist i suoi indirizzi email
+		public ArrayList<Email> getEmail(int contID) {
+			
+			
+			ArrayList<Email> eList=new ArrayList<Email>();
+			ResultSet rs;
+			PreparedStatement ps;
+			
+			try {
+				
+				ps=link.prepareStatement("SELECT * FROM EMAIL WHERE CONT_ID = ? ");
+				ps.setInt(1, contID);
+				
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					eList.add(new Email(rs.getString(0),rs.getString(1)));
+				}
+				
+				rs.close();
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+			
+			return eList;
 		}
 
 
