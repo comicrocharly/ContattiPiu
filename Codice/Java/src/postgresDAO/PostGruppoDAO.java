@@ -27,34 +27,31 @@ public class PostGruppoDAO implements GruppoDAO{
 
 	}
 
-	//metodo di aggregazione
-	public ArrayList<Gruppo> getGruppi(int contID){
+	//Ritorna la lista dei gruppi presenti in memoria
+	public ArrayList<Gruppo> getGruppi(){
 
-		ArrayList<Gruppo> list = new  ArrayList<>();
+		ArrayList<Gruppo> gList = new  ArrayList<Gruppo>();
 
 		PreparedStatement ps;
+		ResultSet rs;
 
 		try {
-			ps = link.prepareStatement(
-					"SELECT * "
-							+ "FROM Gruppo "
-							+ "NATURAL JOIN Aggregazione "
-							+ "WHERE Cont_ID = '"+contID+"'  ");
-
-			ResultSet rs = ps.executeQuery();
-
-			while(rs.next())
-				list.add((Gruppo) rs.getObject("Nome_G, Descrizione, Group_ID"));
-
+			ps= link.prepareStatement("SELECT * FROM GRUPPO");
+			rs= ps.executeQuery();
+			
+			while(rs.next()) {
+				gList.add(new Gruppo(rs.getInt(0),rs.getString(1),rs.getString(2)));
+			}
+			
 			rs.close();
-
-			return list;
-
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
+		
+		return gList;
 	}
 
 	public void setGruppo(String nomeG, String descrizione) {
