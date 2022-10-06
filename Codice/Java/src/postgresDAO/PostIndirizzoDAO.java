@@ -179,8 +179,8 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 
 	}
 
-	public void setIndirizzo(Indirizzo i) {
-		
+	public int setIndirizzo(Indirizzo i) {
+		int addrID = 0;
 		String via = i.getVia();
 		String citta = i.getCitta();
 		String cap = i.getCap();
@@ -193,14 +193,16 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 			ps = link.prepareStatement(
 					"INSERT INTO indirizzo " 
 							+ "(via, citta, cap, nazione) "
-							+ "VALUES ('"+via+"', '"+citta+"', '"+cap+"', '"+nazione+"');");
+							+ "VALUES ('"+via+"', '"+citta+"', '"+cap+"', '"+nazione+"')"
+									+ "RETURNING Addr_ID ;");
 
-			ps.executeUpdate();
-
+			ResultSet rs = ps.executeQuery();
+			addrID = rs.getInt(0);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return addrID;
 
 	}
 

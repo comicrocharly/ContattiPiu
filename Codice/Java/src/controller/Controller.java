@@ -12,42 +12,42 @@ public class Controller {
 	private Contatto c;
 	private Indirizzo i;
 	private Telefono t;
-	// Contatti da mostrare, anche in ricerca
+	// Lista di contatti caricata
 	private ArrayList<Contatto> cList;
 
 	private DatabaseConnect connessione;
 
 	public ArrayList<Contatto> caricaRubrica(){
-		
-		
+
+
 		ArrayList<Indirizzo> iList;
 		ArrayList<Gruppo> gList;
 		ArrayList<Telefono> tList;
-		
+
 		PostContattoDAO contattoDAO = new PostContattoDAO();
-		
+
 		cList = contattoDAO.getContatti();
-		
+
 		PostIndirizzoDAO indirizzoDAO = new PostIndirizzoDAO();
-		
+
 		iList = indirizzoDAO.getIndirizzi();
-		
+
 		PostTelefonoDAO telefonoDAO = new PostTelefonoDAO();
-		
+
 		tList = telefonoDAO.getListaNumeri();
-		
+
 		PostGruppoDAO gruppoDAO = new PostGruppoDAO();
-		
+
 		gList = gruppoDAO.getGruppi();
-		
+
 		//Ciclo in cui si andranno a caricare gli arraylist dei contatti (Indirizzi,Email,Telefono,Gruppi)
 		for(Contatto cont: cList) {
-			
+
 			//Prima fase in cui sarà caricato l'arraylist degli indirizzi del contatto
 			PostAlloggioDAO alloggioDAO = new PostAlloggioDAO();
-			
+
 			ArrayList<Integer> alloggi = alloggioDAO.getAlloggi(cont.getContID());
-			
+
 			for(Integer alloggio: alloggi) {
 				for(Indirizzo indirizzo: iList) {
 					if(alloggio.intValue()==indirizzo.getAddrID()) {
@@ -55,13 +55,13 @@ public class Controller {
 					}
 				}
 			}
-			
+
 			//Seconda fase in cui saranno caricati i gruppi nell'arraylist del contatto
-			
+
 			PostAggregazioneDAO aggregazioneDAO = new PostAggregazioneDAO();
-			
+
 			ArrayList<Integer> aggregazioni = aggregazioneDAO.getAggregazioni(cont.getContID());
-			
+
 			for(Integer a: aggregazioni) {
 				for(Gruppo g: gList) {
 					if(a.intValue()== g.getGroupID()) {
@@ -69,27 +69,27 @@ public class Controller {
 					}
 				}
 			}
-			
+
 			//Terza fase dove saranno caricari i numeri di telefono del contatto nel suo apposito arraylist
-			
+
 			PostRecapitoDAO recapitoDAO = new PostRecapitoDAO();
-			
-			
-			
+
+
+
 			//Estrapoliamo le email del contatto dal DB passiamogliele sottoforma di ArrayList
 			PostEmailDAO emailDAO = new PostEmailDAO();
 			c.setEmail(emailDAO.getEmail(c.getContID()));
-			
+
 			//Associamo ad ogni email del contatto i profili di Messaging
 			PostMessagingPrDAO messagingPrDAO = new PostMessagingPrDAO();
 			for(Email e: c.getEmail()) {
 				e.setMessagingPr(messagingPrDAO.getMessagingPR(e.getIndirizzo()));
 			}
-			
+
 		}
-		
+
 		return cList;
-		
+
 	}
 
 	public ArrayList<Contatto> searchContact(String type, String data) {
@@ -123,7 +123,7 @@ public class Controller {
 	// Inserisce un contatto in DB tramite DAO
 	public void assignContatto() {
 
-		setC(new Contatto(getC().getNome(), getC().getCognome(), getC().getIndFoto(), getC().getIndirizzo()));
+		setC(new Contatto(getC().getNome(), getC().getCognome(), getC().getIndFoto(), getC().getIndirizzoP()));
 		PostContattoDAO contattoDAO = new PostContattoDAO();
 		contattoDAO.setContatto(getC());
 
@@ -158,6 +158,41 @@ public class Controller {
 
 		return true;
 
+	}
+	
+	public static void insertDataRow(String data[]) {
+		Contatto c;
+		Indirizzo i;
+		Telefono tIn, tOut;
+		
+		String nome, cognome, prefissoIn, numeroIn, prefissoOut, numeroOut, nazione, citta, via, cap;
+		int addrID, contID;
+		
+		nome = data[0];
+		cognome = data[1];
+		prefissoIn = data[2];
+		numeroIn = data[3];
+		prefissoOut = data[4];
+		numeroOut = data[5];
+		nazione = data[6];
+		citta = data[7];
+		via = data[8];
+		cap = data[9];
+		
+		i = new Indirizzo(via, citta, cap, nazione);
+		PostIndirizzoDAO iDao = new PostIndirizzoDAO();
+		addrID = iDao.setIndirizzo(i);
+		
+		//Il primo telefono deve essere fisso
+		tIn = new Telefono(numeroIn, prefissoIn, "Fisso");
+		tOut = new Telefono(numeroOut, prefissoOut, "Mobile");
+		
+		
+		//-------------WorkInProgress--------------
+		
+		
+		
+		
 	}
 
 	private void setConnessione(DatabaseConnect connessione) {
