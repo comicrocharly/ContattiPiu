@@ -2,32 +2,32 @@ package model;
 
 public class Telefono {
 
-	private String Numero;
-	private String Prefisso;
-	private String Tipo;
+	private String numero;
+	private String prefisso;
+	private String tipo;
 	
 	public Telefono(String numero, String prefisso, String tipo) {
-		this.Numero = numero;
-		this.Prefisso = prefisso;
-		this.Tipo = tipo;
+		this.numero = numero;
+		this.prefisso = prefisso;
+		this.tipo = tipo;
 	}
 
 	public String getNumero() {
-		return Numero;
+		return numero;
 	}
 	public void setNumero(String numero) {
-		Numero = numero;
+		this.numero = numero;
 	}
 	public String getPrefisso() {
-		return Prefisso;
+		return prefisso;
 	}
 	public void setPrefisso(String prefisso) {
-		Prefisso = prefisso;
+		this.prefisso = prefisso;
 	}
 	public String getTipo() {
-		return Tipo;
+		return tipo;
 	}
 	public void setTipo(String tipo) {
-		Tipo = tipo;
+		this.tipo = tipo;
 	}
 }

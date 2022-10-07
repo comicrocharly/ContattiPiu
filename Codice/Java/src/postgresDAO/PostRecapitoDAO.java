@@ -26,33 +26,50 @@ public class PostRecapitoDAO implements RecapitoDAO {
 		}
 
 	}
-
-
-	public ArrayList<Recapito> getRecapiti(int contID) {
+	
+	public Telefono matchTel(ArrayList<Telefono> tList,String prefisso,String numero) {
 		
-		ArrayList<Recapito> list = new  ArrayList<>();
+		Telefono metchedTel = null;
+		
+		for(Telefono tel: tList) {
+			if(tel.getPrefisso()==prefisso&&tel.getNumero()==numero) {
+				metchedTel=tel;
+				break;
+			}
+		}
+		
+		return metchedTel;
+	}
+
+
+	public ArrayList<Recapito> getRecapiti(ArrayList<Telefono> tList,int contID) {
+		
+		ArrayList<Recapito> rList = new  ArrayList<Recapito>();
 		
 		PreparedStatement ps;
+		ResultSet rs;
 
 		try {
-			ps = link.prepareStatement(
-					"SELECT * "
-							+ "FROM Recapito "
-							+ "WHERE Cont_ID = '"+contID+"' ");
-			ResultSet rs = ps.executeQuery();
-
-			while(rs.next())
-					list.add((Recapito) rs.getObject("Numero_In, Numero_Out, Rec_ID"));
-
-			rs.close();
 			
-			return list;
+			ps=link.prepareStatement("SELECT * FROM RECAPITO WHERE CONT_ID = ?");
+			ps.setInt(1, contID);
+			
+			rs=ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				rList.add(new Recapito(rs.getInt(0),matchTel(tList,rs.getString(2),rs.getString(3)),matchTel(tList,rs.getString(4),rs.getString(5))));
+				
+			}
+		
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
+		
+		return rList;
 
 	}
 	
@@ -128,6 +145,8 @@ public class PostRecapitoDAO implements RecapitoDAO {
 		}
 	}
 }
+
+
 
 	
 		

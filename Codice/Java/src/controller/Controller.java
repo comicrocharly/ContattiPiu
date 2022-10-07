@@ -17,6 +17,7 @@ public class Controller {
 
 	private DatabaseConnect connessione;
 
+
 	public ArrayList<Contatto> caricaRubrica(){
 
 
@@ -73,6 +74,10 @@ public class Controller {
 			//Terza fase dove saranno caricari i numeri di telefono del contatto nel suo apposito arraylist
 
 			PostRecapitoDAO recapitoDAO = new PostRecapitoDAO();
+			
+			c.setRecapiti(recapitoDAO.getRecapiti(tList, c.getContID()));
+			
+			
 
 
 
@@ -230,5 +235,7 @@ public class Controller {
 	public void setT(Telefono t) {
 		this.t = t;
 	}
+	
+	
 
 }

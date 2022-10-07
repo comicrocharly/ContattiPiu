@@ -82,6 +82,10 @@ public class Contatto {
 		this.recapiti.add(recapito);
 	}
 	
+	public void setRecapiti(ArrayList<Recapito> rList) {
+		this.recapiti=rList;
+	}
+	
 	public int getIndirizzoP() {
 		return indirizzoP;
 	}
