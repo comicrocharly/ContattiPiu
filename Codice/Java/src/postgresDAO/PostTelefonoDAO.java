@@ -36,7 +36,7 @@ public class PostTelefonoDAO implements TelefonoDAO{
 			ps= link.prepareStatement("SELECT * FROM TELEFONO");
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				listaNumeri.add(new Telefono(rs.getString(0),rs.getString(1),rs.getString(2)));
+				listaNumeri.add(new Telefono(rs.getString(1),rs.getString(2),rs.getString(3)));
 			}
 			
 			rs.close();
@@ -75,17 +75,20 @@ public class PostTelefonoDAO implements TelefonoDAO{
 	}
 
 	public void setTelefono(Telefono telefono) {
-
+		PreparedStatement ps;
+		
 		String prefisso = telefono.getPrefisso();
 		String numero = telefono.getNumero();
 		String tipo = telefono.getTipo();
 
 		try {
-			link.prepareStatement("INSERT INTO TELEFONO " + "(numero, prefisso, tipo) " + "VALUES ('" + numero + "', '"
-					+ prefisso + "', '" + tipo + "' );");
-
-		} catch (SQLException ignore) {
-
+			ps = link.prepareStatement("INSERT INTO Telefono ( numero, prefisso, tipo) "
+					+ "VALUES ('"+numero+"', '"+prefisso+"', '"+tipo+"' ); ");
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -96,8 +99,9 @@ public class PostTelefonoDAO implements TelefonoDAO{
 		int tmp = 0;
 
 		try {
-			ps = link.prepareStatement("SELECT COUNT(*)  AS C" + "FROM Telefono " + "WHERE numero = '" + numero
-					+ "' AND prefisso = '" + prefisso + "' ");
+			ps = link.prepareStatement("SELECT COUNT(*)  AS C " 
+					+ "FROM Telefono " 
+					+ "WHERE numero = '" + numero+ "' AND prefisso = '" + prefisso + "' ");
 
 			ResultSet rs = ps.executeQuery();
 

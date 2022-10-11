@@ -1,8 +1,8 @@
 package gui;
-
 import java.awt.Desktop;
 import gui.NewContact;
 import model.Contatto;
+import model.Indirizzo;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -55,13 +55,14 @@ public class MainWireframe {
 
 	private JFrame frame;
 	private static JTable table;
-
+	//private static Controller controller;
 
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -174,6 +175,10 @@ public class MainWireframe {
 						"Nome", "Cognome", "Indirizzo", "Telefono"
 				}
 				) {
+			/**
+					 * 
+					 */
+					private static final long serialVersionUID = 1L;
 			Class[] columnTypes = new Class[] {
 					String.class, String.class, String.class, String.class
 			};
@@ -190,6 +195,9 @@ public class MainWireframe {
 				return false;
 			}
 		});
+		
+		Controller.caricaRubrica();
+		updateTable();
 
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
@@ -209,6 +217,7 @@ public class MainWireframe {
 		choice.add("Nome");
 		choice.add("Email");
 		choice.add("Social");
+		
 	}
 
 	public JTable getTable() {
@@ -220,32 +229,75 @@ public class MainWireframe {
 	}
 
 	public static void addToTable(String data[]) {
-		String dataView[] = {data[0],data[1],data[5]+" "+data[6],data[2]+" "+data[3]};
+		//data[] è formattato come: Nome, Cognome, Citta + Via, PrefissoFisso + NumeroFisso;
 		
-
+		String format[] = {data[0], data[1], data[2], data[3]};
+		//
 		DefaultTableModel tModel = (DefaultTableModel) table.getModel();
-		tModel.addRow(dataView);
-		Controller.insertDataRow(data);
+		tModel.addRow(format);
 
 	}
-	//Inserisce i dati inseriti in tabella nel DB
 	
-
-	//restituisce un arrayList di matrice a oggetti
-	/*public ArrayList<String []> printTable(ArrayList<Contatto> lista) {
-		ArrayList<Object[][]> m;
-		Contatto c;
-		Iterator i = lista.iterator();
-		while(i.hasNext()) {
-			c = (Contatto) i.next();
-			m.add();
+	//Aggiorna il controller con tutti i dati obbligatori inseriti in NewContact, che li aggiunge ai modelli e al DB
+	public static void updateController(String data[]) {
+		try {
+			Controller.insertDataRow(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	}
+	
+	public void updateTable() {
+		//data[] è formattato come: Nome, Cognome, Citta, Via, PrefissoFisso, NumeroFisso, 
 
+		Integer addrID;
+		ArrayList<Contatto> cList = new ArrayList<>();
+		Indirizzo i=null;
+		
+		cList = Controller.getcList();
+		
+		if(Controller.getcList()!=null) {
+			if(!cList.isEmpty()) {
+				for(Contatto c :cList) {
 
-		return null;
+					addrID = c.getIndirizzoP();
 
-	}*/
+					for(Indirizzo tmp:c.getIndirizzi()) {
+						if(addrID.equals(tmp.getAddrID())) {
+							i=tmp;
+							break;
+						}
+
+					}
+					//data[] è formattato come: Nome, Cognome, Citta + Via, PrefissoFisso + NumeroFisso;
+					
+					try {
+						String prefisso = c.getRecapiti().get(0).getTelefonoIn().getPrefisso();
+						String numero = c.getRecapiti().get(0).getTelefonoIn().getNumero();
+						
+						String data[]= {c.getNome(),c.getCognome(),i.getCitta()+" "+i.getVia(), prefisso + " " + numero };
+
+						addToTable(data);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						String data[]= {c.getNome(),c.getCognome(),i.getCitta()+" "+i.getVia(), "" + " " + "" };
+
+						addToTable(data);
+					}
+					
+
+				}
+			}
+		}
+		else
+			JOptionPane.showMessageDialog(frame,("La lista dei contatti è vuota"));
+			
+	}
 
 }
+
+
 
 

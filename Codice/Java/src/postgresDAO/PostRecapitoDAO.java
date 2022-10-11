@@ -51,8 +51,8 @@ public class PostRecapitoDAO implements RecapitoDAO {
 
 		try {
 			
-			ps=link.prepareStatement("SELECT * FROM RECAPITO WHERE CONT_ID = ?");
-			ps.setInt(1, contID);
+			ps=link.prepareStatement("SELECT * FROM RECAPITO WHERE CONT_ID = '"+contID+"' ");
+			
 			
 			rs=ps.executeQuery();
 			
@@ -81,14 +81,15 @@ public class PostRecapitoDAO implements RecapitoDAO {
 		
 		try {
 			ps = link.prepareStatement(
-					"SELECT COUNT(*)  AS C"
+					"SELECT COUNT(*) "
 							+ "FROM Telefono "
 							+ "WHERE numero = '"+numero+"' AND prefisso = '"+prefisso+"' ");
 			
 			ResultSet rs = ps.executeQuery();
 
-
-			tmp = rs.getInt("C");
+			
+			if(rs.next())
+				tmp = rs.getInt(1);
 			
 			rs.close();
 
@@ -107,29 +108,27 @@ public class PostRecapitoDAO implements RecapitoDAO {
 	
 
 
-	//racchiudere in un try/catch per gestire l'eccezione generata dalla non esistenza del'oggetto telefono, magari con un propt di inserimento telefono
+	
 	public void setRecapito(int contID, String prefissoIn, String numeroIn, String prefissoOut, String numeroOut) {
 
-
 		PreparedStatement ps;
-		if(checkTelefono(prefissoIn, numeroIn) && checkTelefono(prefissoOut, numeroOut)) {
-			try {
-				ps = link.prepareStatement(
-						"INSERT INTO Recapito " 
-								+ "(prefisso_In, prefisso_out, numero_in, numero_out, Cont_ID) "
-								+ "VALUES ('"+prefissoIn+"', '"+prefissoOut+"', '"+numeroIn+"', '"+numeroOut+"', '"+contID+"');");
 
-				ps.executeUpdate();
+		try {
+			ps = link.prepareStatement(
+					"INSERT INTO Recapito (prefisso, prefisso_out, numero, numero_out, Cont_ID) "
+							+ "VALUES ('"+prefissoIn+"', '"+prefissoOut+"', '"+numeroIn+"', '"+numeroOut+"', '"+contID+"');");
 
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ps.executeUpdate();
 
-
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
+
 	}
-	
+
+
 	public void delRecapito(int contID, String prefissoIn, String prefissoOut, String numeroIn, String numeroOut ) {
 		PreparedStatement ps;
 

@@ -40,7 +40,7 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 			rs=ps.executeQuery();
 			
 			while(rs.next()) {
-				indList.add(new Indirizzo(rs.getInt(0),rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+				indList.add(new Indirizzo(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
 			}
 			rs.close();
 		}
@@ -58,7 +58,7 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 
 		try {
 			ps = link.prepareStatement(
-					"SELECT *"
+					"SELECT * "
 							+ "FROM indirizzo " 
 							+ "WHERE Addr_ID = '"+addrID+"'");
 
@@ -90,7 +90,7 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 			ps = link.prepareStatement(
 					"SELECT "+ attr +" " 
 							+ "FROM Indirizzo "
-							+ "WHERE addr_id = '"+addrID+"'");
+							+ "WHERE Addr_ID = '"+addrID+"'");
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()) {
@@ -197,7 +197,9 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 									+ "RETURNING Addr_ID ;");
 
 			ResultSet rs = ps.executeQuery();
-			addrID = rs.getInt(0);
+			if(rs.next())
+				addrID = rs.getInt(1);
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

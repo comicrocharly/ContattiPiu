@@ -40,7 +40,7 @@ public class PostGruppoDAO implements GruppoDAO{
 			rs= ps.executeQuery();
 			
 			while(rs.next()) {
-				gList.add(new Gruppo(rs.getInt(0),rs.getString(1),rs.getString(2)));
+				gList.add(new Gruppo(rs.getInt(1),rs.getString(2),rs.getString(3)));
 			}
 			
 			rs.close();

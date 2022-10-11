@@ -32,14 +32,13 @@ public class PostAlloggioDAO implements AlloggioDAO {
 		
 		try {
 			
-			ps=link.prepareStatement("SELECT ADDR_ID FROM ALLOGGIO WHERE CONT_ID = ? ");
-			ps.setInt(1, contID);
+			ps=link.prepareStatement("SELECT Addr_ID FROM Alloggio WHERE Cont_ID = '"+contID +"' ");
 			
 			rs=ps.executeQuery();
 			
 			while(rs.next()) {
 				
-				alloggi.add(rs.getInt(0));
+				alloggi.add(rs.getInt(1));
 				
 			}
 			
@@ -51,6 +50,23 @@ public class PostAlloggioDAO implements AlloggioDAO {
 		}
 		
 		return alloggi;
+	}
+
+	public void setAlloggio(int contID, int addrID) {
+
+		PreparedStatement ps;
+
+		try {
+			ps = link.prepareStatement("INSERT INTO Alloggio " + "(Cont_ID, Addr_ID) " + 
+					"VALUES ('"+contID+"', '"+addrID+"');");
+
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 

@@ -7,6 +7,7 @@ public class Contatto {
 	private String cognome;
 	private String indFoto;
 	private int indirizzoP;
+	
 	private ArrayList<Recapito> recapiti;
 	private ArrayList<Gruppo> gruppi;
 	private ArrayList<Email> email;
@@ -32,11 +33,10 @@ public class Contatto {
 
 	}
 	
-	public Contatto(String nome, String cognome, String indFoto, int indirizzoP) {
+	public Contatto(String nome, String cognome, int indirizzoP) {
 
 		this.nome = nome;
 		this.cognome = cognome;
-		this.indFoto = indFoto;
 		this.indirizzoP = indirizzoP;
 
 	}
@@ -112,5 +112,15 @@ public class Contatto {
 	
 	public ArrayList<Email> getEmail(){
 		return this.email;
+	}
+
+	public ArrayList<Indirizzo> getIndirizzi() {
+		return indirizzi;
+	}
+	public void setIndirizzi(ArrayList<Indirizzo> indirizzi) {
+		this.indirizzi = indirizzi;
+	}
+	public ArrayList<Recapito> getRecapiti() {
+		return recapiti;
 	}
 }

@@ -60,7 +60,7 @@ public class PostContattoDAO implements ContattoDAO {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				cList.add(new Contatto(rs.getInt(0), rs.getString(1), rs.getString(2), rs.getString(3),rs.getInt(4)));
+				cList.add(new Contatto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getInt(5)));
 
 			}
 
@@ -157,20 +157,23 @@ public class PostContattoDAO implements ContattoDAO {
 		upAttr(contID, attr, data);
 	}
 
-	public void setContatto(String nome, String cognome, String indFoto, int indirizzoP) {
-
+	public int setContatto(String nome, String cognome, String indFoto, int indirizzoP) {
+		int contID = 0;
 		PreparedStatement ps;
 
 		try {
 			ps = link.prepareStatement("INSERT INTO contatto " + "(nome, cognome, ind_foto, indirizzo_p) " + "VALUES ('"
-					+ nome + "', '" + cognome + "', '" + indFoto + "', '" + indirizzoP + "');");
+					+ nome + "', '" + cognome + "', '" + indFoto + "', '" + indirizzoP + "')"
+							+ "RETURNNING Cont_ID;");
 
-			ps.executeUpdate();
+			ResultSet rs = ps.executeQuery();
+			contID = rs.getInt(0);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}	
+		return contID;
 
 	}
 
@@ -206,9 +209,9 @@ public class PostContattoDAO implements ContattoDAO {
 
 	}
 
-	public void setContatto(Contatto c) {
+	public int setContatto(Contatto c) {
 		// TODO Auto-generated method stub
-
+		int contID = 0;
 		String nome = c.getNome();
 		String cognome = c.getCognome();
 		int indirizzoP = c.getIndirizzoP();
@@ -216,15 +219,19 @@ public class PostContattoDAO implements ContattoDAO {
 		PreparedStatement ps;
 		try {
 			ps = link.prepareStatement("INSERT INTO contatto " + "(nome, cognome, indirizzo_p) " + "VALUES ('" + nome
-					+ "', '" + cognome + "', '" + indirizzoP + "');");
+					+ "', '" + cognome + "', '" + indirizzoP + "')"
+							+ "RETURNING Cont_ID ;");
 
-			ps.executeUpdate();
-
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next())
+				contID = rs.getInt(1);
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		return contID;
 	}
 
 	@Override

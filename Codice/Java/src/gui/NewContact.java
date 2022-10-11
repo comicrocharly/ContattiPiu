@@ -30,16 +30,16 @@ public class NewContact extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldNome;
 	private JTextField textFieldCognome;
-	private JLabel lblNewLabelTelefono;
-	private JTextField textFieldNumeroIn;
+	private JLabel lblNewLabelTFisso;
+	private JTextField textFieldNumeroFisso;
 	private JTextField textFieldNazione;
 	private JTextField textFieldCitta;
 	private JTextField textFieldVia;
 	private JTextField textFieldCap;
-	private JTextField textFieldPrefissoIn;
-	private JLabel lblNewLabelTelefono_1;
-	private JTextField textFieldPrefissoOut;
-	private JTextField textFieldNumeroOut;
+	private JTextField textFieldPrefissoFisso;
+	private JLabel lblNewLabelTMobile;
+	private JTextField textFieldPrefissoMobile;
+	private JTextField textFieldNumeroMobile;
 
 
 	
@@ -85,15 +85,15 @@ public class NewContact extends JFrame {
 		contentPane.add(textFieldCognome);
 		textFieldCognome.setColumns(10);
 		
-		lblNewLabelTelefono = new JLabel("Telefono");
-		lblNewLabelTelefono.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabelTelefono.setBounds(25, 91, 67, 19);
-		contentPane.add(lblNewLabelTelefono);
+		lblNewLabelTFisso = new JLabel("T.Fisso");
+		lblNewLabelTFisso.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabelTFisso.setBounds(25, 91, 67, 19);
+		contentPane.add(lblNewLabelTFisso);
 		
-		textFieldNumeroIn = new JTextField();
-		textFieldNumeroIn.setColumns(10);
-		textFieldNumeroIn.setBounds(153, 92, 86, 19);
-		contentPane.add(textFieldNumeroIn);
+		textFieldNumeroFisso = new JTextField();
+		textFieldNumeroFisso.setColumns(10);
+		textFieldNumeroFisso.setBounds(153, 92, 86, 19);
+		contentPane.add(textFieldNumeroFisso);
 		
 		JLabel lblNewLabelNazione = new JLabel("Nazione");
 		lblNewLabelNazione.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -130,32 +130,32 @@ public class NewContact extends JFrame {
 		contentPane.add(textFieldCap);
 		textFieldCap.setColumns(10);
 		
-		textFieldPrefissoIn = new JTextField();
-		textFieldPrefissoIn.setBounds(112, 92, 33, 19);
-		contentPane.add(textFieldPrefissoIn);
-		textFieldPrefissoIn.setColumns(10);
+		textFieldPrefissoFisso = new JTextField();
+		textFieldPrefissoFisso.setBounds(112, 92, 33, 19);
+		contentPane.add(textFieldPrefissoFisso);
+		textFieldPrefissoFisso.setColumns(10);
 		
-		lblNewLabelTelefono_1 = new JLabel("Telefono");
-		lblNewLabelTelefono_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabelTelefono_1.setBounds(25, 118, 67, 19);
-		contentPane.add(lblNewLabelTelefono_1);
+		lblNewLabelTMobile = new JLabel("T.Mobile");
+		lblNewLabelTMobile.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabelTMobile.setBounds(25, 118, 67, 19);
+		contentPane.add(lblNewLabelTMobile);
 		
-		textFieldPrefissoOut = new JTextField();
-		textFieldPrefissoOut.setColumns(10);
-		textFieldPrefissoOut.setBounds(112, 119, 33, 19);
-		contentPane.add(textFieldPrefissoOut);
+		textFieldPrefissoMobile = new JTextField();
+		textFieldPrefissoMobile.setColumns(10);
+		textFieldPrefissoMobile.setBounds(112, 119, 33, 19);
+		contentPane.add(textFieldPrefissoMobile);
 		
-		textFieldNumeroOut = new JTextField();
-		textFieldNumeroOut.setColumns(10);
-		textFieldNumeroOut.setBounds(153, 119, 86, 19);
-		contentPane.add(textFieldNumeroOut);
+		textFieldNumeroMobile = new JTextField();
+		textFieldNumeroMobile.setColumns(10);
+		textFieldNumeroMobile.setBounds(153, 119, 86, 19);
+		contentPane.add(textFieldNumeroMobile);
 
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Controllo presenza campi
 				if(textFieldNome.getText().equals("")||textFieldCognome.getText().equals("")
-						||textFieldPrefissoIn.getText().equals("")||textFieldNumeroIn.getText().equals("")
-						||textFieldPrefissoOut.getText().equals("")||textFieldNumeroOut.getText().equals("")
+						||textFieldPrefissoFisso.getText().equals("")||textFieldNumeroFisso.getText().equals("")
+						||textFieldPrefissoMobile.getText().equals("")||textFieldNumeroMobile.getText().equals("")
 						||textFieldNazione.getText().equals("")||textFieldCitta.getText().equals("")
 						||textFieldVia.getText().equals("")||textFieldCap.getText().equals("")) {
 
@@ -163,12 +163,26 @@ public class NewContact extends JFrame {
 				}
 				else {
 
-					String data[]= {textFieldNome.getText(), textFieldCognome.getText(), textFieldPrefissoIn.getText(),textFieldNumeroIn.getText(),textFieldPrefissoOut.getText(),textFieldNumeroOut.getText(),
+					String data[]= {textFieldNome.getText(), textFieldCognome.getText(), 
+							textFieldPrefissoFisso.getText(),textFieldNumeroFisso.getText(),
+							textFieldPrefissoMobile.getText(),textFieldNumeroMobile.getText(),
 							textFieldNazione.getText(), textFieldCitta.getText(), textFieldVia.getText(), textFieldCap.getText()};
-
-					MainWireframe.addToTable(data);
-
-					JOptionPane.showMessageDialog(NewContact.this,"Inserimento riuscito.");
+					
+					String dataView[] = {data[0],data[1],data[7]+" "+data[8],data[2]+" "+data[3]};
+					
+					
+					
+					try {
+						MainWireframe.updateController(data);
+						MainWireframe.addToTable(dataView);
+						JOptionPane.showMessageDialog(NewContact.this,"Inserimento Riuscito.");
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(NewContact.this,"Inserimento Fallito.");
+						e1.printStackTrace();
+					}
+					
+					
 					setVisible(false);
 				}
 			}
