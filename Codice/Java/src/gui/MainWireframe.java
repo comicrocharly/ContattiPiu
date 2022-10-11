@@ -3,6 +3,8 @@ import java.awt.Desktop;
 import gui.NewContact;
 import model.Contatto;
 import model.Indirizzo;
+import model.Recapito;
+import model.Telefono;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -273,8 +275,11 @@ public class MainWireframe {
 					//data[] è formattato come: Nome, Cognome, Citta + Via, PrefissoFisso + NumeroFisso;
 					
 					try {
-						String prefisso = c.getRecapiti().get(0).getTelefonoIn().getPrefisso();
-						String numero = c.getRecapiti().get(0).getTelefonoIn().getNumero();
+						ArrayList<Recapito> rList = new ArrayList<>();
+						rList = c.getRecapiti();
+						Recapito r = rList.get(0);
+						String prefisso = r.getTelefonoIn().getPrefisso();
+						String numero = r.getTelefonoIn().getNumero();
 						
 						String data[]= {c.getNome(),c.getCognome(),i.getCitta()+" "+i.getVia(), prefisso + " " + numero };
 

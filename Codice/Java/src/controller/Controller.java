@@ -12,6 +12,7 @@ public class Controller {
 	private static Contatto c;
 	private static Indirizzo i;
 	private static Telefono t;
+	
 	// Lista di contatti caricata
 	private static ArrayList<Contatto> cList;
 
@@ -80,8 +81,8 @@ public class Controller {
 			//Terza fase dove saranno caricari i numeri di telefono del contatto nel suo apposito arraylist
 
 			PostRecapitoDAO recapitoDAO = new PostRecapitoDAO();
-			
-			c.setRecapiti(recapitoDAO.getRecapiti(tList, c.getContID()));
+			rList = recapitoDAO.getRecapiti(tList, c.getContID());
+			c.setRecapiti(rList);
 			
 			
 
@@ -121,13 +122,13 @@ public class Controller {
 
 		}
 
-		return this.cList = r;
+		return cList = r;
 	}
 
 	public ArrayList<Contatto> pullContacts() {
 		ArrayList<Contatto> r = null;
 
-		return this.cList = r;
+		return cList = r;
 	}
 
 	// Inserisce un contatto in DB tramite DAO

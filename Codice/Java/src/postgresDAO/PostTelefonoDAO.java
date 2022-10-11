@@ -34,9 +34,10 @@ public class PostTelefonoDAO implements TelefonoDAO{
 		
 		try {
 			ps= link.prepareStatement("SELECT * FROM TELEFONO");
-			rs=ps.executeQuery();
+			rs = ps.executeQuery();
 			while(rs.next()) {
 				listaNumeri.add(new Telefono(rs.getString(1),rs.getString(2),rs.getString(3)));
+				
 			}
 			
 			rs.close();

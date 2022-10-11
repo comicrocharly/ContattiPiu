@@ -28,11 +28,19 @@ public class PostRecapitoDAO implements RecapitoDAO {
 	}
 	
 	public Telefono matchTel(ArrayList<Telefono> tList,String prefisso,String numero) {
-		
+		boolean x=false,y=false;
 		Telefono metchedTel = null;
 		
 		for(Telefono tel: tList) {
-			if(tel.getPrefisso()==prefisso&&tel.getNumero()==numero) {
+			
+			x = tel.getNumero().trim().equals(numero.trim());
+			y = tel.getPrefisso().trim().equals(prefisso.trim());
+			boolean z = " ciao ".trim().equals("ci ao ".trim());
+			
+			System.out.println(tel.getNumero()+tel.getPrefisso()+"=="+numero+prefisso);
+			System.out.println(z);
+			if(x && y) {
+				System.out.println("uguali");
 				metchedTel=tel;
 				break;
 			}
@@ -47,19 +55,21 @@ public class PostRecapitoDAO implements RecapitoDAO {
 		ArrayList<Recapito> rList = new  ArrayList<Recapito>();
 		
 		PreparedStatement ps;
-		ResultSet rs;
+		
 
 		try {
 			
-			ps=link.prepareStatement("SELECT * FROM RECAPITO WHERE CONT_ID = '"+contID+"' ");
+			ps = link.prepareStatement("SELECT * FROM Recapito WHERE Cont_ID = '"+contID+"' ");
 			
 			
-			rs=ps.executeQuery();
+			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				
-				rList.add(new Recapito(rs.getInt(0),matchTel(tList,rs.getString(2),rs.getString(3)),matchTel(tList,rs.getString(4),rs.getString(5))));
-				
+				//Telefono tIn = new Telefono(rs.getString(3), rs.getString(4), "Fisso");
+				//Telefono tOut = new Telefono(rs.getString(5), rs.getString(6), "Mobile");
+				//rList.add(new Recapito(rs.getInt(1),tIn,tOut));
+				rList.add(new Recapito(rs.getInt(1),matchTel(tList,rs.getString(3),rs.getString(4)),matchTel(tList,rs.getString(5),rs.getString(6))));
+
 			}
 		
 
