@@ -29,5 +29,9 @@ public class Email {
 	public void setMessagingPr(ArrayList<MessagingPr> messagingList) {
 		this.messagingPr=messagingList;
 	}
+	
+	public ArrayList<MessagingPr> getMessagingPr(){
+		return this.messagingPr;
+	}
 
 }

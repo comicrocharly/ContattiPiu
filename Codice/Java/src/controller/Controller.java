@@ -119,22 +119,28 @@ public class Controller {
 
 		ArrayList<Contatto> r = null;
 
-		r = pullContacts();
+		Contatto cont = null;
 
 		if (type.equals("Telefono")) {
-
+			r = searchContactByTelephone(data);
 		}
 		if (type.equals("Nome")) {
 
 		}
 		if (type.equals("Email")) {
 
+			r = new ArrayList<Contatto>();
+			cont = searchContactByEmail(data);
+			if (cont != null) {
+				r.add(cont);
+			}
+
 		}
 		if (type.equals("Social")) {
 
 		}
 
-		return cList = r;
+		return r;
 	}
 
 	public ArrayList<Contatto> pullContacts() {
@@ -262,6 +268,95 @@ public class Controller {
 			cList.add(c);
 
 
+
+	}
+	
+	public Contatto searchContactByEmail(String email) {
+
+		Contatto matched = null;
+
+		for (Contatto cont : cList) {
+			for (Email em : cont.getEmail()) {
+				if (em.getIndirizzo().equalsIgnoreCase(email)) {
+					matched = cont;
+					break;
+				}
+			}
+		}
+
+		return matched;
+
+	}
+
+	public ArrayList<Contatto> searchContactByTelephone(String numero) {
+
+		ArrayList<Contatto> matched = new ArrayList<Contatto>();
+		String num;
+
+		for (Contatto cont : cList) {
+			for (Recapito rec : cont.getRecapiti()) {
+				num = rec.getTelefonoIn().getPrefisso().trim() + rec.getTelefonoIn().getNumero().trim();
+				if (num.contains(numero)) {
+					matched.add(cont);
+					break;
+				}
+			}
+		}
+		return matched;
+	}
+
+	public ArrayList<Contatto> searchContactByNickname(String nickname) {
+
+		ArrayList<Contatto> matched = new ArrayList<Contatto>();
+
+		boolean trovato;
+
+		for (Contatto cont : cList) {
+			trovato = false;
+			for (Email ema : cont.getEmail()) {
+				for (MessagingPr mpr : ema.getMessagingPr()) {
+					if (mpr.getNickname().equals(nickname)) {
+						matched.add(cont);
+						trovato = true;
+						break;
+					}
+				}
+				if (trovato)
+					break;
+			}
+		}
+
+		return matched;
+	}
+
+	public ArrayList<Contatto> searchContactByName(String nome) {
+
+		ArrayList<Contatto> matched = new ArrayList<Contatto>();
+
+		ArrayList<String> splittedName = new ArrayList<String>();
+		
+		String[] splittedTmp = nome.split(" ");
+
+		String nomeContatto;
+		
+		int match = 0;
+		
+		//Vado ad aggiungere a splittedName solo i nomi validi da analizzare, dato il difetto di .split() di non trattare più sequenze di spazi
+		for (String k : splittedTmp)
+			if (k.length() != 0)
+				splittedName.add(k.trim());
+
+		for (Contatto cont : cList) {
+			nomeContatto = new String(cont.getNome() + cont.getCognome());
+			match = 0;
+			for (String s : splittedName) {
+				if (nomeContatto.contains(s))
+					match++;
+			}
+			if(match==splittedName.size()) matched.add(cont);
+		}
+
+		return matched;
 
 	}
 
