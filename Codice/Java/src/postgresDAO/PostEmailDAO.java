@@ -42,7 +42,7 @@ public class PostEmailDAO implements EmailDAO{
 				rs=ps.executeQuery();
 				
 				while(rs.next()) {
-					eList.add(new Email(rs.getString(0),rs.getString(1)));
+					eList.add(new Email(rs.getString(1),rs.getString(2)));
 				}
 				
 				rs.close();

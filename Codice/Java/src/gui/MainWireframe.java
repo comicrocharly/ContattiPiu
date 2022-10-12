@@ -199,7 +199,12 @@ public class MainWireframe {
 		});
 		
 		Controller.caricaRubrica();
-		updateTable();
+		try {
+			updateTable();
+		} catch (Throwable e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
@@ -250,55 +255,54 @@ public class MainWireframe {
 		}
 	}
 	
-	public void updateTable() {
+	public void updateTable() throws Throwable {
 		//data[] è formattato come: Nome, Cognome, Citta, Via, PrefissoFisso, NumeroFisso, 
 
-		Integer addrID;
 		ArrayList<Contatto> cList = new ArrayList<>();
-		Indirizzo i=null;
+		Indirizzo i = null;
 		
 		cList = Controller.getcList();
 		
-		if(Controller.getcList()!=null) {
+		if(cList!=null) {
 			if(!cList.isEmpty()) {
-				for(Contatto c :cList) {
-
-					addrID = c.getIndirizzoP();
-
+				for(Contatto c:cList) {
+					
+					
 					for(Indirizzo tmp:c.getIndirizzi()) {
-						if(addrID.equals(tmp.getAddrID())) {
-							i=tmp;
+						
+						if(c.getIndirizzoP() == tmp.getAddrID()) {
+							i = tmp;
 							break;
 						}
-
+						
+						
 					}
-					//data[] è formattato come: Nome, Cognome, Citta + Via, PrefissoFisso + NumeroFisso;
 					
+					if(i==null)
+						throw new Exception("L'indirizzo principale non é presente tra gli alloggi");
+					//data[] è formattato come: Nome, Cognome, Citta + Via, PrefissoFisso + NumeroFisso;
+
 					try {
 						ArrayList<Recapito> rList = new ArrayList<>();
 						rList = c.getRecapiti();
 						Recapito r = rList.get(0);
 						String prefisso = r.getTelefonoIn().getPrefisso();
 						String numero = r.getTelefonoIn().getNumero();
-						
+
 						String data[]= {c.getNome(),c.getCognome(),i.getCitta()+" "+i.getVia(), prefisso + " " + numero };
 
 						addToTable(data);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
-						String data[]= {c.getNome(),c.getCognome(),i.getCitta()+" "+i.getVia(), "" + " " + "" };
 
-						addToTable(data);
 					}
-					
-
 				}
 			}
 		}
 		else
 			JOptionPane.showMessageDialog(frame,("La lista dei contatti è vuota"));
-			
+
 	}
 
 }

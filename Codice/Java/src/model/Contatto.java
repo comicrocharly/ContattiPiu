@@ -23,6 +23,7 @@ public class Contatto {
 		this.indirizzoP = indirizzoP;
 
 	}
+	
 	//Costruttore utile al caricamento dei contatti nell'ArrayList
 	public Contatto(int contID, String nome, String cognome, String indFoto) {
 
@@ -122,5 +123,8 @@ public class Contatto {
 	}
 	public ArrayList<Recapito> getRecapiti() {
 		return recapiti;
+	}
+	public void setGruppi(ArrayList<Gruppo> gruppi) {
+		this.gruppi = gruppi;
 	}
 }

@@ -31,17 +31,17 @@ public class PostAggregazioneDAO implements AggregazioneDAO{
 		ArrayList<Integer> aggregazione = new  ArrayList<Integer>();
 		
 		PreparedStatement ps;
-		ResultSet rs;
+	
 
 		try {
 			
-			ps=link.prepareStatement("SELECT GROUP_ID FROM AGGREGAZIONE WHERE CONT_ID = ? ");
-			ps.setInt(1, contID);
+			ps = link.prepareStatement("SELECT GROUP_ID FROM AGGREGAZIONE WHERE CONT_ID = '"+contID+"' ");
 			
-			rs=ps.executeQuery();
+			
+			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()) {
-				aggregazione.add(rs.getInt(0));
+				aggregazione.add(rs.getInt(1));
 			}
 					
 			

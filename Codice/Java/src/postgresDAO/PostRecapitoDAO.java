@@ -28,20 +28,15 @@ public class PostRecapitoDAO implements RecapitoDAO {
 	}
 	
 	public Telefono matchTel(ArrayList<Telefono> tList,String prefisso,String numero) {
-		boolean x=false,y=false;
+		boolean x = false, y = false;
 		Telefono metchedTel = null;
 		
 		for(Telefono tel: tList) {
 			
 			x = tel.getNumero().trim().equals(numero.trim());
 			y = tel.getPrefisso().trim().equals(prefisso.trim());
-			boolean z = " ciao ".trim().equals("ci ao ".trim());
-			
-			System.out.println(tel.getNumero()+tel.getPrefisso()+"=="+numero+prefisso);
-			System.out.println(z);
 			
 			if(x && y) {
-				System.out.println("uguali");
 				metchedTel=tel;
 				break;
 			}
@@ -66,9 +61,7 @@ public class PostRecapitoDAO implements RecapitoDAO {
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				//Telefono tIn = new Telefono(rs.getString(3), rs.getString(4), "Fisso");
-				//Telefono tOut = new Telefono(rs.getString(5), rs.getString(6), "Mobile");
-				//rList.add(new Recapito(rs.getInt(1),tIn,tOut));
+				
 				rList.add(new Recapito(rs.getInt(1),matchTel(tList,rs.getString(4),rs.getString(3)),matchTel(tList,rs.getString(6),rs.getString(5))));
 
 			}

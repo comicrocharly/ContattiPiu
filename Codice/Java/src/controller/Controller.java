@@ -2,6 +2,7 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import database.DatabaseConnect;
 import model.*;
@@ -42,15 +43,15 @@ public class Controller {
 		PostGruppoDAO gruppoDAO = new PostGruppoDAO();
 
 		gList = gruppoDAO.getGruppi();
-
+			
 		//Ciclo in cui si andranno a caricare gli arraylist dei contatti (Indirizzi,Email,Telefono,Gruppi)
 		for(Contatto c: cList) {
-
+			
 			//Prima fase in cui sarà caricato l'arraylist degli indirizzi del contatto
 			PostAlloggioDAO alloggioDAO = new PostAlloggioDAO();
 
 			ArrayList<Integer> alloggi = alloggioDAO.getAlloggi(c.getContID());
-
+			
 			for(Integer alloggio: alloggi) {
 				for(Indirizzo indirizzo: iList) {
 					if(alloggio.intValue()==indirizzo.getAddrID()) {
@@ -58,23 +59,31 @@ public class Controller {
 							ArrayList<Indirizzo> i = new ArrayList<>();
 							c.setIndirizzi(i);
 						}
-							
 						c.addIndirizzo(indirizzo);
+						
 					}
 				}
 			}
-
+			
+		
 			//Seconda fase in cui saranno caricati i gruppi nell'arraylist del contatto
 
 			PostAggregazioneDAO aggregazioneDAO = new PostAggregazioneDAO();
 
 			ArrayList<Integer> aggregazioni = aggregazioneDAO.getAggregazioni(c.getContID());
-
+			
 			for(Integer a: aggregazioni) {
-				for(Gruppo g: gList) {
-					if(a.intValue()== g.getGroupID()) {
-						c.addGruppo(g);
+				for(Gruppo gruppo : gList) {
+					if(a.intValue() == gruppo.getGroupID()) {
+						if(c.getGruppi() == null) {
+							ArrayList<Gruppo> g = new ArrayList<>();
+							c.setGruppi(g);
+						}
+						
+						c.addGruppo(gruppo);
+						
 					}
+						
 				}
 			}
 
@@ -83,10 +92,7 @@ public class Controller {
 			PostRecapitoDAO recapitoDAO = new PostRecapitoDAO();
 			rList = recapitoDAO.getRecapiti(tList, c.getContID());
 			c.setRecapiti(rList);
-			
-			
-
-
+		
 
 			//Estrapoliamo le email del contatto dal DB passiamogliele sottoforma di ArrayList
 			PostEmailDAO emailDAO = new PostEmailDAO();
@@ -97,10 +103,16 @@ public class Controller {
 			for(Email e: c.getEmail()) {
 				e.setMessagingPr(messagingPrDAO.getMessagingPR(e.getIndirizzo()));
 			}
+			
+			
+		
+			
 
 		}
-
 		
+			
+		
+
 	}
 
 	public ArrayList<Contatto> searchContact(String type, String data) {
