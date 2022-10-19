@@ -50,7 +50,7 @@ public class NewContact extends JFrame {
 		setAlwaysOnTop(true);
 		//Nasconde il jframe alla chiusura
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 519, 249);
+		setBounds(100, 100, 286, 376);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -62,7 +62,7 @@ public class NewContact extends JFrame {
 	
 	
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton.setBounds(270, 160, 86, 25);
+		btnNewButton.setBounds(112, 262, 86, 25);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabelNome = new JLabel("Nome");
@@ -97,36 +97,36 @@ public class NewContact extends JFrame {
 		
 		JLabel lblNewLabelNazione = new JLabel("Nazione");
 		lblNewLabelNazione.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabelNazione.setBounds(270, 43, 67, 11);
+		lblNewLabelNazione.setBounds(25, 162, 67, 11);
 		contentPane.add(lblNewLabelNazione);
 		
 		JLabel lblNewLabelCittaCap = new JLabel("Citta e CAP");
 		lblNewLabelCittaCap.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabelCittaCap.setBounds(270, 70, 77, 11);
+		lblNewLabelCittaCap.setBounds(25, 189, 77, 11);
 		contentPane.add(lblNewLabelCittaCap);
 		
 		JLabel lblNewLabelVia = new JLabel("Via");
 		lblNewLabelVia.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabelVia.setBounds(270, 97, 67, 11);
+		lblNewLabelVia.setBounds(25, 216, 67, 11);
 		contentPane.add(lblNewLabelVia);
 		
 		textFieldNazione = new JTextField();
-		textFieldNazione.setBounds(345, 40, 126, 17);
+		textFieldNazione.setBounds(112, 159, 126, 17);
 		contentPane.add(textFieldNazione);
 		textFieldNazione.setColumns(10);
 		
 		textFieldCitta = new JTextField();
-		textFieldCitta.setBounds(345, 67, 81, 17);
+		textFieldCitta.setBounds(112, 186, 81, 17);
 		contentPane.add(textFieldCitta);
 		textFieldCitta.setColumns(10);
 		
 		textFieldVia = new JTextField();
-		textFieldVia.setBounds(345, 94, 126, 17);
+		textFieldVia.setBounds(112, 213, 126, 17);
 		contentPane.add(textFieldVia);
 		textFieldVia.setColumns(10);
 		
 		textFieldCap = new JTextField();
-		textFieldCap.setBounds(434, 67, 37, 17);
+		textFieldCap.setBounds(201, 186, 37, 17);
 		contentPane.add(textFieldCap);
 		textFieldCap.setColumns(10);
 		

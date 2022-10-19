@@ -5,78 +5,179 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.*;
+
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.border.BevelBorder;
+import javax.swing.JScrollBar;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.SpringLayout;
+import java.awt.FlowLayout;
+import net.miginfocom.swing.MigLayout;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.awt.BorderLayout;
+import javax.swing.JList;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ContactWindow extends JFrame {
 
+	private Contatto c;
+
 	private JPanel contentPane;
 
+	public ContactWindow(Contatto c) {
+		setC(c);
+		initialize();
+	}
 
-	public ContactWindow() {
+	public void initialize() {
+		//Estrazione dei dati dal contatto ai fini della presentazione
+		String name = (c.getNome()+" "+c.getCognome());
+
+		String indirizzoP = null;
+		for(Indirizzo i: c.getIndirizzi()) {
+			if(i.getAddrID()==c.getIndirizzoP()){
+				indirizzoP = (i.getCitta()+" "+i.getVia());
+				break;
+			}
+		}
+		
+		
+
+		//Rappresentazione
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 312, 472);
+		setBounds(100, 100, 350, 494);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setVisible(false);
+			}
+		});
+		menuBar.add(mntmExit);
+		
+		JMenuItem mntmEdit = new JMenuItem("Edit");
+		menuBar.add(mntmEdit);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 0, 2, 2);
-		contentPane.add(scrollPane);
+		JLabel lblFoto = new JLabel("New label");
+		lblFoto.setBounds(57, 54, 245, 11);
+		contentPane.add(lblFoto);
 
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(39, 56, 40, 11);
-		contentPane.add(lblNewLabel);
+		JLabel lblNome = new JLabel(name);
+		lblNome.setBounds(181, 21, 121, 18);
+		contentPane.add(lblNome);
+		
+		JLabel lblIndirizzoP = new JLabel(indirizzoP);
+		lblIndirizzoP.setBounds(181, 47, 121, 18);
+		contentPane.add(lblIndirizzoP);
+		
+		JLabel lblRecapiti = new JLabel("Recapiti");
+		lblRecapiti.setBounds(81, 110, 85, 11);
+		contentPane.add(lblRecapiti);
+		
+		JLabel lblAlloggi = new JLabel("Alloggi");
+		lblAlloggi.setBounds(219, 110, 109, 11);
+		contentPane.add(lblAlloggi);
+		
+		JLabel lblGruppi = new JLabel("Gruppi");
+		lblGruppi.setBounds(81, 226, 77, 11);
+		contentPane.add(lblGruppi);
+		
+		JLabel lblEmails = new JLabel("Emails");
+		lblEmails.setBounds(219, 226, 109, 11);
+		contentPane.add(lblEmails);
+		
+		JLabel lblSocials = new JLabel("Socials");
+		lblSocials.setBounds(57, 378, 245, 11);
+		contentPane.add(lblSocials);
+		
+		DefaultListModel<String> listRecapitoModel = new DefaultListModel<String>();
+		
+		for(Recapito r:c.getRecapiti()) {
+			String prefisso, numero;
+			prefisso = r.getTelefonoIn().getPrefisso();
+			numero = r.getTelefonoIn().getNumero();
+			listRecapitoModel.addElement(prefisso+" "+numero);
+		}
+		
+		JList listRecapiti = new JList(listRecapitoModel);
+		listRecapiti.setBounds(33, 133, 133, 77);
+		contentPane.add(listRecapiti);
 
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(134, 29, 40, 11);
-		contentPane.add(lblNewLabel_1);
+		DefaultListModel<String> listAlloggiModel = new DefaultListModel<String>();
 
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(197, 29, 40, 11);
-		contentPane.add(lblNewLabel_2);
+		for(Indirizzo i:c.getIndirizzi()) {
+			String citta, via;
+			citta = i.getCitta();
+			via = i.getVia();
+			listAlloggiModel.addElement(citta+" "+via);
+		}
 
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(134, 56, 40, 11);
-		contentPane.add(lblNewLabel_3);
+		JList listAlloggi = new JList(listAlloggiModel);
+		listAlloggi.setBounds(169, 133, 133, 77);
+		contentPane.add(listAlloggi);
+		
+		DefaultListModel<String> listGruppiModel = new DefaultListModel<String>();
 
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setBounds(134, 89, 40, 11);
-		contentPane.add(lblNewLabel_4);
+		if(c.getGruppi()!=null)
+			for(Gruppo g:c.getGruppi()) {
+				listGruppiModel.addElement(g.getNomeG());
+			}
 
-		JLabel lblNewLabel_5 = new JLabel("New label");
-		lblNewLabel_5.setBounds(39, 152, 40, 11);
-		contentPane.add(lblNewLabel_5);
+		JList listGruppi = new JList(listGruppiModel);
+		listGruppi.setBounds(33, 245, 133, 77);
+		contentPane.add(listGruppi);
+		
+		DefaultListModel<String> listEmailModel = new DefaultListModel<String>();
 
-		JLabel lblNewLabel_6 = new JLabel("New label");
-		lblNewLabel_6.setBounds(197, 152, 40, 11);
-		contentPane.add(lblNewLabel_6);
+		if(c.getEmail()!=null)
+			for(Email e:c.getEmail()) {
+				listAlloggiModel.addElement(e.getIndirizzo());
+			}
 
-		JLabel lblNewLabel_7 = new JLabel("New label");
-		lblNewLabel_7.setBounds(39, 267, 40, 11);
-		contentPane.add(lblNewLabel_7);
+		JList listEmails = new JList(listEmailModel);
+		listEmails.setBounds(169, 245, 133, 77);
+		contentPane.add(listEmails);
 
-		JLabel lblNewLabel_8 = new JLabel("New label");
-		lblNewLabel_8.setBounds(197, 267, 40, 11);
-		contentPane.add(lblNewLabel_8);
+		DefaultListModel<String> listSocialsModel = new DefaultListModel<String>();
+		if(c.getEmail()!=null)
+			for(Email e:c.getEmail()) {
+				if(e.getMessagingPr()!=null)
+					for(MessagingPr ms:e.getMessagingPr()) {
+						listAlloggiModel.addElement(ms.getFornitore()+" "+ms.getNickname());
+					}
+			}
 
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(8, 170, 125, 79);
-		contentPane.add(textArea);
+		JList listSocials = new JList(listSocialsModel);
+		listSocials.setBounds(127, 344, 175, 77);
+		contentPane.add(listSocials);
+		
+		
+		
+	}
+	
+	public Contatto getC() {
+		return c;
+	}
 
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(169, 170, 121, 79);
-		contentPane.add(textArea_1);
-
-		JTextArea textArea_2 = new JTextArea();
-		textArea_2.setBounds(8, 290, 125, 79);
-		contentPane.add(textArea_2);
-
-		JTextArea textArea_3 = new JTextArea();
-		textArea_3.setBounds(169, 290, 121, 79);
-		contentPane.add(textArea_3);
+	public void setC(Contatto c) {
+		this.c = c;
 	}
 }

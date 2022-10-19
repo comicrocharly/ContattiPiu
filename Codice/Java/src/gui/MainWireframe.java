@@ -210,11 +210,13 @@ public class MainWireframe {
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(3).setResizable(false);
-		//Selezione della riga cliccata e prima colonna
+		
+		//Avvia la finestra ContactWindow con le caratteristiche del contatto selezionato dalla tabella
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(table.getValueAt(table.getSelectedRow(),3));
+				ContactWindow frame = new ContactWindow(Controller.getcList().get(table.getSelectedRow()));
+				frame.setVisible(true);
 			}
 		});
 		table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
