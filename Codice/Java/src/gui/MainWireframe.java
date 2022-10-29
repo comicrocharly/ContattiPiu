@@ -156,9 +156,6 @@ public class MainWireframe {
 		frame.getContentPane().add(searchBar);
 		//Studiando l'utilizzo di jTable
 
-		String[][] rowData = {{"Ciao","Ciao","Ciao","Ciao","0"},
-				{"Carlo","Carlo","Carlo","Ciao","1"}};
-
 
 		Choice choice = new Choice();
 		choice.setBounds(294, 10, 68, 17);

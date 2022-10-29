@@ -26,6 +26,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JMenu;
 
 public class ContactWindow extends JFrame {
 
@@ -59,17 +60,40 @@ public class ContactWindow extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenuItem mntmExit = new JMenuItem("Exit");
-		mntmExit.addMouseListener(new MouseAdapter() {
+		JMenu mnExit = new JMenu("Exit");
+		mnExit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
 			}
 		});
-		menuBar.add(mntmExit);
+		menuBar.add(mnExit);
 		
-		JMenuItem mntmEdit = new JMenuItem("Edit");
-		menuBar.add(mntmEdit);
+		JMenu mnEdit = new JMenu("Edit");
+		menuBar.add(mnEdit);
+		
+		JMenuItem mntmRecapiti = new JMenuItem("Recapiti");
+		mntmRecapiti.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ModAttributes frame = new ModAttributes("Recapiti");
+				
+				frame.setVisible(true);
+			}
+		});
+		mnEdit.add(mntmRecapiti);
+		
+		JMenuItem mntmAlloggi = new JMenuItem("Alloggi");
+		mnEdit.add(mntmAlloggi);
+		
+		JMenuItem mntmGruppi = new JMenuItem("Gruppi");
+		mnEdit.add(mntmGruppi);
+		
+		JMenuItem mntmEmails = new JMenuItem("Emails");
+		mnEdit.add(mntmEmails);
+		
+		JMenuItem mntmSocials = new JMenuItem("Socials");
+		mnEdit.add(mntmSocials);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -77,7 +101,7 @@ public class ContactWindow extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblFoto = new JLabel("New label");
-		lblFoto.setBounds(57, 54, 245, 11);
+		lblFoto.setBounds(57, 54, 114, 11);
 		contentPane.add(lblFoto);
 
 		JLabel lblNome = new JLabel(name);
