@@ -27,6 +27,8 @@ import javax.swing.JMenuItem;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JMenu;
+import javax.swing.event.MenuKeyListener;
+import javax.swing.event.MenuKeyEvent;
 
 public class ContactWindow extends JFrame {
 
@@ -35,6 +37,7 @@ public class ContactWindow extends JFrame {
 	private JPanel contentPane;
 
 	public ContactWindow(Contatto c) {
+		setTitle("Vista Contatto");
 		setC(c);
 		initialize();
 	}
@@ -75,24 +78,52 @@ public class ContactWindow extends JFrame {
 		JMenuItem mntmRecapiti = new JMenuItem("Recapiti");
 		mntmRecapiti.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				ModAttributes frame = new ModAttributes("Recapiti");
-				
-				frame.setVisible(true);
+			public void mousePressed(MouseEvent e) {
+				ModAttributes frameRecapiti = new ModRecapiti(c);
+				frameRecapiti.setVisible(true);
 			}
 		});
+		
 		mnEdit.add(mntmRecapiti);
 		
 		JMenuItem mntmAlloggi = new JMenuItem("Alloggi");
+		mntmAlloggi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ModAttributes frameAlloggi = new ModAlloggi(c);
+				frameAlloggi.setVisible(true);
+			}
+		});
 		mnEdit.add(mntmAlloggi);
 		
 		JMenuItem mntmGruppi = new JMenuItem("Gruppi");
+		mntmGruppi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ModAttributes frameGruppi = new ModGruppi(c);
+				frameGruppi.setVisible(true);
+			}
+		});
 		mnEdit.add(mntmGruppi);
 		
 		JMenuItem mntmEmails = new JMenuItem("Emails");
+		mntmEmails.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ModAttributes frameEmails = new ModEmails(c);
+				frameEmails.setVisible(true);
+			}
+		});
 		mnEdit.add(mntmEmails);
 		
 		JMenuItem mntmSocials = new JMenuItem("Socials");
+		mntmSocials.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				ModAttributes frameSocials = new ModSocials(c);
+				frameSocials.setVisible(true);
+			}
+		});
 		mnEdit.add(mntmSocials);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -173,7 +204,7 @@ public class ContactWindow extends JFrame {
 
 		if(c.getEmail()!=null)
 			for(Email e:c.getEmail()) {
-				listAlloggiModel.addElement(e.getIndirizzo());
+				listEmailModel.addElement(e.getIndirizzo());
 			}
 
 		JList listEmails = new JList(listEmailModel);

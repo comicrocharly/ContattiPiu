@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import model.*;
 
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -17,17 +18,23 @@ import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 
 public class ModAttributes extends JFrame {
-
-	private JPanel contentPane;
+	private Contatto c;
+	protected JPanel contentPane;
 	
 	
-	public ModAttributes(String type) {
-		initialize();
+	
+	protected ModAttributes(Contatto c) {
 		
-	}
-	
-	
-	public void initialize() {
+		try {
+			setC(c);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(contentPane, "Contatto nullo");
+			this.setVisible(false);
+		}
+		
+		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 364, 300);
 		contentPane = new JPanel();
@@ -36,34 +43,16 @@ public class ModAttributes extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
-		JList list = new JList();
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list.setBounds(10, 62, 330, 190);
-		contentPane.add(list);
-		
-		JButton btnNewButton = new JButton("Rimuovi");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setBounds(265, 28, 75, 23);
-		contentPane.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Aggiungi");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_1.setBounds(180, 28, 75, 23);
-		contentPane.add(btnNewButton_1);
+
 	}
+	
+	private Contatto getC() {
+		return c;
+	}
+
+
+	private void setC(Contatto c) {
+		this.c = c;
+	}
+	
 }
