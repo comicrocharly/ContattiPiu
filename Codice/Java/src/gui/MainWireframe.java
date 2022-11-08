@@ -244,15 +244,7 @@ public class MainWireframe {
 
 	}
 	
-	//Aggiorna il controller con tutti i dati obbligatori inseriti in NewContact, che li aggiunge ai modelli e al DB
-	public static void updateController(String data[]) {
-		try {
-			Controller.insertDataRow(data);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 	
 	public void updateTable() throws Throwable {
 		//data[] è formattato come: Nome, Cognome, Citta, Via, PrefissoFisso, NumeroFisso, 

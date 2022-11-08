@@ -10,6 +10,8 @@ import postgresDAO.*;
 
 public class Controller {
 
+
+
 	private static Contatto c;
 	private static Indirizzo i;
 	private static Telefono t;
@@ -188,8 +190,36 @@ public class Controller {
 		return true;
 
 	}
+	public static void insertEmail(String data[]) {
+		Email e;
+		Contatto c = null;
+		String indirizzo, uso;
+		Integer contID=getC().getContID();
+		
+		//Indirizzo, Uso é l'ordine dei parametri contenuti nell'array
+		
+		indirizzo = data[0];
+		uso = data[1];
+		
+		e = new Email(contID, indirizzo, uso);
+		PostEmailDAO eDao = new PostEmailDAO();
+		eDao.setEmail(contID, indirizzo, uso);
+		
+		for (Contatto tmp: cList) {
+			if(contID.equals(tmp.getContID()))
+				c = tmp;
+		}
+		
+		if(c.getEmail()==null) {
+			ArrayList<Email> eList = new ArrayList<>();
+			c.setEmail(eList);
+		}
+		
+		c.addEmail(e);
+		
+	} 
 	
-	public static void insertDataRow(String data[]) {
+	public static void insertContatto(String data[]) {
 		Contatto c;
 		Indirizzo i;
 		Telefono tFisso, tMobile;
@@ -372,14 +402,14 @@ public class Controller {
 		return connessione;
 	}
 
-	public Contatto getC() {
+	public static Contatto getC() {
 		return c;
 	}
 
-	public void setC(Contatto c) {
-		this.c = c;
+	public static void setC(Contatto c) {
+		Controller.c = c;
 	}
-
+	
 	public Indirizzo getI() {
 		return i;
 	}

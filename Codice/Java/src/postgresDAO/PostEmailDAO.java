@@ -154,14 +154,32 @@ public class PostEmailDAO implements EmailDAO{
 			upAttr(indirizzo,attr,data);
 		}
 
-		public void  unUtilizzo(String indirizzo, String data) {
+		public void  upUtilizzo(String indirizzo, String data) {
 
 			String attr="utilizzo";
 			upAttr(indirizzo,attr,data);
 		}
 
 	
+		public void setEmail(Integer contID, String indirizzo, String utilizzo) {
 
+			PreparedStatement ps;
+
+			try {
+				ps = link.prepareStatement(
+						"INSERT INTO Email " 
+								+ "(cont_id, indirizzo, utilizzo) "
+								+ "VALUES ('"+contID+"','"+indirizzo+"', '"+utilizzo+"' );");
+
+				ps.executeUpdate();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		
 		public void setEmail(String indirizzo, String utilizzo) {
 
 			PreparedStatement ps;

@@ -9,6 +9,7 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controller.Controller;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
@@ -173,7 +174,7 @@ public class NewContact extends JFrame {
 					
 					
 					try {
-						MainWireframe.updateController(data);
+						Controller.insertContatto(data);
 						MainWireframe.addToTable(dataView);
 						JOptionPane.showMessageDialog(NewContact.this,"Inserimento Riuscito.");
 					} catch (Exception e1) {

@@ -7,10 +7,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import controller.Controller;
+import model.Contatto;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 public class NewEmail extends JFrame{
 	
-	public NewEmail() {
-		
+	private Contatto c;
+	
+	public NewEmail(Contatto c) {
+		setC(c);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 250, 170);
 		JPanel contentPane = new JPanel();
@@ -19,9 +27,7 @@ public class NewEmail extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Inserisci");
-		btnNewButton.setBounds(72, 108, 86, 19);
-		contentPane.add(btnNewButton);
+		
 		
 		JLabel lblIndirizzo = new JLabel("Indirizzo");
 		lblIndirizzo.setBounds(26, 37, 40, 11);
@@ -40,5 +46,25 @@ public class NewEmail extends JFrame{
 		textFieldUso.setBounds(92, 53, 100, 17);
 		contentPane.add(textFieldUso);
 		textFieldUso.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Inserisci");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Controller.setC(c);
+				String data[]= {textFieldIndirizzo.getText().trim(),textFieldUso.getText().trim()};
+				Controller.insertEmail(data);
+			}
+		});
+		btnNewButton.setBounds(72, 108, 86, 19);
+		contentPane.add(btnNewButton);
+	}
+	
+	public Contatto getC() {
+		return c;
+	}
+
+	public void setC(Contatto c) {
+		this.c = c;
 	}
 }

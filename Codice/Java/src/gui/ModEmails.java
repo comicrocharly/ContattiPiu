@@ -35,6 +35,8 @@ public class ModEmails extends ModAttributes{
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				NewEmail frame = new NewEmail(c);
+				frame.setVisible(true);
 			}
 		});
 		btnAggiungi.setBounds(162, 28, 85, 23);
