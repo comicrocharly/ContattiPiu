@@ -10,8 +10,6 @@ import postgresDAO.*;
 
 public class Controller {
 
-
-
 	private static Contatto c;
 	private static Indirizzo i;
 	private static Telefono t;
@@ -106,14 +104,7 @@ public class Controller {
 				e.setMessagingPr(messagingPrDAO.getMessagingPR(e.getIndirizzo()));
 			}
 			
-			
-		
-			
-
 		}
-		
-			
-		
 
 	}
 
@@ -190,11 +181,79 @@ public class Controller {
 		return true;
 
 	}
-	public static void insertEmail(String data[]) {
+	
+	public static void insertGruppo(String data[], Contatto c) {
+		Gruppo g;
+		String nomeG, descrizione;
+		Integer contID=c.getContID();
+		
+		//NomeG, Descrizione é l'ordine dei parametri contenuti nell'array
+		
+		nomeG = data[0];
+		descrizione = data[1];
+		
+		g = new Gruppo(nomeG, descrizione);
+		PostGruppoDAO gDao = new PostGruppoDAO();
+		gDao.setGruppo(nomeG, descrizione);
+		
+		for (Contatto tmp: cList) {
+			if(contID.equals(tmp.getContID()))
+				c = tmp;
+		}
+		
+		if(c.getGruppi()==null) {
+			ArrayList<Gruppo> gList = new ArrayList<>();
+			c.setGruppi(gList);
+		}
+		
+		c.addGruppo(g);
+		
+	}
+	
+	public static void insertRecapito(String data[], Contatto c) {
+		Telefono tIn,tOut;
+		String prefissoIn,prefissoOut,numeroIn,numeroOut,tipoIn,tipoOut;
+		Integer contID=c.getContID();
+		
+		//Prefisso,numero,tipo é l'ordine dei parametri contenuti nell'array per i due telefoni in e out
+		
+		prefissoIn = data[0];
+		numeroIn = data[1];
+		tipoIn = data[2];
+		prefissoOut = data[3];
+		numeroOut= data[4];
+		tipoOut= data[5];
+		
+		tIn = new Telefono(numeroIn, prefissoIn, tipoIn);
+		PostTelefonoDAO tInDao = new PostTelefonoDAO();
+		tInDao.setTelefono(tIn);
+		
+		tOut = new Telefono(numeroOut, prefissoOut, tipoOut);
+		PostTelefonoDAO tOutDao = new PostTelefonoDAO();
+		tOutDao.setTelefono(tOut);
+		
+		for (Contatto tmp: cList) {
+			if(contID.equals(tmp.getContID()))
+				c = tmp;
+		}
+		
+		if(c.getRecapiti()==null) {
+			ArrayList<Recapito> rList = new ArrayList<>();
+			c.setRecapiti(rList);
+		}
+		
+		Recapito r = new Recapito(tIn, tOut);
+		PostRecapitoDAO rDao = new PostRecapitoDAO();
+		rDao.setRecapito(contID, prefissoIn, numeroIn, prefissoOut, numeroOut);
+		
+		c.addRecapito(r);
+		
+	} 
+	
+	public static void insertEmail(String data[], Contatto c) {
 		Email e;
-		Contatto c = null;
 		String indirizzo, uso;
-		Integer contID=getC().getContID();
+		Integer contID=c.getContID();
 		
 		//Indirizzo, Uso é l'ordine dei parametri contenuti nell'array
 		

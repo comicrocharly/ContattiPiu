@@ -51,9 +51,8 @@ public class NewEmail extends JFrame{
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Controller.setC(c);
 				String data[]= {textFieldIndirizzo.getText().trim(),textFieldUso.getText().trim()};
-				Controller.insertEmail(data);
+				Controller.insertEmail(data,c);
 			}
 		});
 		btnNewButton.setBounds(72, 108, 86, 19);
