@@ -35,7 +35,7 @@ public class ModRecapiti extends ModAttributes {
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NewRecapito frame = new NewRecapito();
+				NewRecapito frame = new NewRecapito(c);
 				frame.setVisible(true);
 			}
 		});
