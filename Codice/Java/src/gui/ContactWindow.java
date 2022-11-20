@@ -148,7 +148,7 @@ public class ContactWindow extends JFrame {
 		contentPane.add(lblRecapiti);
 		
 		JLabel lblAlloggi = new JLabel("Alloggi");
-		lblAlloggi.setBounds(219, 110, 109, 11);
+		lblAlloggi.setBounds(219, 110, 57, 11);
 		contentPane.add(lblAlloggi);
 		
 		JLabel lblGruppi = new JLabel("Gruppi");

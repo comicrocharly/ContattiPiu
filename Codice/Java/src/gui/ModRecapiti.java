@@ -9,27 +9,24 @@ import javax.swing.JList;
 import javax.swing.ListModel;
 
 import model.Contatto;
+import model.Email;
 import model.Recapito;
 
 public class ModRecapiti extends ModAttributes {
-
+	private static DefaultListModel<String> listRecapitiModel;
+	private static Contatto c;
+	
 	public ModRecapiti(Contatto c) {
 		super(c);
-		
+		this.c = c;
+		listRecapitiModel = new DefaultListModel<String>();
 		setTitle("Modifica Recapiti");
-		DefaultListModel<String> listRecapitoModel = new DefaultListModel<String>();
 		
-		for(Recapito r:c.getRecapiti()) {
-			String prefisso, numero;
-			prefisso = r.getTelefonoIn().getPrefisso();
-			numero = r.getTelefonoIn().getNumero();
-			listRecapitoModel.addElement(prefisso+" "+numero);
-		}
+		loadTable();
 		
 		
-		
-		JList list = new JList<String>(listRecapitoModel);
-		list.setBounds(10, 62, 330, 190);
+		JList list = new JList<String>(listRecapitiModel);
+		list.setBounds(20, 66, 310, 192);
 		super.contentPane.add(list);
 		
 		JButton btnAggiungi = new JButton("Aggiungi");
@@ -52,6 +49,24 @@ public class ModRecapiti extends ModAttributes {
 		
 		
 		
+	}
+	
+	public void loadTable() {
+		for(Recapito r:c.getRecapiti()) {
+			String prefisso, numero;
+			prefisso = r.getTelefonoIn().getPrefisso();
+			numero = r.getTelefonoIn().getNumero();
+			listRecapitiModel.addElement(prefisso+" "+numero);
+		}
+	}
+	
+	public static void updateTable() {
+		Recapito r;
+		//prende l'ultimo elemento della lista
+		r = c.getRecapiti().get(c.getRecapiti().size()-1);
+			
+		listRecapitiModel.addElement(r.getTelefonoIn().getPrefisso()+" "+r.getTelefonoIn().getNumero());
+			
 	}
 
 }

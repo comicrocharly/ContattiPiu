@@ -13,23 +13,21 @@ import model.Email;
 import model.MessagingPr;
 
 public class ModSocials extends ModAttributes{
-
+	
+	private static DefaultListModel<String> listSocialsModel;
+	private static Contatto c;
+	
 	public ModSocials(Contatto c) {
 		super(c);
+		this.c=c;
+		
+		listSocialsModel = new DefaultListModel<>();
 		
 		setTitle("Modifica Socials");
 
-		DefaultListModel<String> listSocialsModel = new DefaultListModel<String>();
-		if(c.getEmail()!=null)
-			for(Email e:c.getEmail()) {
-				if(e.getMessagingPr()!=null)
-					for(MessagingPr ms:e.getMessagingPr()) {
-						listSocialsModel.addElement(ms.getFornitore()+" "+ms.getNickname());
-					}
-			}
 
 		JList listSocials = new JList(listSocialsModel);
-		listSocials.setBounds(127, 344, 175, 77);
+		listSocials.setBounds(20, 66, 310, 192);
 		super.contentPane.add(listSocials);
 		
 		if (listSocialsModel.isEmpty())
@@ -51,6 +49,26 @@ public class ModSocials extends ModAttributes{
 		});
 		btnRimuovi.setBounds(255, 28, 85, 23);
 		contentPane.add(btnRimuovi);
+	}
+	
+	public void loadTable() {
+		
+		if(c.getEmail()!=null)
+			for(Email e:c.getEmail()) {
+				if(e.getMessagingPr()!=null)
+					for(MessagingPr ms:e.getMessagingPr()) {
+						listSocialsModel.addElement(ms.getFornitore()+" "+ms.getNickname());
+					}
+			}
+	}
+	
+	public static void updateTable() {
+		MessagingPr mProvider;
+		//prende l'ultimo elemento della lista
+		mProvider = c.getEmail().get(c.getEmail().size()-1);
+			
+		listEmailModel.addElement(e.getIndirizzo());
+			
 	}
 
 }

@@ -99,9 +99,22 @@ public class NewRecapito extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//Telefono 1, Telefono 2: prefisso, numero, tipo 
-				String data[]= {textFieldPrefissoIn.getText().trim(), textFieldNumeroIn.getText().trim(), btnTipoIn.getText() ,
-						textFieldPrefissoOut.getText().trim() ,textFieldNumeroOut.getText().trim() ,btnTipoOut.getText()};
+				String tipoIn, tipoOut;
+				if(btnTipoIn.getText().equals("F"))
+					tipoIn="Fisso";
+				else 
+					tipoIn="Mobile";
+				
+				if(btnTipoOut.getText().equals("F"))
+					tipoOut="Fisso";
+				else 
+					tipoOut="Mobile";
+				
+				String data[]= {textFieldPrefissoIn.getText().trim(), textFieldNumeroIn.getText().trim(), tipoIn,
+						textFieldPrefissoOut.getText().trim(), textFieldNumeroOut.getText().trim(), tipoOut};
 				Controller.insertRecapito(data, c);
+				ModRecapiti.updateTable();
+				setVisible(false);
 			}
 
 		});

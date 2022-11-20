@@ -167,6 +167,8 @@ public class MainWireframe {
 
 		//jTable with not editable cells
 		table = new JTable();
+		table.setColumnSelectionAllowed(true);
+		table.setCellSelectionEnabled(true);
 		table.setModel(new DefaultTableModel(
 				new Object[][] {
 				},

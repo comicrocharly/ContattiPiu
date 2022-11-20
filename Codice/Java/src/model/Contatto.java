@@ -62,7 +62,6 @@ public class Contatto {
 		return this.indFoto;
 	}
 
-	
 	public ArrayList<Gruppo> getGruppi(){
 		return this.gruppi;
 	}
@@ -118,12 +117,15 @@ public class Contatto {
 	public ArrayList<Indirizzo> getIndirizzi() {
 		return indirizzi;
 	}
+	
 	public void setIndirizzi(ArrayList<Indirizzo> indirizzi) {
 		this.indirizzi = indirizzi;
 	}
+	
 	public ArrayList<Recapito> getRecapiti() {
 		return recapiti;
 	}
+	
 	public void setGruppi(ArrayList<Gruppo> gruppi) {
 		this.gruppi = gruppi;
 	}

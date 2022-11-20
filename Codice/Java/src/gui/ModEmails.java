@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -12,21 +13,21 @@ import model.Contatto;
 import model.Email;
 
 public class ModEmails extends ModAttributes{
-
+	private static DefaultListModel<String> listEmailModel;
+	private static Contatto c;
+	
 	public ModEmails(Contatto c) {
 		super(c);
+		this.c = c;
+		
+		listEmailModel = new DefaultListModel<String>();
 		
 		setTitle("Modifica Emails");
 
-		DefaultListModel<String> listEmailModel = new DefaultListModel<String>();
-		
-		if(c.getEmail()!=null)
-			for(Email e:c.getEmail()) {
-				listEmailModel.addElement(e.getIndirizzo());
-			}
+		loadTable();
 
 		JList listEmails = new JList(listEmailModel);
-		listEmails.setBounds(169, 245, 133, 77);
+		listEmails.setBounds(20, 66, 310, 192);
 		contentPane.add(listEmails);
 		
 		if (listEmailModel.isEmpty())
@@ -50,5 +51,23 @@ public class ModEmails extends ModAttributes{
 		btnRimuovi.setBounds(255, 28, 85, 23);
 		contentPane.add(btnRimuovi);
 	}
+	
+	public void loadTable() {
+		if(c.getEmail()!=null)
+			for(Email e:c.getEmail()) {
+				listEmailModel.addElement(e.getIndirizzo());
+			}
+	}
+	
+	public static void updateTable() {
+		Email e;
+		//prende l'ultimo elemento della lista
+		e = c.getEmail().get(c.getEmail().size()-1);
+			
+		listEmailModel.addElement(e.getIndirizzo());
+			
+	}
+	
 
 }
+

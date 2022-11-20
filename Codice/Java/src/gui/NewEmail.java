@@ -18,6 +18,7 @@ public class NewEmail extends JFrame{
 	private Contatto c;
 	
 	public NewEmail(Contatto c) {
+		setAlwaysOnTop(true);
 		setC(c);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 250, 170);
@@ -53,6 +54,8 @@ public class NewEmail extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				String data[]= {textFieldIndirizzo.getText().trim(),textFieldUso.getText().trim()};
 				Controller.insertEmail(data,c);
+				ModEmails.updateTable();
+				setVisible(false);
 			}
 		});
 		btnNewButton.setBounds(72, 108, 86, 19);
