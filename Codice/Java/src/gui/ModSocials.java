@@ -11,9 +11,13 @@ import javax.swing.JOptionPane;
 import model.Contatto;
 import model.Email;
 import model.MessagingPr;
+import javax.swing.JComboBox;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class ModSocials extends ModAttributes{
 	
+	private static JComboBox<String> comboBox;
 	private static DefaultListModel<String> listSocialsModel;
 	private static Contatto c;
 	
@@ -33,14 +37,8 @@ public class ModSocials extends ModAttributes{
 		if (listSocialsModel.isEmpty())
 			JOptionPane.showMessageDialog(rootPane, "La lista è vuota");
 		
-		JButton btnAggiungi = new JButton("Aggiungi");
-		btnAggiungi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnAggiungi.setBounds(162, 28, 85, 23);
-		contentPane.add(btnAggiungi);
+		
+		
 		
 		JButton btnRimuovi = new JButton("Rimuovi");
 		btnRimuovi.addActionListener(new ActionListener() {
@@ -49,26 +47,79 @@ public class ModSocials extends ModAttributes{
 		});
 		btnRimuovi.setBounds(255, 28, 85, 23);
 		contentPane.add(btnRimuovi);
-	}
-	
-	public void loadTable() {
-		
+
+		comboBox = new JComboBox<String>();
+		comboBox.setBounds(10, 28, 120, 23);
+		contentPane.add(comboBox);
+
 		if(c.getEmail()!=null)
 			for(Email e:c.getEmail()) {
-				if(e.getMessagingPr()!=null)
-					for(MessagingPr ms:e.getMessagingPr()) {
-						listSocialsModel.addElement(ms.getFornitore()+" "+ms.getNickname());
-					}
+				comboBox.addItem(e.getIndirizzo());
 			}
+		else
+			JOptionPane.showMessageDialog(rootPane, "Non ci sono emails");
+		setVisible(false);
+
+		comboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange()==1) {
+						clearTable();
+					if(!loadTable()) {
+						JOptionPane.showMessageDialog(rootPane, "Non ci sono Provider legati alla email selezionata");
+					}
+				}	
+			}
+		});
+		JButton btnAggiungi = new JButton("Aggiungi");
+		btnAggiungi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for(Email email : c.getEmail()) {
+					if(email.getIndirizzo().equals(comboBox.getSelectedItem().toString())) {
+						NewSocial frame = new NewSocial(c, email);
+						frame.setVisible(true);
+					}
+				}
+			}
+		});
+		btnAggiungi.setBounds(162, 28, 85, 23);
+		contentPane.add(btnAggiungi);
 	}
 	
-	public static void updateTable() {
-		MessagingPr mProvider;
-		//prende l'ultimo elemento della lista
-		mProvider = c.getEmail().get(c.getEmail().size()-1);
-			
-		listEmailModel.addElement(e.getIndirizzo());
-			
+	public void clearTable() {
+		listSocialsModel.removeAllElements();
+	}
+	
+	public Boolean loadTable() {
+		Boolean b=false;
+		String indirizzo = comboBox.getSelectedItem().toString();
+		if(c.getEmail()!=null) {
+			for(Email e:c.getEmail()) {
+				if(e.getMessagingPr()!=null && e.getIndirizzo().equals(indirizzo))
+					for(MessagingPr ms:e.getMessagingPr()) {
+						listSocialsModel.addElement(ms.getFornitore()+" "+ms.getNickname());
+						b=true;
+					}		
+			}
+		}
+		return b;
 	}
 
+	public static void updateTable() {
+		MessagingPr mProvider;
+		String indirizzo = comboBox.getSelectedItem().toString();
+		//prende l'ultimo elemento della lista
+		
+
+		for(Email e:c.getEmail()) {
+			if(e.getMessagingPr()!=null && e.getIndirizzo().equals(indirizzo)) {
+
+				mProvider = e.getMessagingPr().get(e.getMessagingPr().size()-1);
+
+				listSocialsModel.addElement(mProvider.getFornitore()+" "+mProvider.getNickname());
+			}
+
+		}
+
+
+	}
 }

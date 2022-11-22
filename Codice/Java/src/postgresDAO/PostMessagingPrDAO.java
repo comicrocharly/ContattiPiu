@@ -60,8 +60,8 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 
 		try {
 			ps = link.prepareStatement(
-					"INSERT INTO contatto " 
-							+ "(email, fornitore, fraseBenvenuto, nickname) "
+					"INSERT INTO MessagingPR " 
+							+ "(indirizzo, fornitore, frase_benvenuto, nickname) "
 							+ "VALUES ('"+email+"', '"+fornitore+"', '"+fraseBenvenuto+"', '"+nickname+"' );");
 
 			ps.executeUpdate();

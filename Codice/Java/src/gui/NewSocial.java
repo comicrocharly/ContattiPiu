@@ -6,6 +6,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import controller.Controller;
+import model.Contatto;
+import model.Email;
+
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import java.awt.event.MouseAdapter;
@@ -14,11 +19,14 @@ import javax.swing.JList;
 import java.awt.Font;
 
 public class NewSocial extends JFrame{
-	private JTextField textFieldName;
-	private JTextField textFieldProvider;
-	private JTextField textField;
+	private Contatto c;
 	
-	public NewSocial() {
+	private JTextField textFieldNickname;
+	private JTextField textFieldProvider;
+	private JTextField textFieldWFrase;
+	
+	public NewSocial(Contatto c, Email email) {
+		
 		setAlwaysOnTop(true);		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 265, 251);
@@ -28,44 +36,49 @@ public class NewSocial extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Inserisci");
-		btnNewButton.setBounds(85, 187, 86, 19);
-		contentPane.add(btnNewButton);
+		JLabel lblNickname = new JLabel("Nickname");
+		lblNickname.setBounds(20, 40, 74, 11);
+		contentPane.add(lblNickname);
 		
-		JList list = new JList();
-		list.setBounds(104, 8, 124, 50);
-		contentPane.add(list);
-		
-		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblEmail.setBounds(20, 30, 40, 11);
-		contentPane.add(lblEmail);
-		
-		JLabel lblNewLabel = new JLabel("Nickname");
-		lblNewLabel.setBounds(20, 88, 40, 11);
-		contentPane.add(lblNewLabel);
-		
-		textFieldName = new JTextField();
-		textFieldName.setBounds(104, 85, 124, 17);
-		contentPane.add(textFieldName);
-		textFieldName.setColumns(10);
+		textFieldNickname = new JTextField();
+		textFieldNickname.setBounds(135, 37, 100, 17);
+		contentPane.add(textFieldNickname);
+		textFieldNickname.setColumns(10);
 		
 		JLabel lblProvider = new JLabel("Provider");
-		lblProvider.setBounds(20, 107, 40, 11);
+		lblProvider.setBounds(20, 59, 40, 11);
 		contentPane.add(lblProvider);
 		
 		textFieldProvider = new JTextField();
-		textFieldProvider.setBounds(104, 104, 124, 17);
+		textFieldProvider.setBounds(135, 56, 100, 17);
 		contentPane.add(textFieldProvider);
 		textFieldProvider.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Frase di Benvenuto");
-		lblNewLabel_1.setBounds(20, 126, 86, 11);
-		contentPane.add(lblNewLabel_1);
+		JLabel lblWFrase = new JLabel("Frase di Benvenuto");
+		lblWFrase.setBounds(20, 78, 106, 11);
+		contentPane.add(lblWFrase);
 		
-		textField = new JTextField();
-		textField.setBounds(104, 123, 124, 17);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textFieldWFrase = new JTextField();
+		textFieldWFrase.setBounds(135, 75, 100, 17);
+		contentPane.add(textFieldWFrase);
+		textFieldWFrase.setColumns(10);
+
+		JButton btnNewButton = new JButton("Inserisci");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String data[]= {textFieldNickname.getText().trim(),textFieldProvider.getText().trim(),textFieldWFrase.getText().trim()};
+				Controller.insertSocial(data, c, email);
+				ModSocials.updateTable();
+				setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(85, 184, 86, 19);
+		contentPane.add(btnNewButton);
 	}
+
+	public void setC(Contatto c) {
+		this.c = c;
+	}
+
 }

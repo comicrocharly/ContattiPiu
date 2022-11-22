@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Frame;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -264,10 +265,6 @@ public class Controller {
 		PostEmailDAO eDao = new PostEmailDAO();
 		eDao.setEmail(contID, indirizzo, uso);
 		
-		for (Contatto tmp: cList) {
-			if(contID.equals(tmp.getContID()))
-				c = tmp;
-		}
 		
 		if(c.getEmail()==null) {
 			ArrayList<Email> eList = new ArrayList<>();
@@ -277,6 +274,28 @@ public class Controller {
 		c.addEmail(e);
 		
 	} 
+	
+	public static void insertSocial(String[] data, Contatto c, Email email) {
+		String nickname, provider, fraseBenvenuto;
+		Integer contID=c.getContID();
+		
+		nickname = data[0];
+		provider = data[1];
+		fraseBenvenuto = data[2];
+		
+		MessagingPr mP = new MessagingPr(nickname, fraseBenvenuto, provider);
+		PostMessagingPrDAO mpDao = new PostMessagingPrDAO();
+		mpDao.setMessagingPR(email.getIndirizzo(), provider, fraseBenvenuto, nickname);
+		
+		if(email.getMessagingPr()==null) {
+			ArrayList<MessagingPr> mpList = new ArrayList<>();
+			email.setMessagingPr(mpList);
+		}
+		
+		email.addMessagingPr(mP);
+		
+		
+	}
 	
 	public static void insertContatto(String data[]) {
 		Contatto c;
@@ -492,5 +511,7 @@ public class Controller {
 	public void setcList(ArrayList<Contatto> cList) {
 		this.cList = cList;
 	}
+
+	
 
 }
