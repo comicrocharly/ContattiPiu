@@ -159,11 +159,8 @@ public class MainWireframe {
 		JTextArea searchBar = new JTextArea();
 		searchBar.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+			public void keyTyped(KeyEvent e) {
 					search(searchBar.getText());
-				}
-					
 			}
 
 			
@@ -237,8 +234,8 @@ public class MainWireframe {
 		table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		scrollPane.setViewportView(table);
 
-		choice.add("Telefono");
 		choice.add("Nome");
+		choice.add("Telefono");
 		choice.add("Email");
 		choice.add("Social");
 		
@@ -262,7 +259,8 @@ public class MainWireframe {
 		}
 		else if(choice.getSelectedItem().equals("Email")) {
 			Contatto c = Controller.searchContactByEmail(text);
-			addToTable(c);	
+			if(c!=null)
+				addToTable(c);	
 		}
 		else if(choice.getSelectedItem().equals("Social")) {
 			ArrayList<Contatto> cList = Controller.searchContactByNickname(text);
@@ -303,10 +301,10 @@ public class MainWireframe {
 		String prefisso = c.getRecapiti().get(0).getTelefonoIn().getPrefisso();
 		String numero = c.getRecapiti().get(0).getTelefonoIn().getNumero();
 		
-		String format[]= {c.getNome(),c.getCognome(),citta+" "+via,prefisso+" "+numero};
+		String format[]= { nome, cognome, citta+" "+via, prefisso+" "+numero };
 		
 		DefaultTableModel tModel = (DefaultTableModel) table.getModel();
-		tModel.addRow(format)
+		tModel.addRow(format);
 		
 	}
 	

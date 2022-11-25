@@ -381,18 +381,17 @@ public class Controller {
 	
 	public static Contatto searchContactByEmail(String email) {
 
-		Contatto matched = null;
-
 		for (Contatto cont : cList) {
 			for (Email em : cont.getEmail()) {
-				if (em.getIndirizzo().equalsIgnoreCase(email)) {
-					matched = cont;
-					break;
+				String indirizzo = em.getIndirizzo().toLowerCase().trim();
+				String input = email.toLowerCase().trim();
+				if (indirizzo.contains(input)) {
+					return cont;
 				}
 			}
 		}
-
-		return matched;
+		
+		return null;
 
 	}
 
@@ -423,7 +422,9 @@ public class Controller {
 			trovato = false;
 			for (Email ema : cont.getEmail()) {
 				for (MessagingPr mpr : ema.getMessagingPr()) {
-					if (mpr.getNickname().equals(nickname)) {
+					String nick = mpr.getNickname().toLowerCase().trim();
+					String input = nickname.toLowerCase().trim();
+					if (nick.contains(input)) {
 						matched.add(cont);
 						trovato = true;
 						break;
@@ -455,10 +456,10 @@ public class Controller {
 				splittedName.add(k.trim());
 
 		for (Contatto cont : cList) {
-			nomeContatto = new String(cont.getNome() + cont.getCognome());
+			nomeContatto = new String(cont.getNome() + cont.getCognome()).toLowerCase().trim();
 			match = 0;
 			for (String s : splittedName) {
-				if (nomeContatto.contains(s))
+				if (nomeContatto.contains(s.toLowerCase()))
 					match++;
 			}
 			if(match==splittedName.size()) matched.add(cont);
