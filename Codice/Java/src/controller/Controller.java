@@ -276,8 +276,8 @@ public class Controller {
 	} 
 	
 	public static void insertSocial(String[] data, Contatto c, Email email) {
+		
 		String nickname, provider, fraseBenvenuto;
-		Integer contID=c.getContID();
 		
 		nickname = data[0];
 		provider = data[1];
@@ -379,7 +379,7 @@ public class Controller {
 
 	}
 	
-	public Contatto searchContactByEmail(String email) {
+	public static Contatto searchContactByEmail(String email) {
 
 		Contatto matched = null;
 
@@ -396,7 +396,7 @@ public class Controller {
 
 	}
 
-	public ArrayList<Contatto> searchContactByTelephone(String numero) {
+	public static ArrayList<Contatto> searchContactByTelephone(String numero) {
 
 		ArrayList<Contatto> matched = new ArrayList<Contatto>();
 		String num;
@@ -413,7 +413,7 @@ public class Controller {
 		return matched;
 	}
 
-	public ArrayList<Contatto> searchContactByNickname(String nickname) {
+	public static ArrayList<Contatto> searchContactByNickname(String nickname) {
 
 		ArrayList<Contatto> matched = new ArrayList<Contatto>();
 
@@ -437,7 +437,7 @@ public class Controller {
 		return matched;
 	}
 
-	public ArrayList<Contatto> searchContactByName(String nome) {
+	public static ArrayList<Contatto> searchContactByName(String nome) {
 
 		ArrayList<Contatto> matched = new ArrayList<Contatto>();
 

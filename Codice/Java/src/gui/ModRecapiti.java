@@ -14,11 +14,11 @@ import model.Recapito;
 
 public class ModRecapiti extends ModAttributes {
 	private static DefaultListModel<String> listRecapitiModel;
-	private static Contatto c;
+	
 	
 	public ModRecapiti(Contatto c) {
 		super(c);
-		this.c = c;
+		
 		listRecapitiModel = new DefaultListModel<String>();
 		setTitle("Modifica Recapiti");
 		

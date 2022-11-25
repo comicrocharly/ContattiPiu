@@ -70,6 +70,7 @@ public class NewSocial extends JFrame{
 				String data[]= {textFieldNickname.getText().trim(),textFieldProvider.getText().trim(),textFieldWFrase.getText().trim()};
 				Controller.insertSocial(data, c, email);
 				ModSocials.updateTable();
+				ContactWindow.refreshSocialModel();
 				setVisible(false);
 			}
 		});

@@ -114,6 +114,7 @@ public class NewRecapito extends JFrame{
 						textFieldPrefissoOut.getText().trim(), textFieldNumeroOut.getText().trim(), tipoOut};
 				Controller.insertRecapito(data, c);
 				ModRecapiti.updateTable();
+				ContactWindow.refreshRecapitoModel();
 				setVisible(false);
 			}
 

@@ -57,6 +57,7 @@ public class MainWireframe {
 
 	private JFrame frame;
 	private static JTable table;
+	private static Choice choice;
 	//private static Controller controller;
 
 
@@ -106,6 +107,17 @@ public class MainWireframe {
 		});
 
 		JMenuItem refresh = new JMenuItem("Refresh");
+		refresh.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					updateTable();
+				} catch (Throwable e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		file.add(refresh);
 		file.add(exit);
 
@@ -148,16 +160,20 @@ public class MainWireframe {
 		searchBar.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_ENTER)
-					System.out.println(searchBar.getText());
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					search(searchBar.getText());
+				}
+					
 			}
+
+			
 		});
 		searchBar.setBounds(8, 10, 278, 17);
 		frame.getContentPane().add(searchBar);
 		//Studiando l'utilizzo di jTable
 
 
-		Choice choice = new Choice();
+		choice = new Choice();
 		choice.setBounds(294, 10, 68, 17);
 		frame.getContentPane().add(choice);
 
@@ -227,6 +243,39 @@ public class MainWireframe {
 		choice.add("Social");
 		
 	}
+	
+	private void search(String text) {
+		
+		clearTable();
+		
+		if(choice.getSelectedItem().equals("Telefono")) {
+			ArrayList<Contatto> cList = Controller.searchContactByTelephone(text);
+			for(Contatto c:cList) {
+				addToTable(c);
+			}		
+		}
+		else if(choice.getSelectedItem().equals("Nome")) {
+			ArrayList<Contatto> cList = Controller.searchContactByName(text);
+			for(Contatto c:cList) {
+				addToTable(c);
+			}
+		}
+		else if(choice.getSelectedItem().equals("Email")) {
+			Contatto c = Controller.searchContactByEmail(text);
+			addToTable(c);	
+		}
+		else if(choice.getSelectedItem().equals("Social")) {
+			ArrayList<Contatto> cList = Controller.searchContactByNickname(text);
+			for(Contatto c:cList) {
+				addToTable(c);
+			}
+		}	
+	}
+	//This method clear all table row
+	private void clearTable() {
+		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+		tableModel.setRowCount(0);
+	}
 
 	public JTable getTable() {
 		return table;
@@ -237,13 +286,28 @@ public class MainWireframe {
 	}
 
 	public static void addToTable(String data[]) {
-		//data[] è formattato come: Nome, Cognome, Citta + Via, PrefissoFisso + NumeroFisso;
+		//data[] è formattato come: Nome, Cognome, Citta + Via, Prefisso + Numero;
 		
 		String format[] = {data[0], data[1], data[2], data[3]};
 		//
 		DefaultTableModel tModel = (DefaultTableModel) table.getModel();
 		tModel.addRow(format);
 
+	}
+	
+	public static void addToTable(Contatto c) {
+		String nome = c.getNome();
+		String cognome = c.getCognome();
+		String citta = c.getIndirizzi().get(0).getCitta();
+		String via = c.getIndirizzi().get(0).getVia();
+		String prefisso = c.getRecapiti().get(0).getTelefonoIn().getPrefisso();
+		String numero = c.getRecapiti().get(0).getTelefonoIn().getNumero();
+		
+		String format[]= {c.getNome(),c.getCognome(),citta+" "+via,prefisso+" "+numero};
+		
+		DefaultTableModel tModel = (DefaultTableModel) table.getModel();
+		tModel.addRow(format)
+		
 	}
 	
 

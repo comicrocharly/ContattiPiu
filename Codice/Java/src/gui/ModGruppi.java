@@ -15,11 +15,9 @@ import model.Gruppo;
 public class ModGruppi extends ModAttributes{
 	
 	private static DefaultListModel<String> listGruppiModel;
-	private static Contatto c;
 	
 	public ModGruppi(Contatto c) {
 		super(c);
-		this.c = c;
 		
 		setTitle("Modifica Gruppi");
 

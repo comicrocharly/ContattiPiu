@@ -77,6 +77,7 @@ public class NewGruppo extends JFrame{
 				String data[]= {textFieldName.getText().trim(),textFieldDescrizione.getText().trim()};
 				Controller.insertGruppo(data, c);
 				ModGruppi.updateTable();
+				ContactWindow.refreshGruppiModel();
 				setVisible(false);
 			}
 		});

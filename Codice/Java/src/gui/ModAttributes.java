@@ -18,10 +18,9 @@ import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 
 public class ModAttributes extends JFrame {
-	protected Contatto c;
+	
+	protected static Contatto c;
 	protected JPanel contentPane;
-	
-	
 	
 	protected ModAttributes(Contatto c) {
 		
@@ -51,7 +50,7 @@ public class ModAttributes extends JFrame {
 	}
 
 
-	private void setC(Contatto c) {
+	protected void setC(Contatto c) {
 		this.c = c;
 	}
 	

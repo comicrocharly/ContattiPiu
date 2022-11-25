@@ -9,40 +9,35 @@ import javax.swing.border.EmptyBorder;
 import model.*;
 
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
-import javax.swing.border.BevelBorder;
-import javax.swing.JScrollBar;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
-import javax.swing.SpringLayout;
-import java.awt.FlowLayout;
-import net.miginfocom.swing.MigLayout;
-import java.awt.GridLayout;
-import java.util.ArrayList;
-import java.awt.BorderLayout;
 import javax.swing.JList;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JMenu;
-import javax.swing.event.MenuKeyListener;
-import javax.swing.event.MenuKeyEvent;
+
 
 public class ContactWindow extends JFrame {
 
-	private Contatto c;
-
+	private static Contatto c;
 	private JPanel contentPane;
-
+	
+	private static DefaultListModel<String> listRecapitoModel;
+	private static DefaultListModel<String> listAlloggiModel;
+	private static DefaultListModel<String> listGruppiModel;
+	private static DefaultListModel<String> listEmailModel;
+	private static DefaultListModel<String> listSocialsModel;
+	
 	public ContactWindow(Contatto c) {
 		setTitle("Vista Contatto");
-		setC(c);
+		ContactWindow.c = c;
 		initialize();
 	}
 
 	public void initialize() {
+		
 		//Estrazione dei dati dal contatto ai fini della presentazione
 		String name = (c.getNome()+" "+c.getCognome());
 
@@ -54,8 +49,6 @@ public class ContactWindow extends JFrame {
 			}
 		}
 		
-		
-
 		//Rappresentazione
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 350, 494);
@@ -63,15 +56,28 @@ public class ContactWindow extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnExit = new JMenu("Exit");
-		mnExit.addMouseListener(new MouseAdapter() {
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mntmRefresh = new JMenuItem("Refresh");
+		mntmRefresh.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				refreshModels();
+			}
+		});
+		mnFile.add(mntmRefresh);
+		
+		JMenuItem mntmExit = new JMenuItem("Exit");
+		mntmExit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setVisible(false);
 			}
 		});
-		menuBar.add(mnExit);
-		
+		mnFile.add(mntmExit);
+
+
 		JMenu mnEdit = new JMenu("Edit");
 		menuBar.add(mnEdit);
 		
@@ -160,10 +166,94 @@ public class ContactWindow extends JFrame {
 		contentPane.add(lblEmails);
 		
 		JLabel lblSocials = new JLabel("Socials");
-		lblSocials.setBounds(57, 378, 245, 11);
+		lblSocials.setBounds(57, 378, 64, 11);
 		contentPane.add(lblSocials);
 		
-		DefaultListModel<String> listRecapitoModel = new DefaultListModel<String>();
+		//Liste con ScrollPane
+		
+		listRecapitoModel = new DefaultListModel<String>();
+		loadRecapitoModel();
+		
+		JList<String> listRecapiti = new JList<String>(listRecapitoModel);
+		JScrollPane scrollPaneRecapiti = new JScrollPane(listRecapiti);
+		scrollPaneRecapiti.setBounds(33, 133, 133, 77);
+		contentPane.add(scrollPaneRecapiti,listRecapiti);
+
+		listAlloggiModel = new DefaultListModel<String>();
+		loadAlloggiModel();
+		
+		JList<String> listAlloggi = new JList<String>(listAlloggiModel);
+		JScrollPane scrollPaneAlloggi = new JScrollPane(listAlloggi);
+		scrollPaneAlloggi.setBounds(169, 133, 133, 77);
+		contentPane.add(scrollPaneAlloggi,listAlloggi);
+		
+		listGruppiModel = new DefaultListModel<String>();
+		loadGruppiModel();
+		
+		JList<String> listGruppi = new JList<String>(listGruppiModel);
+		JScrollPane scrollPaneGruppi = new JScrollPane(listGruppi);
+		scrollPaneGruppi.setBounds(33, 245, 133, 77);
+		contentPane.add(scrollPaneGruppi,listGruppi);
+		
+		listEmailModel = new DefaultListModel<String>();
+		loadEmailModel();
+		
+		JList<String> listEmails = new JList<String>(listEmailModel);
+		JScrollPane scrollPaneEmails = new JScrollPane(listEmails);
+		scrollPaneEmails.setBounds(169, 245, 133, 77);
+		contentPane.add(scrollPaneEmails,listEmails);
+
+		listSocialsModel = new DefaultListModel<String>();
+		loadSocialModel();
+		
+		JList<String> listSocials = new JList<String>(listSocialsModel);
+		JScrollPane scrollPaneSocials = new JScrollPane(listSocials);
+		scrollPaneSocials.setBounds(131, 344, 171, 77);
+		contentPane.add(scrollPaneSocials,listSocials);
+		
+
+	}
+	
+	public static void refreshRecapitoModel() {
+		listRecapitoModel.removeAllElements();
+		loadRecapitoModel();
+	}
+	
+	public static void refreshAlloggiModel() {
+		listAlloggiModel.removeAllElements();
+		loadAlloggiModel();
+	}
+	
+	public static void refreshGruppiModel() {
+		listGruppiModel.removeAllElements();
+		loadGruppiModel();
+	}
+	
+	public static void refreshEmailModel() {
+		listRecapitoModel.removeAllElements();
+		loadRecapitoModel();
+	}
+	
+	public static void refreshSocialModel() {
+		listSocialsModel.removeAllElements();
+		loadSocialModel();
+	}
+	
+	public void refreshModels() {
+		listAlloggiModel.removeAllElements();
+		listEmailModel.removeAllElements();
+		listGruppiModel.removeAllElements();
+		listRecapitoModel.removeAllElements();
+		listSocialsModel.removeAllElements();
+		
+		loadAlloggiModel();
+		loadEmailModel();
+		loadGruppiModel();
+		loadRecapitoModel();
+		loadSocialModel();
+	}
+
+	public static void loadRecapitoModel() {
 		
 		for(Recapito r:c.getRecapiti()) {
 			String prefisso, numero;
@@ -171,13 +261,9 @@ public class ContactWindow extends JFrame {
 			numero = r.getTelefonoIn().getNumero();
 			listRecapitoModel.addElement(prefisso+" "+numero);
 		}
-		
-		JList listRecapiti = new JList(listRecapitoModel);
-		listRecapiti.setBounds(33, 133, 133, 77);
-		contentPane.add(listRecapiti);
-
-		DefaultListModel<String> listAlloggiModel = new DefaultListModel<String>();
-
+	}
+	
+	public static void loadAlloggiModel() {
 		for(Indirizzo i:c.getIndirizzi()) {
 			String citta, via;
 			citta = i.getCitta();
@@ -185,54 +271,40 @@ public class ContactWindow extends JFrame {
 			listAlloggiModel.addElement(citta+" "+via);
 		}
 
-		JList listAlloggi = new JList(listAlloggiModel);
-		listAlloggi.setBounds(169, 133, 133, 77);
-		contentPane.add(listAlloggi);
-		
-		DefaultListModel<String> listGruppiModel = new DefaultListModel<String>();
-
+	}
+	
+	public static void loadGruppiModel() {
 		if(c.getGruppi()!=null)
 			for(Gruppo g:c.getGruppi()) {
 				listGruppiModel.addElement(g.getNomeG());
 			}
 
-		JList listGruppi = new JList(listGruppiModel);
-		listGruppi.setBounds(33, 245, 133, 77);
-		contentPane.add(listGruppi);
-		
-		DefaultListModel<String> listEmailModel = new DefaultListModel<String>();
-
+	}
+	
+	public static void loadEmailModel() {
 		if(c.getEmail()!=null)
 			for(Email e:c.getEmail()) {
 				listEmailModel.addElement(e.getIndirizzo());
 			}
 
-		JList listEmails = new JList(listEmailModel);
-		listEmails.setBounds(169, 245, 133, 77);
-		contentPane.add(listEmails);
-
-		DefaultListModel<String> listSocialsModel = new DefaultListModel<String>();
-		if(c.getEmail()!=null)
-			for(Email e:c.getEmail()) {
-				if(e.getMessagingPr()!=null)
-					for(MessagingPr ms:e.getMessagingPr()) {
-						listAlloggiModel.addElement(ms.getFornitore()+" "+ms.getNickname());
-					}
-			}
-
-		JList listSocials = new JList(listSocialsModel);
-		listSocials.setBounds(127, 344, 175, 77);
-		contentPane.add(listSocials);
-		
-		
-		
 	}
 	
+	public static void loadSocialModel() {
+		
+	if(c.getEmail()!=null)
+		for(Email e:c.getEmail()) {
+			
+			if(e.getMessagingPr()!=null) {
+				for(MessagingPr ms:e.getMessagingPr()) {
+					listSocialsModel.addElement(ms.getFornitore()+" "+ms.getNickname());
+				}
+			}
+		}
+	}
+
+
 	public Contatto getC() {
 		return c;
 	}
 
-	public void setC(Contatto c) {
-		this.c = c;
-	}
 }

@@ -12,13 +12,12 @@ import javax.swing.JOptionPane;
 import model.Contatto;
 import model.Email;
 
-public class ModEmails extends ModAttributes{
+public class ModEmails extends ModAttributes{ 
 	private static DefaultListModel<String> listEmailModel;
-	private static Contatto c;
+	
 	
 	public ModEmails(Contatto c) {
 		super(c);
-		this.c = c;
 		
 		listEmailModel = new DefaultListModel<String>();
 		
@@ -53,6 +52,7 @@ public class ModEmails extends ModAttributes{
 	}
 	
 	public void loadTable() {
+		
 		if(c.getEmail()!=null)
 			for(Email e:c.getEmail()) {
 				listEmailModel.addElement(e.getIndirizzo());

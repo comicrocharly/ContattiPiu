@@ -19,25 +19,19 @@ public class ModSocials extends ModAttributes{
 	
 	private static JComboBox<String> comboBox;
 	private static DefaultListModel<String> listSocialsModel;
-	private static Contatto c;
+	
 	
 	public ModSocials(Contatto c) {
 		super(c);
-		this.c=c;
+		
 		
 		listSocialsModel = new DefaultListModel<>();
 		
 		setTitle("Modifica Socials");
-
-
+		
 		JList listSocials = new JList(listSocialsModel);
 		listSocials.setBounds(20, 66, 310, 192);
 		super.contentPane.add(listSocials);
-		
-		if (listSocialsModel.isEmpty())
-			JOptionPane.showMessageDialog(rootPane, "La lista è vuota");
-		
-		
 		
 		
 		JButton btnRimuovi = new JButton("Rimuovi");
@@ -51,7 +45,8 @@ public class ModSocials extends ModAttributes{
 		comboBox = new JComboBox<String>();
 		comboBox.setBounds(10, 28, 120, 23);
 		contentPane.add(comboBox);
-
+		
+		
 		if(c.getEmail()!=null)
 			for(Email e:c.getEmail()) {
 				comboBox.addItem(e.getIndirizzo());
@@ -59,17 +54,25 @@ public class ModSocials extends ModAttributes{
 		else
 			JOptionPane.showMessageDialog(rootPane, "Non ci sono emails");
 		setVisible(false);
-
+		
+		comboBox.setSelectedIndex(0);
+		loadTable();
+		if (listSocialsModel.isEmpty())
+			JOptionPane.showMessageDialog(rootPane, "Non ci sono Provider legati alla email selezionata");
+		
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==1) {
 						clearTable();
-					if(!loadTable()) {
+						loadTable();
+					if(listSocialsModel.isEmpty()) {
 						JOptionPane.showMessageDialog(rootPane, "Non ci sono Provider legati alla email selezionata");
 					}
 				}	
 			}
 		});
+		
+		
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -88,27 +91,25 @@ public class ModSocials extends ModAttributes{
 	public void clearTable() {
 		listSocialsModel.removeAllElements();
 	}
-	
-	public Boolean loadTable() {
-		Boolean b=false;
+
+	public void loadTable() {
+
 		String indirizzo = comboBox.getSelectedItem().toString();
 		if(c.getEmail()!=null) {
 			for(Email e:c.getEmail()) {
 				if(e.getMessagingPr()!=null && e.getIndirizzo().equals(indirizzo))
 					for(MessagingPr ms:e.getMessagingPr()) {
-						listSocialsModel.addElement(ms.getFornitore()+" "+ms.getNickname());
-						b=true;
-					}		
+						listSocialsModel.addElement(ms.getFornitore()+" "+ms.getNickname());	
+					}
 			}
-		}
-		return b;
+		}	
 	}
 
 	public static void updateTable() {
 		MessagingPr mProvider;
 		String indirizzo = comboBox.getSelectedItem().toString();
+
 		//prende l'ultimo elemento della lista
-		
 
 		for(Email e:c.getEmail()) {
 			if(e.getMessagingPr()!=null && e.getIndirizzo().equals(indirizzo)) {
@@ -117,9 +118,6 @@ public class ModSocials extends ModAttributes{
 
 				listSocialsModel.addElement(mProvider.getFornitore()+" "+mProvider.getNickname());
 			}
-
 		}
-
-
 	}
 }

@@ -55,6 +55,7 @@ public class NewEmail extends JFrame{
 				String data[]= {textFieldIndirizzo.getText().trim(),textFieldUso.getText().trim()};
 				Controller.insertEmail(data,c);
 				ModEmails.updateTable();
+				ContactWindow.loadEmailModel();
 				setVisible(false);
 			}
 		});
