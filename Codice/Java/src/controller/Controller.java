@@ -275,6 +275,27 @@ public class Controller {
 		
 	} 
 	
+	public static void insertAlloggio(String[] data, Contatto c) {
+		Indirizzo i;
+		String nazione, citta, cap, via;
+		Integer contID = c.getContID();
+		
+		nazione = data[0];
+		citta = data[1];
+		cap = data[2];
+		via = data[3];
+		
+		i = new Indirizzo(via, citta, cap, nazione);
+		PostIndirizzoDAO iDao = new PostIndirizzoDAO();
+		iDao.setIndirizzo(i, contID);
+		
+		c.addIndirizzo(i);
+		
+		
+		
+		
+	}
+	
 	public static void insertSocial(String[] data, Contatto c, Email email) {
 		
 		String nickname, provider, fraseBenvenuto;
@@ -512,6 +533,8 @@ public class Controller {
 	public void setcList(ArrayList<Contatto> cList) {
 		this.cList = cList;
 	}
+
+	
 
 	
 

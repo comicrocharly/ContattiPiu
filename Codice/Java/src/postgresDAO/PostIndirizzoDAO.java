@@ -207,6 +207,52 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 		return addrID;
 
 	}
+	
+	public void setIndirizzo(Indirizzo i, Integer contID) {
+		int addrID=0;
+		String via = i.getVia();
+		String citta = i.getCitta();
+		String cap = i.getCap();
+		String nazione = i.getNazione();
+		
+
+		PreparedStatement ps;
+
+		try {
+			ps = link.prepareStatement(
+					"INSERT INTO indirizzo " 
+							+ "(via, citta, cap, nazione) "
+							+ "VALUES ('"+via+"', '"+citta+"', '"+cap+"', '"+nazione+"')"
+									+ "RETURNING Addr_ID ;");
+
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())
+				addrID = rs.getInt(1);
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		PreparedStatement psAlloggio;
+
+		try {
+			psAlloggio = link.prepareStatement(
+					"INSERT INTO alloggio " 
+							+ "(cont_ID, addr_ID) "
+							+ "VALUES ('"+contID+"', '"+addrID+"')");
+
+			psAlloggio.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+	}
+	
+	
 
 	private void upAttr(int addrID, String attr,String data) {
 

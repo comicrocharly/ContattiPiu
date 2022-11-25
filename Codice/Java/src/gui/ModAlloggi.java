@@ -9,15 +9,18 @@ import javax.swing.JList;
 
 import model.Contatto;
 import model.Indirizzo;
+import model.Recapito;
 
 public class ModAlloggi extends ModAttributes{
-
+	
+	private static DefaultListModel<String> listAlloggiModel;
+	
 	public ModAlloggi(Contatto c) {
 		super(c);
 		
 		setTitle("Modifica Alloggi");
 
-		DefaultListModel<String> listAlloggiModel = new DefaultListModel<String>();
+		listAlloggiModel = new DefaultListModel<String>();
 
 		for(Indirizzo i:c.getIndirizzi()) {
 			String citta, via;
@@ -33,6 +36,8 @@ public class ModAlloggi extends ModAttributes{
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				NewAlloggi frame = new NewAlloggi(c);
+				frame.setVisible(true);
 			}
 		});
 		btnAggiungi.setBounds(162, 28, 85, 23);
@@ -47,4 +52,11 @@ public class ModAlloggi extends ModAttributes{
 		contentPane.add(btnRimuovi);
 	}
 
+	public static void updateTable() {
+		Indirizzo i;
+		//prende l'ultimo elemento della lista
+		i = c.getIndirizzi().get(c.getIndirizzi().size()-1);
+		listAlloggiModel.addElement(i.getCitta()+" "+i.getVia());
+			
+	}
 }
