@@ -49,7 +49,7 @@ public class ContactWindow extends JFrame {
 		
 		//Estrazione dei dati dal contatto ai fini della presentazione
 		String name = (c.getNome()+" "+c.getCognome());
-
+		
 		String indirizzoP = null;
 		for(Indirizzo i: c.getIndirizzi()) {
 			
