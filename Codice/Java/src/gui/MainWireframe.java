@@ -52,6 +52,7 @@ import java.awt.BorderLayout;
 import java.awt.Choice;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
 
 public class MainWireframe {
 
@@ -157,21 +158,13 @@ public class MainWireframe {
 		frame.getContentPane().setLayout(null);
 
 		JTextArea searchBar = new JTextArea();
-		searchBar.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-					search(searchBar.getText());
-			}
-
-			
-		});
-		searchBar.setBounds(8, 10, 278, 17);
+		searchBar.setBounds(8, 10, 180, 17);
 		frame.getContentPane().add(searchBar);
 		//Studiando l'utilizzo di jTable
 
 
 		choice = new Choice();
-		choice.setBounds(294, 10, 68, 17);
+		choice.setBounds(281, 10, 81, 15);
 		frame.getContentPane().add(choice);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -227,12 +220,25 @@ public class MainWireframe {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
 				ContactWindow frame = new ContactWindow(Controller.getcList().get(table.getSelectedRow()));
 				frame.setVisible(true);
+				}
 			}
 		});
 		table.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		scrollPane.setViewportView(table);
+		
+		JButton btnSearch = new JButton("Cerca");
+		btnSearch.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				search(searchBar.getText());
+			}
+		});
+		
+		btnSearch.setBounds(196, 10, 79, 19);
+		frame.getContentPane().add(btnSearch);
 
 		choice.add("Nome");
 		choice.add("Telefono");
@@ -359,7 +365,6 @@ public class MainWireframe {
 			JOptionPane.showMessageDialog(frame,("La lista dei contatti è vuota"));
 
 	}
-
 }
 
 

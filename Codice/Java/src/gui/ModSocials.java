@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.TrayIcon.MessageType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,6 +13,8 @@ import model.Contatto;
 import model.Email;
 import model.MessagingPr;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
@@ -47,13 +50,19 @@ public class ModSocials extends ModAttributes{
 		contentPane.add(comboBox);
 		
 		
-		if(c.getEmail()!=null)
+		if(!c.getEmail().isEmpty()) {
+			
 			for(Email e:c.getEmail()) {
 				comboBox.addItem(e.getIndirizzo());
 			}
-		else
-			JOptionPane.showMessageDialog(rootPane, "Non ci sono emails");
-		setVisible(false);
+		}
+		else {
+			
+			JOptionPane.showMessageDialog(this, "Non ci sono Emails assegnate!");
+			setVisible(false);
+			
+			
+		}
 		
 		comboBox.setSelectedIndex(0);
 		loadTable();

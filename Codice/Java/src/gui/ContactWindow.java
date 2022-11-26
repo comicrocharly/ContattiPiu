@@ -10,13 +10,22 @@ import model.*;
 
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JMenu;
+import javax.swing.JTextField;
+import java.awt.Color;
+import java.awt.Font;
 
 
 public class ContactWindow extends JFrame {
@@ -43,15 +52,17 @@ public class ContactWindow extends JFrame {
 
 		String indirizzoP = null;
 		for(Indirizzo i: c.getIndirizzi()) {
+			
 			if(i.getAddrID()==c.getIndirizzoP()){
 				indirizzoP = (i.getCitta()+" "+i.getVia());
+				
 				break;
 			}
 		}
 		
 		//Rappresentazione
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 350, 494);
+		setBounds(100, 100, 350, 525);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -126,8 +137,13 @@ public class ContactWindow extends JFrame {
 		mntmSocials.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				ModAttributes frameSocials = new ModSocials(c);
-				frameSocials.setVisible(true);
+				try {
+					ModAttributes frameSocials = new ModSocials(c);
+					frameSocials.setVisible(true);
+				} catch (Exception s) {
+					// TODO Auto-generated catch block
+				
+				}
 			}
 		});
 		mnEdit.add(mntmSocials);
@@ -137,36 +153,57 @@ public class ContactWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblFoto = new JLabel("New label");
-		lblFoto.setBounds(57, 54, 114, 11);
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("C:\\Users\\Carlo\\git\\ContattiPiu\\Codice\\Java\\src\\photos\\user.png"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		
+		JLabel lblFoto = new JLabel(new ImageIcon(img.getScaledInstance(100, 100, DO_NOTHING_ON_CLOSE)));
+		
+		lblFoto.setBounds(27, 8, 125, 120);
 		contentPane.add(lblFoto);
 
-		JLabel lblNome = new JLabel(name);
-		lblNome.setBounds(181, 21, 121, 18);
-		contentPane.add(lblNome);
+		JTextField txtFieldNome = new JTextField(name);
+		txtFieldNome.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtFieldNome.setBorder(null);
+		txtFieldNome.setEditable(false);
+		txtFieldNome.setBounds(169, 31, 159, 18);
+		contentPane.add(txtFieldNome);
 		
-		JLabel lblIndirizzoP = new JLabel(indirizzoP);
-		lblIndirizzoP.setBounds(181, 47, 121, 18);
-		contentPane.add(lblIndirizzoP);
+		JTextField txtFieldIndirizzoP = new JTextField(indirizzoP);
+		txtFieldIndirizzoP.setFont(new Font("Tahoma", Font.BOLD, 12));
+		txtFieldIndirizzoP.setBorder(null);
+		txtFieldIndirizzoP.setEditable(false);
+		txtFieldIndirizzoP.setBounds(169, 51, 159, 18);
+		contentPane.add(txtFieldIndirizzoP);
 		
 		JLabel lblRecapiti = new JLabel("Recapiti");
-		lblRecapiti.setBounds(81, 110, 85, 11);
+		lblRecapiti.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblRecapiti.setBounds(27, 130, 64, 11);
 		contentPane.add(lblRecapiti);
 		
 		JLabel lblAlloggi = new JLabel("Alloggi");
-		lblAlloggi.setBounds(219, 110, 57, 11);
+		lblAlloggi.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblAlloggi.setBounds(171, 130, 71, 11);
 		contentPane.add(lblAlloggi);
 		
 		JLabel lblGruppi = new JLabel("Gruppi");
-		lblGruppi.setBounds(81, 226, 77, 11);
+		lblGruppi.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblGruppi.setBounds(27, 246, 44, 11);
 		contentPane.add(lblGruppi);
 		
 		JLabel lblEmails = new JLabel("Emails");
-		lblEmails.setBounds(219, 226, 109, 11);
+		lblEmails.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblEmails.setBounds(171, 246, 71, 11);
 		contentPane.add(lblEmails);
 		
 		JLabel lblSocials = new JLabel("Socials");
-		lblSocials.setBounds(57, 378, 64, 11);
+		lblSocials.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblSocials.setBounds(27, 354, 53, 11);
 		contentPane.add(lblSocials);
 		
 		//Liste con ScrollPane
@@ -176,7 +213,7 @@ public class ContactWindow extends JFrame {
 		
 		JList<String> listRecapiti = new JList<String>(listRecapitoModel);
 		JScrollPane scrollPaneRecapiti = new JScrollPane(listRecapiti);
-		scrollPaneRecapiti.setBounds(33, 133, 133, 77);
+		scrollPaneRecapiti.setBounds(25, 153, 140, 77);
 		contentPane.add(scrollPaneRecapiti,listRecapiti);
 
 		listAlloggiModel = new DefaultListModel<String>();
@@ -184,7 +221,7 @@ public class ContactWindow extends JFrame {
 		
 		JList<String> listAlloggi = new JList<String>(listAlloggiModel);
 		JScrollPane scrollPaneAlloggi = new JScrollPane(listAlloggi);
-		scrollPaneAlloggi.setBounds(169, 133, 133, 77);
+		scrollPaneAlloggi.setBounds(169, 153, 140, 77);
 		contentPane.add(scrollPaneAlloggi,listAlloggi);
 		
 		listGruppiModel = new DefaultListModel<String>();
@@ -192,7 +229,7 @@ public class ContactWindow extends JFrame {
 		
 		JList<String> listGruppi = new JList<String>(listGruppiModel);
 		JScrollPane scrollPaneGruppi = new JScrollPane(listGruppi);
-		scrollPaneGruppi.setBounds(33, 245, 133, 77);
+		scrollPaneGruppi.setBounds(25, 265, 140, 77);
 		contentPane.add(scrollPaneGruppi,listGruppi);
 		
 		listEmailModel = new DefaultListModel<String>();
@@ -200,7 +237,7 @@ public class ContactWindow extends JFrame {
 		
 		JList<String> listEmails = new JList<String>(listEmailModel);
 		JScrollPane scrollPaneEmails = new JScrollPane(listEmails);
-		scrollPaneEmails.setBounds(169, 245, 133, 77);
+		scrollPaneEmails.setBounds(169, 265, 140, 77);
 		contentPane.add(scrollPaneEmails,listEmails);
 
 		listSocialsModel = new DefaultListModel<String>();
@@ -208,7 +245,7 @@ public class ContactWindow extends JFrame {
 		
 		JList<String> listSocials = new JList<String>(listSocialsModel);
 		JScrollPane scrollPaneSocials = new JScrollPane(listSocials);
-		scrollPaneSocials.setBounds(131, 344, 171, 77);
+		scrollPaneSocials.setBounds(25, 373, 140, 77);
 		contentPane.add(scrollPaneSocials,listSocials);
 		
 
@@ -306,5 +343,4 @@ public class ContactWindow extends JFrame {
 	public Contatto getC() {
 		return c;
 	}
-
 }
