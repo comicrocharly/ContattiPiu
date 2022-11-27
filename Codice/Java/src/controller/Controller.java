@@ -490,6 +490,12 @@ public class Controller {
 
 	}
 
+	public static void upContattoFoto(Contatto c, String indFoto) {
+		int contID = c.getContID();
+		
+		PostContattoDAO cDao = new PostContattoDAO();
+		cDao.upIndFoto(contID, indFoto);
+	}
 	private void setConnessione(DatabaseConnect connessione) {
 		// TODO Auto-generated method stub
 		this.connessione = connessione;

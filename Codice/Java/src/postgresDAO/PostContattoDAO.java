@@ -22,7 +22,7 @@ public class PostContattoDAO implements ContattoDAO {
 		}
 
 	}
-
+	
 	private String getAttr(int contID, String attr) {
 
 		PreparedStatement ps;

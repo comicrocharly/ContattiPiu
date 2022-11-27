@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controller.Controller;
 import model.*;
 
 import javax.swing.JLabel;
@@ -16,6 +17,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -25,14 +28,17 @@ import java.io.IOException;
 import javax.swing.JMenu;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
+import java.awt.Image;
 
 
 public class ContactWindow extends JFrame {
 
 	private static Contatto c;
 	private JPanel contentPane;
-	
+	private Image image;
+	private JLabel lblFoto;
 	private static DefaultListModel<String> listRecapitoModel;
 	private static DefaultListModel<String> listAlloggiModel;
 	private static DefaultListModel<String> listGruppiModel;
@@ -147,25 +153,50 @@ public class ContactWindow extends JFrame {
 			}
 		});
 		mnEdit.add(mntmSocials);
+		
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		BufferedImage img = null;
-		try {
-			img = ImageIO.read(new File("C:\\Users\\Carlo\\git\\ContattiPiu\\Codice\\Java\\src\\photos\\user.png"));
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
 
 		
-		JLabel lblFoto = new JLabel(new ImageIcon(img.getScaledInstance(100, 100, DO_NOTHING_ON_CLOSE)));
 		
-		lblFoto.setBounds(27, 8, 125, 120);
+		image = loadFoto();
+		ImageIcon ImageIcon;
+		lblFoto = new JLabel(ImageIcon = new ImageIcon(image));
+		lblFoto.setSize(128, 128);
+		lblFoto.setLocation(27, 8);
 		contentPane.add(lblFoto);
+
+
+		JMenuItem mntmFoto = new JMenuItem("Foto");
+		mntmFoto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				String indFoto = JOptionPane.showInputDialog("Inserisci nuovo percorso Foto (absolutepath\\photo.extension)");
+				Controller.upContattoFoto(c, indFoto);
+				c.setIndFoto(indFoto);
+				
+				contentPane.remove(lblFoto);
+				contentPane.validate();
+				contentPane.repaint();
+				
+				image = loadFoto();
+				
+				ImageIcon newIcon;
+				lblFoto = new JLabel(newIcon = new ImageIcon(image));
+				
+				lblFoto.setSize(128, 128);
+				lblFoto.setLocation(27, 8);
+				contentPane.add(lblFoto);
+				
+				
+			}});
+		mnEdit.add(mntmFoto);
 
 		JTextField txtFieldNome = new JTextField(name);
 		txtFieldNome.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -249,6 +280,26 @@ public class ContactWindow extends JFrame {
 		contentPane.add(scrollPaneSocials,listSocials);
 		
 
+	}
+	
+	private static Image loadFoto() {
+		BufferedImage buffer = null;
+		String localDir = System.getProperty("user.dir");
+
+		try {
+			if(c.getIndFoto()==null) {
+				buffer = ImageIO.read(new File(localDir+"\\src\\photos\\user.png"));
+			}
+			else {
+				buffer = ImageIO.read(new File(c.getIndFoto()));
+			}
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Image image = buffer.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		
+		return image;
 	}
 	
 	public static void refreshRecapitoModel() {
