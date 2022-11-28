@@ -147,6 +147,19 @@ public class PostRecapitoDAO implements RecapitoDAO {
 			e.printStackTrace();
 		}
 	}
+
+	public void delRecapito(int contID) {
+		PreparedStatement ps;
+
+		try {
+			ps = link.prepareStatement("DELETE FROM Recapito " + "WHERE Cont_ID = '" + contID + "'");
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
 
 

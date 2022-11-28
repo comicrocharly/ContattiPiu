@@ -424,6 +424,7 @@ public class Controller {
 		for (Contatto cont : cList) {
 			for (Recapito rec : cont.getRecapiti()) {
 				num = rec.getTelefonoIn().getPrefisso().trim() + rec.getTelefonoIn().getNumero().trim();
+				num = num.trim();
 				if (num.contains(numero)) {
 					matched.add(cont);
 					break;
@@ -471,7 +472,7 @@ public class Controller {
 		
 		int match = 0;
 		
-		//Vado ad aggiungere a splittedName solo i nomi validi da analizzare, dato il difetto di .split() di non trattare più sequenze di spazi
+		//Vado ad aggiungere a splittedName solo i nomi validi da analizzare, dato il difetto di .split() di non trattare più sequenze di spazzi
 		for (String k : splittedTmp)
 			if (k.length() != 0)
 				splittedName.add(k.trim());
@@ -492,10 +493,44 @@ public class Controller {
 
 	public static void upContattoFoto(Contatto c, String indFoto) {
 		int contID = c.getContID();
-		
+
 		PostContattoDAO cDao = new PostContattoDAO();
 		cDao.upIndFoto(contID, indFoto);
 	}
+
+	public static void deleteContact(int selectedRowCount) {
+		Contatto c = cList.get(selectedRowCount);
+		int contID = c.getContID();
+
+		PostContattoDAO cDao = new PostContattoDAO();
+		cDao.delContatto(contID);
+
+		PostAlloggioDAO aDao = new PostAlloggioDAO();
+		aDao.delAlloggio(contID);
+
+		PostRecapitoDAO rDao = new PostRecapitoDAO();
+		rDao.delRecapito(contID);
+
+		if(!(c.getGruppi()==null) && !(c.getGruppi().isEmpty())) {
+			PostAggregazioneDAO gDao = new PostAggregazioneDAO();
+			gDao.delAggregazione(contID);
+		}
+		
+		if(!(c.getEmail()==null) && !(c.getEmail().isEmpty())) {
+			for(Email e:c.getEmail()) {
+				PostMessagingPrDAO mPDao = new PostMessagingPrDAO();
+				mPDao.delMessagingPr(e.getIndirizzo());
+			}
+
+			PostEmailDAO eDao = new PostEmailDAO();
+			eDao.delEmail(contID);
+		}
+
+
+		cList.remove(c);
+
+	}
+
 	private void setConnessione(DatabaseConnect connessione) {
 		// TODO Auto-generated method stub
 		this.connessione = connessione;
@@ -539,6 +574,9 @@ public class Controller {
 	public void setcList(ArrayList<Contatto> cList) {
 		this.cList = cList;
 	}
+
+	
+	
 
 	
 

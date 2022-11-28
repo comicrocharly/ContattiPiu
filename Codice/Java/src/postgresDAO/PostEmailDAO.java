@@ -233,6 +233,23 @@ public class PostEmailDAO implements EmailDAO{
 			}
 
 		}
+		
+		public void delEmail(int contID) {
+
+			PreparedStatement ps;
+
+			try {
+				ps = link.prepareStatement(
+						"DELETE FROM Email "
+								+ "WHERE Cont_ID = '"+contID+"'");
+
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
 
 
 

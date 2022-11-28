@@ -68,6 +68,19 @@ public class PostAlloggioDAO implements AlloggioDAO {
 		}
 
 	}
+
+	public void delAlloggio(int contID) {
+		PreparedStatement ps;
+
+		try {
+			ps = link.prepareStatement("DELETE FROM Alloggio " + "WHERE Cont_ID = '" + contID + "'");
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 
 }

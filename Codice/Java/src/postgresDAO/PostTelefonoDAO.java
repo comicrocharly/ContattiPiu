@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.postgresql.util.PSQLException;
+
 import dao.TelefonoDAO;
 import model.Telefono;
 import database.DatabaseConnect;
@@ -86,7 +88,12 @@ public class PostTelefonoDAO implements TelefonoDAO{
 			ps = link.prepareStatement("INSERT INTO Telefono ( numero, prefisso, tipo) "
 					+ "VALUES ('"+numero+"', '"+prefisso+"', '"+tipo+"' ); ");
 			
-			ps.executeUpdate();
+			try {
+				ps.executeUpdate();
+			} catch (PSQLException pe) {
+				// TODO Auto-generated catch block
+				
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

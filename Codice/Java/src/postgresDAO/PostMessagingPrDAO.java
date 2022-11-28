@@ -72,4 +72,22 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 		}
 
 	}
+
+	public void delMessagingPr(String indirizzo) {
+		
+			PreparedStatement ps;
+
+			try {
+				ps = link.prepareStatement(
+						"DELETE FROM MessagingPr "
+								+ "WHERE indirizzo = '"+indirizzo+"'");
+
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		
+	}
 }

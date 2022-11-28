@@ -135,11 +135,22 @@ public class MainWireframe {
 		});
 
 
-
-
 		edit.add(aggiungi);
 
 		JMenuItem rimuovi = new JMenuItem("Rimuovi");
+		rimuovi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Controller.deleteContact(table.getSelectedRow()+1);
+				clearTable();
+				try {
+					updateTable();
+				} catch (Throwable e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		edit.add(rimuovi);
 
 		JMenu help = new JMenu("Help");
@@ -147,8 +158,6 @@ public class MainWireframe {
 
 		JMenuItem credits = new JMenuItem("Credits");
 		credits.addActionListener(new ActionListener() {
-
-
 
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(frame,("https://github.com/comicrocharly/ContattiPiu.git"));
@@ -220,6 +229,7 @@ public class MainWireframe {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				System.out.println(table.getSelectedRow());
 				if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
 				ContactWindow frame = new ContactWindow(Controller.getcList().get(table.getSelectedRow()));
 				frame.setVisible(true);
@@ -344,15 +354,18 @@ public class MainWireframe {
 					//data[] è formattato come: Nome, Cognome, Citta + Via, PrefissoFisso + NumeroFisso;
 
 					try {
+						
 						ArrayList<Recapito> rList = new ArrayList<>();
 						rList = c.getRecapiti();
-						Recapito r = rList.get(0);
-						String prefisso = r.getTelefonoIn().getPrefisso();
-						String numero = r.getTelefonoIn().getNumero();
+						if(!rList.isEmpty()) {
+							Recapito r = rList.get(0);
+							String prefisso = r.getTelefonoIn().getPrefisso();
+							String numero = r.getTelefonoIn().getNumero();
 
-						String data[]= {c.getNome(),c.getCognome(),i.getCitta()+" "+i.getVia(), prefisso + " " + numero };
+							String data[]= {c.getNome(),c.getCognome(),i.getCitta()+" "+i.getVia(), prefisso + " " + numero };
 
-						addToTable(data);
+							addToTable(data);
+						}
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
