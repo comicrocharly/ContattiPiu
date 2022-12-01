@@ -11,6 +11,7 @@ import model.*;
 
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
+import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -34,7 +35,6 @@ import java.awt.Image;
 
 
 public class ContactWindow extends JFrame {
-
 	private static Contatto c;
 	private JPanel contentPane;
 	private Image image;
@@ -45,13 +45,13 @@ public class ContactWindow extends JFrame {
 	private static DefaultListModel<String> listEmailModel;
 	private static DefaultListModel<String> listSocialsModel;
 	
-	public ContactWindow(Contatto c) {
+	public ContactWindow(Contatto c) throws IOException {
 		setTitle("Vista Contatto");
 		ContactWindow.c = c;
 		initialize();
 	}
 
-	public void initialize() {
+	public void initialize() throws IOException {
 		
 		//Estrazione dei dati dal contatto ai fini della presentazione
 		String name = (c.getNome()+" "+c.getCognome());
@@ -162,9 +162,6 @@ public class ContactWindow extends JFrame {
 		contentPane.setLayout(null);
 
 		
-
-		
-		
 		image = loadFoto();
 		ImageIcon ImageIcon;
 		lblFoto = new JLabel(ImageIcon = new ImageIcon(image));
@@ -185,7 +182,12 @@ public class ContactWindow extends JFrame {
 				contentPane.validate();
 				contentPane.repaint();
 				
-				image = loadFoto();
+				try {
+					image = loadFoto();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				ImageIcon newIcon;
 				lblFoto = new JLabel(newIcon = new ImageIcon(image));
@@ -282,20 +284,21 @@ public class ContactWindow extends JFrame {
 
 	}
 	
-	private static Image loadFoto() {
+	private static Image loadFoto() throws IOException {
 		BufferedImage buffer = null;
 		String localDir = System.getProperty("user.dir");
 
 		try {
 			if(c.getIndFoto()==null) {
-				buffer = ImageIO.read(new File(localDir+"\\src\\photos\\user.png"));
+				buffer = ImageIO.read(new File(localDir + "\\src\\photos\\user.png"));
 			}
 			else {
 				buffer = ImageIO.read(new File(c.getIndFoto()));
 			}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Foto non trovata");;
+			buffer = ImageIO.read(new File(localDir + "\\src\\photos\\user.png"));
 		}
 		Image image = buffer.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		

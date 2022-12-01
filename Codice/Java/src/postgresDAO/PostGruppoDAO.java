@@ -54,19 +54,24 @@ public class PostGruppoDAO implements GruppoDAO{
 		return gList;
 	}
 
-	public void setGruppo(String nomeG, String descrizione) {
-
+	public int setGruppo(String nomeG, String descrizione) {
+		int groupID = -1;
 		PreparedStatement ps;
 
 		try {
 			ps = link.prepareStatement(
 					"INSERT INTO Gruppo "
 							+ "(nome_G, descrizione) "
-							+ "VALUES ('"+nomeG+"', '"+descrizione+"' );");
-
+							+ "VALUES ('"+nomeG+"', '"+descrizione+"' )"
+									+ "RETURNING Group_ID;");
+			ResultSet rs = ps.executeQuery();
+			if(rs.next())
+				groupID = rs.getInt(1);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return groupID;
 	}
 
 	public void delGruppo(String groupID) {
@@ -77,7 +82,7 @@ public class PostGruppoDAO implements GruppoDAO{
 			ps = link.prepareStatement(
 					"DELETE FROM Gruppo "
 							+ "WHERE (Group_ID = '"+groupID+"' );");
-
+			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

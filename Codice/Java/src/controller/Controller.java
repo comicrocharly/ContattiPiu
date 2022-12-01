@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.postgresql.util.PSQLException;
+
 import database.DatabaseConnect;
 import model.*;
 import postgresDAO.*;
@@ -108,6 +110,17 @@ public class Controller {
 		}
 
 	}
+	
+	public static ArrayList<Gruppo> caricaGruppi(){
+		ArrayList<Gruppo> gList = null;
+		
+		PostGruppoDAO gDao = new PostGruppoDAO();
+		gList = gDao.getGruppi();
+		
+		
+		return gList;
+		
+	}
 
 	public ArrayList<Contatto> searchContact(String type, String data) {
 
@@ -183,10 +196,12 @@ public class Controller {
 
 	}
 	
-	public static void insertGruppo(String data[], Contatto c) {
+	public static void insertGruppo(String data[], Contatto c) throws Exception {
+		
 		Gruppo g;
 		String nomeG, descrizione;
 		Integer contID=c.getContID();
+		Integer groupID;
 		
 		//NomeG, Descrizione é l'ordine dei parametri contenuti nell'array
 		
@@ -195,7 +210,10 @@ public class Controller {
 		
 		g = new Gruppo(nomeG, descrizione);
 		PostGruppoDAO gDao = new PostGruppoDAO();
-		gDao.setGruppo(nomeG, descrizione);
+		groupID = gDao.setGruppo(nomeG, descrizione);
+		
+		PostAggregazioneDAO agDAO = new PostAggregazioneDAO();
+		agDAO.setAggregazione(contID, groupID);
 		
 		for (Contatto tmp: cList) {
 			if(contID.equals(tmp.getContID()))
@@ -208,6 +226,14 @@ public class Controller {
 		}
 		
 		c.addGruppo(g);
+		
+		
+		
+	}
+	
+	public static void insertAggregazione(Integer groupID, Integer contID) throws Exception {
+		PostAggregazioneDAO agDao = new PostAggregazioneDAO();
+		agDao.setAggregazione(contID, groupID);
 		
 	}
 	
@@ -498,6 +524,43 @@ public class Controller {
 		cDao.upIndFoto(contID, indFoto);
 	}
 
+	public static void delAlloggio(Contatto c, int i) throws Exception {
+		int contID = c.getContID();
+		int addrID = c.getRecapiti().get(i).getRecID();
+
+		if(c.getIndirizzi().size() > 1) {
+			PostAlloggioDAO aDao = new PostAlloggioDAO();
+			aDao.delAlloggio(addrID, contID);
+		}
+		else {
+			throw new Exception("Il contatto deve avere almeno un Alloggio");
+		}
+	}
+	
+	public static void delGruppo(Contatto c, int i){
+		int contID = c.getContID();
+		int groupID = c.getGruppi().get(i).getGroupID();
+
+		
+		PostAggregazioneDAO aggDao = new PostAggregazioneDAO();
+		aggDao.delAggregazione(groupID, contID);
+		
+		
+	}
+	
+	public static void delRecapito(Contatto c, int i) throws Exception {
+		int contID = c.getContID();
+		int recID = c.getRecapiti().get(i).getRecID();
+
+		if(c.getIndirizzi().size() > 1) {
+			PostRecapitoDAO rDao = new PostRecapitoDAO();
+			rDao.delRecapito(recID, contID);
+		}
+		else {
+			throw new Exception("Il contatto deve avere almeno un Alloggio");
+		}
+	}
+
 	public static void deleteContact(int selectedRowCount) {
 		Contatto c = cList.get(selectedRowCount);
 		int contID = c.getContID();
@@ -574,6 +637,8 @@ public class Controller {
 	public void setcList(ArrayList<Contatto> cList) {
 		this.cList = cList;
 	}
+
+	
 
 	
 	

@@ -43,6 +43,7 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -229,9 +230,14 @@ public class MainWireframe {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println(table.getSelectedRow());
 				if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
-				ContactWindow frame = new ContactWindow(Controller.getcList().get(table.getSelectedRow()));
+				ContactWindow frame = null;
+				try {
+					frame = new ContactWindow(Controller.getcList().get(table.getSelectedRow()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				frame.setVisible(true);
 				}
 			}
