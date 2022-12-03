@@ -313,12 +313,9 @@ public class Controller {
 		
 		i = new Indirizzo(via, citta, cap, nazione);
 		PostIndirizzoDAO iDao = new PostIndirizzoDAO();
-		iDao.setIndirizzo(i, contID);
-		
+		int addrID = iDao.setIndirizzo(i, contID);
+		i.setAddrID(addrID);
 		c.addIndirizzo(i);
-		
-		
-		
 		
 	}
 	
@@ -516,6 +513,15 @@ public class Controller {
 		return matched;
 
 	}
+	
+	public static void upIndirizzoP(Contatto c, Indirizzo i) {
+		Integer addrID = i.getAddrID();
+		Integer contID = c.getContID();
+		PostContattoDAO cDao = new PostContattoDAO();
+		cDao.upIndirizzoP(contID, addrID);
+		
+		c.setIndirizzoP(i.getAddrID());
+	}
 
 	public static void upContattoFoto(Contatto c, String indFoto) {
 		int contID = c.getContID();
@@ -524,19 +530,28 @@ public class Controller {
 		cDao.upIndFoto(contID, indFoto);
 	}
 
-	public static void delAlloggio(Contatto c, int i) throws Exception {
+	public static void delAlloggio(Contatto c, Indirizzo i) throws Exception {
 		int contID = c.getContID();
-		int addrID = c.getRecapiti().get(i).getRecID();
+		int addrID = i.getAddrID();
 
-		if(c.getIndirizzi().size() > 1) {
-			PostAlloggioDAO aDao = new PostAlloggioDAO();
-			aDao.delAlloggio(addrID, contID);
+		if(addrID!=c.getIndirizzoP()) {
+			if(c.getIndirizzi().size() > 1 ) {
+				PostAlloggioDAO aDao = new PostAlloggioDAO();
+				aDao.delAlloggio(addrID, contID);
+
+				c.getIndirizzi().remove(i);
+
+			}
+			else {
+				throw new Exception("Il contatto deve avere almeno un Alloggio");
+			}
+
 		}
 		else {
-			throw new Exception("Il contatto deve avere almeno un Alloggio");
+			throw new Exception("L'indirizzo è primario");
 		}
 	}
-	
+
 	public static void delGruppo(Contatto c, int i){
 		int contID = c.getContID();
 		int groupID = c.getGruppi().get(i).getGroupID();
@@ -544,22 +559,60 @@ public class Controller {
 		
 		PostAggregazioneDAO aggDao = new PostAggregazioneDAO();
 		aggDao.delAggregazione(groupID, contID);
+
+
+	}
+
+	public static void delEmail(Email e, Contatto c) throws Exception {
+
+		if(e.getMessagingPr()==null) {
+			PostEmailDAO eDao = new PostEmailDAO();
+			eDao.delEmail(e.getIndirizzo());
+			c.getEmail().remove(e);
+		} 
+		else if(e.getMessagingPr().isEmpty()) {
+				PostEmailDAO eDao = new PostEmailDAO();
+				eDao.delEmail(e.getIndirizzo());
+				c.getEmail().remove(e);
+			}
+		else throw new Exception("Email è legata a dei MessagingPr");
+	}
+	
+	public static void delSocial(MessagingPr mp, Email e) throws Exception{
+		
+		PostMessagingPrDAO mpDao = new PostMessagingPrDAO();
+		mpDao.delMessagingPr(mp.getPrID());
+		
+		e.getMessagingPr().remove(mp);
 		
 		
 	}
 	
-	public static void delRecapito(Contatto c, int i) throws Exception {
+	public static void delRecapito(Contatto c, Recapito re) throws Exception {
 		int contID = c.getContID();
-		int recID = c.getRecapiti().get(i).getRecID();
+		int recID = re.getRecID();
 
-		if(c.getIndirizzi().size() > 1) {
+		if(c.getRecapiti().size() > 1) {
 			PostRecapitoDAO rDao = new PostRecapitoDAO();
 			rDao.delRecapito(recID, contID);
+			c.getRecapiti().remove(re);
 		}
 		else {
-			throw new Exception("Il contatto deve avere almeno un Alloggio");
+			throw new Exception("Il contatto deve avere almeno un Recapito");
 		}
 	}
+	
+
+	public static void delAggregazione(Gruppo g, Contatto c) {
+		
+		PostAggregazioneDAO agDao = new PostAggregazioneDAO();
+		agDao.delAggregazione(g.getGroupID(), c.getContID());
+		
+		c.getGruppi().remove(g);
+		
+	}
+
+	
 
 	public static void deleteContact(int selectedRowCount) {
 		Contatto c = cList.get(selectedRowCount);
@@ -637,6 +690,9 @@ public class Controller {
 	public void setcList(ArrayList<Contatto> cList) {
 		this.cList = cList;
 	}
+
+	
+
 
 	
 

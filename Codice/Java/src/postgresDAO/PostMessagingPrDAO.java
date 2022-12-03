@@ -90,4 +90,20 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 
 		
 	}
+
+	public void delMessagingPr(int prID) {
+		PreparedStatement ps;
+
+		try {
+			ps = link.prepareStatement(
+					"DELETE FROM MessagingPr "
+							+ "WHERE Pr_ID = '"+prID+"'");
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }

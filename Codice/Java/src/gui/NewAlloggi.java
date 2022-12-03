@@ -85,7 +85,7 @@ public class NewAlloggi extends JFrame{
 				
 				String data[]= {nazione, citta, cap, via};
 				Controller.insertAlloggio(data, c);
-				ModAlloggi.updateTable();
+				ModAlloggio.updateTable();
 				ContactWindow.refreshAlloggiModel();
 				setVisible(false);
 			}

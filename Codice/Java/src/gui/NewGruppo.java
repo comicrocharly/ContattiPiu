@@ -117,8 +117,7 @@ public class NewGruppo extends JFrame{
 						ex=e1;
 					}
 				}
-				if(!(ex.getCause()==null)) {
-					System.out.println("errore");
+				if(ex==null) {
 					ModGruppi.updateTable();
 					ContactWindow.refreshGruppiModel();
 				}

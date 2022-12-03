@@ -165,13 +165,14 @@ public class PostRecapitoDAO implements RecapitoDAO {
 		PreparedStatement ps;
 
 		try {
-			ps = link.prepareStatement("DELETE FROM Recapito " + "WHERE Cont_ID = '" + contID + "' '"+recID+"' ");
+			ps = link.prepareStatement("DELETE FROM Recapito WHERE Cont_ID = '" + contID + "' AND Rec_ID = '"+recID+"' ");
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 }
 

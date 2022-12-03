@@ -208,8 +208,8 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 
 	}
 	
-	public void setIndirizzo(Indirizzo i, Integer contID) {
-		int addrID=0;
+	public int setIndirizzo(Indirizzo i, Integer contID) {
+		int addrID = 0;
 		String via = i.getVia();
 		String citta = i.getCitta();
 		String cap = i.getCap();
@@ -249,6 +249,7 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 			e.printStackTrace();
 		}
 		
+		return addrID;
 
 	}
 	

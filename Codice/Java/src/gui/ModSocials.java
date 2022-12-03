@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
+import controller.Controller;
 import model.Contatto;
 import model.Email;
 import model.MessagingPr;
@@ -34,17 +35,9 @@ public class ModSocials extends ModAttributes{
 		
 		JList listSocials = new JList(listSocialsModel);
 		listSocials.setBounds(20, 66, 310, 192);
-		super.contentPane.add(listSocials);
+		contentPane.add(listSocials);
 		
-		
-		JButton btnRimuovi = new JButton("Rimuovi");
-		btnRimuovi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnRimuovi.setBounds(255, 28, 85, 23);
-		contentPane.add(btnRimuovi);
-
+	
 		comboBox = new JComboBox<String>();
 		comboBox.setBounds(10, 28, 120, 23);
 		contentPane.add(comboBox);
@@ -80,7 +73,35 @@ public class ModSocials extends ModAttributes{
 				}	
 			}
 		});
-		
+
+
+		JButton btnRimuovi = new JButton("Rimuovi");
+		btnRimuovi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Email email = c.getEmail().get(comboBox.getSelectedIndex());
+				MessagingPr mp = null;
+
+				try {
+					mp = email.getMessagingPr().get(listSocials.getSelectedIndex());
+				} catch (Exception IndexOutOfBoundsException) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Seleziona un MessagingPr");
+				}
+				try {
+					Controller.delSocial(mp, email);;
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+				refreshTable();
+				ContactWindow.refreshSocialModel();
+
+				
+			}
+		});
+		btnRimuovi.setBounds(255, 28, 85, 23);
+		contentPane.add(btnRimuovi);
+
 		
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
@@ -95,6 +116,11 @@ public class ModSocials extends ModAttributes{
 		});
 		btnAggiungi.setBounds(162, 28, 85, 23);
 		contentPane.add(btnAggiungi);
+	}
+
+	public void refreshTable() {
+		clearTable();
+		loadTable();
 	}
 	
 	public void clearTable() {

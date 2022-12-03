@@ -8,9 +8,11 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
+import controller.Controller;
 import model.Contatto;
 import model.Email;
 import model.Gruppo;
+import model.MessagingPr;
 
 public class ModGruppi extends ModAttributes{
 	
@@ -30,7 +32,7 @@ public class ModGruppi extends ModAttributes{
 		
 		JList listGruppi = new JList(listGruppiModel);
 		listGruppi.setBounds(20, 66, 310, 192);
-		super.contentPane.add(listGruppi);
+		contentPane.add(listGruppi);
 		
 		if (listGruppiModel.isEmpty())
 			JOptionPane.showMessageDialog(rootPane, "La lista è vuota");
@@ -48,11 +50,31 @@ public class ModGruppi extends ModAttributes{
 		JButton btnRimuovi = new JButton("Rimuovi");
 		btnRimuovi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				Gruppo g = null;
+				try {
+					g = c.getGruppi().get(listGruppi.getSelectedIndex());
+				} catch (Exception IndexOutOfBoundsException) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Seleziona un Gruppo");
+				}
+				try {
+					Controller.delAggregazione(g, c);;
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+				refreshTable();
+				ContactWindow.refreshGruppiModel();
+
 			}
 		});
 		btnRimuovi.setBounds(255, 28, 85, 23);
 		contentPane.add(btnRimuovi);
+	}
+	
+	public void refreshTable() {
+		listGruppiModel.removeAllElements();
+		loadTable();
 	}
 	
 	public void loadTable() {

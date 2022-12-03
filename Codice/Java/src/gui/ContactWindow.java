@@ -113,7 +113,7 @@ public class ContactWindow extends JFrame {
 		mntmAlloggi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				ModAttributes frameAlloggi = new ModAlloggi(c);
+				ModAttributes frameAlloggi = new ModAlloggio(c);
 				frameAlloggi.setVisible(true);
 			}
 		});
@@ -321,8 +321,8 @@ public class ContactWindow extends JFrame {
 	}
 	
 	public static void refreshEmailModel() {
-		listRecapitoModel.removeAllElements();
-		loadRecapitoModel();
+		listEmailModel.removeAllElements();
+		loadEmailModel();
 	}
 	
 	public static void refreshSocialModel() {
@@ -359,11 +359,16 @@ public class ContactWindow extends JFrame {
 			String citta, via;
 			citta = i.getCitta();
 			via = i.getVia();
-			listAlloggiModel.addElement(citta+" "+via);
+
+			if(c.getIndirizzoP()==i.getAddrID()) {
+				listAlloggiModel.addElement("★ "+citta+" "+via);
+			}
+			else
+				listAlloggiModel.addElement(citta+" "+via);
 		}
 
 	}
-	
+
 	public static void loadGruppiModel() {
 		if(c.getGruppi()!=null)
 			for(Gruppo g:c.getGruppi()) {

@@ -151,10 +151,10 @@ public class PostContattoDAO implements ContattoDAO {
 		upAttr(contID, attr, data);
 	}
 
-	public void upIndirizzoP(int contID, String data) {
+	public void upIndirizzoP(int contID, Integer addrID) {
 
 		String attr = "Indirizzo_P";
-		upAttr(contID, attr, data);
+		upAttr(contID, attr, addrID.toString());
 	}
 
 	public int setContatto(String nome, String cognome, String indFoto, int indirizzoP) {

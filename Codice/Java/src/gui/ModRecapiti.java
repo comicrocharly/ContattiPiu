@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 
+import controller.Controller;
 import model.Contatto;
 import model.Email;
 import model.Recapito;
@@ -42,6 +44,21 @@ public class ModRecapiti extends ModAttributes {
 		JButton btnRimuovi = new JButton("Rimuovi");
 		btnRimuovi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Recapito re = null;
+				try {
+					re = c.getRecapiti().get(list.getSelectedIndex());
+				} catch (Exception IndexOutOfBoundsException) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Seleziona un Recapito");
+				}
+				try {
+					Controller.delRecapito(c, re);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+				refreshTable();
+				ContactWindow.refreshRecapitoModel();
 			}
 		});
 		btnRimuovi.setBounds(255, 28, 85, 23);
@@ -49,6 +66,11 @@ public class ModRecapiti extends ModAttributes {
 		
 		
 		
+	}
+	
+	public void refreshTable() {
+		listRecapitiModel.removeAllElements();
+		loadTable();
 	}
 	
 	public void loadTable() {

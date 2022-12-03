@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
+import controller.Controller;
 import model.Contatto;
 import model.Email;
 
@@ -44,14 +45,35 @@ public class ModEmails extends ModAttributes{
 		
 		JButton btnRimuovi = new JButton("Rimuovi");
 		btnRimuovi.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
+				Email email = null;
+				try {
+					email = c.getEmail().get(listEmails.getSelectedIndex());
+				} catch (Exception IndexOutOfBoundsException) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Seleziona una Email");
+				}
+				try {
+					Controller.delEmail(email,c);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+				refreshTable();
+				ContactWindow.refreshEmailModel();
+				
 			}
 		});
 		btnRimuovi.setBounds(255, 28, 85, 23);
 		contentPane.add(btnRimuovi);
 	}
 	
-	public void loadTable() {
+	public static void refreshTable() {
+		listEmailModel.removeAllElements();
+		loadTable();
+	}
+	public static void loadTable() {
 		
 		if(c.getEmail()!=null)
 			for(Email e:c.getEmail()) {

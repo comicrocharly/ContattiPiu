@@ -28,8 +28,6 @@ public class NewEmail extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
-		
 		JLabel lblIndirizzo = new JLabel("Indirizzo");
 		lblIndirizzo.setBounds(26, 37, 40, 11);
 		contentPane.add(lblIndirizzo);
@@ -54,8 +52,8 @@ public class NewEmail extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				String data[]= {textFieldIndirizzo.getText().trim(),textFieldUso.getText().trim()};
 				Controller.insertEmail(data,c);
-				ModEmails.updateTable();
-				ContactWindow.loadEmailModel();
+				ModEmails.refreshTable();
+				ContactWindow.refreshEmailModel();
 				setVisible(false);
 			}
 		});

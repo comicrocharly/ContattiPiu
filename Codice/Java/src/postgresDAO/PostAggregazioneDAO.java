@@ -74,17 +74,45 @@ public class PostAggregazioneDAO implements AggregazioneDAO{
 	}
 
 	public void delAggregazione(int groupID, int contID) {
+		int gCont = 1;
 		PreparedStatement ps;
 
 		try {
 			ps = link.prepareStatement("DELETE FROM Aggregazione " + "WHERE Cont_ID = '" + contID + "' AND Group_ID = '"+groupID+"' ");
 
 			ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		try {
+			ps = link.prepareStatement("SELECT COUNT(*) FROM Aggregazione WHERE Group_ID = '"+groupID+"' ");
+
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next())
+				gCont = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		if(gCont==0) {
+			try {
+				ps = link.prepareStatement("DELETE FROM Gruppo WHERE Group_ID = '"+groupID+"' ");
+
+				ps.executeUpdate();
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 	}
 
 	public void setAggregazione(Integer contID, Integer groupID) throws Exception {
