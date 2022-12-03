@@ -3,6 +3,7 @@ package gui;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -98,24 +99,30 @@ public class NewRecapito extends JFrame{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//Telefono 1, Telefono 2: prefisso, numero, tipo 
-				String tipoIn, tipoOut;
-				if(btnTipoIn.getText().equals("F"))
-					tipoIn="Fisso";
-				else 
-					tipoIn="Mobile";
+				if(textFieldPrefissoIn.getText().matches("[0-9]+") && textFieldNumeroIn.getText().matches("[0-9]+")
+						&& textFieldPrefissoOut.getText().matches("[0-9]+") && textFieldNumeroOut.getText().matches("[0-9]+") ){
+					//Telefono 1, Telefono 2: prefisso, numero, tipo 
+					String tipoIn, tipoOut;
+					if(btnTipoIn.getText().equals("F"))
+						tipoIn="Fisso";
+					else 
+						tipoIn="Mobile";
+
+					if(btnTipoOut.getText().equals("F"))
+						tipoOut="Fisso";
+					else 
+						tipoOut="Mobile";
+
+					String data[]= {textFieldPrefissoIn.getText().trim(), textFieldNumeroIn.getText().trim(), tipoIn,
+							textFieldPrefissoOut.getText().trim(), textFieldNumeroOut.getText().trim(), tipoOut};
+					Controller.insertRecapito(data, c);
+					ModRecapiti.updateTable();
+					ContactWindow.refreshRecapitoModel();
+					setVisible(false);
+				}
 				
-				if(btnTipoOut.getText().equals("F"))
-					tipoOut="Fisso";
 				else 
-					tipoOut="Mobile";
-				
-				String data[]= {textFieldPrefissoIn.getText().trim(), textFieldNumeroIn.getText().trim(), tipoIn,
-						textFieldPrefissoOut.getText().trim(), textFieldNumeroOut.getText().trim(), tipoOut};
-				Controller.insertRecapito(data, c);
-				ModRecapiti.updateTable();
-				ContactWindow.refreshRecapitoModel();
-				setVisible(false);
+					JOptionPane.showMessageDialog(null, "Errore: sono ammessi solo numeri");
 			}
 
 		});

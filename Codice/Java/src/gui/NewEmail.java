@@ -3,6 +3,7 @@ package gui;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -50,11 +51,16 @@ public class NewEmail extends JFrame{
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String data[]= {textFieldIndirizzo.getText().trim(),textFieldUso.getText().trim()};
-				Controller.insertEmail(data,c);
-				ModEmails.refreshTable();
-				ContactWindow.refreshEmailModel();
-				setVisible(false);
+				if(textFieldIndirizzo.getText().contains("@") && textFieldIndirizzo.getText().contains(".")) {
+					String data[]= {textFieldIndirizzo.getText().trim(),textFieldUso.getText().trim()};
+					Controller.insertEmail(data,c);
+					ModEmails.refreshTable();
+					ContactWindow.refreshEmailModel();
+					setVisible(false);
+				}
+				
+				else 
+					JOptionPane.showMessageDialog(null, "Inserisci un indirizzo email valido");
 			}
 		});
 		btnNewButton.setBounds(72, 108, 86, 19);

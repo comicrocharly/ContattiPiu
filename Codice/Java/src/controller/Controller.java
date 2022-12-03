@@ -687,9 +687,7 @@ public class Controller {
 		return cList;
 	}
 
-	public void setcList(ArrayList<Contatto> cList) {
-		this.cList = cList;
-	}
+	
 
 	
 
