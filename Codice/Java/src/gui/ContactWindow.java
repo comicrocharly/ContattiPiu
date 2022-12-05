@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.awt.FileDialog;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -25,9 +26,12 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.swing.JMenu;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Font;
@@ -38,6 +42,7 @@ public class ContactWindow extends JFrame {
 	private static Contatto c;
 	private JPanel contentPane;
 	private Image image;
+	private ImageIcon defaultImage;
 	private JLabel lblFoto;
 	private static DefaultListModel<String> listRecapitoModel;
 	private static DefaultListModel<String> listAlloggiModel;
@@ -153,19 +158,27 @@ public class ContactWindow extends JFrame {
 			}
 		});
 		mnEdit.add(mntmSocials);
-		
-		
+
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		defaultImage = new ImageIcon(getClass().getResource("/user.png"));
 		
 		image = loadFoto();
-		ImageIcon ImageIcon;
-		lblFoto = new JLabel(ImageIcon = new ImageIcon(image));
-		lblFoto.setSize(128, 128);
+
+		if(image!=null) {
+			ImageIcon newIcon;
+			lblFoto = new JLabel(newIcon = new ImageIcon(image));
+		}
+		
+		else
+			lblFoto = new JLabel(defaultImage);
+		
+		lblFoto.setSize(100, 100);
 		lblFoto.setLocation(27, 8);
 		contentPane.add(lblFoto);
 
@@ -174,30 +187,47 @@ public class ContactWindow extends JFrame {
 		mntmFoto.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				String indFoto = JOptionPane.showInputDialog("Inserisci nuovo percorso Foto (absolutepath\\photo.extension)");
-				Controller.upContattoFoto(c, indFoto);
-				c.setIndFoto(indFoto);
-				
-				contentPane.remove(lblFoto);
-				contentPane.validate();
-				contentPane.repaint();
-				
-				try {
-					image = loadFoto();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				//String indFoto = JOptionPane.showInputDialog("Inserisci nuovo percorso Foto (absolutepath\\photo.extension)");
+
+				FileDialog filePicker = new FileDialog(new JFrame(), "Scegli un file", FileDialog.LOAD);
+				filePicker.setDirectory("C:\\");
+				filePicker.setFile("*.png");
+				filePicker.setVisible(true);
+
+				String path = filePicker.getDirectory()+filePicker.getFile();
+
+				if(filePicker.getFile()!=null) {
+					
+					Controller.upContattoFoto(c, path);
+					c.setIndFoto(path);
+
+					contentPane.remove(lblFoto);
+					contentPane.validate();
+					contentPane.repaint();
+
+					try {
+						image = loadFoto();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					if(image!=null) {
+						ImageIcon newIcon;
+						lblFoto = new JLabel(newIcon = new ImageIcon(image));
+					}
+					else {
+						ImageIcon icon = new ImageIcon(getClass().getResource("user.png"));
+						lblFoto = new JLabel(icon);
+					}
+					lblFoto.setSize(100, 100);
+					lblFoto.setLocation(27, 8);
+					contentPane.add(lblFoto);
+					
 				}
-				
-				ImageIcon newIcon;
-				lblFoto = new JLabel(newIcon = new ImageIcon(image));
-				
-				lblFoto.setSize(128, 128);
-				lblFoto.setLocation(27, 8);
-				contentPane.add(lblFoto);
-				
+
 				
 			}});
+		
 		mnEdit.add(mntmFoto);
 
 		JTextField txtFieldNome = new JTextField(name);
@@ -286,21 +316,15 @@ public class ContactWindow extends JFrame {
 	
 	private static Image loadFoto() throws IOException {
 		BufferedImage buffer = null;
-		String localDir = System.getProperty("user.dir");
-
+		Image image = null;
 		try {
-			if(c.getIndFoto()==null) {
-				buffer = ImageIO.read(new File(localDir + "\\src\\photos\\user.png"));
-			}
-			else {
-				buffer = ImageIO.read(new File(c.getIndFoto()));
-			}
+			buffer = ImageIO.read(new File(c.getIndFoto()));
+			image = buffer.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, "Foto non trovata");;
-			buffer = ImageIO.read(new File(localDir + "\\src\\photos\\user.png"));
 		}
-		Image image = buffer.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+		
 		
 		return image;
 	}

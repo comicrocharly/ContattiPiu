@@ -100,6 +100,8 @@ public class MainWireframe {
 
 		JMenu file = new JMenu("File");
 		menuBar.add(file);
+		
+		System.out.println(System.getProperty("user.dir"));
 
 		JMenuItem exit = new JMenuItem("Exit");
 		exit.addActionListener(new ActionListener() {

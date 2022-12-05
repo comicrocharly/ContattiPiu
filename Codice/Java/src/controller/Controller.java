@@ -528,6 +528,8 @@ public class Controller {
 
 		PostContattoDAO cDao = new PostContattoDAO();
 		cDao.upIndFoto(contID, indFoto);
+		
+		c.setIndFoto(indFoto);
 	}
 
 	public static void delAlloggio(Contatto c, Indirizzo i) throws Exception {
