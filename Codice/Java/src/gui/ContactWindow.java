@@ -167,7 +167,7 @@ public class ContactWindow extends JFrame {
 		contentPane.setLayout(null);
 
 		defaultImage = new ImageIcon(getClass().getResource("/user.png"));
-		
+	
 		image = loadFoto();
 
 		if(image!=null) {
@@ -175,8 +175,9 @@ public class ContactWindow extends JFrame {
 			lblFoto = new JLabel(newIcon = new ImageIcon(image));
 		}
 		
-		else
+		else {
 			lblFoto = new JLabel(defaultImage);
+		}
 		
 		lblFoto.setSize(100, 100);
 		lblFoto.setLocation(27, 8);
@@ -216,8 +217,7 @@ public class ContactWindow extends JFrame {
 						lblFoto = new JLabel(newIcon = new ImageIcon(image));
 					}
 					else {
-						ImageIcon icon = new ImageIcon(getClass().getResource("user.png"));
-						lblFoto = new JLabel(icon);
+						lblFoto = new JLabel(defaultImage);
 					}
 					lblFoto.setSize(100, 100);
 					lblFoto.setLocation(27, 8);
@@ -317,18 +317,19 @@ public class ContactWindow extends JFrame {
 	private static Image loadFoto() throws IOException {
 		BufferedImage buffer = null;
 		Image image = null;
-		try {
-			buffer = ImageIO.read(new File(c.getIndFoto()));
-			image = buffer.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(null, "Foto non trovata");;
+		if(c.getIndFoto()!=null) {
+			try {
+				buffer = ImageIO.read(new File(c.getIndFoto()));
+				image = buffer.getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "Foto non trovata");;
+			}
+
 		}
-		
-		
 		return image;
 	}
-	
+
 	public static void refreshRecapitoModel() {
 		listRecapitoModel.removeAllElements();
 		loadRecapitoModel();
