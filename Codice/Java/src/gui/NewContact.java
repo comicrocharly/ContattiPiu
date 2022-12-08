@@ -47,11 +47,12 @@ public class NewContact extends JFrame {
 
 	
 	public NewContact() {
+		setResizable(false);
 		setTitle("Nuovo Contatto");
 		setAlwaysOnTop(true);
 		//Nasconde il jframe alla chiusura
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 286, 376);
+		setBounds(100, 100, 286, 343);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -63,7 +64,7 @@ public class NewContact extends JFrame {
 	
 	
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton.setBounds(112, 262, 86, 25);
+		btnNewButton.setBounds(92, 268, 86, 25);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabelNome = new JLabel("Nome");
