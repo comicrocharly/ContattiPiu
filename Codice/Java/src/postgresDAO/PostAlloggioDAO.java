@@ -93,6 +93,32 @@ public class PostAlloggioDAO implements AlloggioDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		int addrIDAlloggio = -1;
+		try {
+			ps = link.prepareStatement("SELECT Addr_ID FROM Alloggio " + "SELECT FROM Alloggio WHERE Addr_ID = '"+addrID+"'");
+
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next())
+				addrIDAlloggio = rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(addrIDAlloggio==0) {
+
+			try {
+				ps = link.prepareStatement("DELETE FROM Indirizzo " + "WHERE Addr_ID = '"+addrID+"'");
+
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 	}
 	
 

@@ -188,26 +188,44 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 		
 
 		PreparedStatement ps;
-
+		Boolean exist = false;
 		try {
 			ps = link.prepareStatement(
-					"INSERT INTO indirizzo " 
-							+ "(via, citta, cap, nazione) "
-							+ "VALUES ('"+via+"', '"+citta+"', '"+cap+"', '"+nazione+"')"
-									+ "RETURNING Addr_ID ;");
+					"SELECT Addr_ID FROM Indirizzo "
+					+ "WHERE Via = '"+via+"' AND Citta = '"+citta+"' AND Cap = '"+cap+"' AND Nazione = '"+nazione+"'");
 
 			ResultSet rs = ps.executeQuery();
 			if(rs.next())
-				addrID = rs.getInt(1);
+				if(rs.getInt(1)>0) {
+					addrID = rs.getInt(1);
+					exist = true;
+				}
 			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(!exist) {
+			try {
+				ps = link.prepareStatement(
+						"INSERT INTO indirizzo " 
+								+ "(via, citta, cap, nazione) "
+								+ "VALUES ('"+via+"', '"+citta+"', '"+cap+"', '"+nazione+"')"
+								+ "RETURNING Addr_ID ;");
+
+				ResultSet rs = ps.executeQuery();
+				if(rs.next())
+					addrID = rs.getInt(1);
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return addrID;
 
 	}
-	
+
 	public int setIndirizzo(Indirizzo i, Integer contID) {
 		int addrID = 0;
 		String via = i.getVia();

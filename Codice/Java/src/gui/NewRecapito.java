@@ -15,6 +15,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class NewRecapito extends JFrame{
 	private JTextField textFieldNumeroIn;
@@ -60,36 +62,49 @@ public class NewRecapito extends JFrame{
 		textFieldNumeroOut.setColumns(10);
 
 		JButton btnTipoIn = new JButton("F");
-		btnTipoIn.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(btnTipoIn.getText().equals("F"))
-					btnTipoIn.setText("M");
-				else if(btnTipoIn.getText().equals("M"))
-					btnTipoIn.setText("F");
-
-			}
-
-		});
+		
 		btnTipoIn.setToolTipText("TipoIn");
 		btnTipoIn.setBounds(223, 33, 54, 19);
 		contentPane.add(btnTipoIn);
 
 		JButton btnTipoOut = new JButton("M");
-		btnTipoOut.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(btnTipoOut.getText().equals("F"))
-					btnTipoOut.setText("M");
-				else if(btnTipoOut.getText().equals("M"))
-					btnTipoOut.setText("F");
-
-			}
-		});
+		
 		btnTipoOut.setToolTipText("TipoOut");
 		btnTipoOut.setBounds(223, 52, 54, 19);
 		contentPane.add(btnTipoOut);
+		
+		btnTipoIn.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(btnTipoIn.getText().equals("F")) {
+					btnTipoIn.setText("M");
+					btnTipoOut.setText("F");
+				}
+				else if(btnTipoIn.getText().equals("M")) {
+					btnTipoIn.setText("F");
+					btnTipoOut.setText("M");
+				}
+				
+			}
+
+		});
+		
+		btnTipoOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(btnTipoOut.getText().equals("F")) {
+					btnTipoOut.setText("M");
+					btnTipoIn.setText("F");
+					}
+				
+				else if(btnTipoOut.getText().equals("M")) {
+					btnTipoOut.setText("F");
+					btnTipoIn.setText("M");
+				}
+			}
+		});
+		
 		
 		JButton btnNewButton = new JButton("Inserisci");
 		btnNewButton.setBounds(92, 116, 86, 19);

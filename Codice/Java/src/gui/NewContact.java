@@ -140,12 +140,12 @@ public class NewContact extends JFrame {
 		lblNewLabelTMobile.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabelTMobile.setBounds(25, 118, 67, 19);
 		contentPane.add(lblNewLabelTMobile);
-		
+
 		textFieldPrefissoMobile = new JTextField();
 		textFieldPrefissoMobile.setColumns(10);
 		textFieldPrefissoMobile.setBounds(112, 119, 33, 19);
 		contentPane.add(textFieldPrefissoMobile);
-		
+
 		textFieldNumeroMobile = new JTextField();
 		textFieldNumeroMobile.setColumns(10);
 		textFieldNumeroMobile.setBounds(153, 119, 86, 19);
@@ -158,21 +158,25 @@ public class NewContact extends JFrame {
 						||textFieldPrefissoFisso.getText().equals("")||textFieldNumeroFisso.getText().equals("")
 						||textFieldPrefissoMobile.getText().equals("")||textFieldNumeroMobile.getText().equals("")
 						||textFieldNazione.getText().equals("")||textFieldCitta.getText().equals("")
-						||textFieldVia.getText().equals("")||textFieldCap.getText().equals("")) {
-
+						||textFieldVia.getText().equals("")||textFieldCap.getText().equals("")) 
+				{
 					JOptionPane.showMessageDialog(NewContact.this,"Errore: Compila i campi richisti.");
 				}
+				else if(textFieldPrefissoFisso.getText().matches("[0-9]+") && textFieldNumeroFisso.getText().matches("[0-9]+")
+						&& textFieldPrefissoMobile.getText().matches("[0-9]+") && textFieldNumeroMobile.getText().matches("[0-9]+") ) 
+				{
+					JOptionPane.showMessageDialog(NewContact.this,"Errore: I telefoni devono contenere solo numeri.");
+				}
+
 				else {
 
 					String data[]= {textFieldNome.getText(), textFieldCognome.getText(), 
 							textFieldPrefissoFisso.getText(),textFieldNumeroFisso.getText(),
 							textFieldPrefissoMobile.getText(),textFieldNumeroMobile.getText(),
 							textFieldNazione.getText(), textFieldCitta.getText(), textFieldVia.getText(), textFieldCap.getText()};
-					
+
 					String dataView[] = {data[0],data[1],data[7]+" "+data[8],data[2]+" "+data[3]};
-					
-					
-					
+
 					try {
 						Controller.insertContatto(data);
 						MainWireframe.addToTable(dataView);
@@ -182,13 +186,13 @@ public class NewContact extends JFrame {
 						JOptionPane.showMessageDialog(NewContact.this,"Inserimento Fallito.");
 						e1.printStackTrace();
 					}
-					
-					
+
+
 					setVisible(false);
 				}
 			}
-			
-			
+
+
 		});
 	}
 
