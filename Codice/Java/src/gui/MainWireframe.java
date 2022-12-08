@@ -94,7 +94,8 @@ public class MainWireframe {
 		frame = new JFrame("ContattiPiù");
 		frame.setBounds(100, 100, 382, 485);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		frame.setResizable(false);
+		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 
@@ -144,13 +145,19 @@ public class MainWireframe {
 		rimuovi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Controller.deleteContact(table.getSelectedRow()+1);
+				if(table.getSelectedRowCount()>0) {
+				Controller.deleteContact(table.getSelectedRow());
 				clearTable();
 				try {
 					updateTable();
 				} catch (Throwable e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Seleziona la riga del contatto da rimuovere");
 				}
 			}
 		});
