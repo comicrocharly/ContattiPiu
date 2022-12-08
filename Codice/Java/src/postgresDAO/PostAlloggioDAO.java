@@ -96,7 +96,7 @@ public class PostAlloggioDAO implements AlloggioDAO {
 		
 		int addrIDAlloggio = -1;
 		try {
-			ps = link.prepareStatement("SELECT Addr_ID FROM Alloggio " + "SELECT FROM Alloggio WHERE Addr_ID = '"+addrID+"'");
+			ps = link.prepareStatement("SELECT Addr_ID FROM Alloggio WHERE Addr_ID = '"+addrID+"'");
 
 			ResultSet rs = ps.executeQuery();
 			

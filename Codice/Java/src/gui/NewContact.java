@@ -163,8 +163,8 @@ public class NewContact extends JFrame {
 				{
 					JOptionPane.showMessageDialog(NewContact.this,"Errore: Compila i campi richisti.");
 				}
-				else if(textFieldPrefissoFisso.getText().matches("[0-9]+") && textFieldNumeroFisso.getText().matches("[0-9]+")
-						&& textFieldPrefissoMobile.getText().matches("[0-9]+") && textFieldNumeroMobile.getText().matches("[0-9]+") ) 
+				else if(!(textFieldPrefissoFisso.getText().matches("[0-9]+") && textFieldNumeroFisso.getText().matches("[0-9]+")
+						&& textFieldPrefissoMobile.getText().matches("[0-9]+") && textFieldNumeroMobile.getText().matches("[0-9]+")) ) 
 				{
 					JOptionPane.showMessageDialog(NewContact.this,"Errore: I telefoni devono contenere solo numeri.");
 				}

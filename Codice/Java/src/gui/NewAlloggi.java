@@ -3,6 +3,7 @@ package gui;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -72,7 +73,7 @@ public class NewAlloggi extends JFrame{
 		textFieldCap.setColumns(10);
 		textFieldCap.setBounds(92, 78, 104, 17);
 		contentPane.add(textFieldCap);
-		
+
 		btnInserisci.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -82,9 +83,10 @@ public class NewAlloggi extends JFrame{
 				citta = textFieldCitta.getText();
 				cap = textFieldCap.getText();
 				via = textFieldVia.getText();
-				
+
 				String data[]= {nazione, citta, cap, via};
 				Controller.insertAlloggio(data, c);
+
 				ModAlloggio.updateTable();
 				ContactWindow.refreshAlloggiModel();
 				setVisible(false);
