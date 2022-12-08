@@ -92,7 +92,7 @@ public class MainWireframe {
 	 */
 	private void initialize() {
 		frame = new JFrame("ContattiPiù");
-		frame.setBounds(100, 100, 400, 485);
+		frame.setBounds(100, 100, 480, 485);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		
@@ -112,7 +112,7 @@ public class MainWireframe {
 		});
 		file.add(exit);
 
-		JMenu edit = new JMenu("Edit");
+		JMenu edit = new JMenu("Gestisci");
 		menuBar.add(edit);
 
 		JMenuItem aggiungi = new JMenuItem("Nuovo Contatto");
@@ -163,17 +163,17 @@ public class MainWireframe {
 		frame.getContentPane().setLayout(null);
 
 		JTextArea searchBar = new JTextArea();
-		searchBar.setBounds(10, 10, 188, 17);
+		searchBar.setBounds(10, 10, 268, 17);
 		frame.getContentPane().add(searchBar);
 		//Studiando l'utilizzo di jTable
 
 
 		choice = new Choice();
-		choice.setBounds(293, 10, 81, 15);
+		choice.setBounds(373, 10, 81, 15);
 		frame.getContentPane().add(choice);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 35, 364, 383);
+		scrollPane.setBounds(10, 35, 444, 383);
 		frame.getContentPane().add(scrollPane);
 
 		//jTable with not editable cells
@@ -248,7 +248,7 @@ public class MainWireframe {
 			}
 		});
 		
-		btnSearch.setBounds(208, 10, 79, 19);
+		btnSearch.setBounds(288, 11, 79, 19);
 		frame.getContentPane().add(btnSearch);
 
 		choice.add("Nome");
