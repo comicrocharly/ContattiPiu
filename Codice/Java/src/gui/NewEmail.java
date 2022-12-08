@@ -19,10 +19,11 @@ public class NewEmail extends JFrame{
 	private Contatto c;
 	
 	public NewEmail(Contatto c) {
+		setResizable(false);
 		setAlwaysOnTop(true);
 		setC(c);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 250, 170);
+		setBounds(100, 100, 303, 149);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -30,20 +31,20 @@ public class NewEmail extends JFrame{
 		contentPane.setLayout(null);
 		
 		JLabel lblIndirizzo = new JLabel("Indirizzo");
-		lblIndirizzo.setBounds(26, 37, 40, 11);
+		lblIndirizzo.setBounds(26, 37, 72, 11);
 		contentPane.add(lblIndirizzo);
 		
 		JLabel lblUso = new JLabel("Uso");
-		lblUso.setBounds(26, 56, 40, 11);
+		lblUso.setBounds(26, 56, 72, 11);
 		contentPane.add(lblUso);
 		
 		JTextField textFieldIndirizzo = new JTextField();
-		textFieldIndirizzo.setBounds(92, 34, 100, 17);
+		textFieldIndirizzo.setBounds(108, 34, 158, 17);
 		contentPane.add(textFieldIndirizzo);
 		textFieldIndirizzo.setColumns(10);
 		
 		JTextField textFieldUso = new JTextField();
-		textFieldUso.setBounds(92, 53, 100, 17);
+		textFieldUso.setBounds(108, 53, 158, 17);
 		contentPane.add(textFieldUso);
 		textFieldUso.setColumns(10);
 		
@@ -63,7 +64,7 @@ public class NewEmail extends JFrame{
 					JOptionPane.showMessageDialog(null, "Inserisci un indirizzo email valido");
 			}
 		});
-		btnNewButton.setBounds(72, 108, 86, 19);
+		btnNewButton.setBounds(108, 81, 86, 19);
 		contentPane.add(btnNewButton);
 	}
 	

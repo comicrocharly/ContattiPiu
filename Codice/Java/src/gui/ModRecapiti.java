@@ -20,6 +20,7 @@ public class ModRecapiti extends ModAttributes {
 	
 	public ModRecapiti(Contatto c) {
 		super(c);
+		setResizable(false);
 		
 		listRecapitiModel = new DefaultListModel<String>();
 		setTitle("Modifica Recapiti");

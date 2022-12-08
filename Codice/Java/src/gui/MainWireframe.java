@@ -115,7 +115,7 @@ public class MainWireframe {
 		JMenu edit = new JMenu("Edit");
 		menuBar.add(edit);
 
-		JMenuItem aggiungi = new JMenuItem("Aggiungi");
+		JMenuItem aggiungi = new JMenuItem("Nuovo Contatto");
 		aggiungi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				NewContact f = new NewContact();
@@ -127,7 +127,7 @@ public class MainWireframe {
 
 		edit.add(aggiungi);
 
-		JMenuItem rimuovi = new JMenuItem("Rimuovi");
+		JMenuItem rimuovi = new JMenuItem("Rimuovi Contatto");
 		rimuovi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				

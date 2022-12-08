@@ -26,6 +26,7 @@ public class NewSocial extends JFrame{
 	private JTextField textFieldWFrase;
 	
 	public NewSocial(Contatto c, Email email) {
+		setResizable(false);
 		
 		setAlwaysOnTop(true);		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

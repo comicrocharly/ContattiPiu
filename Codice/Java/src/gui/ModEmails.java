@@ -19,6 +19,7 @@ public class ModEmails extends ModAttributes{
 	
 	public ModEmails(Contatto c) {
 		super(c);
+		setResizable(false);
 		
 		listEmailModel = new DefaultListModel<String>();
 		

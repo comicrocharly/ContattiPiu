@@ -36,6 +36,8 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class ContactWindow extends JFrame {
@@ -83,22 +85,13 @@ public class ContactWindow extends JFrame {
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 		
-		JMenuItem mntmRefresh = new JMenuItem("Refresh");
-		mntmRefresh.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				refreshModels();
-			}
-		});
-		mnFile.add(mntmRefresh);
-		
 		JMenuItem mntmExit = new JMenuItem("Exit");
-		mntmExit.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		mntmExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 			}
 		});
+		
 		mnFile.add(mntmExit);
 
 
@@ -354,20 +347,6 @@ public class ContactWindow extends JFrame {
 	
 	public static void refreshSocialModel() {
 		listSocialsModel.removeAllElements();
-		loadSocialModel();
-	}
-	
-	public void refreshModels() {
-		listAlloggiModel.removeAllElements();
-		listEmailModel.removeAllElements();
-		listGruppiModel.removeAllElements();
-		listRecapitoModel.removeAllElements();
-		listSocialsModel.removeAllElements();
-		
-		loadAlloggiModel();
-		loadEmailModel();
-		loadGruppiModel();
-		loadRecapitoModel();
 		loadSocialModel();
 	}
 

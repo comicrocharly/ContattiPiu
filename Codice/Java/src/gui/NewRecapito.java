@@ -17,60 +17,62 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class NewRecapito extends JFrame{
 	private JTextField textFieldNumeroIn;
 	private JTextField textFieldNumeroOut;
 
 	public NewRecapito(Contatto c) {
+		setResizable(false);
 		
 		setAlwaysOnTop(true);		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 299, 180);
+		setBounds(100, 100, 382, 162);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNumeroIn = new JLabel("NumeroIn");
-		lblNumeroIn.setBounds(26, 37, 58, 11);
+		JLabel lblNumeroIn = new JLabel("Numero");
+		lblNumeroIn.setBounds(10, 37, 107, 11);
 		contentPane.add(lblNumeroIn);
 		
-		JLabel lblNumeroOut = new JLabel("NumeroOut");
-		lblNumeroOut.setBounds(26, 56, 58, 14);
+		JLabel lblNumeroOut = new JLabel("Reindirizzamento");
+		lblNumeroOut.setBounds(10, 56, 107, 14);
 		contentPane.add(lblNumeroOut);
 		
 		JTextField textFieldPrefissoIn = new JTextField();
-		textFieldPrefissoIn.setBounds(92, 34, 29, 17);
+		textFieldPrefissoIn.setBounds(127, 31, 35, 17);
 		contentPane.add(textFieldPrefissoIn);
 		textFieldPrefissoIn.setColumns(10);
 		
 		JTextField textFieldPrefissoOut = new JTextField();
-		textFieldPrefissoOut.setBounds(92, 53, 29, 17);
+		textFieldPrefissoOut.setBounds(127, 51, 35, 17);
 		contentPane.add(textFieldPrefissoOut);
 		textFieldPrefissoOut.setColumns(10);
 		
 		textFieldNumeroIn = new JTextField();
-		textFieldNumeroIn.setBounds(129, 34, 86, 17);
+		textFieldNumeroIn.setBounds(172, 31, 120, 17);
 		contentPane.add(textFieldNumeroIn);
 		textFieldNumeroIn.setColumns(10);
 		
 		textFieldNumeroOut = new JTextField();
-		textFieldNumeroOut.setBounds(129, 53, 86, 17);
+		textFieldNumeroOut.setBounds(172, 50, 120, 17);
 		contentPane.add(textFieldNumeroOut);
 		textFieldNumeroOut.setColumns(10);
 
 		JButton btnTipoIn = new JButton("F");
 		
 		btnTipoIn.setToolTipText("TipoIn");
-		btnTipoIn.setBounds(223, 33, 54, 19);
+		btnTipoIn.setBounds(302, 30, 54, 19);
 		contentPane.add(btnTipoIn);
 
 		JButton btnTipoOut = new JButton("M");
 		
 		btnTipoOut.setToolTipText("TipoOut");
-		btnTipoOut.setBounds(223, 52, 54, 19);
+		btnTipoOut.setBounds(302, 51, 54, 19);
 		contentPane.add(btnTipoOut);
 		
 		btnTipoIn.addMouseListener(new MouseAdapter() {
@@ -107,8 +109,13 @@ public class NewRecapito extends JFrame{
 		
 		
 		JButton btnNewButton = new JButton("Inserisci");
-		btnNewButton.setBounds(92, 116, 86, 19);
+		btnNewButton.setBounds(124, 87, 86, 19);
 		contentPane.add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("Tipo");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(302, 11, 54, 14);
+		contentPane.add(lblNewLabel);
 		
 		btnNewButton.addMouseListener(new MouseAdapter() {
 

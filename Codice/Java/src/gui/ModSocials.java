@@ -27,6 +27,7 @@ public class ModSocials extends ModAttributes{
 	
 	public ModSocials(Contatto c) {
 		super(c);
+		setResizable(false);
 		
 		
 		listSocialsModel = new DefaultListModel<>();

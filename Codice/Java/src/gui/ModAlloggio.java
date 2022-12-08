@@ -21,6 +21,7 @@ public class ModAlloggio extends ModAttributes{
 	
 	public ModAlloggio(Contatto c) {
 		super(c);
+		setResizable(false);
 		
 		setTitle("Modifica Alloggi");
 		
