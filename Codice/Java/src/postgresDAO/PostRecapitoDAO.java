@@ -113,7 +113,7 @@ public class PostRecapitoDAO implements RecapitoDAO {
 
 
 	
-	public void setRecapito(int contID, String prefissoIn, String numeroIn, String prefissoOut, String numeroOut) {
+	public void setRecapito(int contID, String prefissoIn, String numeroIn, String prefissoOut, String numeroOut) throws Exception {
 
 		PreparedStatement ps;
 
@@ -126,7 +126,11 @@ public class PostRecapitoDAO implements RecapitoDAO {
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			if(e.getMessage().contains("ERROR: Errore : i tipi non devono essere uguali")) {
+				throw new Exception("I tipi di telefono non devono essere uguali");
+			}
+			else
+				e.printStackTrace();
 		}
 
 

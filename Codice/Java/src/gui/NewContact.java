@@ -182,14 +182,14 @@ public class NewContact extends JFrame {
 						Controller.insertContatto(data);
 						MainWireframe.addToTable(dataView);
 						JOptionPane.showMessageDialog(NewContact.this,"Inserimento Riuscito.");
+						setVisible(false);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(NewContact.this,"Inserimento Fallito.");
-						e1.printStackTrace();
+						JOptionPane.showMessageDialog(NewContact.this,"Inserimento Fallito." + "\n" + e1.getMessage());
 					}
 
 
-					setVisible(false);
+					
 				}
 			}
 

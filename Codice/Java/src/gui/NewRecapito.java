@@ -125,6 +125,7 @@ public class NewRecapito extends JFrame{
 						&& textFieldPrefissoOut.getText().matches("[0-9]+") && textFieldNumeroOut.getText().matches("[0-9]+") ){
 					//Telefono 1, Telefono 2: prefisso, numero, tipo 
 					String tipoIn, tipoOut;
+					Exception e1=null;
 					if(btnTipoIn.getText().equals("F"))
 						tipoIn="Fisso";
 					else 
@@ -137,10 +138,20 @@ public class NewRecapito extends JFrame{
 
 					String data[]= {textFieldPrefissoIn.getText().trim(), textFieldNumeroIn.getText().trim(), tipoIn,
 							textFieldPrefissoOut.getText().trim(), textFieldNumeroOut.getText().trim(), tipoOut};
-					Controller.insertRecapito(data, c);
-					ModRecapiti.updateTable();
-					ContactWindow.refreshRecapitoModel();
-					setVisible(false);
+					try {
+						Controller.insertRecapito(data, c);
+					} catch (Exception e2) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null, e2.getMessage());
+						e1=e2;
+						
+					}
+					if(e1==null) {
+						ModRecapiti.updateTable();
+						ContactWindow.refreshRecapitoModel();
+						setVisible(false);
+					}
+					
 				}
 				
 				else 

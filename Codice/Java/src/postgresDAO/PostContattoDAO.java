@@ -168,6 +168,7 @@ public class PostContattoDAO implements ContattoDAO {
 
 			ResultSet rs = ps.executeQuery();
 			contID = rs.getInt(0);
+			rs.close();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

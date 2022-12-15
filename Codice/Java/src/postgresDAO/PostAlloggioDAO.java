@@ -73,7 +73,7 @@ public class PostAlloggioDAO implements AlloggioDAO {
 		PreparedStatement ps;
 
 		try {
-			ps = link.prepareStatement("DELETE FROM Alloggio " + "WHERE Cont_ID = '" + contID + "'");
+			ps = link.prepareStatement("DELETE FROM Alloggio " + "WHERE Cont_ID = '"+contID+"'");
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -86,7 +86,7 @@ public class PostAlloggioDAO implements AlloggioDAO {
 		PreparedStatement ps;
 
 		try {
-			ps = link.prepareStatement("DELETE FROM Alloggio " + "WHERE Cont_ID = '" + contID + "' AND  Addr_ID = '"+addrID+"'");
+			ps = link.prepareStatement("DELETE FROM Alloggio " + "WHERE Cont_ID = '"+contID+"' AND  Addr_ID = '"+addrID+"'");
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -102,6 +102,7 @@ public class PostAlloggioDAO implements AlloggioDAO {
 			
 			if(rs.next())
 				addrIDAlloggio = rs.getInt(1);
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

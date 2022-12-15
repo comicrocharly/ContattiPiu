@@ -5,14 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
-
-import org.postgresql.util.PSQLException;
-
 import dao.AggregazioneDAO;
 import database.DatabaseConnect;
-import model.Gruppo;
 
 public class PostAggregazioneDAO implements AggregazioneDAO{
 	
@@ -48,9 +42,7 @@ public class PostAggregazioneDAO implements AggregazioneDAO{
 				aggregazione.add(rs.getInt(1));
 			}
 					
-			
-			
-
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -94,7 +86,7 @@ public class PostAggregazioneDAO implements AggregazioneDAO{
 			
 			if(rs.next())
 				gCont = rs.getInt(1);
-			
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

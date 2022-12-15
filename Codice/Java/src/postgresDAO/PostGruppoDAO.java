@@ -67,7 +67,7 @@ public class PostGruppoDAO implements GruppoDAO{
 			ResultSet rs = ps.executeQuery();
 			if(rs.next())
 				groupID = rs.getInt(1);
-			
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

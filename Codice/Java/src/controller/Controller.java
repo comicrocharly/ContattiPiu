@@ -237,7 +237,7 @@ public class Controller {
 		
 	}
 	
-	public static void insertRecapito(String data[], Contatto c) {
+	public static void insertRecapito(String data[], Contatto c) throws Exception {
 		Telefono tIn,tOut;
 		String prefissoIn,prefissoOut,numeroIn,numeroOut,tipoIn,tipoOut;
 		Integer contID=c.getContID();
@@ -341,7 +341,7 @@ public class Controller {
 		
 	}
 	
-	public static void insertContatto(String data[]) {
+	public static void insertContatto(String data[]) throws Exception {
 		Contatto c;
 		Indirizzo i;
 		Telefono tFisso, tMobile;

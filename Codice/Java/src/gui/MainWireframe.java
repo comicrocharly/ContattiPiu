@@ -284,7 +284,7 @@ public class MainWireframe {
 			for(Contatto c:cList) {
 				addToTable(c);
 			}
-		}	
+		}
 	}
 	//This method clear all table row
 	private void clearTable() {
