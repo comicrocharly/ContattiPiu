@@ -1,55 +1,24 @@
 package gui;
-import java.awt.Desktop;
-import gui.NewContact;
+
 import model.Contatto;
 import model.Indirizzo;
 import model.Recapito;
-import model.Telefono;
-
 import java.awt.EventQueue;
-import java.awt.Font;
-
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.BoxLayout;
-import javax.swing.JEditorPane;
-
-import java.awt.GridBagLayout;
-import java.awt.PopupMenu;
-
 import javax.swing.JTextArea;
-import javax.swing.JLabel;
-import javax.swing.JToolBar;
-import javax.swing.event.HyperlinkEvent;
-
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-
 import controller.Controller;
-
-import javax.swing.JScrollBar;
-import javax.swing.JSlider;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.ContainerAdapter;
-import java.awt.event.ContainerEvent;
-import javax.swing.JPanel;
-import javax.swing.JList;
 import javax.swing.JTable;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.swing.JComboBox;
-
-import java.awt.BorderLayout;
 import java.awt.Choice;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -297,7 +266,7 @@ public class MainWireframe {
 	}
 
 	public void setTable(JTable table) {
-		this.table = table;
+		MainWireframe.table = table;
 	}
 
 	public static void addToTable(String data[]) {

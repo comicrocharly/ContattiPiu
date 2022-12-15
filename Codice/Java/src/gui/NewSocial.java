@@ -11,15 +11,12 @@ import controller.Controller;
 import model.Contatto;
 import model.Email;
 
-import javax.swing.JRadioButton;
-import javax.swing.JToggleButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JList;
-import java.awt.Font;
 
 public class NewSocial extends JFrame{
-	private Contatto c;
+
+	private static final long serialVersionUID = 1L;
 	
 	private JTextField textFieldNickname;
 	private JTextField textFieldProvider;
@@ -79,8 +76,5 @@ public class NewSocial extends JFrame{
 		contentPane.add(btnNewButton);
 	}
 
-	public void setC(Contatto c) {
-		this.c = c;
-	}
 
 }

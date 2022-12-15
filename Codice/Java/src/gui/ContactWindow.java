@@ -30,6 +30,8 @@ import java.awt.event.ActionEvent;
 
 
 public class ContactWindow extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
 	private static Contatto c;
 	private JPanel contentPane;
 	private Image image;
@@ -361,7 +363,6 @@ public class ContactWindow extends JFrame {
 			else
 				listAlloggiModel.addElement(citta+" "+via);
 		}
-
 	}
 
 	public static void loadGruppiModel() {
@@ -377,7 +378,6 @@ public class ContactWindow extends JFrame {
 			for(Email e:c.getEmail()) {
 				listEmailModel.addElement(e.getIndirizzo());
 			}
-
 	}
 	
 	public static void loadSocialModel() {

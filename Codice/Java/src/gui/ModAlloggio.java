@@ -2,21 +2,18 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
 import controller.Controller;
 import model.Contatto;
 import model.Indirizzo;
-import model.Recapito;
-import javax.swing.SwingConstants;
-import java.awt.Font;
+
 
 public class ModAlloggio extends ModAttributes{
 	
+	private static final long serialVersionUID = 1L;
 	private static DefaultListModel<String> listAlloggiModel;
 	
 	public ModAlloggio(Contatto c) {

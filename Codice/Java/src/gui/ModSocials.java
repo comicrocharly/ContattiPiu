@@ -1,26 +1,22 @@
 package gui;
 
-import java.awt.TrayIcon.MessageType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
 import controller.Controller;
 import model.Contatto;
 import model.Email;
 import model.MessagingPr;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
-
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
 public class ModSocials extends ModAttributes{
 	
+	private static final long serialVersionUID = 1L;
 	private static JComboBox<String> comboBox;
 	private static DefaultListModel<String> listSocialsModel;
 	
@@ -34,7 +30,7 @@ public class ModSocials extends ModAttributes{
 		
 		setTitle("Modifica Socials");
 		
-		JList listSocials = new JList(listSocialsModel);
+		JList<String> listSocials = new JList<String>(listSocialsModel);
 		listSocials.setBounds(20, 66, 310, 192);
 		contentPane.add(listSocials);
 		

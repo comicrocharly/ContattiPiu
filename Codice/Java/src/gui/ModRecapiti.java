@@ -2,19 +2,17 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.ListModel;
-
 import controller.Controller;
 import model.Contatto;
-import model.Email;
 import model.Recapito;
 
 public class ModRecapiti extends ModAttributes {
+	
+	private static final long serialVersionUID = 1L;
 	private static DefaultListModel<String> listRecapitiModel;
 	
 	
@@ -28,7 +26,7 @@ public class ModRecapiti extends ModAttributes {
 		loadTable();
 		
 		
-		JList list = new JList<String>(listRecapitiModel);
+		JList<String> list = new JList<String>(listRecapitiModel);
 		list.setBounds(20, 66, 310, 192);
 		super.contentPane.add(list);
 		

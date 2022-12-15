@@ -2,18 +2,17 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
 import controller.Controller;
 import model.Contatto;
 import model.Email;
 
 public class ModEmails extends ModAttributes{ 
+	
+	private static final long serialVersionUID = 1L;
 	private static DefaultListModel<String> listEmailModel;
 	
 	
@@ -27,7 +26,7 @@ public class ModEmails extends ModAttributes{
 
 		loadTable();
 
-		JList listEmails = new JList(listEmailModel);
+		JList<String> listEmails = new JList<String>(listEmailModel);
 		listEmails.setBounds(20, 66, 310, 192);
 		contentPane.add(listEmails);
 		

@@ -1,24 +1,15 @@
 package gui;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import model.*;
-
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractListModel;
-import javax.swing.DefaultListModel;
 
 public class ModAttributes extends JFrame {
-	
+
+	private static final long serialVersionUID = 1L;
 	protected static Contatto c;
 	protected JPanel contentPane;
 	
@@ -45,13 +36,8 @@ public class ModAttributes extends JFrame {
 
 	}
 	
-	private Contatto getC() {
-		return c;
-	}
-
-
 	protected void setC(Contatto c) {
-		this.c = c;
+		ModAttributes.c = c;
 	}
 	
 }

@@ -2,20 +2,17 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
 import controller.Controller;
 import model.Contatto;
-import model.Email;
 import model.Gruppo;
-import model.MessagingPr;
 
 public class ModGruppi extends ModAttributes{
-	
+
+	private static final long serialVersionUID = 1L;
 	private static DefaultListModel<String> listGruppiModel;
 	
 	public ModGruppi(Contatto c) {
@@ -30,7 +27,7 @@ public class ModGruppi extends ModAttributes{
 				listGruppiModel.addElement(g.getNomeG());
 			}
 		
-		JList listGruppi = new JList(listGruppiModel);
+		JList<String> listGruppi = new JList<String>(listGruppiModel);
 		listGruppi.setBounds(20, 66, 310, 192);
 		contentPane.add(listGruppi);
 		

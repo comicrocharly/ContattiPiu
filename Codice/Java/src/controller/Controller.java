@@ -1,12 +1,7 @@
 package controller;
 
-import java.awt.Frame;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import org.postgresql.util.PSQLException;
-
 import database.DatabaseConnect;
 import model.*;
 import postgresDAO.*;
@@ -674,7 +669,7 @@ public class Controller {
 	}
 
 	public void setI(Indirizzo i) {
-		this.i = i;
+		Controller.i = i;
 	}
 
 	public Telefono getT() {
@@ -682,7 +677,7 @@ public class Controller {
 	}
 
 	public void setT(Telefono t) {
-		this.t = t;
+		Controller.t = t;
 	}
 	
 	public static ArrayList<Contatto> getcList() {

@@ -3,21 +3,17 @@ package gui;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
 import controller.Controller;
 import model.Contatto;
-
-import javax.swing.JRadioButton;
-import javax.swing.JToggleButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class NewAlloggi extends JFrame{
 	
+	private static final long serialVersionUID = 1L;
 	private JTextField textFieldNazione;
 	private JTextField textFieldCitta;
 	private JTextField textFieldVia;

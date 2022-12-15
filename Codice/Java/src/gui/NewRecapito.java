@@ -11,21 +11,19 @@ import javax.swing.border.EmptyBorder;
 import controller.Controller;
 import model.Contatto;
 
-import javax.swing.JRadioButton;
-import javax.swing.JToggleButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 public class NewRecapito extends JFrame{
+	
+	private static final long serialVersionUID = 1L;
 	private JTextField textFieldNumeroIn;
 	private JTextField textFieldNumeroOut;
 
 	public NewRecapito(Contatto c) {
-		setResizable(false);
 		
+		setResizable(false);
 		setAlwaysOnTop(true);		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 382, 162);
