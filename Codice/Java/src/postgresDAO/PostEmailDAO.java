@@ -10,10 +10,18 @@ import dao.EmailDAO;
 import database.DatabaseConnect;
 import model.Email;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostEmailDAO.
+ */
 public class PostEmailDAO implements EmailDAO{
 	
+		/** The link. */
 		private Connection link = null;
 
+		/**
+		 * Instantiates a new post email DAO.
+		 */
 		public PostEmailDAO() {
 
 			try {
@@ -26,6 +34,12 @@ public class PostEmailDAO implements EmailDAO{
 
 		}
 		
+		/**
+		 * Gets the email.
+		 *
+		 * @param contID the cont ID
+		 * @return the email
+		 */
 		//Funzione che dato un ID Contatto ci restituisce sotto arraylist i suoi indirizzi email
 		public ArrayList<Email> getEmail(int contID) {
 			
@@ -56,6 +70,13 @@ public class PostEmailDAO implements EmailDAO{
 		}
 
 
+		/**
+		 * Gets the attr.
+		 *
+		 * @param indirizzo the indirizzo
+		 * @param attr the attr
+		 * @return the attr
+		 */
 		private String getAttr(String indirizzo, String attr) {
 
 			PreparedStatement ps;
@@ -84,6 +105,11 @@ public class PostEmailDAO implements EmailDAO{
 
 		}
 
+		/**
+		 * Gets the email.
+		 *
+		 * @return the email
+		 */
 		//get All indirizzo
 		public ArrayList<String> getEmail() {
 
@@ -113,12 +139,24 @@ public class PostEmailDAO implements EmailDAO{
 
 		}
 
+		/**
+		 * Gets the indirizzo.
+		 *
+		 * @param indirizzo the indirizzo
+		 * @return the indirizzo
+		 */
 		public String getIndirizzo(String indirizzo) {
 
 			String attr="indirizzo";
 			return getAttr(indirizzo,attr);
 		}
 
+		/**
+		 * Gets the utilizzo.
+		 *
+		 * @param indirizzo the indirizzo
+		 * @return the utilizzo
+		 */
 		public String getUtilizzo(String indirizzo) {
 
 			String attr="utilizzo";
@@ -126,6 +164,13 @@ public class PostEmailDAO implements EmailDAO{
 		}
 
 
+		/**
+		 * Up attr.
+		 *
+		 * @param indirizzo the indirizzo
+		 * @param attr the attr
+		 * @param data the data
+		 */
 		private void upAttr(String indirizzo, String attr,String data) {
 
 			PreparedStatement ps;
@@ -148,12 +193,24 @@ public class PostEmailDAO implements EmailDAO{
 
 		}
 
+		/**
+		 * Up indirizzo.
+		 *
+		 * @param indirizzo the indirizzo
+		 * @param data the data
+		 */
 		public void  upIndirizzo(String indirizzo, String data) {
 
 			String attr="indirizzo";
 			upAttr(indirizzo,attr,data);
 		}
 
+		/**
+		 * Up utilizzo.
+		 *
+		 * @param indirizzo the indirizzo
+		 * @param data the data
+		 */
 		public void  upUtilizzo(String indirizzo, String data) {
 
 			String attr="utilizzo";
@@ -161,6 +218,13 @@ public class PostEmailDAO implements EmailDAO{
 		}
 
 	
+		/**
+		 * Sets the email.
+		 *
+		 * @param contID the cont ID
+		 * @param indirizzo the indirizzo
+		 * @param utilizzo the utilizzo
+		 */
 		public void setEmail(Integer contID, String indirizzo, String utilizzo) {
 
 			PreparedStatement ps;
@@ -180,6 +244,12 @@ public class PostEmailDAO implements EmailDAO{
 
 		}
 		
+		/**
+		 * Sets the email.
+		 *
+		 * @param indirizzo the indirizzo
+		 * @param utilizzo the utilizzo
+		 */
 		public void setEmail(String indirizzo, String utilizzo) {
 
 			PreparedStatement ps;
@@ -198,6 +268,12 @@ public class PostEmailDAO implements EmailDAO{
 			}
 
 		}
+		
+		/**
+		 * Sets the email.
+		 *
+		 * @param indirizzo the new email
+		 */
 		public void setEmail(String indirizzo) {
 
 			PreparedStatement ps;
@@ -217,6 +293,11 @@ public class PostEmailDAO implements EmailDAO{
 
 		}
 
+		/**
+		 * Del email.
+		 *
+		 * @param indirizzo the indirizzo
+		 */
 		public void delEmail(String indirizzo) {
 
 			PreparedStatement ps;
@@ -234,6 +315,11 @@ public class PostEmailDAO implements EmailDAO{
 
 		}
 		
+		/**
+		 * Del email.
+		 *
+		 * @param contID the cont ID
+		 */
 		public void delEmail(int contID) {
 
 			PreparedStatement ps;

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package gui;
 
 import model.Contatto;
@@ -24,16 +27,29 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
+// TODO: Auto-generated Javadoc
+/**
+ *  ContattiPiù is a Java and PostgreSQL application designed to store and manage personal contacts.
+ *
+ * @author Carlo Onofrio, Lino Strina.
+ * @version 1.0
+ */
+
 public class MainWireframe {
 
+	/** The frame. */
 	private JFrame frame;
+	
+	/** The table. */
 	private static JTable table;
+	
+	/** The choice. */
 	private static Choice choice;
-	//private static Controller controller;
-
-
+	
 	/**
-	 * Launch the application.
+	 * The main method.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		
@@ -49,15 +65,16 @@ public class MainWireframe {
 		});
 	}
 
+
 	/**
-	 * Create the application.
+	 * Instantiates a new main wireframe.
 	 */
 	public MainWireframe() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize.
 	 */
 	private void initialize() {
 		frame = new JFrame("ContattiPiù");
@@ -134,9 +151,7 @@ public class MainWireframe {
 		JTextArea searchBar = new JTextArea();
 		searchBar.setBounds(10, 10, 268, 17);
 		frame.getContentPane().add(searchBar);
-		//Studiando l'utilizzo di jTable
-
-
+		
 		choice = new Choice();
 		choice.setBounds(373, 10, 81, 15);
 		frame.getContentPane().add(choice);
@@ -156,10 +171,7 @@ public class MainWireframe {
 						"Nome", "Cognome", "Indirizzo", "Telefono"
 				}
 				) {
-			/**
-					 * 
-					 */
-					private static final long serialVersionUID = 1L;
+			private static final long serialVersionUID = 1L;
 			Class[] columnTypes = new Class[] {
 					String.class, String.class, String.class, String.class
 			};
@@ -176,7 +188,7 @@ public class MainWireframe {
 				return false;
 			}
 		});
-		
+
 		Controller.caricaRubrica();
 		try {
 			updateTable();
@@ -227,6 +239,11 @@ public class MainWireframe {
 		
 	}
 	
+	/**
+	 * Search.
+	 *
+	 * @param text the text
+	 */
 	private void search(String text) {
 		
 		clearTable();
@@ -255,20 +272,39 @@ public class MainWireframe {
 			}
 		}
 	}
+	
+	/**
+	 * Clear table.
+	 */
 	//This method clear all table row
 	private void clearTable() {
 		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 		tableModel.setRowCount(0);
 	}
 
+	/**
+	 * Gets the table.
+	 *
+	 * @return the table
+	 */
 	public JTable getTable() {
 		return table;
 	}
 
+	/**
+	 * Sets the table.
+	 *
+	 * @param table the new table
+	 */
 	public void setTable(JTable table) {
 		MainWireframe.table = table;
 	}
 
+	/**
+	 * Adds the to table.
+	 *
+	 * @param data the data
+	 */
 	public static void addToTable(String data[]) {
 		//data[] è formattato come: Nome, Cognome, Citta + Via, Prefisso + Numero;
 		
@@ -279,6 +315,11 @@ public class MainWireframe {
 
 	}
 	
+	/**
+	 * Adds the to table.
+	 *
+	 * @param c the c
+	 */
 	public static void addToTable(Contatto c) {
 		String nome = c.getNome();
 		String cognome = c.getCognome();
@@ -296,6 +337,11 @@ public class MainWireframe {
 	
 
 	
+	/**
+	 * Update table.
+	 *
+	 * @throws Throwable the throwable
+	 */
 	public void updateTable() throws Throwable {
 		//data[] è formattato come: Nome, Cognome, Citta, Via, PrefissoFisso, NumeroFisso, 
 

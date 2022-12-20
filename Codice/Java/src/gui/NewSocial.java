@@ -14,14 +14,30 @@ import model.Email;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NewSocial.
+ */
 public class NewSocial extends JFrame{
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/** The text field nickname. */
 	private JTextField textFieldNickname;
+	
+	/** The text field provider. */
 	private JTextField textFieldProvider;
+	
+	/** The text field W frase. */
 	private JTextField textFieldWFrase;
 	
+	/**
+	 * Instantiates a new new social.
+	 *
+	 * @param c the c
+	 * @param email the email
+	 */
 	public NewSocial(Contatto c, Email email) {
 		setResizable(false);
 		

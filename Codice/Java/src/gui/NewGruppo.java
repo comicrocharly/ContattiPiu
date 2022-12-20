@@ -19,15 +19,35 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NewGruppo.
+ */
 public class NewGruppo extends JFrame{
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The text field name. */
 	private JTextField textFieldName;
+	
+	/** The text field descrizione. */
 	private JTextField textFieldDescrizione;
+	
+	/** The text field cerca. */
 	private JTextField textFieldCerca;
+	
+	/** The list gruppi model. */
 	DefaultListModel<String> listGruppiModel;
+	
+	/** The g list. */
 	ArrayList<Gruppo> gList;
 	
+	/**
+	 * Instantiates a new new gruppo.
+	 *
+	 * @param c the c
+	 */
 	public NewGruppo(Contatto c) {
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -120,6 +140,9 @@ public class NewGruppo extends JFrame{
 		contentPane.add(btnNewButton);
 	}
 
+	/**
+	 * Load gruppi model.
+	 */
 	private void loadGruppiModel() {
 		ArrayList<Gruppo> gList = Controller.caricaGruppi();
 		setgList(gList);
@@ -130,6 +153,11 @@ public class NewGruppo extends JFrame{
 		
 	}
 	
+	/**
+	 * Search gruppo.
+	 *
+	 * @param textFieldCerca the text field cerca
+	 */
 	private void searchGruppo(String textFieldCerca) {
 		ArrayList<Gruppo> searched = null;
 		for(Gruppo g: getgList()){
@@ -149,6 +177,11 @@ public class NewGruppo extends JFrame{
 		
 	}
 	
+	/**
+	 * Load gruppi model.
+	 *
+	 * @param searched the searched
+	 */
 	private void loadGruppiModel(ArrayList<Gruppo> searched) {
 		listGruppiModel.removeAllElements();
 		for(Gruppo g: searched) {
@@ -157,10 +190,20 @@ public class NewGruppo extends JFrame{
 		
 	}
 
+	/**
+	 * Gets the g list.
+	 *
+	 * @return the g list
+	 */
 	public ArrayList<Gruppo> getgList() {
 		return gList;
 	}
 
+	/**
+	 * Sets the g list.
+	 *
+	 * @param gList the new g list
+	 */
 	public void setgList(ArrayList<Gruppo> gList) {
 		this.gList = gList;
 	}

@@ -14,11 +14,23 @@ import model.Contatto;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NewEmail.
+ */
 public class NewEmail extends JFrame{
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The c. */
 	private Contatto c;
 	
+	/**
+	 * Instantiates a new new email.
+	 *
+	 * @param c the c
+	 */
 	public NewEmail(Contatto c) {
 		setResizable(false);
 		setAlwaysOnTop(true);
@@ -69,10 +81,20 @@ public class NewEmail extends JFrame{
 		contentPane.add(btnNewButton);
 	}
 	
+	/**
+	 * Gets the c.
+	 *
+	 * @return the c
+	 */
 	public Contatto getC() {
 		return c;
 	}
 
+	/**
+	 * Sets the c.
+	 *
+	 * @param c the new c
+	 */
 	public void setC(Contatto c) {
 		this.c = c;
 	}

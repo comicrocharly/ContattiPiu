@@ -1,6 +1,5 @@
 package gui;
 
-
 import java.awt.FileDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -28,27 +27,62 @@ import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ContactWindow.
+ */
 public class ContactWindow extends JFrame {
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The c. */
 	private static Contatto c;
+	
+	/** The content pane. */
 	private JPanel contentPane;
+	
+	/** The image. */
 	private Image image;
+	
+	/** The default image. */
 	private ImageIcon defaultImage;
+	
+	/** The lbl foto. */
 	private JLabel lblFoto;
+	
+	/** The list recapito model. */
 	private static DefaultListModel<String> listRecapitoModel;
+	
+	/** The list alloggi model. */
 	private static DefaultListModel<String> listAlloggiModel;
+	
+	/** The list gruppi model. */
 	private static DefaultListModel<String> listGruppiModel;
+	
+	/** The list email model. */
 	private static DefaultListModel<String> listEmailModel;
+	
+	/** The list socials model. */
 	private static DefaultListModel<String> listSocialsModel;
 	
+	/**
+	 * Instantiates a new contact window.
+	 *
+	 * @param c the c
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public ContactWindow(Contatto c) throws IOException {
 		setTitle("Vista Contatto");
 		ContactWindow.c = c;
 		initialize();
 	}
 
+	/**
+	 * Initialize.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public void initialize() throws IOException {
 		
 		//Estrazione dei dati dal contatto ai fini della presentazione
@@ -300,6 +334,12 @@ public class ContactWindow extends JFrame {
 
 	}
 	
+	/**
+	 * Load foto.
+	 *
+	 * @return the image
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	private static Image loadFoto() throws IOException {
 		BufferedImage buffer = null;
 		Image image = null;
@@ -316,31 +356,49 @@ public class ContactWindow extends JFrame {
 		return image;
 	}
 
+	/**
+	 * Refresh recapito model.
+	 */
 	public static void refreshRecapitoModel() {
 		listRecapitoModel.removeAllElements();
 		loadRecapitoModel();
 	}
 	
+	/**
+	 * Refresh alloggi model.
+	 */
 	public static void refreshAlloggiModel() {
 		listAlloggiModel.removeAllElements();
 		loadAlloggiModel();
 	}
 	
+	/**
+	 * Refresh gruppi model.
+	 */
 	public static void refreshGruppiModel() {
 		listGruppiModel.removeAllElements();
 		loadGruppiModel();
 	}
 	
+	/**
+	 * Refresh email model.
+	 */
 	public static void refreshEmailModel() {
 		listEmailModel.removeAllElements();
 		loadEmailModel();
 	}
 	
+	/**
+	 * Refresh social model.
+	 */
 	public static void refreshSocialModel() {
 		listSocialsModel.removeAllElements();
 		loadSocialModel();
 	}
 
+	/**
+	 * Load recapito model.
+	 */
 	public static void loadRecapitoModel() {
 		
 		for(Recapito r:c.getRecapiti()) {
@@ -351,6 +409,9 @@ public class ContactWindow extends JFrame {
 		}
 	}
 	
+	/**
+	 * Load alloggi model.
+	 */
 	public static void loadAlloggiModel() {
 		for(Indirizzo i:c.getIndirizzi()) {
 			String citta, via;
@@ -365,6 +426,9 @@ public class ContactWindow extends JFrame {
 		}
 	}
 
+	/**
+	 * Load gruppi model.
+	 */
 	public static void loadGruppiModel() {
 		if(c.getGruppi()!=null)
 			for(Gruppo g:c.getGruppi()) {
@@ -373,6 +437,9 @@ public class ContactWindow extends JFrame {
 
 	}
 	
+	/**
+	 * Load email model.
+	 */
 	public static void loadEmailModel() {
 		if(c.getEmail()!=null)
 			for(Email e:c.getEmail()) {
@@ -380,6 +447,9 @@ public class ContactWindow extends JFrame {
 			}
 	}
 	
+	/**
+	 * Load social model.
+	 */
 	public static void loadSocialModel() {
 		
 	if(c.getEmail()!=null)
@@ -394,6 +464,11 @@ public class ContactWindow extends JFrame {
 	}
 
 
+	/**
+	 * Gets the c.
+	 *
+	 * @return the c
+	 */
 	public Contatto getC() {
 		return c;
 	}

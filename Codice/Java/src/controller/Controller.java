@@ -6,18 +6,23 @@ import database.DatabaseConnect;
 import model.*;
 import postgresDAO.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Controller.
+ */
 public class Controller {
-
-	private static Contatto c;
-	private static Indirizzo i;
-	private static Telefono t;
 	
+	/** The c list. */
 	// Lista di contatti caricata
 	private static ArrayList<Contatto> cList;
 
+	/** The connessione. */
 	private DatabaseConnect connessione;
 	
 	
+	/**
+	 * caricaRubrica() loads contacts in a cList ArrayList<Contatto> declared static.
+	 */
 	public static void caricaRubrica(){
 
 
@@ -106,76 +111,39 @@ public class Controller {
 
 	}
 	
+	/**
+	 * Carica gruppi.
+	 *
+	 * @return the array list
+	 */
 	public static ArrayList<Gruppo> caricaGruppi(){
 		ArrayList<Gruppo> gList = null;
 		
 		PostGruppoDAO gDao = new PostGruppoDAO();
 		gList = gDao.getGruppi();
 		
-		
 		return gList;
 		
 	}
 
-	public ArrayList<Contatto> searchContact(String type, String data) {
-
-		ArrayList<Contatto> r = null;
-
-		Contatto cont = null;
-
-		if (type.equals("Telefono")) {
-			r = searchContactByTelephone(data);
-		}
-		if (type.equals("Nome")) {
-
-		}
-		if (type.equals("Email")) {
-
-			r = new ArrayList<Contatto>();
-			cont = searchContactByEmail(data);
-			if (cont != null) {
-				r.add(cont);
-			}
-
-		}
-		if (type.equals("Social")) {
-
-		}
-
-		return r;
-	}
-
+	/**
+	 * Pull contacts.
+	 *
+	 * @return the array list
+	 */
 	public ArrayList<Contatto> pullContacts() {
 		ArrayList<Contatto> r = null;
 
 		return cList = r;
 	}
 
-	// Inserisce un contatto in DB tramite DAO
-	public void assignContatto() {
 
-		setC(new Contatto(getC().getNome(), getC().getCognome(), getC().getIndirizzoP()));
-		PostContattoDAO contattoDAO = new PostContattoDAO();
-		contattoDAO.setContatto(getC());
-
-	}
-
-	public void assignIndirizzo() {
-
-		setI(new Indirizzo(getI().getCap(), getI().getCitta(), getI().getNazione(), getI().getVia()));
-		PostIndirizzoDAO indirizzoDAO = new PostIndirizzoDAO();
-		indirizzoDAO.setIndirizzo(getI());
-
-	}
-
-	public void assignTelefono() {
-
-		setT(new Telefono(getT().getPrefisso(), getT().getNumero(), getT().getTipo()));
-		PostTelefonoDAO telefonoDAO = new PostTelefonoDAO();
-		telefonoDAO.setTelefono(getT());
-
-	}
-
+	/**
+	 * Check connection.
+	 *
+	 * @return true, if successful
+	 * @throws SQLException the SQL exception
+	 */
 	public boolean checkConnection() throws SQLException {
 
 		setConnessione(new DatabaseConnect());
@@ -191,6 +159,13 @@ public class Controller {
 
 	}
 	
+	/**
+	 * Insert gruppo into DB from gui by dao.
+	 *
+	 * @param data the data
+	 * @param c the c
+	 * @throws Exception the exception
+	 */
 	public static void insertGruppo(String data[], Contatto c) throws Exception {
 		
 		Gruppo g;
@@ -226,12 +201,26 @@ public class Controller {
 		
 	}
 	
+	/**
+	 * Insert aggregazione.
+	 *
+	 * @param groupID the group ID
+	 * @param contID the cont ID
+	 * @throws Exception the exception
+	 */
 	public static void insertAggregazione(Integer groupID, Integer contID) throws Exception {
 		PostAggregazioneDAO agDao = new PostAggregazioneDAO();
 		agDao.setAggregazione(contID, groupID);
 		
 	}
 	
+	/**
+	 * Insert recapito.
+	 *
+	 * @param data the data
+	 * @param c the c
+	 * @throws Exception the exception
+	 */
 	public static void insertRecapito(String data[], Contatto c) throws Exception {
 		Telefono tIn,tOut;
 		String prefissoIn,prefissoOut,numeroIn,numeroOut,tipoIn,tipoOut;
@@ -272,6 +261,12 @@ public class Controller {
 		
 	} 
 	
+	/**
+	 * Insert email.
+	 *
+	 * @param data the data
+	 * @param c the c
+	 */
 	public static void insertEmail(String data[], Contatto c) {
 		Email e;
 		String indirizzo, uso;
@@ -296,6 +291,12 @@ public class Controller {
 		
 	} 
 	
+	/**
+	 * Insert alloggio.
+	 *
+	 * @param data the data
+	 * @param c the c
+	 */
 	public static void insertAlloggio(String[] data, Contatto c) {
 		Indirizzo i;
 		String nazione, citta, cap, via;
@@ -314,6 +315,13 @@ public class Controller {
 		
 	}
 	
+	/**
+	 * Insert social.
+	 *
+	 * @param data the data
+	 * @param c the c
+	 * @param email the email
+	 */
 	public static void insertSocial(String[] data, Contatto c, Email email) {
 		
 		String nickname, provider, fraseBenvenuto;
@@ -336,6 +344,12 @@ public class Controller {
 		
 	}
 	
+	/**
+	 * Insert contatto.
+	 *
+	 * @param data the data
+	 * @throws Exception the exception
+	 */
 	public static void insertContatto(String data[]) throws Exception {
 		Contatto c;
 		Indirizzo i;
@@ -418,6 +432,12 @@ public class Controller {
 
 	}
 	
+	/**
+	 * Search contact by email.
+	 *
+	 * @param email the email
+	 * @return the contatto
+	 */
 	public static Contatto searchContactByEmail(String email) {
 
 		for (Contatto cont : cList) {
@@ -434,6 +454,12 @@ public class Controller {
 
 	}
 
+	/**
+	 * Search contact by telephone.
+	 *
+	 * @param numero the numero
+	 * @return the array list
+	 */
 	public static ArrayList<Contatto> searchContactByTelephone(String numero) {
 
 		ArrayList<Contatto> matched = new ArrayList<Contatto>();
@@ -452,6 +478,12 @@ public class Controller {
 		return matched;
 	}
 
+	/**
+	 * Search contact by nickname.
+	 *
+	 * @param nickname the nickname
+	 * @return the array list
+	 */
 	public static ArrayList<Contatto> searchContactByNickname(String nickname) {
 
 		ArrayList<Contatto> matched = new ArrayList<Contatto>();
@@ -478,6 +510,12 @@ public class Controller {
 		return matched;
 	}
 
+	/**
+	 * Search contact by name.
+	 *
+	 * @param nome the nome
+	 * @return the array list
+	 */
 	public static ArrayList<Contatto> searchContactByName(String nome) {
 
 		ArrayList<Contatto> matched = new ArrayList<Contatto>();
@@ -509,6 +547,12 @@ public class Controller {
 
 	}
 	
+	/**
+	 * Up indirizzo P.
+	 *
+	 * @param c the c
+	 * @param i the i
+	 */
 	public static void upIndirizzoP(Contatto c, Indirizzo i) {
 		Integer addrID = i.getAddrID();
 		Integer contID = c.getContID();
@@ -518,6 +562,12 @@ public class Controller {
 		c.setIndirizzoP(i.getAddrID());
 	}
 
+	/**
+	 * Up contatto foto.
+	 *
+	 * @param c the c
+	 * @param indFoto the ind foto
+	 */
 	public static void upContattoFoto(Contatto c, String indFoto) {
 		int contID = c.getContID();
 
@@ -527,6 +577,13 @@ public class Controller {
 		c.setIndFoto(indFoto);
 	}
 
+	/**
+	 * Delete alloggio.
+	 *
+	 * @param c the c
+	 * @param i the i
+	 * @throws Exception the exception
+	 */
 	public static void delAlloggio(Contatto c, Indirizzo i) throws Exception {
 		int contID = c.getContID();
 		int addrID = i.getAddrID();
@@ -549,6 +606,12 @@ public class Controller {
 		}
 	}
 
+	/**
+	 * Delete gruppo.
+	 *
+	 * @param c the c
+	 * @param i the i
+	 */
 	public static void delGruppo(Contatto c, int i){
 		int contID = c.getContID();
 		int groupID = c.getGruppi().get(i).getGroupID();
@@ -560,6 +623,13 @@ public class Controller {
 
 	}
 
+	/**
+	 * Deleteete email.
+	 *
+	 * @param e the e
+	 * @param c the c
+	 * @throws Exception the exception
+	 */
 	public static void delEmail(Email e, Contatto c) throws Exception {
 
 		if(e.getMessagingPr()==null) {
@@ -575,6 +645,13 @@ public class Controller {
 		else throw new Exception("Email è legata a dei MessagingPr");
 	}
 	
+	/**
+	 * Delete social.
+	 *
+	 * @param mp the mp
+	 * @param e the e
+	 * @throws Exception the exception
+	 */
 	public static void delSocial(MessagingPr mp, Email e) throws Exception{
 		
 		PostMessagingPrDAO mpDao = new PostMessagingPrDAO();
@@ -585,6 +662,13 @@ public class Controller {
 		
 	}
 	
+	/**
+	 * Delete recapito.
+	 *
+	 * @param c the c
+	 * @param re the re
+	 * @throws Exception the exception
+	 */
 	public static void delRecapito(Contatto c, Recapito re) throws Exception {
 		int contID = c.getContID();
 		int recID = re.getRecID();
@@ -600,6 +684,12 @@ public class Controller {
 	}
 	
 
+	/**
+	 * Delete aggregazione.
+	 *
+	 * @param g the g
+	 * @param c the c
+	 */
 	public static void delAggregazione(Gruppo g, Contatto c) {
 		
 		PostAggregazioneDAO agDao = new PostAggregazioneDAO();
@@ -611,6 +701,11 @@ public class Controller {
 
 	
 
+	/**
+	 * Deleteete contact.
+	 *
+	 * @param selectedRowCount the selected row count
+	 */
 	public static void deleteContact(int selectedRowCount) {
 		Contatto c = cList.get(selectedRowCount);
 		int contID = c.getContID();
@@ -644,42 +739,33 @@ public class Controller {
 
 	}
 
+	/**
+	 * Sets the connessione.
+	 *
+	 * @param connessione the new connessione
+	 */
 	private void setConnessione(DatabaseConnect connessione) {
 		// TODO Auto-generated method stub
 		this.connessione = connessione;
 
 	}
 
+	/**
+	 * Gets the connessione.
+	 *
+	 * @return the connessione
+	 */
 	private DatabaseConnect getConnessione() {
 		// TODO Auto-generated method stub
 
 		return connessione;
 	}
-
-	public static Contatto getC() {
-		return c;
-	}
-
-	public static void setC(Contatto c) {
-		Controller.c = c;
-	}
 	
-	public Indirizzo getI() {
-		return i;
-	}
-
-	public void setI(Indirizzo i) {
-		Controller.i = i;
-	}
-
-	public Telefono getT() {
-		return t;
-	}
-
-	public void setT(Telefono t) {
-		Controller.t = t;
-	}
-	
+	/**
+	 * Gets the c list.
+	 *
+	 * @return the c list
+	 */
 	public static ArrayList<Contatto> getcList() {
 		return cList;
 	}

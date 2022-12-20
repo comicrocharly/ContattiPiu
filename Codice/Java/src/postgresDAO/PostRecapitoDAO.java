@@ -10,10 +10,18 @@ import java.util.ArrayList;
 
 import dao.RecapitoDAO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostRecapitoDAO.
+ */
 public class PostRecapitoDAO implements RecapitoDAO {
 	
+	/** The link. */
 	private Connection link = null;
 
+	/**
+	 * Instantiates a new post recapito DAO.
+	 */
 	public PostRecapitoDAO() {
 
 		try {
@@ -26,6 +34,14 @@ public class PostRecapitoDAO implements RecapitoDAO {
 
 	}
 	
+	/**
+	 * Match tel.
+	 *
+	 * @param tList the t list
+	 * @param prefisso the prefisso
+	 * @param numero the numero
+	 * @return the telefono
+	 */
 	public Telefono matchTel(ArrayList<Telefono> tList,String prefisso,String numero) {
 		boolean x = false, y = false;
 		Telefono metchedTel = null;
@@ -45,6 +61,13 @@ public class PostRecapitoDAO implements RecapitoDAO {
 	}
 
 
+	/**
+	 * Gets the recapiti.
+	 *
+	 * @param tList the t list
+	 * @param contID the cont ID
+	 * @return the recapiti
+	 */
 	public ArrayList<Recapito> getRecapiti(ArrayList<Telefono> tList,int contID) {
 		
 		ArrayList<Recapito> rList = new  ArrayList<Recapito>();
@@ -76,6 +99,13 @@ public class PostRecapitoDAO implements RecapitoDAO {
 
 	}
 	
+	/**
+	 * Check telefono.
+	 *
+	 * @param prefisso the prefisso
+	 * @param numero the numero
+	 * @return true, if successful
+	 */
 	public boolean checkTelefono(String prefisso, String numero) {
 		
 		PreparedStatement ps;
@@ -112,6 +142,16 @@ public class PostRecapitoDAO implements RecapitoDAO {
 
 
 	
+	/**
+	 * Sets the recapito.
+	 *
+	 * @param contID the cont ID
+	 * @param prefissoIn the prefisso in
+	 * @param numeroIn the numero in
+	 * @param prefissoOut the prefisso out
+	 * @param numeroOut the numero out
+	 * @throws Exception the exception
+	 */
 	public void setRecapito(int contID, String prefissoIn, String numeroIn, String prefissoOut, String numeroOut) throws Exception {
 
 		PreparedStatement ps;
@@ -128,6 +168,9 @@ public class PostRecapitoDAO implements RecapitoDAO {
 			if(e.getMessage().contains("ERROR: Errore : i tipi non devono essere uguali")) {
 				throw new Exception("I tipi di telefono non devono essere uguali");
 			}
+			else if(e.getMessage().contains("character varying")) {
+				throw new Exception("Il campo Recapito deve essere lungo "+e.getMessage().charAt(e.getMessage().length()-2));
+			}
 			else
 				e.printStackTrace();
 		}
@@ -136,6 +179,15 @@ public class PostRecapitoDAO implements RecapitoDAO {
 	}
 
 
+	/**
+	 * Del recapito.
+	 *
+	 * @param contID the cont ID
+	 * @param prefissoIn the prefisso in
+	 * @param prefissoOut the prefisso out
+	 * @param numeroIn the numero in
+	 * @param numeroOut the numero out
+	 */
 	public void delRecapito(int contID, String prefissoIn, String prefissoOut, String numeroIn, String numeroOut ) {
 		PreparedStatement ps;
 
@@ -151,6 +203,11 @@ public class PostRecapitoDAO implements RecapitoDAO {
 		}
 	}
 
+	/**
+	 * Del recapito.
+	 *
+	 * @param contID the cont ID
+	 */
 	public void delRecapito(int contID) {
 		PreparedStatement ps;
 
@@ -164,6 +221,12 @@ public class PostRecapitoDAO implements RecapitoDAO {
 		}
 	}
 
+	/**
+	 * Del recapito.
+	 *
+	 * @param recID the rec ID
+	 * @param contID the cont ID
+	 */
 	public void delRecapito(int recID, int contID) {
 		PreparedStatement ps;
 

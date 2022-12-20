@@ -12,9 +12,18 @@ import dao.TelefonoDAO;
 import model.Telefono;
 import database.DatabaseConnect;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostTelefonoDAO.
+ */
 public class PostTelefonoDAO implements TelefonoDAO{
+	
+	/** The link. */
 	private Connection link = null;
 
+	/**
+	 * Instantiates a new post telefono DAO.
+	 */
 	public PostTelefonoDAO() {
 
 		try {
@@ -27,6 +36,11 @@ public class PostTelefonoDAO implements TelefonoDAO{
 
 	}
 
+	/**
+	 * Gets the lista numeri.
+	 *
+	 * @return the lista numeri
+	 */
 	public ArrayList<Telefono> getListaNumeri() {
 
 		ArrayList<Telefono> listaNumeri = new ArrayList<Telefono>();
@@ -53,6 +67,13 @@ public class PostTelefonoDAO implements TelefonoDAO{
 		return listaNumeri;
 	}
 
+	/**
+	 * Gets the tipo.
+	 *
+	 * @param numero the numero
+	 * @param prefisso the prefisso
+	 * @return the tipo
+	 */
 	public String getTipo(String numero, String prefisso) {
 
 		PreparedStatement ps;
@@ -77,6 +98,11 @@ public class PostTelefonoDAO implements TelefonoDAO{
 
 	}
 
+	/**
+	 * Sets the telefono.
+	 *
+	 * @param telefono the new telefono
+	 */
 	public void setTelefono(Telefono telefono) {
 		PreparedStatement ps;
 		
@@ -100,6 +126,13 @@ public class PostTelefonoDAO implements TelefonoDAO{
 		}
 	}
 
+	/**
+	 * Check telefono.
+	 *
+	 * @param prefisso the prefisso
+	 * @param numero the numero
+	 * @return true, if successful
+	 */
 	public boolean checkTelefono(String prefisso, String numero) {
 
 		PreparedStatement ps;

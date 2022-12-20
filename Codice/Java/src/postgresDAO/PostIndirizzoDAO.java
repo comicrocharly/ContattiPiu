@@ -10,10 +10,18 @@ import dao.IndirizzoDAO;
 import model.Indirizzo;
 import database.DatabaseConnect;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostIndirizzoDAO.
+ */
 public class PostIndirizzoDAO implements IndirizzoDAO {
 
+	/** The link. */
 	private Connection link = null;
 
+	/**
+	 * Instantiates a new post indirizzo DAO.
+	 */
 	public PostIndirizzoDAO() {
 		// TODO Auto-generated constructor stub
 
@@ -27,6 +35,11 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 		}
 	}
 	
+	/**
+	 * Gets the indirizzi.
+	 *
+	 * @return the indirizzi
+	 */
 	//Funzione che restituisce la lista degli indirizzi in memoria
 	public ArrayList<Indirizzo> getIndirizzi(){
 		
@@ -52,6 +65,12 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 		return indList; 
 	}
 	
+	/**
+	 * Gets the indirizzo.
+	 *
+	 * @param addrID the addr ID
+	 * @return the indirizzo
+	 */
 	public Indirizzo getIndirizzo(int addrID) {
 
 		PreparedStatement ps;
@@ -81,6 +100,13 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 
 	}
 
+	/**
+	 * Gets the attr.
+	 *
+	 * @param addrID the addr ID
+	 * @param attr the attr
+	 * @return the attr
+	 */
 	private String getAttr(int addrID, String attr) {
 
 		PreparedStatement ps;
@@ -109,6 +135,11 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 
 	}
 
+	/**
+	 * Gets the addr ID.
+	 *
+	 * @return the addr ID
+	 */
 	//get All ADD
 	public ArrayList<String> getAddrID() {
 
@@ -138,30 +169,59 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 
 	}
 
+	/**
+	 * Gets the cap.
+	 *
+	 * @param addrID the addr ID
+	 * @return the cap
+	 */
 	public String getCap(int addrID) {
 
 		String attr="cap";
 		return getAttr(addrID,attr);
 	}
 
+	/**
+	 * Gets the citta.
+	 *
+	 * @param addrID the addr ID
+	 * @return the citta
+	 */
 	public String getCitta(int addrID) {
 
 		String attr="citta";
 		return getAttr(addrID,attr);
 	}
 
+	/**
+	 * Gets the nazione.
+	 *
+	 * @param addrID the addr ID
+	 * @return the nazione
+	 */
 	public String getNazione(int addrID) {
 
 		String attr="nazione";
 		return getAttr(addrID,attr);
 	}
 
+	/**
+	 * Gets the via.
+	 *
+	 * @param addrID the addr ID
+	 * @return the via
+	 */
 	public String getVia(int addrID) {
 
 		String attr="via";
 		return getAttr(addrID,attr);
 	}
 
+	/**
+	 * Del indirizzo.
+	 *
+	 * @param addrID the addr ID
+	 */
 	public void delIndirizzo(int addrID) {
 
 		PreparedStatement ps;
@@ -179,6 +239,12 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 
 	}
 
+	/**
+	 * Sets the indirizzo.
+	 *
+	 * @param i the i
+	 * @return the int
+	 */
 	public int setIndirizzo(Indirizzo i) {
 		int addrID = 0;
 		String via = i.getVia();
@@ -226,6 +292,13 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 
 	}
 
+	/**
+	 * Sets the indirizzo.
+	 *
+	 * @param i the i
+	 * @param contID the cont ID
+	 * @return the int
+	 */
 	public int setIndirizzo(Indirizzo i, Integer contID) {
 		int addrID = 0;
 		String via = i.getVia();
@@ -273,6 +346,13 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 	
 	
 
+	/**
+	 * Up attr.
+	 *
+	 * @param addrID the addr ID
+	 * @param attr the attr
+	 * @param data the data
+	 */
 	private void upAttr(int addrID, String attr,String data) {
 
 		PreparedStatement ps;
@@ -291,24 +371,48 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 
 	}
 
+	/**
+	 * Up cap.
+	 *
+	 * @param addrID the addr ID
+	 * @param data the data
+	 */
 	public void  upCap(int addrID, String data) {
 
 		String attr="cap";
 		upAttr(addrID,attr,data);
 	}
 
+	/**
+	 * Up citta.
+	 *
+	 * @param addrID the addr ID
+	 * @param data the data
+	 */
 	public void  upCitta(int addrID, String data) {
 
 		String attr="citta";
 		upAttr(addrID,attr,data);
 	}
 
+	/**
+	 * Up nazione.
+	 *
+	 * @param addrID the addr ID
+	 * @param data the data
+	 */
 	public void  upNazione(int addrID, String data) {
 
 		String attr="nazione";
 		upAttr(addrID,attr,data);
 	}
 
+	/**
+	 * Up via.
+	 *
+	 * @param addrID the addr ID
+	 * @param data the data
+	 */
 	public void upVia(int addrID, String data) {
 
 		String attr="via";

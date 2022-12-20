@@ -7,12 +7,26 @@ import javax.swing.border.EmptyBorder;
 import model.*;
 import javax.swing.JOptionPane;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ModAttributes.
+ */
 public class ModAttributes extends JFrame {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The c. */
 	protected static Contatto c;
+	
+	/** The content pane. */
 	protected JPanel contentPane;
 	
+	/**
+	 * Instantiates a new mod attributes.
+	 *
+	 * @param c the c
+	 */
 	protected ModAttributes(Contatto c) {
 		
 		try {
@@ -36,6 +50,11 @@ public class ModAttributes extends JFrame {
 
 	}
 	
+	/**
+	 * Sets the c.
+	 *
+	 * @param c the new c
+	 */
 	protected void setC(Contatto c) {
 		ModAttributes.c = c;
 	}

@@ -10,12 +10,24 @@ import controller.Controller;
 import model.Contatto;
 import model.Recapito;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ModRecapiti.
+ */
 public class ModRecapiti extends ModAttributes {
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The list recapiti model. */
 	private static DefaultListModel<String> listRecapitiModel;
 	
 	
+	/**
+	 * Instantiates a new mod recapiti.
+	 *
+	 * @param c the c
+	 */
 	public ModRecapiti(Contatto c) {
 		super(c);
 		setResizable(false);
@@ -67,11 +79,17 @@ public class ModRecapiti extends ModAttributes {
 		
 	}
 	
+	/**
+	 * Refresh table.
+	 */
 	public void refreshTable() {
 		listRecapitiModel.removeAllElements();
 		loadTable();
 	}
 	
+	/**
+	 * Load table.
+	 */
 	public void loadTable() {
 		for(Recapito r:c.getRecapiti()) {
 			String prefisso, numero;
@@ -81,6 +99,9 @@ public class ModRecapiti extends ModAttributes {
 		}
 	}
 	
+	/**
+	 * Update table.
+	 */
 	public static void updateTable() {
 		Recapito r;
 		//prende l'ultimo elemento della lista

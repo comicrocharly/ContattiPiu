@@ -12,24 +12,58 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NewContact.
+ */
 public class NewContact extends JFrame {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The content pane. */
 	private JPanel contentPane;
+	
+	/** The text field nome. */
 	private JTextField textFieldNome;
+	
+	/** The text field cognome. */
 	private JTextField textFieldCognome;
+	
+	/** The lbl new label T fisso. */
 	private JLabel lblNewLabelTFisso;
+	
+	/** The text field numero fisso. */
 	private JTextField textFieldNumeroFisso;
+	
+	/** The text field nazione. */
 	private JTextField textFieldNazione;
+	
+	/** The text field citta. */
 	private JTextField textFieldCitta;
+	
+	/** The text field via. */
 	private JTextField textFieldVia;
+	
+	/** The text field cap. */
 	private JTextField textFieldCap;
+	
+	/** The text field prefisso fisso. */
 	private JTextField textFieldPrefissoFisso;
+	
+	/** The lbl new label T mobile. */
 	private JLabel lblNewLabelTMobile;
+	
+	/** The text field prefisso mobile. */
 	private JTextField textFieldPrefissoMobile;
+	
+	/** The text field numero mobile. */
 	private JTextField textFieldNumeroMobile;
 
 	
+	/**
+	 * Instantiates a new new contact.
+	 */
 	public NewContact() {
 		
 		setResizable(false);

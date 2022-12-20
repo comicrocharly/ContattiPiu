@@ -10,12 +10,24 @@ import controller.Controller;
 import model.Contatto;
 import model.Email;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ModEmails.
+ */
 public class ModEmails extends ModAttributes{ 
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The list email model. */
 	private static DefaultListModel<String> listEmailModel;
 	
 	
+	/**
+	 * Instantiates a new mod emails.
+	 *
+	 * @param c the c
+	 */
 	public ModEmails(Contatto c) {
 		super(c);
 		setResizable(false);
@@ -69,10 +81,17 @@ public class ModEmails extends ModAttributes{
 		contentPane.add(btnRimuovi);
 	}
 	
+	/**
+	 * Refresh table.
+	 */
 	public static void refreshTable() {
 		listEmailModel.removeAllElements();
 		loadTable();
 	}
+	
+	/**
+	 * Load table.
+	 */
 	public static void loadTable() {
 		
 		if(c.getEmail()!=null)
@@ -81,6 +100,9 @@ public class ModEmails extends ModAttributes{
 			}
 	}
 	
+	/**
+	 * Update table.
+	 */
 	public static void updateTable() {
 		Email e;
 		//prende l'ultimo elemento della lista

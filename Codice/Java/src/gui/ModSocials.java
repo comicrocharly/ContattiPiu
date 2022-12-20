@@ -14,13 +14,27 @@ import javax.swing.JComboBox;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ModSocials.
+ */
 public class ModSocials extends ModAttributes{
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The combo box. */
 	private static JComboBox<String> comboBox;
+	
+	/** The list socials model. */
 	private static DefaultListModel<String> listSocialsModel;
 	
 	
+	/**
+	 * Instantiates a new mod socials.
+	 *
+	 * @param c the c
+	 */
 	public ModSocials(Contatto c) {
 		super(c);
 		setResizable(false);
@@ -115,15 +129,24 @@ public class ModSocials extends ModAttributes{
 		contentPane.add(btnAggiungi);
 	}
 
+	/**
+	 * Refresh table.
+	 */
 	public void refreshTable() {
 		clearTable();
 		loadTable();
 	}
 	
+	/**
+	 * Clear table.
+	 */
 	public void clearTable() {
 		listSocialsModel.removeAllElements();
 	}
 
+	/**
+	 * Load table.
+	 */
 	public void loadTable() {
 
 		String indirizzo = comboBox.getSelectedItem().toString();
@@ -137,6 +160,9 @@ public class ModSocials extends ModAttributes{
 		}	
 	}
 
+	/**
+	 * Update table.
+	 */
 	public static void updateTable() {
 		MessagingPr mProvider;
 		String indirizzo = comboBox.getSelectedItem().toString();

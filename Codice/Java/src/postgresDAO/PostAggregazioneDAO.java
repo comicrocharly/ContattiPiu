@@ -8,10 +8,18 @@ import java.util.ArrayList;
 import dao.AggregazioneDAO;
 import database.DatabaseConnect;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostAggregazioneDAO.
+ */
 public class PostAggregazioneDAO implements AggregazioneDAO{
 	
+	/** The link. */
 	private Connection link = null;
 	
+	/**
+	 * Instantiates a new post aggregazione DAO.
+	 */
 	public PostAggregazioneDAO() {
 
 		try {
@@ -24,6 +32,12 @@ public class PostAggregazioneDAO implements AggregazioneDAO{
 
 	}
 	
+	/**
+	 * Gets the aggregazioni.
+	 *
+	 * @param contID the cont ID
+	 * @return the aggregazioni
+	 */
 	public ArrayList<Integer> getAggregazioni(int contID){
 		
 		ArrayList<Integer> aggregazione = new  ArrayList<Integer>();
@@ -51,6 +65,11 @@ public class PostAggregazioneDAO implements AggregazioneDAO{
 		return aggregazione; 
 	}
 
+	/**
+	 * Del aggregazione.
+	 *
+	 * @param contID the cont ID
+	 */
 	public void delAggregazione(int contID) {
 		PreparedStatement ps;
 
@@ -65,6 +84,12 @@ public class PostAggregazioneDAO implements AggregazioneDAO{
 		
 	}
 
+	/**
+	 * Del aggregazione.
+	 *
+	 * @param groupID the group ID
+	 * @param contID the cont ID
+	 */
 	public void delAggregazione(int groupID, int contID) {
 		int gCont = 1;
 		PreparedStatement ps;
@@ -107,6 +132,13 @@ public class PostAggregazioneDAO implements AggregazioneDAO{
 		}
 	}
 
+	/**
+	 * Sets the aggregazione.
+	 *
+	 * @param contID the cont ID
+	 * @param groupID the group ID
+	 * @throws Exception the exception
+	 */
 	public void setAggregazione(Integer contID, Integer groupID) throws Exception {
 		
 		PreparedStatement ps;

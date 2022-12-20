@@ -11,14 +11,32 @@ import model.Contatto;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NewAlloggi.
+ */
 public class NewAlloggi extends JFrame{
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The text field nazione. */
 	private JTextField textFieldNazione;
+	
+	/** The text field citta. */
 	private JTextField textFieldCitta;
+	
+	/** The text field via. */
 	private JTextField textFieldVia;
+	
+	/** The text field cap. */
 	private JTextField textFieldCap;
 
+	/**
+	 * Instantiates a new new alloggi.
+	 *
+	 * @param c the c
+	 */
 	public NewAlloggi(Contatto c) {
 		
 		setAlwaysOnTop(true);		

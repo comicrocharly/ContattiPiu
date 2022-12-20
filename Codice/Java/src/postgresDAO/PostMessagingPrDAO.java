@@ -10,10 +10,18 @@ import dao.MessagingPrDAO;
 import database.DatabaseConnect;
 import model.MessagingPr;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostMessagingPrDAO.
+ */
 public class PostMessagingPrDAO implements MessagingPrDAO {
 	
+	/** The link. */
 	private Connection link = null;
 
+	/**
+	 * Instantiates a new post messaging pr DAO.
+	 */
 	public PostMessagingPrDAO() {
 
 		try {
@@ -26,6 +34,12 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 
 	}
 	
+	/**
+	 * Gets the messaging PR.
+	 *
+	 * @param indirizzo the indirizzo
+	 * @return the messaging PR
+	 */
 	public ArrayList<MessagingPr> getMessagingPR(String indirizzo){
 
 		ArrayList<MessagingPr> mList = new  ArrayList<MessagingPr>();
@@ -54,6 +68,14 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 		return mList;
 	}
 	
+	/**
+	 * Sets the messaging PR.
+	 *
+	 * @param email the email
+	 * @param fornitore the fornitore
+	 * @param fraseBenvenuto the frase benvenuto
+	 * @param nickname the nickname
+	 */
 	public void setMessagingPR(String email, String fornitore, String fraseBenvenuto, String nickname) {
 
 		PreparedStatement ps;
@@ -73,6 +95,11 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 
 	}
 
+	/**
+	 * Del messaging pr.
+	 *
+	 * @param indirizzo the indirizzo
+	 */
 	public void delMessagingPr(String indirizzo) {
 		
 			PreparedStatement ps;
@@ -91,6 +118,11 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 		
 	}
 
+	/**
+	 * Del messaging pr.
+	 *
+	 * @param prID the pr ID
+	 */
 	public void delMessagingPr(int prID) {
 		PreparedStatement ps;
 

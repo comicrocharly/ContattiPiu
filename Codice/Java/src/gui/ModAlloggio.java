@@ -11,11 +11,23 @@ import model.Contatto;
 import model.Indirizzo;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ModAlloggio.
+ */
 public class ModAlloggio extends ModAttributes{
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The list alloggi model. */
 	private static DefaultListModel<String> listAlloggiModel;
 	
+	/**
+	 * Instantiates a new mod alloggio.
+	 *
+	 * @param c the c
+	 */
 	public ModAlloggio(Contatto c) {
 		super(c);
 		setResizable(false);
@@ -87,11 +99,17 @@ public class ModAlloggio extends ModAttributes{
 		getContentPane().add(btnNewButton);
 	}
 	
+	/**
+	 * Refresh table.
+	 */
 	public void refreshTable() {
 		listAlloggiModel.removeAllElements();
 		loadTable();
 	}
 
+	/**
+	 * Load table.
+	 */
 	public void loadTable() {
 		for(Indirizzo i:c.getIndirizzi()) {
 			String citta, via;
@@ -108,6 +126,9 @@ public class ModAlloggio extends ModAttributes{
 
 	}
 
+	/**
+	 * Update table.
+	 */
 	public static void updateTable() {
 		Indirizzo i;
 		//prende l'ultimo elemento della lista

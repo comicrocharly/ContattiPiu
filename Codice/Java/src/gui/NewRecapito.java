@@ -15,12 +15,26 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NewRecapito.
+ */
 public class NewRecapito extends JFrame{
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The text field numero in. */
 	private JTextField textFieldNumeroIn;
+	
+	/** The text field numero out. */
 	private JTextField textFieldNumeroOut;
 
+	/**
+	 * Instantiates a new new recapito.
+	 *
+	 * @param c the c
+	 */
 	public NewRecapito(Contatto c) {
 		
 		setResizable(false);

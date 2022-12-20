@@ -7,10 +7,18 @@ import dao.ContattoDAO;
 import database.DatabaseConnect;
 import model.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostContattoDAO.
+ */
 public class PostContattoDAO implements ContattoDAO {
 
+	/** The link. */
 	private Connection link = null;
 
+	/**
+	 * Instantiates a new post contatto DAO.
+	 */
 	public PostContattoDAO() {
 
 		try {
@@ -23,6 +31,13 @@ public class PostContattoDAO implements ContattoDAO {
 
 	}
 	
+	/**
+	 * Gets the attr.
+	 *
+	 * @param contID the cont ID
+	 * @param attr the attr
+	 * @return the attr
+	 */
 	private String getAttr(int contID, String attr) {
 
 		PreparedStatement ps;
@@ -48,6 +63,11 @@ public class PostContattoDAO implements ContattoDAO {
 
 	}
 
+	/**
+	 * Gets the contatti.
+	 *
+	 * @return the contatti
+	 */
 	// Funzione che carica i contatti in memoria (da ultimare)
 	public ArrayList<Contatto> getContatti() {
 
@@ -75,30 +95,61 @@ public class PostContattoDAO implements ContattoDAO {
 
 	}
 
+	/**
+	 * Gets the nome.
+	 *
+	 * @param contID the cont ID
+	 * @return the nome
+	 */
 	public String getNome(int contID) {
 
 		String attr = "nome";
 		return getAttr(contID, attr);
 	}
 
+	/**
+	 * Gets the cognome.
+	 *
+	 * @param contID the cont ID
+	 * @return the cognome
+	 */
 	public String getCognome(int contID) {
 
 		String attr = "cognome";
 		return getAttr(contID, attr);
 	}
 
+	/**
+	 * Gets the ind foto.
+	 *
+	 * @param contID the cont ID
+	 * @return the ind foto
+	 */
 	public String getIndFoto(int contID) {
 
 		String attr = "Ind_Foto";
 		return getAttr(contID, attr);
 	}
 
+	/**
+	 * Gets the indirizzo P.
+	 *
+	 * @param contID the cont ID
+	 * @return the indirizzo P
+	 */
 	public Integer getIndirizzoP(int contID) {
 
 		String attr = "Indirizzo_P";
 		return Integer.valueOf(getAttr(contID, attr));
 	}
 
+	/**
+	 * Up attr.
+	 *
+	 * @param contID the cont ID
+	 * @param attr the attr
+	 * @param data the data
+	 */
 	private void upAttr(int contID, String attr, String data) {
 
 		PreparedStatement ps;
@@ -133,30 +184,63 @@ public class PostContattoDAO implements ContattoDAO {
 
 	}
 
+	/**
+	 * Up nome.
+	 *
+	 * @param contID the cont ID
+	 * @param data the data
+	 */
 	public void upNome(int contID, String data) {
 
 		String attr = "nome";
 		upAttr(contID, attr, data);
 	}
 
+	/**
+	 * Up cognome.
+	 *
+	 * @param contID the cont ID
+	 * @param data the data
+	 */
 	public void upCognome(int contID, String data) {
 
 		String attr = "cognome";
 		upAttr(contID, attr, data);
 	}
 
+	/**
+	 * Up ind foto.
+	 *
+	 * @param contID the cont ID
+	 * @param data the data
+	 */
 	public void upIndFoto(int contID, String data) {
 
 		String attr = "Ind_Foto";
 		upAttr(contID, attr, data);
 	}
 
+	/**
+	 * Up indirizzo P.
+	 *
+	 * @param contID the cont ID
+	 * @param addrID the addr ID
+	 */
 	public void upIndirizzoP(int contID, Integer addrID) {
 
 		String attr = "Indirizzo_P";
 		upAttr(contID, attr, addrID.toString());
 	}
 
+	/**
+	 * Sets the contatto.
+	 *
+	 * @param nome the nome
+	 * @param cognome the cognome
+	 * @param indFoto the ind foto
+	 * @param indirizzoP the indirizzo P
+	 * @return the int
+	 */
 	public int setContatto(String nome, String cognome, String indFoto, int indirizzoP) {
 		int contID = 0;
 		PreparedStatement ps;
@@ -178,7 +262,15 @@ public class PostContattoDAO implements ContattoDAO {
 
 	}
 
-	public void setContatto(String nome, String cognome, int indirizzoP) {
+	/**
+	 * Sets the contatto.
+	 *
+	 * @param nome the nome
+	 * @param cognome the cognome
+	 * @param indirizzoP the indirizzo P
+	 * @throws Exception 
+	 */
+	public void setContatto(String nome, String cognome, int indirizzoP) throws Exception {
 
 		PreparedStatement ps;
 
@@ -189,12 +281,21 @@ public class PostContattoDAO implements ContattoDAO {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+			if(e.getMessage().contains("character varying")) {
+				throw new Exception("Il campo Contatto deve essere lungo "+ e.getMessage().charAt(e.getMessage().length()-2));
+			}
+			else
+				e.printStackTrace();
 		}
 
 	}
 
+	/**
+	 * Del contatto.
+	 *
+	 * @param contID the cont ID
+	 */
 	public void delContatto(int contID) {
 
 		PreparedStatement ps;
@@ -210,7 +311,14 @@ public class PostContattoDAO implements ContattoDAO {
 
 	}
 
-	public int setContatto(Contatto c) {
+	/**
+	 * Sets the contatto.
+	 *
+	 * @param c the c
+	 * @return the int
+	 * @throws Exception 
+	 */
+	public int setContatto(Contatto c) throws Exception {
 		// TODO Auto-generated method stub
 		int contID = 0;
 		String nome = c.getNome();
@@ -229,12 +337,19 @@ public class PostContattoDAO implements ContattoDAO {
 				contID = rs.getInt(1);
 			rs.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			if(e.getMessage().contains("character varying")) {
+				throw new Exception("Il campo Contatto deve essere lungo 50");
+			}
 			e.printStackTrace();
 		}
 		return contID;
 	}
 
+	/**
+	 * Gets the cont ID.
+	 *
+	 * @return the cont ID
+	 */
 	@Override
 	public ArrayList<String> getContID() {
 		// TODO Auto-generated method stub

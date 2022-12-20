@@ -10,11 +10,23 @@ import controller.Controller;
 import model.Contatto;
 import model.Gruppo;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ModGruppi.
+ */
 public class ModGruppi extends ModAttributes{
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The list gruppi model. */
 	private static DefaultListModel<String> listGruppiModel;
 	
+	/**
+	 * Instantiates a new mod gruppi.
+	 *
+	 * @param c the c
+	 */
 	public ModGruppi(Contatto c) {
 		super(c);
 		
@@ -69,11 +81,17 @@ public class ModGruppi extends ModAttributes{
 		contentPane.add(btnRimuovi);
 	}
 	
+	/**
+	 * Refresh table.
+	 */
 	public void refreshTable() {
 		listGruppiModel.removeAllElements();
 		loadTable();
 	}
 	
+	/**
+	 * Load table.
+	 */
 	public void loadTable() {
 		if(c.getEmail()!=null)
 			for(Gruppo g:c.getGruppi()) {
@@ -81,6 +99,9 @@ public class ModGruppi extends ModAttributes{
 			}
 	}
 	
+	/**
+	 * Update table.
+	 */
 	public static void updateTable() {
 		Gruppo g = c.getGruppi().get(c.getGruppi().size()-1);
 		

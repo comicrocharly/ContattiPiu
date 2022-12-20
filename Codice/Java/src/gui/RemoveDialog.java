@@ -9,11 +9,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RemoveDialog.
+ */
 public class RemoveDialog extends JFrame {
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The content pane. */
 	private JPanel contentPane;
 
+	/**
+	 * Instantiates a new removes the dialog.
+	 */
 	public RemoveDialog() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 326, 238);

@@ -9,10 +9,18 @@ import java.util.ArrayList;
 import dao.AlloggioDAO;
 import database.DatabaseConnect;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PostAlloggioDAO.
+ */
 public class PostAlloggioDAO implements AlloggioDAO {
 
+	/** The link. */
 	private Connection link = null;
 
+	/**
+	 * Instantiates a new post alloggio DAO.
+	 */
 	public PostAlloggioDAO() {
 		try {
 			link = DatabaseConnect.getInstance().getConnection();
@@ -23,6 +31,12 @@ public class PostAlloggioDAO implements AlloggioDAO {
 		}
 	}
 
+	/**
+	 * Gets the alloggi.
+	 *
+	 * @param contID the cont ID
+	 * @return the alloggi
+	 */
 	//La funzione restituisce un arraylist contenente gli ID degli indirizzi di contID
 	public ArrayList<Integer> getAlloggi(int contID) {
 
@@ -52,6 +66,12 @@ public class PostAlloggioDAO implements AlloggioDAO {
 		return alloggi;
 	}
 
+	/**
+	 * Sets the alloggio.
+	 *
+	 * @param contID the cont ID
+	 * @param addrID the addr ID
+	 */
 	public void setAlloggio(int contID, int addrID) {
 
 		PreparedStatement ps;
@@ -69,6 +89,11 @@ public class PostAlloggioDAO implements AlloggioDAO {
 
 	}
 
+	/**
+	 * Del alloggio.
+	 *
+	 * @param contID the cont ID
+	 */
 	public void delAlloggio(int contID) {
 		PreparedStatement ps;
 
@@ -82,6 +107,12 @@ public class PostAlloggioDAO implements AlloggioDAO {
 		}
 	}
 
+	/**
+	 * Del alloggio.
+	 *
+	 * @param addrID the addr ID
+	 * @param contID the cont ID
+	 */
 	public void delAlloggio(int addrID, int contID) {
 		PreparedStatement ps;
 
