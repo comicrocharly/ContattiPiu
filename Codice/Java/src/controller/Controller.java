@@ -354,7 +354,7 @@ public class Controller {
 		Contatto c;
 		Indirizzo i;
 		Telefono tFisso, tMobile;
-		Recapito r;
+		Recapito r,r1;
 		
 		ArrayList<Indirizzo> iList = null;
 		ArrayList<Recapito> rList = null;
@@ -398,8 +398,13 @@ public class Controller {
 		
 		r = new Recapito(tFisso, tMobile);
 		r.setContID(contID);
+		
+		r1=new Recapito(tMobile,tFisso);
+		r1.setContID(contID);
+		
 		PostRecapitoDAO rDao = new PostRecapitoDAO();
 		rDao.setRecapito(contID, prefissoFisso, numeroFisso, prefissoMobile, numeroMobile);
+		rDao.setRecapito(contID, prefissoMobile, numeroMobile, prefissoFisso, numeroFisso);
 		//Fine Caricamento DB
 
 		//Sincronizzazione con variabili locali
@@ -415,10 +420,13 @@ public class Controller {
 		if(c.getRecapiti()==null) {
 			rList = new ArrayList<>();
 			rList.add(r);
+			rList.add(r1);
 			c.setRecapiti(rList);
 		}
-		else
+		else {
 			c.addRecapito(r);
+			c.addRecapito(r1);
+		}
 		
 		if(cList==null) {
 			ArrayList<Contatto> cList = new ArrayList<>();
