@@ -38,10 +38,12 @@ public class NewAlloggi extends JFrame{
 	 * @param c the c
 	 */
 	public NewAlloggi(Contatto c) {
+		setTitle("Nuovo Indirizzo");
+		setResizable(false);
 		
 		setAlwaysOnTop(true);		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 260, 207);
+		setBounds(100, 100, 325, 207);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -57,12 +59,13 @@ public class NewAlloggi extends JFrame{
 		contentPane.add(lblCitta);
 		
 		textFieldNazione = new JTextField();
-		textFieldNazione.setBounds(92, 34, 104, 17);
+		textFieldNazione.setToolTipText("");
+		textFieldNazione.setBounds(113, 34, 186, 17);
 		contentPane.add(textFieldNazione);
 		textFieldNazione.setColumns(10);
 		
 		textFieldCitta = new JTextField();
-		textFieldCitta.setBounds(92, 55, 104, 17);
+		textFieldCitta.setBounds(113, 55, 186, 17);
 		contentPane.add(textFieldCitta);
 		textFieldCitta.setColumns(10);
 		
@@ -74,18 +77,18 @@ public class NewAlloggi extends JFrame{
 		lblCap.setBounds(26, 81, 58, 11);
 		contentPane.add(lblCap);
 		
-		JLabel lblVia = new JLabel("Via");
-		lblVia.setBounds(26, 100, 58, 14);
+		JLabel lblVia = new JLabel("Via e N.Civico");
+		lblVia.setBounds(26, 100, 77, 14);
 		contentPane.add(lblVia);
 		
 		textFieldVia = new JTextField();
 		textFieldVia.setColumns(10);
-		textFieldVia.setBounds(92, 99, 104, 17);
+		textFieldVia.setBounds(113, 99, 186, 17);
 		contentPane.add(textFieldVia);
 		
 		textFieldCap = new JTextField();
 		textFieldCap.setColumns(10);
-		textFieldCap.setBounds(92, 78, 104, 17);
+		textFieldCap.setBounds(113, 78, 186, 17);
 		contentPane.add(textFieldCap);
 
 		btnInserisci.addMouseListener(new MouseAdapter() {
