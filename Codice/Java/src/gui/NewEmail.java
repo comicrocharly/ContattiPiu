@@ -32,6 +32,7 @@ public class NewEmail extends JFrame{
 	 * @param c the c
 	 */
 	public NewEmail(Contatto c) {
+		setTitle("Nuova E-mail");
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setC(c);

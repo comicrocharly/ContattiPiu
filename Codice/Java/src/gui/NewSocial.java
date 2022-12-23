@@ -39,11 +39,12 @@ public class NewSocial extends JFrame{
 	 * @param email the email
 	 */
 	public NewSocial(Contatto c, Email email) {
+		setTitle("Nuovo Profilo Social");
 		setResizable(false);
 		
 		setAlwaysOnTop(true);		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 265, 251);
+		setBounds(100, 100, 314, 193);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -51,20 +52,20 @@ public class NewSocial extends JFrame{
 		contentPane.setLayout(null);
 		
 		JLabel lblNickname = new JLabel("Nickname");
-		lblNickname.setBounds(20, 40, 74, 11);
+		lblNickname.setBounds(20, 40, 105, 11);
 		contentPane.add(lblNickname);
 		
 		textFieldNickname = new JTextField();
-		textFieldNickname.setBounds(135, 37, 100, 17);
+		textFieldNickname.setBounds(135, 34, 153, 17);
 		contentPane.add(textFieldNickname);
 		textFieldNickname.setColumns(10);
 		
 		JLabel lblProvider = new JLabel("Provider");
-		lblProvider.setBounds(20, 59, 40, 11);
+		lblProvider.setBounds(20, 59, 105, 11);
 		contentPane.add(lblProvider);
 		
 		textFieldProvider = new JTextField();
-		textFieldProvider.setBounds(135, 56, 100, 17);
+		textFieldProvider.setBounds(135, 53, 153, 17);
 		contentPane.add(textFieldProvider);
 		textFieldProvider.setColumns(10);
 		
@@ -73,7 +74,7 @@ public class NewSocial extends JFrame{
 		contentPane.add(lblWFrase);
 		
 		textFieldWFrase = new JTextField();
-		textFieldWFrase.setBounds(135, 75, 100, 17);
+		textFieldWFrase.setBounds(135, 72, 153, 17);
 		contentPane.add(textFieldWFrase);
 		textFieldWFrase.setColumns(10);
 
@@ -88,7 +89,7 @@ public class NewSocial extends JFrame{
 				setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(85, 184, 86, 19);
+		btnNewButton.setBounds(84, 124, 86, 19);
 		contentPane.add(btnNewButton);
 	}
 
