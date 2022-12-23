@@ -71,7 +71,7 @@ public class NewContact extends JFrame {
 		setAlwaysOnTop(true);
 		//Nasconde il jframe alla chiusura
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 286, 343);
+		setBounds(100, 100, 307, 343);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -81,92 +81,92 @@ public class NewContact extends JFrame {
 		JButton btnNewButton = new JButton("Inserisci");
 	
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNewButton.setBounds(92, 268, 86, 25);
+		btnNewButton.setBounds(106, 268, 86, 25);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabelNome = new JLabel("Nome");
 		lblNewLabelNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabelNome.setBounds(25, 37, 67, 19);
+		lblNewLabelNome.setBounds(25, 34, 67, 19);
 		contentPane.add(lblNewLabelNome);
 		
 		JLabel lblNewLabelCognome = new JLabel("Cognome");
 		lblNewLabelCognome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabelCognome.setBounds(25, 64, 67, 19);
+		lblNewLabelCognome.setBounds(25, 62, 67, 19);
 		contentPane.add(lblNewLabelCognome);
 		
 		textFieldNome = new JTextField();
-		textFieldNome.setBounds(112, 40, 127, 17);
+		textFieldNome.setBounds(133, 37, 148, 17);
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 		
 		textFieldCognome = new JTextField();
-		textFieldCognome.setBounds(112, 67, 127, 17);
+		textFieldCognome.setBounds(133, 64, 148, 17);
 		contentPane.add(textFieldCognome);
 		textFieldCognome.setColumns(10);
 		
 		lblNewLabelTFisso = new JLabel("T.Fisso");
 		lblNewLabelTFisso.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabelTFisso.setBounds(25, 91, 67, 19);
+		lblNewLabelTFisso.setBounds(25, 88, 67, 19);
 		contentPane.add(lblNewLabelTFisso);
 		
 		textFieldNumeroFisso = new JTextField();
 		textFieldNumeroFisso.setColumns(10);
-		textFieldNumeroFisso.setBounds(153, 92, 86, 19);
+		textFieldNumeroFisso.setBounds(174, 89, 107, 19);
 		contentPane.add(textFieldNumeroFisso);
 		
 		JLabel lblNewLabelNazione = new JLabel("Nazione");
 		lblNewLabelNazione.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabelNazione.setBounds(25, 162, 67, 11);
+		lblNewLabelNazione.setBounds(25, 158, 67, 11);
 		contentPane.add(lblNewLabelNazione);
 		
 		JLabel lblNewLabelCittaCap = new JLabel("Citta e CAP");
 		lblNewLabelCittaCap.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabelCittaCap.setBounds(25, 189, 77, 11);
+		lblNewLabelCittaCap.setBounds(25, 185, 98, 11);
 		contentPane.add(lblNewLabelCittaCap);
 		
-		JLabel lblNewLabelVia = new JLabel("Via");
+		JLabel lblNewLabelVia = new JLabel("Via e N.Civico");
 		lblNewLabelVia.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabelVia.setBounds(25, 216, 67, 11);
+		lblNewLabelVia.setBounds(25, 212, 98, 11);
 		contentPane.add(lblNewLabelVia);
 		
 		textFieldNazione = new JTextField();
-		textFieldNazione.setBounds(112, 159, 126, 17);
+		textFieldNazione.setBounds(133, 156, 148, 17);
 		contentPane.add(textFieldNazione);
 		textFieldNazione.setColumns(10);
 		
 		textFieldCitta = new JTextField();
-		textFieldCitta.setBounds(112, 186, 81, 17);
+		textFieldCitta.setBounds(133, 183, 98, 17);
 		contentPane.add(textFieldCitta);
 		textFieldCitta.setColumns(10);
 		
 		textFieldVia = new JTextField();
-		textFieldVia.setBounds(112, 213, 126, 17);
+		textFieldVia.setBounds(133, 210, 148, 17);
 		contentPane.add(textFieldVia);
 		textFieldVia.setColumns(10);
 		
 		textFieldCap = new JTextField();
-		textFieldCap.setBounds(201, 186, 37, 17);
+		textFieldCap.setBounds(236, 183, 45, 17);
 		contentPane.add(textFieldCap);
 		textFieldCap.setColumns(10);
 		
 		textFieldPrefissoFisso = new JTextField();
-		textFieldPrefissoFisso.setBounds(112, 92, 33, 19);
+		textFieldPrefissoFisso.setBounds(133, 89, 33, 19);
 		contentPane.add(textFieldPrefissoFisso);
 		textFieldPrefissoFisso.setColumns(10);
 		
 		lblNewLabelTMobile = new JLabel("T.Mobile");
 		lblNewLabelTMobile.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabelTMobile.setBounds(25, 118, 67, 19);
+		lblNewLabelTMobile.setBounds(25, 115, 67, 19);
 		contentPane.add(lblNewLabelTMobile);
 
 		textFieldPrefissoMobile = new JTextField();
 		textFieldPrefissoMobile.setColumns(10);
-		textFieldPrefissoMobile.setBounds(112, 119, 33, 19);
+		textFieldPrefissoMobile.setBounds(133, 116, 33, 19);
 		contentPane.add(textFieldPrefissoMobile);
 
 		textFieldNumeroMobile = new JTextField();
 		textFieldNumeroMobile.setColumns(10);
-		textFieldNumeroMobile.setBounds(153, 119, 86, 19);
+		textFieldNumeroMobile.setBounds(174, 116, 107, 19);
 		contentPane.add(textFieldNumeroMobile);
 
 		btnNewButton.addActionListener(new ActionListener() {
