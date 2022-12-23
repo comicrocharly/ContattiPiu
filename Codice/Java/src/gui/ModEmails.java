@@ -34,7 +34,7 @@ public class ModEmails extends ModAttributes{
 		
 		listEmailModel = new DefaultListModel<String>();
 		
-		setTitle("Modifica Emails");
+		setTitle("Modifica E-mails");
 
 		loadTable();
 
