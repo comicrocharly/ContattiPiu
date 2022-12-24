@@ -3,6 +3,7 @@ package gui;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -100,13 +101,17 @@ public class NewAlloggi extends JFrame{
 				citta = textFieldCitta.getText();
 				cap = textFieldCap.getText();
 				via = textFieldVia.getText();
-
+				
+				if(nazione.trim().length()==0||citta.trim().length()==0||cap.trim().length()==0||via.trim().length()==0)
+					JOptionPane.showMessageDialog(null,"Non puoi inserire campi vuoti!");
+				else {
 				String data[]= {nazione, citta, cap, via};
 				Controller.insertAlloggio(data, c);
 
 				ModAlloggio.updateTable();
 				ContactWindow.refreshAlloggiModel();
 				setVisible(false);
+				}
 			}
 
 		});
