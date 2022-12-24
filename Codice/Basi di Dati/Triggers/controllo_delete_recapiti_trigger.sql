@@ -16,7 +16,13 @@ SELECT COUNT(*) INTO FISSO FROM RECAPITO AS R JOIN TELEFONO AS TEL ON R.NUMERO=T
 
 IF (TIPO = 'Mobile' AND MOBILE < 2 ) OR (TIPO = 'Fisso' AND FISSO < 2 )   THEN
 RAISE EXCEPTION 'Deve esserci almeno un mobile e un fisso!' USING ERRCODE = '23000';
+
+
 END IF;
+
+
+
+RETURN OLD;
 END;
 
 
