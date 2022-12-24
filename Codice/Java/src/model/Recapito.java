@@ -87,6 +87,10 @@ public class Recapito {
 	public void setContID(int contID) {
 		this.contID = contID;
 	}
+	
+	public void setRecID(int recID) {
+		this.recID= recID;
+	}
 
 
 }

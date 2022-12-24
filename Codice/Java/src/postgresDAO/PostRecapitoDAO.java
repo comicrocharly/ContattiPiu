@@ -152,16 +152,22 @@ public class PostRecapitoDAO implements RecapitoDAO {
 	 * @param numeroOut the numero out
 	 * @throws Exception the exception
 	 */
-	public void setRecapito(int contID, String prefissoIn, String numeroIn, String prefissoOut, String numeroOut) throws Exception {
+	public int setRecapito(int contID, String prefissoIn, String numeroIn, String prefissoOut, String numeroOut) throws Exception {
 
 		PreparedStatement ps;
+		ResultSet rs;
+		
+		int recID = -1;
 
 		try {
 			ps = link.prepareStatement(
 					"INSERT INTO Recapito (prefisso, prefisso_out, numero, numero_out, Cont_ID) "
-							+ "VALUES ('"+prefissoIn+"', '"+prefissoOut+"', '"+numeroIn+"', '"+numeroOut+"', '"+contID+"');");
+							+ "VALUES ('"+prefissoIn+"', '"+prefissoOut+"', '"+numeroIn+"', '"+numeroOut+"', '"+contID+"') returning rec_id;");
 
-			ps.executeUpdate();
+			rs = ps.executeQuery();
+			rs.next();
+			recID = rs.getInt(1);
+			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -174,6 +180,8 @@ public class PostRecapitoDAO implements RecapitoDAO {
 			else
 				e.printStackTrace();
 		}
+		
+		return recID;
 
 
 	}
@@ -227,17 +235,15 @@ public class PostRecapitoDAO implements RecapitoDAO {
 	 * @param recID the rec ID
 	 * @param contID the cont ID
 	 */
-	public void delRecapito(int recID, int contID) {
+	public void delRecapito(int recID, int contID) throws SQLException {
+		
 		PreparedStatement ps;
 
-		try {
+		
 			ps = link.prepareStatement("DELETE FROM Recapito WHERE Cont_ID = '" + contID + "' AND Rec_ID = '"+recID+"' ");
 
 			ps.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 	}
 }

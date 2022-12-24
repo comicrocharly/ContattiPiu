@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
@@ -64,9 +66,12 @@ public class ModRecapiti extends ModAttributes {
 				}
 				try {
 					Controller.delRecapito(c, re);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, e1.getMessage());
+				} catch (SQLException sqlE) {
+					if(sqlE.getSQLState().compareTo("23000")==0)
+					JOptionPane.showMessageDialog(null, "Deve esserci almeno un mobile e un fisso!");
+					else sqlE.printStackTrace();
+				}catch(Exception e1) {
+					e1.printStackTrace();
 				}
 				refreshTable();
 				ContactWindow.refreshRecapitoModel();

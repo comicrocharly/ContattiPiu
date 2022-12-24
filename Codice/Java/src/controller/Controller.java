@@ -225,6 +225,7 @@ public class Controller {
 		Telefono tIn,tOut;
 		String prefissoIn,prefissoOut,numeroIn,numeroOut,tipoIn,tipoOut;
 		Integer contID=c.getContID();
+		int recID;
 		
 		//Prefisso,numero,tipo é l'ordine dei parametri contenuti nell'array per i due telefoni in e out
 		
@@ -255,8 +256,8 @@ public class Controller {
 		
 		Recapito r = new Recapito(tIn, tOut);
 		PostRecapitoDAO rDao = new PostRecapitoDAO();
-		rDao.setRecapito(contID, prefissoIn, numeroIn, prefissoOut, numeroOut);
-		
+		recID=rDao.setRecapito(contID, prefissoIn, numeroIn, prefissoOut, numeroOut);
+		r.setRecID(recID);
 		c.addRecapito(r);
 		
 	} 
@@ -677,18 +678,16 @@ public class Controller {
 	 * @param re the re
 	 * @throws Exception the exception
 	 */
-	public static void delRecapito(Contatto c, Recapito re) throws Exception {
+	public static void delRecapito(Contatto c, Recapito re) throws SQLException {
 		int contID = c.getContID();
 		int recID = re.getRecID();
 
-		if(c.getRecapiti().size() > 1) {
+		
 			PostRecapitoDAO rDao = new PostRecapitoDAO();
 			rDao.delRecapito(recID, contID);
 			c.getRecapiti().remove(re);
-		}
-		else {
-			throw new Exception("Il contatto deve avere almeno un Recapito");
-		}
+		
+		
 	}
 	
 
