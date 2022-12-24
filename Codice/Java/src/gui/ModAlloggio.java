@@ -62,7 +62,12 @@ public class ModAlloggio extends ModAttributes{
 					JOptionPane.showMessageDialog(null, "Seleziona un Indirizzo");
 				}
 				try {
+					if(c.getIndirizzi().size()>1)
 					Controller.delAlloggio(c, i);
+					
+					else {
+						JOptionPane.showMessageDialog(null,"Il contatto deve avere almeno un indirizzo!");
+					}
 				} catch (Exception s) {
 					// TODO Auto-generated catch block
 					
