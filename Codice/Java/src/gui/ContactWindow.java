@@ -257,13 +257,6 @@ public class ContactWindow extends JFrame {
 		txtFieldNome.setBounds(169, 31, 159, 18);
 		contentPane.add(txtFieldNome);
 		
-		JTextField txtFieldIndirizzoP = new JTextField(indirizzoP);
-		txtFieldIndirizzoP.setFont(new Font("Tahoma", Font.BOLD, 12));
-		txtFieldIndirizzoP.setBorder(null);
-		txtFieldIndirizzoP.setEditable(false);
-		txtFieldIndirizzoP.setBounds(169, 51, 159, 18);
-		contentPane.add(txtFieldIndirizzoP);
-		
 		JLabel lblRecapiti = new JLabel("Recapiti");
 		lblRecapiti.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblRecapiti.setBounds(27, 130, 64, 11);
@@ -271,7 +264,7 @@ public class ContactWindow extends JFrame {
 		
 		JLabel lblAlloggi = new JLabel("Alloggi");
 		lblAlloggi.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblAlloggi.setBounds(171, 130, 71, 11);
+		lblAlloggi.setBounds(169, 126, 71, 18);
 		contentPane.add(lblAlloggi);
 		
 		JLabel lblGruppi = new JLabel("Gruppi");
