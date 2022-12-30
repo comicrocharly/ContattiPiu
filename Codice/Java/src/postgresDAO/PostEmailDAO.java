@@ -236,6 +236,8 @@ public class PostEmailDAO implements EmailDAO{
 								+ "VALUES ('"+contID+"','"+indirizzo+"', '"+utilizzo+"' );");
 
 				ps.executeUpdate();
+				
+				ps.close();
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
