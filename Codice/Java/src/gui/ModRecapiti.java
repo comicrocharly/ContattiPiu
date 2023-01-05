@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 
 import javax.swing.DefaultListModel;
@@ -66,9 +68,22 @@ public class ModRecapiti extends JFrame {
 		loadTable();
 		
 		
-		JList<String> list = new JList<String>(listRecapitiModel);
-		list.setBounds(20, 66, 310, 192);
-		contentPane.add(list);
+		JList<String> listRecapiti = new JList<String>(listRecapitiModel);
+		listRecapiti.setBounds(20, 66, 310, 192);
+		contentPane.add(listRecapiti);
+		
+		listRecapiti.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
+					if(listRecapiti.getSelectedIndex()>-1) 
+					{
+						ViewRecapito frame= new ViewRecapito(c.getRecapiti().get(listRecapiti.getSelectedIndex()));
+						frame.setVisible(true);
+					}
+				}
+			}
+		});
 		
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
@@ -85,7 +100,7 @@ public class ModRecapiti extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Recapito re = null;
 				try {
-					re = c.getRecapiti().get(list.getSelectedIndex());
+					re = c.getRecapiti().get(listRecapiti.getSelectedIndex());
 				} catch (Exception IndexOutOfBoundsException) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "Seleziona un Recapito");

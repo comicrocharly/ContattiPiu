@@ -297,8 +297,9 @@ public class Controller {
 	 *
 	 * @param data the data
 	 * @param c the c
+	 * @throws Exception 
 	 */
-	public static void insertAlloggio(String[] data, Contatto c) {
+	public static void insertAlloggio(String[] data, Contatto c) throws Exception {
 		Indirizzo i;
 		String nazione, citta, cap, via;
 		Integer contID = c.getContID();

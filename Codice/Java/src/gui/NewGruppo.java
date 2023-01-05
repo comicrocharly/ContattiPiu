@@ -52,12 +52,11 @@ public class NewGruppo extends JFrame{
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 265, 223);
+		
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
 		
 		listGruppiModel = new DefaultListModel<String>();
 		loadGruppiModel();
@@ -160,6 +159,8 @@ public class NewGruppo extends JFrame{
 	 */
 	private void searchGruppo(String textFieldCerca) {
 		ArrayList<Gruppo> searched = null;
+		
+		
 		for(Gruppo g: getgList()){
 			if(g.getNomeG().contains(textFieldCerca.trim())){
 				if(searched==null) {
@@ -169,11 +170,10 @@ public class NewGruppo extends JFrame{
 			}
 		}
 		
-		if(searched==null) {
-			loadGruppiModel();
-		}
-		
-		else loadGruppiModel(searched);
+		if (searched !=null)
+			loadGruppiModel(searched);
+		else
+			listGruppiModel.removeAllElements();
 		
 	}
 	

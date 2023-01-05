@@ -2,6 +2,9 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -68,6 +71,18 @@ public class ModGruppi extends JFrame{
 		listGruppi.setBounds(20, 66, 310, 192);
 		contentPane.add(listGruppi);
 		
+		listGruppi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
+					if(listGruppi.getSelectedIndex()>-1) 
+					{
+						ViewGruppo frame= new ViewGruppo(c.getGruppi().get(listGruppi.getSelectedIndex()));
+						frame.setVisible(true);
+					}
+				}
+			}
+		});
 		if (listGruppiModel.isEmpty())
 			JOptionPane.showMessageDialog(rootPane, "La lista è vuota");
 		

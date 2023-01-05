@@ -106,11 +106,17 @@ public class NewAlloggi extends JFrame{
 					JOptionPane.showMessageDialog(null,"Non puoi inserire campi vuoti!");
 				else {
 				String data[]= {nazione, citta, cap, via};
-				Controller.insertAlloggio(data, c);
+				try {
+					Controller.insertAlloggio(data, c);
+					ModAlloggio.updateTable();
+					ContactWindow.refreshAlloggiModel();
+					setVisible(false);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
 
-				ModAlloggio.updateTable();
-				ContactWindow.refreshAlloggiModel();
-				setVisible(false);
+				
 				}
 			}
 

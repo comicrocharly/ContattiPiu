@@ -17,6 +17,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.ItemEvent;
 
 // TODO: Auto-generated Javadoc
@@ -113,6 +115,20 @@ public class ModSocials extends JFrame{
 		});
 
 
+		listSocials.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
+					if(listSocials.getSelectedIndex()>-1) 
+					{
+						
+						ViewSocial frame= new ViewSocial(c.getEmail().get(comboBox.getSelectedIndex()).getMessagingPr().get(listSocials.getSelectedIndex()));
+						frame.setVisible(true);
+					}
+				}
+			}
+		});
+
 		JButton btnRimuovi = new JButton("Rimuovi");
 		btnRimuovi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -196,6 +212,8 @@ public class ModSocials extends JFrame{
 			}
 		}	
 	}
+	
+	
 
 	/**
 	 * Update table.

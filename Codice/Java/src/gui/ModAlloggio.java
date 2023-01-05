@@ -2,6 +2,9 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -73,6 +76,19 @@ public class ModAlloggio extends JFrame{
 		JList<String> listAlloggi = new JList<String>(listAlloggiModel);
 		listAlloggi.setBounds(10, 62, 330, 190);
 		contentPane.add(listAlloggi);
+		
+		listAlloggi.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
+					if(listAlloggi.getSelectedIndex()>-1) 
+					{
+						ViewAlloggio frame= new ViewAlloggio(c.getIndirizzi().get(listAlloggi.getSelectedIndex()));
+						frame.setVisible(true);
+					}
+				}
+			}
+		});
 		
 		loadTable();
 		JButton btnAggiungi = new JButton("Aggiungi");

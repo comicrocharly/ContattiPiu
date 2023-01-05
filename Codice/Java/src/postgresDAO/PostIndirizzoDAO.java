@@ -298,8 +298,9 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 	 * @param i the i
 	 * @param contID the cont ID
 	 * @return the int
+	 * @throws Exception 
 	 */
-	public int setIndirizzo(Indirizzo i, Integer contID) {
+	public int setIndirizzo(Indirizzo i, Integer contID) throws Exception {
 		int addrID = 0;
 		String via = i.getVia();
 		String citta = i.getCitta();
@@ -322,7 +323,7 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new Exception();
 		}
 		
 		PreparedStatement psAlloggio;
