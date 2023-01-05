@@ -125,6 +125,7 @@ public class NewRecapito extends JFrame{
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("Tipo");
+		lblNewLabel.setToolTipText("F: Fisso\r\n\r\nM: Mobile");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(302, 11, 54, 14);
 		contentPane.add(lblNewLabel);

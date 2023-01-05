@@ -4,8 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
 import controller.Controller;
 import model.Contatto;
 import model.Gruppo;
@@ -14,7 +18,7 @@ import model.Gruppo;
 /**
  * The Class ModGruppi.
  */
-public class ModGruppi extends ModAttributes{
+public class ModGruppi extends JFrame{
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -22,14 +26,35 @@ public class ModGruppi extends ModAttributes{
 	/** The list gruppi model. */
 	private static DefaultListModel<String> listGruppiModel;
 	
+	/** The c. */
+	protected static Contatto c;
+	
+	/** The content pane. */
+	protected JPanel contentPane;
+	
 	/**
 	 * Instantiates a new mod gruppi.
 	 *
 	 * @param c the c
 	 */
 	public ModGruppi(Contatto c) {
-		super(c);
+		try {
+			setC(c);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(contentPane, "Contatto nullo");
+			this.setVisible(false);
+		}
 		
+		setAlwaysOnTop(true);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(100, 100, 364, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		setTitle("Modifica Gruppi");
 
 		listGruppiModel = new DefaultListModel<String>();
@@ -79,6 +104,16 @@ public class ModGruppi extends ModAttributes{
 		});
 		btnRimuovi.setBounds(255, 28, 85, 23);
 		contentPane.add(btnRimuovi);
+	}
+	
+
+	/**
+	 * Sets the c.
+	 *
+	 * @param c the new c
+	 */
+	protected void setC(Contatto c) {
+		ModGruppi.c = c;
 	}
 	
 	/**

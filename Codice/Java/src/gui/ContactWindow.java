@@ -127,7 +127,7 @@ public class ContactWindow extends JFrame {
 		mntmRecapiti.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				ModAttributes frameRecapiti = new ModRecapiti(c);
+				ModRecapiti frameRecapiti = new ModRecapiti(c);
 				frameRecapiti.setVisible(true);
 			}
 		});
@@ -138,7 +138,7 @@ public class ContactWindow extends JFrame {
 		mntmAlloggi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				ModAttributes frameAlloggi = new ModAlloggio(c);
+				ModAlloggio frameAlloggi = new ModAlloggio(c);
 				frameAlloggi.setVisible(true);
 			}
 		});
@@ -148,7 +148,7 @@ public class ContactWindow extends JFrame {
 		mntmGruppi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				ModAttributes frameGruppi = new ModGruppi(c);
+				ModGruppi frameGruppi = new ModGruppi(c);
 				frameGruppi.setVisible(true);
 			}
 		});
@@ -158,7 +158,7 @@ public class ContactWindow extends JFrame {
 		mntmEmails.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				ModAttributes frameEmails = new ModEmails(c);
+				ModEmails frameEmails = new ModEmails(c);
 				frameEmails.setVisible(true);
 			}
 		});
@@ -169,7 +169,7 @@ public class ContactWindow extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				try {
-					ModAttributes frameSocials = new ModSocials(c);
+					ModSocials frameSocials = new ModSocials(c);
 					frameSocials.setVisible(true);
 				} catch (Exception s) {
 					// TODO Auto-generated catch block

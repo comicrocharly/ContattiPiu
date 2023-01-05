@@ -4,17 +4,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
 import controller.Controller;
 import model.Contatto;
 import model.Email;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class ModEmails.
  */
-public class ModEmails extends ModAttributes{ 
+public class ModEmails extends JFrame{ 
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -22,14 +28,37 @@ public class ModEmails extends ModAttributes{
 	/** The list email model. */
 	private static DefaultListModel<String> listEmailModel;
 	
+	/** The c. */
+	protected static Contatto c;
+	
+	/** The content pane. */
+	protected JPanel contentPane;
 	
 	/**
 	 * Instantiates a new mod emails.
 	 *
 	 * @param c the c
 	 */
+	
 	public ModEmails(Contatto c) {
-		super(c);
+		try {
+			setC(c);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(contentPane, "Contatto nullo");
+			this.setVisible(false);
+		}
+		
+		setAlwaysOnTop(true);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(100, 100, 364, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
 		setResizable(false);
 		
 		listEmailModel = new DefaultListModel<String>();
@@ -39,9 +68,21 @@ public class ModEmails extends ModAttributes{
 		loadTable();
 
 		JList<String> listEmails = new JList<String>(listEmailModel);
+		listEmails.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
+					if(listEmails.getSelectedIndex()>-1) 
+					{
+						ViewEmail frame= new ViewEmail(c.getEmail().get(listEmails.getSelectedIndex()));
+						frame.setVisible(true);
+					}
+				}
+			}
+		});
 		listEmails.setBounds(20, 66, 310, 192);
 		contentPane.add(listEmails);
-		
+
 		if (listEmailModel.isEmpty())
 			JOptionPane.showMessageDialog(rootPane, "La lista è vuota");
 
@@ -79,6 +120,15 @@ public class ModEmails extends ModAttributes{
 		});
 		btnRimuovi.setBounds(255, 28, 85, 23);
 		contentPane.add(btnRimuovi);
+	}
+
+	/**
+	 * Sets the c.
+	 *
+	 * @param c the new c
+	 */
+	protected void setC(Contatto c) {
+		ModEmails.c = c;
 	}
 	
 	/**

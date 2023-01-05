@@ -6,11 +6,16 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
 import controller.Controller;
 import model.Contatto;
 import model.Email;
 import model.MessagingPr;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
@@ -18,7 +23,7 @@ import java.awt.event.ItemEvent;
 /**
  * The Class ModSocials.
  */
-public class ModSocials extends ModAttributes{
+public class ModSocials extends JFrame{
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -29,6 +34,12 @@ public class ModSocials extends ModAttributes{
 	/** The list socials model. */
 	private static DefaultListModel<String> listSocialsModel;
 	
+	/** The c. */
+	protected static Contatto c;
+	
+	/** The content pane. */
+	protected JPanel contentPane;
+	
 	
 	/**
 	 * Instantiates a new mod socials.
@@ -36,7 +47,23 @@ public class ModSocials extends ModAttributes{
 	 * @param c the c
 	 */
 	public ModSocials(Contatto c) {
-		super(c);
+		try {
+			setC(c);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(contentPane, "Contatto nullo");
+			this.setVisible(false);
+		}
+		
+		setAlwaysOnTop(true);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(100, 100, 364, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		setResizable(false);
 		
 		
@@ -127,6 +154,16 @@ public class ModSocials extends ModAttributes{
 		});
 		btnAggiungi.setBounds(162, 28, 85, 23);
 		contentPane.add(btnAggiungi);
+	}
+	
+
+	/**
+	 * Sets the c.
+	 *
+	 * @param c the new c
+	 */
+	protected void setC(Contatto c) {
+		ModSocials.c = c;
 	}
 
 	/**

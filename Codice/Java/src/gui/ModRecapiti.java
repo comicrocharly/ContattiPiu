@@ -6,8 +6,12 @@ import java.sql.SQLException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
 import controller.Controller;
 import model.Contatto;
 import model.Recapito;
@@ -16,13 +20,18 @@ import model.Recapito;
 /**
  * The Class ModRecapiti.
  */
-public class ModRecapiti extends ModAttributes {
+public class ModRecapiti extends JFrame {
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
 	/** The list recapiti model. */
 	private static DefaultListModel<String> listRecapitiModel;
+	/** The c. */
+	protected static Contatto c;
+	
+	/** The content pane. */
+	protected JPanel contentPane;
 	
 	
 	/**
@@ -31,7 +40,24 @@ public class ModRecapiti extends ModAttributes {
 	 * @param c the c
 	 */
 	public ModRecapiti(Contatto c) {
-		super(c);
+		try {
+			setC(c);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			JOptionPane.showMessageDialog(contentPane, "Contatto nullo");
+			this.setVisible(false);
+		}
+		
+		setAlwaysOnTop(true);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setBounds(100, 100, 364, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
 		setResizable(false);
 		
 		listRecapitiModel = new DefaultListModel<String>();
@@ -42,7 +68,7 @@ public class ModRecapiti extends ModAttributes {
 		
 		JList<String> list = new JList<String>(listRecapitiModel);
 		list.setBounds(20, 66, 310, 192);
-		super.contentPane.add(list);
+		contentPane.add(list);
 		
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
@@ -83,6 +109,16 @@ public class ModRecapiti extends ModAttributes {
 		
 		
 	}
+	
+	/**
+	 * Sets the c.
+	 *
+	 * @param c the new c
+	 */
+	protected void setC(Contatto c) {
+		ModRecapiti.c = c;
+	}
+	
 	
 	/**
 	 * Refresh table.
