@@ -284,8 +284,8 @@ public class Controller {
 		
 		
 		if(c.getEmail()==null) {
-			ArrayList<Email> eList = new ArrayList<>();
-			c.setEmail(eList);
+			
+			c.setEmail(new ArrayList<Email>());
 		}
 		
 		c.addEmail(e);
