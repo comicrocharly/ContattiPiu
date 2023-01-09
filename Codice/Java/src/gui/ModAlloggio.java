@@ -94,11 +94,11 @@ public class ModAlloggio extends JFrame{
 		JButton btnAggiungi = new JButton("Aggiungi");
 		btnAggiungi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				NewAlloggi frame = new NewAlloggi(c);
+				NewAlloggio frame = new NewAlloggio(c);
 				frame.setVisible(true);
 			}
 		});
-		btnAggiungi.setBounds(162, 28, 85, 23);
+		btnAggiungi.setBounds(65, 28, 85, 23);
 		contentPane.add(btnAggiungi);
 		
 		JButton btnRimuovi = new JButton("Rimuovi");
@@ -129,8 +129,8 @@ public class ModAlloggio extends JFrame{
 		btnRimuovi.setBounds(255, 28, 85, 23);
 		contentPane.add(btnRimuovi);
 		
-		JButton btnNewButton = new JButton("Primario");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnPrimary = new JButton("★");
+		btnPrimary.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Indirizzo i = null;
 				try {
@@ -150,8 +150,25 @@ public class ModAlloggio extends JFrame{
 				ContactWindow.refreshAlloggiModel();
 			}
 		});
-		btnNewButton.setBounds(10, 28, 85, 23);
-		getContentPane().add(btnNewButton);
+		btnPrimary.setBounds(10, 28, 45, 23);
+		getContentPane().add(btnPrimary);
+		
+		JButton btnModifica = new JButton("Modifica");
+		btnModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Indirizzo i = c.getIndirizzi().get(listAlloggi.getSelectedIndex());
+					UpdateAlloggio frame = new UpdateAlloggio(c,i);
+					frame.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Seleziona un alloggio");
+				}
+				
+			}
+		});
+		btnModifica.setBounds(160, 28, 85, 23);
+		contentPane.add(btnModifica);
 	}
 	
 	/**
@@ -168,7 +185,7 @@ public class ModAlloggio extends JFrame{
 	/**
 	 * Refresh table.
 	 */
-	public void refreshTable() {
+	public static void refreshTable() {
 		listAlloggiModel.removeAllElements();
 		loadTable();
 	}
@@ -176,7 +193,7 @@ public class ModAlloggio extends JFrame{
 	/**
 	 * Load table.
 	 */
-	public void loadTable() {
+	public static void loadTable() {
 		for(Indirizzo i:c.getIndirizzi()) {
 			String citta, via;
 			citta = i.getCitta();

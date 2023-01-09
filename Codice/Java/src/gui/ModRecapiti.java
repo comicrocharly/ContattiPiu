@@ -92,7 +92,7 @@ public class ModRecapiti extends JFrame {
 				frame.setVisible(true);
 			}
 		});
-		btnAggiungi.setBounds(162, 28, 85, 23);
+		btnAggiungi.setBounds(70, 28, 85, 23);
 		contentPane.add(btnAggiungi);
 		
 		JButton btnRimuovi = new JButton("Rimuovi");
@@ -120,6 +120,21 @@ public class ModRecapiti extends JFrame {
 		});
 		btnRimuovi.setBounds(255, 28, 85, 23);
 		contentPane.add(btnRimuovi);
+		
+		JButton btnModifica = new JButton("Modifica");
+		btnModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					UpdateRecapito frame = new UpdateRecapito(c, c.getRecapiti().get(listRecapiti.getSelectedIndex()));
+					frame.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Seleziona un Recapito");
+				}
+			}
+		});
+		btnModifica.setBounds(163, 28, 85, 23);
+		contentPane.add(btnModifica);
 		
 		
 		

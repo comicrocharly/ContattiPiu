@@ -204,13 +204,23 @@ public class Controller {
 	/**
 	 * Insert aggregazione.
 	 *
-	 * @param groupID the group ID
-	 * @param contID the cont ID
+	 * @param g the group ID
+	 * @param c the cont ID
 	 * @throws Exception the exception
 	 */
-	public static void insertAggregazione(Integer groupID, Integer contID) throws Exception {
+	public static void insertAggregazione(Gruppo g, Contatto c) throws Exception {
 		PostAggregazioneDAO agDao = new PostAggregazioneDAO();
-		agDao.setAggregazione(contID, groupID);
+		agDao.setAggregazione(c.getContID(), g.getGroupID());
+		
+		for(Contatto contatto:cList) {
+			if(contatto.getContID()==c.getContID()) {
+				if(contatto.getGruppi()==null) {
+					ArrayList<Gruppo> list= new ArrayList<Gruppo>();
+					contatto.setGruppi(list);
+				}
+				contatto.getGruppi().add(g);
+			}
+		}
 		
 	}
 	
@@ -586,6 +596,94 @@ public class Controller {
 		
 		c.setIndFoto(indFoto);
 	}
+	
+	public static void updateEmail(String[] data, Contatto c, Email e) {
+		String indirizzo, uso;
+		
+		//Indirizzo, Uso é l'ordine dei parametri contenuti nell'array
+		
+		indirizzo = data[0];
+		uso = data[1];
+		Email email = new Email(indirizzo, uso);
+		PostEmailDAO eDao = new PostEmailDAO();
+		eDao.upEmail(indirizzo, e.getIndirizzo(),uso);
+		c.getEmail().set(c.getEmail().indexOf(e), email);
+		
+	}
+
+	public static void updateAlloggio(String[] data, Contatto c, Indirizzo i) {
+		Indirizzo indirizzo;
+		String nazione, citta, cap, via;
+		Integer contID = c.getContID();
+		
+		nazione = data[0];
+		citta = data[1];
+		cap = data[2];
+		via = data[3];
+		
+		indirizzo = new Indirizzo(via, citta, cap, nazione);
+		PostIndirizzoDAO iDao = new PostIndirizzoDAO();
+		iDao.upIndirizzo(indirizzo,i.getAddrID());
+		c.getIndirizzi().set(c.getIndirizzi().indexOf(i), indirizzo);
+		
+	}
+
+	public static void updateGruppo(String[] data, Contatto c, Gruppo gruppo) {
+		
+		String nomeG, descrizione;
+	
+		
+		//NomeG, Descrizione é l'ordine dei parametri contenuti nell'array
+		
+		nomeG = data[0];
+		descrizione = data[1];
+
+		PostGruppoDAO gDao = new PostGruppoDAO();
+		gDao.upGruppo(nomeG, descrizione, gruppo.getGroupID());
+
+		for(Contatto i: cList) {
+			if(i.getGruppi()!=null) {
+				for(Gruppo j: i.getGruppi()) {
+					if(j.getGroupID()==gruppo.getGroupID()) {
+						j.setNomeG(nomeG);
+						j.setDescrizione(descrizione);
+					}						
+				}
+			}
+		}
+	}
+	
+	public static void updateRecapito(String[] data, Contatto c, Recapito r) {
+		Telefono tIn,tOut;
+		String prefissoIn,prefissoOut,numeroIn,numeroOut,tipoIn,tipoOut;
+		Integer contID=c.getContID();
+		int recID;
+		
+		//Prefisso,numero,tipo é l'ordine dei parametri contenuti nell'array per i due telefoni in e out
+		
+		prefissoIn = data[0];
+		numeroIn = data[1];
+		tipoIn = data[2];
+		prefissoOut = data[3];
+		numeroOut= data[4];
+		tipoOut= data[5];
+		
+		tIn = new Telefono(numeroIn, prefissoIn, tipoIn);
+		PostTelefonoDAO tInDao = new PostTelefonoDAO();
+		tInDao.upTelefono(tIn,r.getTelefonoIn());
+		
+		tOut = new Telefono(numeroOut, prefissoOut, tipoOut);
+		PostTelefonoDAO tOutDao = new PostTelefonoDAO();
+		tOutDao.upTelefono(tOut,r.getTelefonoOut());
+		
+		for (Contatto tmp: cList) {
+			if(contID.equals(tmp.getContID()))
+				c = tmp;
+		}
+		
+		
+	}
+
 
 	/**
 	 * Delete alloggio.
@@ -777,6 +875,9 @@ public class Controller {
 	public static ArrayList<Contatto> getcList() {
 		return cList;
 	}
+
+	
+	
 
 	
 

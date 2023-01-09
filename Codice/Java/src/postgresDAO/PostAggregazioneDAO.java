@@ -151,7 +151,7 @@ public class PostAggregazioneDAO implements AggregazioneDAO{
 			ps.executeUpdate();
 			
 		} catch (SQLException e) {
-			throw new Exception("Exception message");
+			throw new Exception(e.getMessage());
 			
 		}
 		

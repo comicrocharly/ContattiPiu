@@ -24,18 +24,31 @@ public class NewRecapito extends JFrame{
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	protected JTextField textFieldPrefissoIn;
+	
+	protected JTextField textFieldPrefissoOut;
+	
 	/** The text field numero in. */
-	private JTextField textFieldNumeroIn;
+	protected JTextField textFieldNumeroIn;
 	
 	/** The text field numero out. */
-	private JTextField textFieldNumeroOut;
+	protected JTextField textFieldNumeroOut;
+	
+	protected JButton btnTipoIn;
+	
+	protected JButton btnTipoOut;
+	
+	protected JButton btnRun;
 
+	protected Contatto c;
 	/**
 	 * Instantiates a new new recapito.
 	 *
 	 * @param c the c
 	 */
 	public NewRecapito(Contatto c) {
+		
+		this.c=c;
 		
 		setResizable(false);
 		setAlwaysOnTop(true);		
@@ -55,12 +68,12 @@ public class NewRecapito extends JFrame{
 		lblNumeroOut.setBounds(10, 56, 107, 14);
 		contentPane.add(lblNumeroOut);
 		
-		JTextField textFieldPrefissoIn = new JTextField();
+		textFieldPrefissoIn = new JTextField();
 		textFieldPrefissoIn.setBounds(127, 31, 35, 17);
 		contentPane.add(textFieldPrefissoIn);
 		textFieldPrefissoIn.setColumns(10);
 		
-		JTextField textFieldPrefissoOut = new JTextField();
+		textFieldPrefissoOut = new JTextField();
 		textFieldPrefissoOut.setBounds(127, 51, 35, 17);
 		contentPane.add(textFieldPrefissoOut);
 		textFieldPrefissoOut.setColumns(10);
@@ -75,13 +88,13 @@ public class NewRecapito extends JFrame{
 		contentPane.add(textFieldNumeroOut);
 		textFieldNumeroOut.setColumns(10);
 
-		JButton btnTipoIn = new JButton("F");
+		btnTipoIn = new JButton("F");
 		
 		btnTipoIn.setToolTipText("TipoIn");
 		btnTipoIn.setBounds(302, 30, 54, 19);
 		contentPane.add(btnTipoIn);
 
-		JButton btnTipoOut = new JButton("M");
+		btnTipoOut = new JButton("M");
 		
 		btnTipoOut.setToolTipText("TipoOut");
 		btnTipoOut.setBounds(302, 51, 54, 19);
@@ -111,66 +124,71 @@ public class NewRecapito extends JFrame{
 					btnTipoOut.setText("M");
 					btnTipoIn.setText("F");
 					}
-				
+
 				else if(btnTipoOut.getText().equals("M")) {
 					btnTipoOut.setText("F");
 					btnTipoIn.setText("M");
 				}
 			}
 		});
-		
-		
-		JButton btnNewButton = new JButton("Inserisci");
-		btnNewButton.setBounds(124, 87, 86, 19);
-		contentPane.add(btnNewButton);
-		
-		JLabel lblNewLabel = new JLabel("Tipo");
-		lblNewLabel.setToolTipText("F: Fisso\r\n\r\nM: Mobile");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(302, 11, 54, 14);
-		contentPane.add(lblNewLabel);
-		
-		btnNewButton.addMouseListener(new MouseAdapter() {
+
+
+		btnRun = new JButton("Inserisci");
+		btnRun.setBounds(124, 87, 86, 19);
+		contentPane.add(btnRun);
+
+		JLabel lblTipo = new JLabel("Tipo");
+		lblTipo.setToolTipText("F: Fisso\r\n\r\nM: Mobile");
+		lblTipo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTipo.setBounds(302, 11, 54, 14);
+		contentPane.add(lblTipo);
+
+		btnRun.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(textFieldPrefissoIn.getText().matches("[0-9]+") && textFieldNumeroIn.getText().matches("[0-9]+")
-						&& textFieldPrefissoOut.getText().matches("[0-9]+") && textFieldNumeroOut.getText().matches("[0-9]+") ){
-					//Telefono 1, Telefono 2: prefisso, numero, tipo 
-					String tipoIn, tipoOut;
-					Exception e1=null;
-					if(btnTipoIn.getText().equals("F"))
-						tipoIn="Fisso";
-					else 
-						tipoIn="Mobile";
-
-					if(btnTipoOut.getText().equals("F"))
-						tipoOut="Fisso";
-					else 
-						tipoOut="Mobile";
-
-					String data[]= {textFieldPrefissoIn.getText().trim(), textFieldNumeroIn.getText().trim(), tipoIn,
-							textFieldPrefissoOut.getText().trim(), textFieldNumeroOut.getText().trim(), tipoOut};
-					try {
-						Controller.insertRecapito(data, c);
-					} catch (Exception e2) {
-						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, e2.getMessage());
-						e1=e2;
-						
-					}
-					if(e1==null) {
-						ModRecapiti.updateTable();
-						ContactWindow.refreshRecapitoModel();
-						setVisible(false);
-					}
-					
-				}
-				
-				else 
-					JOptionPane.showMessageDialog(null, "Errore: sono ammessi solo numeri");
+				run();
 			}
 
 		});
 	}
+
+	protected void run() {
+		if(textFieldPrefissoIn.getText().matches("[0-9]+") && textFieldNumeroIn.getText().matches("[0-9]+")
+				&& textFieldPrefissoOut.getText().matches("[0-9]+") && textFieldNumeroOut.getText().matches("[0-9]+") ){
+			//Telefono 1, Telefono 2: prefisso, numero, tipo 
+			String tipoIn, tipoOut;
+			Exception e1=null;
+			if(btnTipoIn.getText().equals("F"))
+				tipoIn="Fisso";
+			else 
+				tipoIn="Mobile";
+
+			if(btnTipoOut.getText().equals("F"))
+				tipoOut="Fisso";
+			else 
+				tipoOut="Mobile";
+
+			String data[]= {textFieldPrefissoIn.getText().trim(), textFieldNumeroIn.getText().trim(), tipoIn,
+					textFieldPrefissoOut.getText().trim(), textFieldNumeroOut.getText().trim(), tipoOut};
+			try {
+				Controller.insertRecapito(data, c);
+			} catch (Exception e2) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e2.getMessage());
+				e1=e2;
+
+			}
+			if(e1==null) {
+				ModRecapiti.updateTable();
+				ContactWindow.refreshRecapitoModel();
+				setVisible(false);
+			}
+
+		}
+
+		else 
+			JOptionPane.showMessageDialog(null, "Errore: sono ammessi solo numeri");
+	}
+
 }

@@ -16,32 +16,36 @@ import java.awt.event.MouseEvent;
 /**
  * The Class NewAlloggi.
  */
-public class NewAlloggi extends JFrame{
+public class NewAlloggio extends JFrame{
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
 	/** The text field nazione. */
-	private JTextField textFieldNazione;
+	protected JTextField textFieldNazione;
 	
 	/** The text field citta. */
-	private JTextField textFieldCitta;
+	protected JTextField textFieldCitta;
 	
 	/** The text field via. */
-	private JTextField textFieldVia;
+	protected JTextField textFieldVia;
 	
 	/** The text field cap. */
-	private JTextField textFieldCap;
-
+	protected JTextField textFieldCap;
+	
+	protected JButton btnRun;
+	
+	protected Contatto c;
 	/**
 	 * Instantiates a new new alloggi.
 	 *
 	 * @param c the c
 	 */
-	public NewAlloggi(Contatto c) {
+	public NewAlloggio(Contatto c) {
 		setTitle("Nuovo Indirizzo");
 		setResizable(false);
 		
+		this.c = c;
 		setAlwaysOnTop(true);		
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 325, 207);
@@ -70,9 +74,9 @@ public class NewAlloggi extends JFrame{
 		contentPane.add(textFieldCitta);
 		textFieldCitta.setColumns(10);
 		
-		JButton btnInserisci = new JButton("Inserisci");
-		btnInserisci.setBounds(92, 143, 86, 19);
-		contentPane.add(btnInserisci);
+		btnRun = new JButton("Inserisci");
+		btnRun.setBounds(92, 143, 86, 19);
+		contentPane.add(btnRun);
 		
 		JLabel lblCap = new JLabel("CAP");
 		lblCap.setBounds(26, 81, 58, 11);
@@ -86,40 +90,46 @@ public class NewAlloggi extends JFrame{
 		textFieldVia.setColumns(10);
 		textFieldVia.setBounds(113, 99, 186, 17);
 		contentPane.add(textFieldVia);
-		
+
 		textFieldCap = new JTextField();
 		textFieldCap.setColumns(10);
 		textFieldCap.setBounds(113, 78, 186, 17);
 		contentPane.add(textFieldCap);
 
-		btnInserisci.addMouseListener(new MouseAdapter() {
+		btnRun.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String nazione, citta, cap, via;
-				nazione = textFieldNazione.getText();
-				citta = textFieldCitta.getText();
-				cap = textFieldCap.getText();
-				via = textFieldVia.getText();
-				
-				if(nazione.trim().length()==0||citta.trim().length()==0||cap.trim().length()==0||via.trim().length()==0)
-					JOptionPane.showMessageDialog(null,"Non puoi inserire campi vuoti!");
-				else {
-				String data[]= {nazione, citta, cap, via};
-				try {
-					Controller.insertAlloggio(data, c);
-					ModAlloggio.updateTable();
-					ContactWindow.refreshAlloggiModel();
-					setVisible(false);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, e1.getMessage());
-				}
-
-				
-				}
+				run();	
 			}
-
 		});
 	}
+
+	protected void run() {
+
+		String nazione, citta, cap, via;
+		nazione = textFieldNazione.getText();
+		citta = textFieldCitta.getText();
+		cap = textFieldCap.getText();
+		via = textFieldVia.getText();
+
+		if(nazione.trim().length()==0||citta.trim().length()==0||cap.trim().length()==0||via.trim().length()==0)
+			JOptionPane.showMessageDialog(null,"Non puoi inserire campi vuoti!");
+		else {
+			String data[]= {nazione, citta, cap, via};
+			try {
+				Controller.insertAlloggio(data, c);
+				ModAlloggio.updateTable();
+				ContactWindow.refreshAlloggiModel();
+				setVisible(false);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1.getMessage());
+			}
+
+
+		}
+	}
+
 }
+

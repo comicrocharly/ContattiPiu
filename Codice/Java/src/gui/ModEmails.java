@@ -93,7 +93,7 @@ public class ModEmails extends JFrame{
 				frame.setVisible(true);
 			}
 		});
-		btnAggiungi.setBounds(162, 28, 85, 23);
+		btnAggiungi.setBounds(64, 28, 85, 23);
 		contentPane.add(btnAggiungi);
 		
 		JButton btnRimuovi = new JButton("Rimuovi");
@@ -120,6 +120,22 @@ public class ModEmails extends JFrame{
 		});
 		btnRimuovi.setBounds(255, 28, 85, 23);
 		contentPane.add(btnRimuovi);
+		
+		JButton btnModifica = new JButton("Modifica");
+		btnModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Email email = c.getEmail().get(listEmails.getSelectedIndex());
+					UpdateEmail frame = new UpdateEmail(c,email);
+					frame.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Seleziona una email");
+				}
+			}
+		});
+		btnModifica.setBounds(159, 28, 89, 23);
+		contentPane.add(btnModifica);
 	}
 
 	/**
@@ -161,7 +177,5 @@ public class ModEmails extends JFrame{
 		listEmailModel.addElement(e.getIndirizzo());
 			
 	}
-	
-
 }
 

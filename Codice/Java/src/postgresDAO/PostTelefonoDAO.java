@@ -163,4 +163,28 @@ public class PostTelefonoDAO implements TelefonoDAO{
 
 	}
 
+	public void upTelefono(Telefono t, Telefono oldT) {
+		PreparedStatement ps;
+
+		String prefisso = t.getPrefisso();
+		String numero = t.getNumero();
+		String tipo = t.getTipo();
+
+		try {
+			ps = link.prepareStatement("UPDATE Telefono "
+					+ "SET numero ='"+numero+"', prefisso = '"+prefisso+"', tipo = '"+tipo+"'"
+					+ "WHERE ");
+
+			try {
+				ps.executeUpdate();
+			} catch (PSQLException pe) {
+				// TODO Auto-generated catch block
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

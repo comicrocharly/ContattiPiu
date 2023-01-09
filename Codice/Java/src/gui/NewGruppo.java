@@ -29,19 +29,25 @@ public class NewGruppo extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	/** The text field name. */
-	private JTextField textFieldName;
+	protected JTextField textFieldName;
 	
 	/** The text field descrizione. */
-	private JTextField textFieldDescrizione;
+	protected JTextField textFieldDescrizione;
 	
 	/** The text field cerca. */
-	private JTextField textFieldCerca;
+	protected JTextField textFieldCerca;
 	
 	/** The list gruppi model. */
 	DefaultListModel<String> listGruppiModel;
 	
+	protected JButton btnRun;
+	
 	/** The g list. */
-	ArrayList<Gruppo> gList;
+	protected ArrayList<Gruppo> gList;
+
+	protected JList<String> listGruppi;
+
+	protected Contatto c;
 	
 	/**
 	 * Instantiates a new new gruppo.
@@ -49,6 +55,8 @@ public class NewGruppo extends JFrame{
 	 * @param c the c
 	 */
 	public NewGruppo(Contatto c) {
+		
+		this.c = c;
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 265, 223);
@@ -61,7 +69,7 @@ public class NewGruppo extends JFrame{
 		listGruppiModel = new DefaultListModel<String>();
 		loadGruppiModel();
 		
-		JList<String> listGruppi = new JList<String>(listGruppiModel);
+		listGruppi = new JList<String>(listGruppiModel);
 		JScrollPane scrollPaneGruppi = new JScrollPane(listGruppi);
 		scrollPaneGruppi.setBounds(120, 17, 114, 51);
 		contentPane.add(scrollPaneGruppi,listGruppi);
@@ -93,50 +101,52 @@ public class NewGruppo extends JFrame{
 		btnCerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				searchGruppo(textFieldCerca.getText());
-				
 			}
 
-			
 		});
 		btnCerca.setBounds(20, 47, 86, 19);
 		contentPane.add(btnCerca);
 
-		JButton btnNewButton = new JButton("Inserisci");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		btnRun = new JButton("Inserisci");
+		btnRun.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Exception ex = null;
-				if(textFieldName.getText().isBlank()&& listGruppi.getSelectedIndex()!=-1) {
-					Integer groupID = gList.get(listGruppi.getSelectedIndex()).getGroupID();
-					Integer contID = c.getContID();
-					try {
-						Controller.insertAggregazione(groupID,contID);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, "Sei già aggregato a questo gruppo!" ,"Warning", 3);
-						ex=e1;
-					}
-				}
-
-				else {
-					String data[] = {textFieldName.getText().trim(),textFieldDescrizione.getText().trim()};
-					try {
-						Controller.insertGruppo(data, c);
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null, "Sei già aggregato a questo gruppo!" ,"Warning", 3);
-						ex=e1;
-					}
-				}
-				if(ex==null) {
-					ModGruppi.updateTable();
-					ContactWindow.refreshGruppiModel();
-				}
-				setVisible(false);
+				run();
 			}
 		});
-		btnNewButton.setBounds(85, 157, 86, 19);
-		contentPane.add(btnNewButton);
+		btnRun.setBounds(85, 157, 86, 19);
+		contentPane.add(btnRun);
+	}
+	
+	protected void run() {
+		Exception ex = null;
+		if(textFieldName.getText().isBlank() && listGruppi.getSelectedIndex()!=-1) {
+			Gruppo g = gList.get(listGruppi.getSelectedIndex());
+			
+			try {
+				Controller.insertAggregazione(g,c);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "Sei già aggregato a questo gruppo!\n" + e1.getMessage() ,"Warning", 3);
+				ex=e1;
+			}
+		}
+
+		else {
+			String data[] = {textFieldName.getText().trim(),textFieldDescrizione.getText().trim()};
+			try {
+				Controller.insertGruppo(data, c);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1.getMessage());
+				ex=e1;
+			}
+		}
+		if(ex==null) {
+			ModGruppi.refreshTable();
+			ContactWindow.refreshGruppiModel();
+		}
+		setVisible(false);
 	}
 
 	/**

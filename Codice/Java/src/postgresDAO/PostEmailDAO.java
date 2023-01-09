@@ -339,6 +339,24 @@ public class PostEmailDAO implements EmailDAO{
 
 		}
 
+		public void upEmail(String indirizzo, String oldIndirizzo, String uso) {
+			PreparedStatement ps;
+
+
+			try {
+				ps = link.prepareStatement(
+						"UPDATE Email " 
+								+ "SET Indirizzo = '"+indirizzo+"', Utilizzo = '"+uso+"'"
+								+ "WHERE Indirizzo = '"+oldIndirizzo+"'");
+
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+
 
 
 

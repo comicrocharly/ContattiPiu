@@ -113,6 +113,24 @@ public class PostGruppoDAO implements GruppoDAO{
 		}
 	}
 
+	public void upGruppo(String nomeG, String descrizione, int groupID) {
+		PreparedStatement ps;
+
+
+		try {
+			ps = link.prepareStatement(
+					"UPDATE Gruppo " 
+							+ "SET Nome_G = '"+nomeG+"', Descrizione = '"+descrizione+"'"
+							+ "WHERE Group_ID = '"+groupID+"'");
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 
 
 }

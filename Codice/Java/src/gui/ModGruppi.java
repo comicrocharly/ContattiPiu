@@ -35,6 +35,8 @@ public class ModGruppi extends JFrame{
 	/** The content pane. */
 	protected JPanel contentPane;
 	
+	JList<String> listGruppi;
+	
 	/**
 	 * Instantiates a new mod gruppi.
 	 *
@@ -67,7 +69,7 @@ public class ModGruppi extends JFrame{
 				listGruppiModel.addElement(g.getNomeG());
 			}
 		
-		JList<String> listGruppi = new JList<String>(listGruppiModel);
+		listGruppi = new JList<String>(listGruppiModel);
 		listGruppi.setBounds(20, 66, 310, 192);
 		contentPane.add(listGruppi);
 		
@@ -93,7 +95,7 @@ public class ModGruppi extends JFrame{
 				frame.setVisible(true);
 			}
 		});
-		btnAggiungi.setBounds(162, 28, 85, 23);
+		btnAggiungi.setBounds(69, 28, 85, 23);
 		contentPane.add(btnAggiungi);
 		
 		JButton btnRimuovi = new JButton("Rimuovi");
@@ -119,6 +121,21 @@ public class ModGruppi extends JFrame{
 		});
 		btnRimuovi.setBounds(255, 28, 85, 23);
 		contentPane.add(btnRimuovi);
+		
+		JButton btnModifica = new JButton("Modifica");
+		btnModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					UpdateGruppo frame = new UpdateGruppo(c, c.getGruppi().get(listGruppi.getSelectedIndex()));
+					frame.setVisible(true);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Seleziona un Gruppo");
+				}
+			}
+		});
+		btnModifica.setBounds(162, 28, 85, 23);
+		contentPane.add(btnModifica);
 	}
 	
 
@@ -134,7 +151,7 @@ public class ModGruppi extends JFrame{
 	/**
 	 * Refresh table.
 	 */
-	public void refreshTable() {
+	public static void refreshTable() {
 		listGruppiModel.removeAllElements();
 		loadTable();
 	}
@@ -142,21 +159,10 @@ public class ModGruppi extends JFrame{
 	/**
 	 * Load table.
 	 */
-	public void loadTable() {
+	public static void loadTable() {
 		if(c.getEmail()!=null)
 			for(Gruppo g:c.getGruppi()) {
 				listGruppiModel.addElement(g.getNomeG());
 			}
 	}
-	
-	/**
-	 * Update table.
-	 */
-	public static void updateTable() {
-		Gruppo g = c.getGruppi().get(c.getGruppi().size()-1);
-		
-		listGruppiModel.addElement(g.getNomeG());
-		
-	}
-
 }

@@ -371,6 +371,27 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 		}
 
 	}
+	
+	public void upIndirizzo(Indirizzo indirizzo, int addrID) {
+		PreparedStatement ps;
+
+		try {
+			ps = link.prepareStatement(
+					"UPDATE Indirizzo " 
+							+ "SET Nazione = '"+indirizzo.getNazione()+"',"
+									+ "Citta = '"+indirizzo.getCitta()+"',"
+											+ "Via = '"+indirizzo.getVia()+"',"
+													+ "Cap = '"+indirizzo.getCap()+"'"
+							+ "WHERE Addr_ID = '"+addrID+"'");
+
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
 
 	/**
 	 * Up cap.
@@ -420,4 +441,5 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 		upAttr(addrID,attr,data);
 	}
 
+	
 }

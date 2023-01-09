@@ -14,8 +14,9 @@ public class Gruppo {
 	 
  	/** The descrizione. */
  	private String descrizione;
-	 
-	 /**
+
+
+	/**
  	 * Instantiates a new gruppo.
  	 *
  	 * @param nomeG the nome G
@@ -65,4 +66,16 @@ public class Gruppo {
  	public String getDescrizione() {
 		 return this.descrizione;
 	 }
+ 	
+ 	 public void setGroupID(int groupID) {
+ 		this.groupID = groupID;
+ 	}
+
+ 	public void setNomeG(String nomeG) {
+ 		this.nomeG = nomeG;
+ 	}
+
+ 	public void setDescrizione(String descrizione) {
+ 		this.descrizione = descrizione;
+ 	}
 }
