@@ -815,15 +815,20 @@ public class Controller {
 	public static void deleteContact(int selectedRowCount) {
 		Contatto c = cList.get(selectedRowCount);
 		int contID = c.getContID();
-
+		
+		PostRecapitoDAO rDao = new PostRecapitoDAO();
+		rDao.switchTrigger("disable");
+		
 		PostContattoDAO cDao = new PostContattoDAO();
 		cDao.delContatto(contID);
 
 		PostAlloggioDAO aDao = new PostAlloggioDAO();
 		aDao.delAlloggio(contID);
 
-		PostRecapitoDAO rDao = new PostRecapitoDAO();
+		
+		
 		rDao.delRecapito(contID);
+		
 
 		if(!(c.getGruppi()==null) && !(c.getGruppi().isEmpty())) {
 			PostAggregazioneDAO gDao = new PostAggregazioneDAO();
@@ -840,7 +845,7 @@ public class Controller {
 			eDao.delEmail(contID);
 		}
 
-
+		rDao.switchTrigger("enable");
 		cList.remove(c);
 
 	}

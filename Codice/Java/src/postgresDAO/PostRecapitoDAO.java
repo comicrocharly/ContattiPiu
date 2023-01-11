@@ -223,6 +223,8 @@ public class PostRecapitoDAO implements RecapitoDAO {
 			ps = link.prepareStatement("DELETE FROM Recapito " + "WHERE Cont_ID = '" + contID + "'");
 
 			ps.executeUpdate();
+			
+			ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -244,6 +246,20 @@ public class PostRecapitoDAO implements RecapitoDAO {
 
 			ps.executeUpdate();
 		
+		
+	}
+	
+	public void switchTrigger(String mode) {
+		
+		PreparedStatement ps;
+		try {
+		ps = link.prepareStatement("ALTER TABLE RECAPITO " + mode + " TRIGGER ALL");
+		
+		ps.executeUpdate();
+		ps.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 }
