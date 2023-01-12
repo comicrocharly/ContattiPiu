@@ -395,6 +395,8 @@ public class Controller {
 		c = new Contatto(nome, cognome, addrID);
 		PostContattoDAO cDao = new PostContattoDAO();
 		contID = cDao.setContatto(c);
+		c.setContID(contID);
+		
 		
 		PostAlloggioDAO pDao = new PostAlloggioDAO();
 		pDao.setAlloggio(contID, addrID);
@@ -448,7 +450,7 @@ public class Controller {
 		else
 			cList.add(c);
 
-
+		
 
 	}
 	
