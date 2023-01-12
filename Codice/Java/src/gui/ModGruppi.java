@@ -160,7 +160,7 @@ public class ModGruppi extends JFrame{
 	 * Load table.
 	 */
 	public static void loadTable() {
-		if(c.getEmail()!=null)
+		if(c.getGruppi()!=null)
 			for(Gruppo g:c.getGruppi()) {
 				listGruppiModel.addElement(g.getNomeG());
 			}

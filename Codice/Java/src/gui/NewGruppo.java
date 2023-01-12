@@ -120,7 +120,12 @@ public class NewGruppo extends JFrame{
 	
 	protected void run() {
 		Exception ex = null;
-		if(textFieldName.getText().isBlank() && listGruppi.getSelectedIndex()!=-1) {
+		
+		if(textFieldName.getText().isBlank()) {
+			JOptionPane.showMessageDialog(null, "Inserisci un nome valido!","Warning",3);
+		}
+		
+		else if(textFieldName.getText().isBlank() && listGruppi.getSelectedIndex()!=-1) {
 			Gruppo g = gList.get(listGruppi.getSelectedIndex());
 			
 			try {
