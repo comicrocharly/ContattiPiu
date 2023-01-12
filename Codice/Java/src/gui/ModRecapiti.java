@@ -97,14 +97,15 @@ public class ModRecapiti extends JFrame {
 		
 		JButton btnRimuovi = new JButton("Rimuovi");
 		btnRimuovi.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
+				
 				Recapito re = null;
-				try {
-					re = c.getRecapiti().get(listRecapiti.getSelectedIndex());
-				} catch (Exception IndexOutOfBoundsException) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "Seleziona un Recapito");
-				}
+				
+				if(listRecapiti.getSelectedIndex()!=-1) {
+				
+				re = c.getRecapiti().get(listRecapiti.getSelectedIndex());
+				
 				try {
 					Controller.delRecapito(c, re);
 				} catch (SQLException sqlE) {
@@ -116,7 +117,13 @@ public class ModRecapiti extends JFrame {
 				}
 				refreshTable();
 				ContactWindow.refreshRecapitoModel();
+				}
+				
+				else {
+					JOptionPane.showMessageDialog(null, "Seleziona un recapito!");
+				}
 			}
+			
 		});
 		btnRimuovi.setBounds(255, 28, 85, 23);
 		contentPane.add(btnRimuovi);
