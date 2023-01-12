@@ -26,6 +26,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -254,7 +255,7 @@ public class ContactWindow extends JFrame {
 		txtFieldNome.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtFieldNome.setBorder(null);
 		txtFieldNome.setEditable(false);
-		txtFieldNome.setBounds(169, 31, 159, 18);
+		txtFieldNome.setBounds(169, 31, 123, 18);
 		contentPane.add(txtFieldNome);
 		
 		JLabel lblRecapiti = new JLabel("Recapiti");
@@ -323,6 +324,12 @@ public class ContactWindow extends JFrame {
 		JScrollPane scrollPaneSocials = new JScrollPane(listSocials);
 		scrollPaneSocials.setBounds(25, 373, 140, 77);
 		contentPane.add(scrollPaneSocials,listSocials);
+		
+		JButton btnEditName = new JButton("");
+		btnEditName.setToolTipText("Modifica Nome");
+		btnEditName.setIcon(new ImageIcon(ContactWindow.class.getResource("/img/Pencil-icon (2).png")));
+		btnEditName.setBounds(302, 29, 20, 20);
+		contentPane.add(btnEditName);
 		
 
 	}
