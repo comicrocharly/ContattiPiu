@@ -82,4 +82,8 @@ public class MessagingPr {
     	return this.fornitore;
     }
     
+    public void setID(int ID) {
+    	this.prID=ID;
+    }
+    
 }

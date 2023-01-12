@@ -132,15 +132,13 @@ public class ModSocials extends JFrame{
 		JButton btnRimuovi = new JButton("Rimuovi");
 		btnRimuovi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				Email email = c.getEmail().get(comboBox.getSelectedIndex());
 				MessagingPr mp = null;
 
-				try {
-					mp = email.getMessagingPr().get(listSocials.getSelectedIndex());
-				} catch (Exception IndexOutOfBoundsException) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "Seleziona un MessagingPr");
-				}
+				if(listSocials.getSelectedIndex()!=-1) {
+				mp = email.getMessagingPr().get(listSocials.getSelectedIndex());
+				
 				try {
 					Controller.delSocial(mp, email);;
 				} catch (Exception e1) {
@@ -149,7 +147,10 @@ public class ModSocials extends JFrame{
 				}
 				refreshTable();
 				ContactWindow.refreshSocialModel();
-
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Seleziona un profilo social!");
+				}
 				
 			}
 		});

@@ -3,6 +3,7 @@ package gui;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -82,11 +83,17 @@ public class NewSocial extends JFrame{
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(textFieldNickname.getText().isBlank()==false && textFieldWFrase.getText().isBlank() == false && textFieldProvider.getText().isBlank() == false) {
 				String data[]= {textFieldNickname.getText().trim(),textFieldProvider.getText().trim(),textFieldWFrase.getText().trim()};
 				Controller.insertSocial(data, c, email);
 				ModSocials.updateTable();
 				ContactWindow.refreshSocialModel();
 				setVisible(false);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Compila i campi richiesti!");
+				}
+				
 			}
 		});
 		btnNewButton.setBounds(84, 124, 86, 19);

@@ -76,22 +76,30 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 	 * @param fraseBenvenuto the frase benvenuto
 	 * @param nickname the nickname
 	 */
-	public void setMessagingPR(String email, String fornitore, String fraseBenvenuto, String nickname) {
+	public int setMessagingPR(String email, String fornitore, String fraseBenvenuto, String nickname) {
 
 		PreparedStatement ps;
+		ResultSet rs;
+		
+		int pr_id=-1;
 
 		try {
 			ps = link.prepareStatement(
 					"INSERT INTO MessagingPR " 
 							+ "(indirizzo, fornitore, frase_benvenuto, nickname) "
-							+ "VALUES ('"+email+"', '"+fornitore+"', '"+fraseBenvenuto+"', '"+nickname+"' );");
+							+ "VALUES ('"+email+"', '"+fornitore+"', '"+fraseBenvenuto+"', '"+nickname+"' ) RETURNING pr_id;");
 
-			ps.executeUpdate();
+			rs=ps.executeQuery();
+			rs.next();
+			pr_id=rs.getInt(1);
+			System.out.println(pr_id);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return pr_id;
 
 	}
 

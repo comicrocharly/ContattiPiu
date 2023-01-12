@@ -338,6 +338,7 @@ public class Controller {
 	public static void insertSocial(String[] data, Contatto c, Email email) {
 		
 		String nickname, provider, fraseBenvenuto;
+		int id;
 		
 		nickname = data[0];
 		provider = data[1];
@@ -345,8 +346,8 @@ public class Controller {
 		
 		MessagingPr mP = new MessagingPr(nickname, fraseBenvenuto, provider);
 		PostMessagingPrDAO mpDao = new PostMessagingPrDAO();
-		mpDao.setMessagingPR(email.getIndirizzo(), provider, fraseBenvenuto, nickname);
-		
+		id=mpDao.setMessagingPR(email.getIndirizzo(), provider, fraseBenvenuto, nickname);
+		mP.setID(id);
 		if(email.getMessagingPr()==null) {
 			ArrayList<MessagingPr> mpList = new ArrayList<>();
 			email.setMessagingPr(mpList);
