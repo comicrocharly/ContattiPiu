@@ -75,10 +75,10 @@ public class ContactWindow extends JFrame {
 	 * @param c the c
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public ContactWindow(Contatto c) throws IOException {
+	public ContactWindow(Contatto c,MainWireframe mainFrame) throws IOException {
 		setTitle("Vista Contatto");
 		ContactWindow.c = c;
-		initialize();
+		initialize(mainFrame);
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class ContactWindow extends JFrame {
 	 *
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public void initialize() throws IOException {
+	public void initialize(MainWireframe mainFrame) throws IOException {
 		
 		//Estrazione dei dati dal contatto ai fini della presentazione
 		String name = (c.getNome()+" "+c.getCognome());
@@ -332,7 +332,7 @@ public class ContactWindow extends JFrame {
 		btnEditName.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				EditName editName = new EditName(ContactWindow.this,c);
+				EditName editName = new EditName(mainFrame,ContactWindow.this,c);
 				editName.setVisible(true);
 				
 			}

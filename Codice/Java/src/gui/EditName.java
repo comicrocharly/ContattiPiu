@@ -28,7 +28,7 @@ public class EditName extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditName(ContactWindow contactWindow,Contatto c) {
+	public EditName(MainWireframe mainFrame,ContactWindow contactWindow,Contatto c) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 100, 280, 155);
@@ -69,6 +69,14 @@ public class EditName extends JFrame {
 				else {
 					Controller.updateNome(c,nomeTextField.getText(), cognomeTextField.getText());
 					contactWindow.refreshName();
+					mainFrame.clearTable();
+					try {
+						mainFrame.updateTable();
+					} catch (Throwable e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 					dispose();
 				}
 			}

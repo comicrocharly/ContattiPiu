@@ -209,7 +209,7 @@ public class MainWireframe {
 				if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1) {
 				ContactWindow frame = null;
 				try {
-					frame = new ContactWindow(Controller.getcList().get(table.getSelectedRow()));
+					frame = new ContactWindow(Controller.getcList().get(table.getSelectedRow()),MainWireframe.this);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -277,7 +277,7 @@ public class MainWireframe {
 	 * Clear table.
 	 */
 	//This method clear all table row
-	private void clearTable() {
+	public void clearTable() {
 		DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
 		tableModel.setRowCount(0);
 	}
