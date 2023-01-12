@@ -101,12 +101,11 @@ public class ModEmails extends JFrame{
 			
 			public void actionPerformed(ActionEvent e) {
 				Email email = null;
-				try {
-					email = c.getEmail().get(listEmails.getSelectedIndex());
-				} catch (Exception IndexOutOfBoundsException) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "Seleziona una Email");
-				}
+				
+				if(listEmails.getSelectedIndex()!=-1) {
+				
+				email = c.getEmail().get(listEmails.getSelectedIndex());
+				
 				try {
 					Controller.delEmail(email,c);
 				} catch (Exception e1) {
@@ -115,6 +114,11 @@ public class ModEmails extends JFrame{
 				}
 				refreshTable();
 				ContactWindow.refreshEmailModel();
+				}
+				
+				else {
+					JOptionPane.showMessageDialog(null, "Seleziona una Email!");
+				}
 				
 			}
 		});
