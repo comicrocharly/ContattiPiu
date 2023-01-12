@@ -36,11 +36,11 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 	}
 	
 	/**
-	 * Gets the indirizzi.
+	 * Gets the indirizzi from database.
 	 *
-	 * @return the indirizzi
+	 * @return an ArrayList<Indirizzo>
 	 */
-	//Funzione che restituisce la lista degli indirizzi in memoria
+	
 	public ArrayList<Indirizzo> getIndirizzi(){
 		
 		ArrayList<Indirizzo> indList = new ArrayList<Indirizzo>();
@@ -300,50 +300,7 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 	 * @return the int
 	 * @throws Exception 
 	 */
-	public int setIndirizzo(Indirizzo i, Integer contID) throws Exception {
-		int addrID = 0;
-		String via = i.getVia();
-		String citta = i.getCitta();
-		String cap = i.getCap();
-		String nazione = i.getNazione();
-		
-
-		PreparedStatement ps;
-
-		try {
-			ps = link.prepareStatement(
-					"INSERT INTO indirizzo " 
-							+ "(via, citta, cap, nazione) "
-							+ "VALUES ('"+via+"', '"+citta+"', '"+cap+"', '"+nazione+"')"
-									+ "RETURNING Addr_ID ;");
-
-			ResultSet rs = ps.executeQuery();
-			if(rs.next())
-				addrID = rs.getInt(1);
-			rs.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			throw new Exception();
-		}
-		
-		PreparedStatement psAlloggio;
-
-		try {
-			psAlloggio = link.prepareStatement(
-					"INSERT INTO alloggio " 
-							+ "(cont_ID, addr_ID) "
-							+ "VALUES ('"+contID+"', '"+addrID+"')");
-
-			psAlloggio.executeUpdate();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return addrID;
-
-	}
+	
 	
 	
 

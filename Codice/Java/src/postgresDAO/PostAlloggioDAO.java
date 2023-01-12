@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 import dao.AlloggioDAO;
@@ -71,21 +72,19 @@ public class PostAlloggioDAO implements AlloggioDAO {
 	 *
 	 * @param contID the cont ID
 	 * @param addrID the addr ID
+	 * @throws SQLException 
 	 */
-	public void setAlloggio(int contID, int addrID) {
+	public void setAlloggio(int contID, int addrID) throws SQLException {
 
 		PreparedStatement ps;
 
-		try {
+		
 			ps = link.prepareStatement("INSERT INTO Alloggio " + "(Cont_ID, Addr_ID) " + 
 					"VALUES ('"+contID+"', '"+addrID+"');");
 
 			ps.executeUpdate();
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 
 	}
 

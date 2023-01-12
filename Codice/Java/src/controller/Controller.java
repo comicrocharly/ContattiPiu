@@ -2,6 +2,9 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
+
 import database.DatabaseConnect;
 import model.*;
 import postgresDAO.*;
@@ -322,9 +325,21 @@ public class Controller {
 		
 		i = new Indirizzo(via, citta, cap, nazione);
 		PostIndirizzoDAO iDao = new PostIndirizzoDAO();
-		int addrID = iDao.setIndirizzo(i, contID);
+		int addrID = iDao.setIndirizzo(i);
+		PostAlloggioDAO aDao = new PostAlloggioDAO();
+		try {
+		aDao.setAlloggio(contID, addrID);
+		}catch(SQLException e) {
+			if(e.getMessage().contains("alloggio_pkey")) {
+				throw new Exception("Il contatto ha già questo indirizzo!");
+			}
+			else {
+				e.printStackTrace();
+			}
+		}
 		i.setAddrID(addrID);
 		c.addIndirizzo(i);
+		
 		
 	}
 	
