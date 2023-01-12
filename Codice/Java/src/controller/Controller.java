@@ -3,8 +3,6 @@ package controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
 import database.DatabaseConnect;
 import model.*;
 import postgresDAO.*;
@@ -901,7 +899,14 @@ public class Controller {
 	}
 
 	
-	
+	public static void updateNome(Contatto c,String nome,String cognome) {
+		
+		PostContattoDAO cDAO = new PostContattoDAO();
+		cDAO.updateName(c.getContID(), nome, cognome);
+		
+		c.setNome(nome);
+		c.setCognome(cognome);
+	}
 
 	
 

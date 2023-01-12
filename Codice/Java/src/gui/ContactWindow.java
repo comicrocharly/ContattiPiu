@@ -52,6 +52,8 @@ public class ContactWindow extends JFrame {
 	/** The lbl foto. */
 	private JLabel lblFoto;
 	
+	private JTextField txtFieldNome;
+	
 	/** The list recapito model. */
 	private static DefaultListModel<String> listRecapitoModel;
 	
@@ -250,8 +252,9 @@ public class ContactWindow extends JFrame {
 			}});
 		
 		mnEdit.add(mntmFoto);
-
-		JTextField txtFieldNome = new JTextField(name);
+		
+		txtFieldNome= new JTextField();
+		txtFieldNome.setText(name);
 		txtFieldNome.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtFieldNome.setBorder(null);
 		txtFieldNome.setEditable(false);
@@ -326,6 +329,14 @@ public class ContactWindow extends JFrame {
 		contentPane.add(scrollPaneSocials,listSocials);
 		
 		JButton btnEditName = new JButton("");
+		btnEditName.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				EditName editName = new EditName(ContactWindow.this,c);
+				editName.setVisible(true);
+				
+			}
+		});
 		btnEditName.setToolTipText("Modifica Nome");
 		btnEditName.setIcon(new ImageIcon(ContactWindow.class.getResource("/img/Pencil-icon (2).png")));
 		btnEditName.setBounds(302, 29, 20, 20);
@@ -471,5 +482,9 @@ public class ContactWindow extends JFrame {
 	 */
 	public Contatto getC() {
 		return c;
+	}
+	
+	public void refreshName() {
+		this.txtFieldNome.setText(c.getNome()+" "+c.getCognome());
 	}
 }

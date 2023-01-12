@@ -355,5 +355,18 @@ public class PostContattoDAO implements ContattoDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public void updateName(int id,String Nome,String Cognome) {
+		
+		PreparedStatement ps;
+		
+		try {
+			ps=link.prepareStatement("update contatto set nome = '"+Nome+"', cognome = '"+Cognome+"' where cont_id = "+id);
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

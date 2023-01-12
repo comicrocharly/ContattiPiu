@@ -342,7 +342,7 @@ public class MainWireframe {
 	 *
 	 * @throws Throwable the throwable
 	 */
-	public void updateTable() throws Throwable {
+	public  void updateTable() throws Throwable {
 		//data[] è formattato come: Nome, Cognome, Citta, Via, PrefissoFisso, NumeroFisso, 
 
 		ArrayList<Contatto> cList = new ArrayList<>();
