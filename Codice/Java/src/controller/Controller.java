@@ -181,6 +181,7 @@ public class Controller {
 		g = new Gruppo(nomeG, descrizione);
 		PostGruppoDAO gDao = new PostGruppoDAO();
 		groupID = gDao.setGruppo(nomeG, descrizione);
+		g.setGroupID(groupID);
 		
 		PostAggregazioneDAO agDAO = new PostAggregazioneDAO();
 		agDAO.setAggregazione(contID, groupID);

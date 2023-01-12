@@ -121,7 +121,7 @@ public class NewGruppo extends JFrame{
 	protected void run() {
 		Exception ex = null;
 		
-		if(textFieldName.getText().isBlank()) {
+		if(textFieldName.getText().isBlank() && listGruppi.getSelectedIndex()==-1) {
 			JOptionPane.showMessageDialog(null, "Inserisci un nome valido!","Warning",3);
 		}
 		
