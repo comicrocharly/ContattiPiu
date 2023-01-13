@@ -95,41 +95,26 @@ public class NewRecapito extends JFrame{
 		contentPane.add(btnTipoIn);
 
 		btnTipoOut = new JButton("M");
-		
+
 		btnTipoOut.setToolTipText("TipoOut");
 		btnTipoOut.setBounds(302, 51, 54, 19);
 		contentPane.add(btnTipoOut);
-		
+
 		btnTipoIn.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(btnTipoIn.getText().equals("F")) {
-					btnTipoIn.setText("M");
-					btnTipoOut.setText("F");
-				}
-				else if(btnTipoIn.getText().equals("M")) {
-					btnTipoIn.setText("F");
-					btnTipoOut.setText("M");
-				}
-				
+				switchIn();
 			}
 
 		});
-		
+
 		btnTipoOut.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(btnTipoOut.getText().equals("F")) {
-					btnTipoOut.setText("M");
-					btnTipoIn.setText("F");
-					}
-
-				else if(btnTipoOut.getText().equals("M")) {
-					btnTipoOut.setText("F");
-					btnTipoIn.setText("M");
-				}
+				switchOut();
 			}
+
 		});
 
 
@@ -153,6 +138,32 @@ public class NewRecapito extends JFrame{
 		});
 	}
 
+	protected void switchOut() {
+		if(btnTipoOut.getText().equals("F")) {
+			btnTipoOut.setText("M");
+			btnTipoIn.setText("F");
+		}
+
+		else if(btnTipoOut.getText().equals("M")) {
+			btnTipoOut.setText("F");
+			btnTipoIn.setText("M");
+		}
+
+	}
+
+	protected void switchIn() {
+		if(btnTipoIn.getText().equals("F")) {
+			btnTipoIn.setText("M");
+			btnTipoOut.setText("F");
+		}
+		else if(btnTipoIn.getText().equals("M")) {
+			btnTipoIn.setText("F");
+			btnTipoOut.setText("M");
+		}
+		
+		
+	}
+	
 	protected void run() {
 		if(textFieldPrefissoIn.getText().matches("[0-9]+") && textFieldNumeroIn.getText().matches("[0-9]+")
 				&& textFieldPrefissoOut.getText().matches("[0-9]+") && textFieldNumeroOut.getText().matches("[0-9]+") ){

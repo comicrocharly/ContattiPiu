@@ -9,20 +9,42 @@ import model.Recapito;
 public class UpdateRecapito extends NewRecapito{
 
 	private Recapito r;
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public UpdateRecapito(Contatto c, Recapito r) {
 		super(c);
 		this.r=r;
-		
+
 		textFieldPrefissoIn.setText(r.getTelefonoIn().getPrefisso());
 		textFieldNumeroIn.setText(r.getTelefonoIn().getNumero());
 		textFieldPrefissoOut.setText(r.getTelefonoOut().getPrefisso());
 		textFieldNumeroOut.setText(r.getTelefonoOut().getNumero());
 
+		if(r.getTelefonoIn().getTipo().equals("Fisso"))
+			btnTipoIn.setText("F");
+		else 
+			btnTipoIn.setText("M");
+
+		if(r.getTelefonoOut().getTipo().equals("Fisso"))
+			btnTipoOut.setText("F");
+		else 
+			btnTipoOut.setText("M");
+
+		btnTipoIn.setEnabled(false);
+		btnTipoOut.setEnabled(false);
+
 		btnRun.setText("Modifica");
 
+
+	}
+
+	protected void switchIn() {
+		//Switching has been disabled
+	}
+
+	protected void switchOut() {
+		//Switching has been disabled
 
 	}
 
