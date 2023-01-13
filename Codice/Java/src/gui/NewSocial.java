@@ -25,14 +25,19 @@ public class NewSocial extends JFrame{
 	private static final long serialVersionUID = 1L;
 	
 	/** The text field nickname. */
-	private JTextField textFieldNickname;
+	protected JTextField textFieldNickname;
 	
 	/** The text field provider. */
-	private JTextField textFieldProvider;
+	protected JTextField textFieldProvider;
 	
 	/** The text field W frase. */
-	private JTextField textFieldWFrase;
+	protected JTextField textFieldWFrase;
 	
+	protected JButton btnRun;
+	
+	protected Contatto c;
+	
+	protected Email email;
 	/**
 	 * Instantiates a new new social.
 	 *
@@ -40,6 +45,11 @@ public class NewSocial extends JFrame{
 	 * @param email the email
 	 */
 	public NewSocial(Contatto c, Email email) {
+		
+		this.c=c;
+		this.email=email;
+		
+		
 		setTitle("Nuovo Profilo Social");
 		setResizable(false);
 		
@@ -79,26 +89,30 @@ public class NewSocial extends JFrame{
 		contentPane.add(textFieldWFrase);
 		textFieldWFrase.setColumns(10);
 
-		JButton btnNewButton = new JButton("Inserisci");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		btnRun = new JButton("Inserisci");
+		btnRun.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(textFieldNickname.getText().isBlank()==false && textFieldWFrase.getText().isBlank() == false && textFieldProvider.getText().isBlank() == false) {
-				String data[]= {textFieldNickname.getText().trim(),textFieldProvider.getText().trim(),textFieldWFrase.getText().trim()};
-				Controller.insertSocial(data, c, email);
-				ModSocials.updateTable();
-				ContactWindow.refreshSocialModel();
-				setVisible(false);
-				dispose();
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Compila i campi richiesti!");
-				}
-				
+				run();
+
 			}
 		});
-		btnNewButton.setBounds(84, 124, 86, 19);
-		contentPane.add(btnNewButton);
+		btnRun.setBounds(84, 124, 86, 19);
+		contentPane.add(btnRun);
+	}
+
+	protected void run() {
+		if(textFieldNickname.getText().isBlank()==false && textFieldWFrase.getText().isBlank() == false && textFieldProvider.getText().isBlank() == false) {
+			String data[]= {textFieldNickname.getText().trim(),textFieldProvider.getText().trim(),textFieldWFrase.getText().trim()};
+			Controller.insertSocial(data, c, email);
+			ModSocials.updateTable();
+			ContactWindow.refreshSocialModel();
+			setVisible(false);
+			dispose();
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Compila i campi richiesti!");
+		}
 	}
 
 

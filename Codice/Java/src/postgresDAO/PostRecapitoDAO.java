@@ -99,6 +99,37 @@ public class PostRecapitoDAO implements RecapitoDAO {
 
 	}
 	
+	public ArrayList<Recapito> getRecapiti(ArrayList<Telefono> tList) {
+		
+		ArrayList<Recapito> rList = new  ArrayList<Recapito>();
+		
+		PreparedStatement ps;
+		
+
+		try {
+			
+			ps = link.prepareStatement("SELECT * FROM Recapito ");
+			
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				rList.add(new Recapito(rs.getInt(1),matchTel(tList,rs.getString(4),rs.getString(3)),matchTel(tList,rs.getString(6),rs.getString(5))));
+
+			}
+		
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		return rList;
+
+	}
+	
 	/**
 	 * Check telefono.
 	 *
@@ -185,6 +216,40 @@ public class PostRecapitoDAO implements RecapitoDAO {
 
 
 	}
+	
+
+	public void upTinRecapito(Telefono tIn, Recapito r) {
+		PreparedStatement ps;
+		
+		try {
+			ps = link.prepareStatement(" UPDATE Recapito "
+					+ "SET Numero = '"+tIn.getNumero()+"', Prefisso = '"+tIn.getPrefisso()+"'"
+							+ "WHERE Rec_ID = '"+r.getRecID()+"'");
+			
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+
+	public void upToutRecapito(Telefono tOut, Recapito r) {
+		PreparedStatement ps;
+		
+		try {
+			ps = link.prepareStatement(" UPDATE Recapito "
+					+ "SET Numero_Out = '"+tOut.getNumero()+"', Prefisso_Out = '"+tOut.getPrefisso()+"'"
+							+ "WHERE Rec_ID = '"+r.getRecID()+"'");
+			
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 
 	/**
@@ -262,6 +327,8 @@ public class PostRecapitoDAO implements RecapitoDAO {
 		}
 		
 	}
+
+
 }
 
 

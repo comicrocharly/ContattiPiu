@@ -53,7 +53,7 @@ public class UpdateRecapito extends NewRecapito{
 
 			}
 			if(e1==null) {
-				ModRecapiti.updateTable();
+				ModRecapiti.refreshTable();
 				ContactWindow.refreshRecapitoModel();
 				setVisible(false);
 				dispose();
@@ -61,7 +61,7 @@ public class UpdateRecapito extends NewRecapito{
 
 		}
 
-		else 
+		else
 			JOptionPane.showMessageDialog(null, "Errore: sono ammessi solo numeri");
 	}
 

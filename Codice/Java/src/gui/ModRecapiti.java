@@ -160,7 +160,7 @@ public class ModRecapiti extends JFrame {
 	/**
 	 * Refresh table.
 	 */
-	public void refreshTable() {
+	public static void refreshTable() {
 		listRecapitiModel.removeAllElements();
 		loadTable();
 	}
@@ -168,7 +168,7 @@ public class ModRecapiti extends JFrame {
 	/**
 	 * Load table.
 	 */
-	public void loadTable() {
+	public static void loadTable() {
 		for(Recapito r:c.getRecapiti()) {
 			String prefisso, numero;
 			prefisso = r.getTelefonoIn().getPrefisso();

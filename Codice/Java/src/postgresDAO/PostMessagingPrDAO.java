@@ -102,6 +102,24 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 		return pr_id;
 
 	}
+	
+	public void upMessagingPr(String provider, String fraseBenvenuto, String nickname, int mPrID) {
+		PreparedStatement ps;
+		
+		try {
+			ps = link.prepareStatement(
+					"UPDATE MessagingPR " 
+							+ "SET nickname = '"+nickname+"', fornitore = '"+provider+"', frase_benvenuto = '"+fraseBenvenuto+"'"
+									+ "WHERE Pr_ID = '"+mPrID+"'");
+
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	/**
 	 * Del messaging pr.
@@ -146,4 +164,6 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 		}
 		
 	}
+
+	
 }

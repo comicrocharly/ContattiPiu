@@ -16,9 +16,10 @@ public class Controller {
 	/** The c list. */
 	// Lista di contatti caricata
 	private static ArrayList<Contatto> cList;
-
+	
 	/** The connessione. */
 	private DatabaseConnect connessione;
+	
 	
 	
 	/**
@@ -97,6 +98,7 @@ public class Controller {
 			rList = recapitoDAO.getRecapiti(tList, c.getContID());
 			c.setRecapiti(rList);
 		
+			
 
 			//Estrapoliamo le email del contatto dal DB passiamogliele sottoforma di ArrayList
 			PostEmailDAO emailDAO = new PostEmailDAO();
@@ -631,7 +633,6 @@ public class Controller {
 	public static void updateAlloggio(String[] data, Contatto c, Indirizzo i) {
 		Indirizzo indirizzo;
 		String nazione, citta, cap, via;
-		Integer contID = c.getContID();
 		
 		nazione = data[0];
 		citta = data[1];
@@ -646,10 +647,9 @@ public class Controller {
 	}
 
 	public static void updateGruppo(String[] data, Contatto c, Gruppo gruppo) {
-		
+	 
 		String nomeG, descrizione;
 	
-		
 		//NomeG, Descrizione é l'ordine dei parametri contenuti nell'array
 		
 		nomeG = data[0];
@@ -673,10 +673,9 @@ public class Controller {
 	public static void updateRecapito(String[] data, Contatto c, Recapito r) {
 		Telefono tIn,tOut;
 		String prefissoIn,prefissoOut,numeroIn,numeroOut,tipoIn,tipoOut;
-		Integer contID=c.getContID();
-		int recID;
+		ArrayList<Telefono> tList;
 		
-		//Prefisso,numero,tipo é l'ordine dei parametri contenuti nell'array per i due telefoni in e out
+		//Prefisso, numero, tipo é l'ordine dei parametri contenuti nell'array per i due telefoni in e out
 		
 		prefissoIn = data[0];
 		numeroIn = data[1];
@@ -684,22 +683,67 @@ public class Controller {
 		prefissoOut = data[3];
 		numeroOut= data[4];
 		tipoOut= data[5];
-		
+
+		PostTelefonoDAO tDao = new PostTelefonoDAO();
+		PostRecapitoDAO rDao = new PostRecapitoDAO();
+
+		tList = tDao.getListaNumeri();
+
+
 		tIn = new Telefono(numeroIn, prefissoIn, tipoIn);
-		PostTelefonoDAO tInDao = new PostTelefonoDAO();
-		tInDao.upTelefono(tIn,r.getTelefonoIn());
-		
 		tOut = new Telefono(numeroOut, prefissoOut, tipoOut);
-		PostTelefonoDAO tOutDao = new PostTelefonoDAO();
-		tOutDao.upTelefono(tOut,r.getTelefonoOut());
+
+		Boolean in,out;
+		in=false;
+		out=false;
+		for(Telefono t:tList) {
+			if(t.getNumero().equals(tIn.getNumero())&&t.getPrefisso().equals(tIn.getPrefisso())) {
+				rDao.upTinRecapito(tIn,r);
+				in=true;
+			}
+			
+			if(t.getNumero().equals(tOut.getNumero())&&t.getPrefisso().equals(tOut.getPrefisso())) {
+				rDao.upToutRecapito(tOut,r);
+				out=true;
+			}
 		
-		for (Contatto tmp: cList) {
-			if(contID.equals(tmp.getContID()))
-				c = tmp;
 		}
+		
+		if(!in) {
+			tDao.setTelefono(tIn);
+			rDao.upTinRecapito(tIn, r);
+		}
+		
+		if(!out) {
+			tDao.setTelefono(tOut);
+			rDao.upToutRecapito(tOut, r);
+		}
+		
+		Recapito nRec = new Recapito(tIn, tOut);
+		c.getRecapiti().set(c.getRecapiti().indexOf(r), nRec);
+
+	}
+
+	public static void updateSocial(String[] data, Contatto c, Email email, MessagingPr s) {
+		String nickname, provider, fraseBenvenuto;
+		
+		nickname = data[0];
+		provider = data[1];
+		fraseBenvenuto = data[2];
+		
+		MessagingPr mP = new MessagingPr(nickname, fraseBenvenuto, provider);
+		PostMessagingPrDAO mpDao = new PostMessagingPrDAO();
+		mpDao.upMessagingPr(provider, fraseBenvenuto, nickname, s.getPrID());
+		
+		
+		email.getMessagingPr().set(email.getMessagingPr().indexOf(s), mP);
+		
 		
 		
 	}
+
+
+
 
 
 	/**
@@ -907,6 +951,7 @@ public class Controller {
 		c.setNome(nome);
 		c.setCognome(cognome);
 	}
+
 
 	
 

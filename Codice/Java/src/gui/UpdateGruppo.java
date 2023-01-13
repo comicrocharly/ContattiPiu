@@ -23,21 +23,16 @@ public class UpdateGruppo extends NewGruppo{
 
 	protected void run() {
 		Exception ex = null;
-		if(textFieldName.getText().isBlank() && listGruppi.getSelectedIndex()!=-1) {
-			Gruppo g = gList.get(listGruppi.getSelectedIndex());
-			
+
+		String data[] = {textFieldName.getText().trim(),textFieldDescrizione.getText().trim()};
+		try {
+			Controller.updateGruppo(data, c, gruppo);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, e1.getMessage());
+			ex=e1;
 		}
 
-		else {
-			String data[] = {textFieldName.getText().trim(),textFieldDescrizione.getText().trim()};
-			try {
-				Controller.updateGruppo(data, c, gruppo);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, e1.getMessage());
-				ex=e1;
-			}
-		}
 		if(ex==null) {
 			ModGruppi.refreshTable();
 			ContactWindow.refreshGruppiModel();
