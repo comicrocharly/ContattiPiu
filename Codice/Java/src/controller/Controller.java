@@ -13,18 +13,27 @@ import postgresDAO.*;
 /**
  * The Class Controller.
  */
+/**
+ * @author Carlo
+ *
+ */
 public class Controller {
 	
 	/** The c list. */
 	// Lista di contatti caricata
 	private static ArrayList<Contatto> cList;
-	static ArrayList<Indirizzo> iList;
-	static ArrayList<Gruppo> gList;
-	static ArrayList<Telefono> tList;
+
+	private static ArrayList<Indirizzo> iList;
+	
+	private static ArrayList<Gruppo> gList;
+	
+	private static ArrayList<Telefono> tList;
 	
 	/** The connessione. */
+	/**
+	 * 
+	 */
 	private DatabaseConnect connessione;
-	
 	
 	
 	/**
@@ -32,8 +41,6 @@ public class Controller {
 	 */
 	public static void caricaRubrica(){
 
-
-		
 		ArrayList<Recapito> rList;
 
 		PostContattoDAO contattoDAO = new PostContattoDAO();
@@ -733,7 +740,7 @@ public class Controller {
 	public static void updateRecapito(String[] data, Contatto c, Recapito r) {
 		Telefono tIn,tOut;
 		String prefissoIn,prefissoOut,numeroIn,numeroOut,tipoIn,tipoOut;
-		ArrayList<Telefono> tList;
+		
 		
 		//Prefisso, numero, tipo é l'ordine dei parametri contenuti nell'array per i due telefoni in e out
 		
@@ -748,7 +755,6 @@ public class Controller {
 		PostRecapitoDAO rDao = new PostRecapitoDAO();
 
 		tList = tDao.getListaNumeri();
-
 
 		tIn = new Telefono(numeroIn, prefissoIn, tipoIn);
 		tOut = new Telefono(numeroOut, prefissoOut, tipoOut);
@@ -772,11 +778,13 @@ public class Controller {
 		if(!in) {
 			tDao.setTelefono(tIn);
 			rDao.upTinRecapito(tIn, r);
+			tList.add(tIn);
 		}
 		
 		if(!out) {
 			tDao.setTelefono(tOut);
 			rDao.upToutRecapito(tOut, r);
+			tList.add(tOut);
 		}
 		
 		Recapito nRec = new Recapito(tIn, tOut);
