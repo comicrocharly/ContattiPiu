@@ -58,7 +58,7 @@ public class NewGruppo extends JFrame{
 		
 		this.c = c;
 		setAlwaysOnTop(true);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 265, 223);
 		
 		JPanel contentPane = new JPanel();
@@ -152,6 +152,7 @@ public class NewGruppo extends JFrame{
 			ContactWindow.refreshGruppiModel();
 		}
 		setVisible(false);
+		dispose();
 	}
 
 	/**

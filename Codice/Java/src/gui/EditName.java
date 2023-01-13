@@ -29,6 +29,7 @@ public class EditName extends JFrame {
 	 * Create the frame.
 	 */
 	public EditName(MainWireframe mainFrame,ContactWindow contactWindow,Contatto c) {
+		setTitle("Modifica Nome");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 100, 280, 155);

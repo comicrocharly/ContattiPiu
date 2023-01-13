@@ -43,6 +43,7 @@ public class UpdateGruppo extends NewGruppo{
 			ContactWindow.refreshGruppiModel();
 		}
 		setVisible(false);
+		dispose();
 	}
 
 }

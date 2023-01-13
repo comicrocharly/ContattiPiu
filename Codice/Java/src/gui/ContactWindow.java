@@ -102,7 +102,7 @@ public class ContactWindow extends JFrame {
 		}
 		
 		//Rappresentazione
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 350, 525);
 		
 		setResizable(false);
@@ -117,6 +117,7 @@ public class ContactWindow extends JFrame {
 		mntmExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				dispose();
 			}
 		});
 		

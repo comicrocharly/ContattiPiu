@@ -42,6 +42,7 @@ public class UpdateAlloggio extends NewAlloggio{
 				ModAlloggio.refreshTable();
 				ContactWindow.refreshAlloggiModel();
 				setVisible(false);
+				dispose();
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				JOptionPane.showMessageDialog(null, e1.getMessage());

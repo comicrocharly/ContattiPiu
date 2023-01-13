@@ -47,7 +47,7 @@ public class NewAlloggio extends JFrame{
 		
 		this.c = c;
 		setAlwaysOnTop(true);		
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 325, 207);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -122,6 +122,7 @@ public class NewAlloggio extends JFrame{
 				ModAlloggio.updateTable();
 				ContactWindow.refreshAlloggiModel();
 				setVisible(false);
+				dispose();
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				JOptionPane.showMessageDialog(null, e1.getMessage());

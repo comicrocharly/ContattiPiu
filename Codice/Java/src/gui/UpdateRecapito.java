@@ -56,6 +56,7 @@ public class UpdateRecapito extends NewRecapito{
 				ModRecapiti.updateTable();
 				ContactWindow.refreshRecapitoModel();
 				setVisible(false);
+				dispose();
 			}
 
 		}

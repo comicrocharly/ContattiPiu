@@ -41,7 +41,7 @@ public class NewEmail extends JFrame{
 		setResizable(false);
 		setAlwaysOnTop(true);
 		setC(c);
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 303, 149);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -84,6 +84,7 @@ public class NewEmail extends JFrame{
 			ModEmails.refreshTable();
 			ContactWindow.refreshEmailModel();
 			setVisible(false);
+			dispose();
 		}
 		
 		else 

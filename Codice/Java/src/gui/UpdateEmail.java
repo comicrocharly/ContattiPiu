@@ -28,6 +28,7 @@ public class UpdateEmail extends NewEmail{
 			ModEmails.refreshTable();
 			ContactWindow.refreshEmailModel();
 			setVisible(false);
+			dispose();
 			
 		}
 		

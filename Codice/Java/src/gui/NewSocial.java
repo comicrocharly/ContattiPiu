@@ -44,7 +44,7 @@ public class NewSocial extends JFrame{
 		setResizable(false);
 		
 		setAlwaysOnTop(true);		
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 314, 193);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -89,6 +89,7 @@ public class NewSocial extends JFrame{
 				ModSocials.updateTable();
 				ContactWindow.refreshSocialModel();
 				setVisible(false);
+				dispose();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Compila i campi richiesti!");

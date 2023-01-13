@@ -28,7 +28,7 @@ public class ViewSocial extends JFrame{
 		fraseBenvenuto = mpr.getFraseBenvenuto();
 		
 		setAlwaysOnTop(true);		
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 314, 193);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

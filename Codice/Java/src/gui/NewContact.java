@@ -70,7 +70,7 @@ public class NewContact extends JFrame {
 		setTitle("Nuovo Contatto");
 		setAlwaysOnTop(true);
 		//Nasconde il jframe alla chiusura
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 307, 343);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -200,6 +200,7 @@ public class NewContact extends JFrame {
 						MainWireframe.addToTable(dataView);
 						JOptionPane.showMessageDialog(NewContact.this,"Inserimento Riuscito.");
 						setVisible(false);
+						dispose();
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(NewContact.this,"Inserimento Fallito." + "\n" + e1.getMessage());

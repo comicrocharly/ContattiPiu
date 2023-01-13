@@ -52,7 +52,7 @@ public class NewRecapito extends JFrame{
 		
 		setResizable(false);
 		setAlwaysOnTop(true);		
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 382, 162);
 		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -183,6 +183,7 @@ public class NewRecapito extends JFrame{
 				ModRecapiti.updateTable();
 				ContactWindow.refreshRecapitoModel();
 				setVisible(false);
+				dispose();
 			}
 
 		}
