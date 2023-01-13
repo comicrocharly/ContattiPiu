@@ -3,6 +3,8 @@ package controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import database.DatabaseConnect;
 import model.*;
 import postgresDAO.*;
@@ -16,6 +18,9 @@ public class Controller {
 	/** The c list. */
 	// Lista di contatti caricata
 	private static ArrayList<Contatto> cList;
+	static ArrayList<Indirizzo> iList;
+	static ArrayList<Gruppo> gList;
+	static ArrayList<Telefono> tList;
 	
 	/** The connessione. */
 	private DatabaseConnect connessione;
@@ -28,9 +33,7 @@ public class Controller {
 	public static void caricaRubrica(){
 
 
-		ArrayList<Indirizzo> iList;
-		ArrayList<Gruppo> gList;
-		ArrayList<Telefono> tList;
+		
 		ArrayList<Recapito> rList;
 
 		PostContattoDAO contattoDAO = new PostContattoDAO();
@@ -630,19 +633,76 @@ public class Controller {
 		
 	}
 
-	public static void updateAlloggio(String[] data, Contatto c, Indirizzo i) {
-		Indirizzo indirizzo;
+	public static void updateAlloggio(String[] data, Contatto c, Indirizzo i){
+		int newID;
+		Indirizzo newInd;
 		String nazione, citta, cap, via;
 		
 		nazione = data[0];
 		citta = data[1];
 		cap = data[2];
 		via = data[3];
+		PostAlloggioDAO aDAO = new PostAlloggioDAO();
+		PostContattoDAO cDAO = new PostContattoDAO();
+		PostIndirizzoDAO iDAO = new PostIndirizzoDAO();
 		
-		indirizzo = new Indirizzo(via, citta, cap, nazione);
-		PostIndirizzoDAO iDao = new PostIndirizzoDAO();
-		iDao.upIndirizzo(indirizzo,i.getAddrID());
-		c.getIndirizzi().set(c.getIndirizzi().indexOf(i), indirizzo);
+		//Nel caso il contatto ha già nella lista degli alloggi l'indirizzo modificato 
+		for(Indirizzo ind: c.getIndirizzi()) {
+			if(ind.getCap().equals(cap)&&ind.getCitta().equals(citta)&&ind.getNazione().equals(nazione)&&ind.getVia().equals(via)) {
+				JOptionPane.showMessageDialog(null, "Il contatto possiede già questo indirizzo!");
+				return;
+				}
+			}
+			
+		
+		//Nel caso il contatto non possiede già l'indirizzo modificato va cercato prima negli indirizzi in memoria 
+		for(Indirizzo ind: iList) {
+			
+			if(ind.getCap().equals(cap)&&ind.getCitta().equals(citta)&&ind.getNazione().equals(nazione)&&ind.getVia().equals(via)) {
+				c.addIndirizzo(ind);
+				try {
+					aDAO.setAlloggio(c.getContID(),ind.getAddrID());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(i.getAddrID()==c.getIndirizzoP()) {
+					c.setIndirizzoP(ind.getAddrID());
+					cDAO.upIndirizzoP(c.getContID(),ind.getAddrID());
+				}
+				c.getIndirizzi().remove(i);
+				aDAO.delAlloggio(i.getAddrID(),c.getContID());
+				return;
+			}
+			
+		}
+		
+		//Nel caso il contatto modificato è nuovo va inserito sia in memoria che nel db
+		newInd = new Indirizzo(via, citta, cap, nazione);
+		newID = iDAO.setIndirizzo(newInd);
+		newInd.setAddrID(newID);
+		iList.add(newInd);
+		c.addIndirizzo(newInd);
+		
+		if(c.getIndirizzoP()==i.getAddrID()) {
+			c.setIndirizzoP(newID);
+			cDAO.upIndirizzoP(c.getContID(),newID);
+		}
+		
+		try {
+			aDAO.setAlloggio(c.getContID(), newID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//Rimozione del vecchio indirizzo da memoria e da db
+		c.getIndirizzi().remove(i);
+		aDAO.delAlloggio(i.getAddrID(),c.getContID());
+		
+		
+		
+		
 		
 	}
 
