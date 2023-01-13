@@ -4,6 +4,8 @@ import javax.swing.JOptionPane;
 import controller.Controller;
 import model.Contatto;
 import model.Gruppo;
+import javax.swing.JLabel;
+import java.awt.Color;
 
 public class UpdateGruppo extends NewGruppo{
 	
@@ -12,12 +14,19 @@ public class UpdateGruppo extends NewGruppo{
 	
 	public UpdateGruppo(Contatto c, Gruppo gruppo) {
 		super(c);
+		setResizable(false);
 		this.gruppo=gruppo;
 		
-		btnRun.setBounds(79, 148, 95, 19);
+		btnRun.setBounds(74, 159, 95, 19);
 		textFieldName.setText(gruppo.getNomeG());
 		textFieldDescrizione.setText(gruppo.getDescrizione());
 		btnRun.setText("Aggiorna");
+		
+		JLabel lblNewLabel = new JLabel("La modifica agisce su tutti i gruppi.");
+		lblNewLabel.setForeground(Color.GRAY);
+		lblNewLabel.setToolTipText("Per modificare il singolo gruppo procedere all'inserimento del nuovo gruppo.");
+		lblNewLabel.setBounds(20, 136, 214, 14);
+		getContentPane().add(lblNewLabel);
 		
 	}
 
@@ -40,5 +49,4 @@ public class UpdateGruppo extends NewGruppo{
 		setVisible(false);
 		dispose();
 	}
-
 }

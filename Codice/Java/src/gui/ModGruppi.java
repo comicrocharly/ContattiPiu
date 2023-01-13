@@ -101,12 +101,16 @@ public class ModGruppi extends JFrame{
 		JButton btnRimuovi = new JButton("Rimuovi");
 		btnRimuovi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(listGruppi.getSelectedIndex()==-1) {
+					JOptionPane.showMessageDialog(null,"Devi selezionare un gruppo!");
+					return;
+				}
 				Gruppo g = null;
 				try {
 					g = c.getGruppi().get(listGruppi.getSelectedIndex());
-				} catch (Exception IndexOutOfBoundsException) {
+				} catch (Exception e0) {
 					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "Seleziona un Gruppo");
+					e0.printStackTrace();
 				}
 				try {
 					Controller.delAggregazione(g, c);;
