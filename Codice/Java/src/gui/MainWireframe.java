@@ -175,9 +175,11 @@ public class MainWireframe {
 				}
 				) {
 			private static final long serialVersionUID = 1L;
+			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
 					String.class, String.class, String.class, String.class
 			};
+			@SuppressWarnings({ "unchecked", "rawtypes" })
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
@@ -187,6 +189,7 @@ public class MainWireframe {
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
+			@SuppressWarnings("unused")
 			public boolean editCellAt(int row, int column, java.util.EventObject e) {
 				return false;
 			}
