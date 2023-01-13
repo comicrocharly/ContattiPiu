@@ -27,6 +27,7 @@ import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
+import java.awt.Toolkit;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -76,6 +77,7 @@ public class ContactWindow extends JFrame {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public ContactWindow(Contatto c,MainWireframe mainFrame) throws IOException {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ContactWindow.class.getResource("/img/logo.png")));
 		setTitle("Vista Contatto");
 		ContactWindow.c = c;
 		initialize(mainFrame);

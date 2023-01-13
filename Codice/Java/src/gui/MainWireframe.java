@@ -26,6 +26,7 @@ import java.awt.Choice;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
+import java.awt.Toolkit;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -78,6 +79,7 @@ public class MainWireframe {
 	 */
 	private void initialize() {
 		frame = new JFrame("ContattiPiù");
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MainWireframe.class.getResource("/img/logo.png")));
 		frame.setBounds(100, 100, 480, 485);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
