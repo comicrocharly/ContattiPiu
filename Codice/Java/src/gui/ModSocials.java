@@ -60,7 +60,7 @@ public class ModSocials extends JFrame{
 		
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 364, 300);
+		setBounds(100, 100, 338, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -74,7 +74,7 @@ public class ModSocials extends JFrame{
 		setTitle("Modifica Socials");
 		
 		JList<String> listSocials = new JList<String>(listSocialsModel);
-		listSocials.setBounds(20, 66, 310, 192);
+		listSocials.setBounds(9, 63, 310, 192);
 		contentPane.add(listSocials);
 		
 	
@@ -154,7 +154,7 @@ public class ModSocials extends JFrame{
 				
 			}
 		});
-		btnRimuovi.setBounds(255, 28, 85, 23);
+		btnRimuovi.setBounds(234, 30, 85, 23);
 		contentPane.add(btnRimuovi);
 
 		
@@ -169,7 +169,7 @@ public class ModSocials extends JFrame{
 				}
 			}
 		});
-		btnAggiungi.setBounds(162, 28, 85, 23);
+		btnAggiungi.setBounds(145, 30, 85, 23);
 		contentPane.add(btnAggiungi);
 	}
 	

@@ -53,7 +53,7 @@ public class ModRecapiti extends JFrame {
 		
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 364, 300);
+		setBounds(100, 100, 342, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -69,7 +69,7 @@ public class ModRecapiti extends JFrame {
 		
 		
 		JList<String> listRecapiti = new JList<String>(listRecapitiModel);
-		listRecapiti.setBounds(20, 66, 310, 192);
+		listRecapiti.setBounds(10, 62, 310, 192);
 		contentPane.add(listRecapiti);
 		
 		listRecapiti.addMouseListener(new MouseAdapter() {
@@ -92,7 +92,7 @@ public class ModRecapiti extends JFrame {
 				frame.setVisible(true);
 			}
 		});
-		btnAggiungi.setBounds(70, 28, 85, 23);
+		btnAggiungi.setBounds(49, 28, 85, 23);
 		contentPane.add(btnAggiungi);
 		
 		JButton btnRimuovi = new JButton("Rimuovi");
@@ -125,7 +125,7 @@ public class ModRecapiti extends JFrame {
 			}
 			
 		});
-		btnRimuovi.setBounds(255, 28, 85, 23);
+		btnRimuovi.setBounds(234, 28, 85, 23);
 		contentPane.add(btnRimuovi);
 		
 		JButton btnModifica = new JButton("Modifica");
@@ -140,7 +140,7 @@ public class ModRecapiti extends JFrame {
 				}
 			}
 		});
-		btnModifica.setBounds(163, 28, 85, 23);
+		btnModifica.setBounds(142, 28, 85, 23);
 		contentPane.add(btnModifica);
 		
 		

@@ -52,7 +52,7 @@ public class ModEmails extends JFrame{
 		
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 364, 300);
+		setBounds(100, 100, 338, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -80,7 +80,7 @@ public class ModEmails extends JFrame{
 				}
 			}
 		});
-		listEmails.setBounds(20, 66, 310, 192);
+		listEmails.setBounds(10, 71, 310, 192);
 		contentPane.add(listEmails);
 
 		if (listEmailModel.isEmpty())
@@ -93,7 +93,7 @@ public class ModEmails extends JFrame{
 				frame.setVisible(true);
 			}
 		});
-		btnAggiungi.setBounds(64, 28, 85, 23);
+		btnAggiungi.setBounds(40, 28, 85, 23);
 		contentPane.add(btnAggiungi);
 		
 		JButton btnRimuovi = new JButton("Rimuovi");
@@ -122,7 +122,7 @@ public class ModEmails extends JFrame{
 				
 			}
 		});
-		btnRimuovi.setBounds(255, 28, 85, 23);
+		btnRimuovi.setBounds(231, 28, 85, 23);
 		contentPane.add(btnRimuovi);
 		
 		JButton btnModifica = new JButton("Modifica");
@@ -138,7 +138,7 @@ public class ModEmails extends JFrame{
 				}
 			}
 		});
-		btnModifica.setBounds(159, 28, 89, 23);
+		btnModifica.setBounds(135, 28, 89, 23);
 		contentPane.add(btnModifica);
 	}
 

@@ -54,7 +54,7 @@ public class ModGruppi extends JFrame{
 		
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 364, 300);
+		setBounds(100, 100, 342, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -70,7 +70,7 @@ public class ModGruppi extends JFrame{
 			}
 		
 		listGruppi = new JList<String>(listGruppiModel);
-		listGruppi.setBounds(20, 66, 310, 192);
+		listGruppi.setBounds(10, 71, 310, 192);
 		contentPane.add(listGruppi);
 		
 		listGruppi.addMouseListener(new MouseAdapter() {
@@ -95,7 +95,7 @@ public class ModGruppi extends JFrame{
 				frame.setVisible(true);
 			}
 		});
-		btnAggiungi.setBounds(69, 28, 85, 23);
+		btnAggiungi.setBounds(48, 28, 85, 23);
 		contentPane.add(btnAggiungi);
 		
 		JButton btnRimuovi = new JButton("Rimuovi");
@@ -123,7 +123,7 @@ public class ModGruppi extends JFrame{
 
 			}
 		});
-		btnRimuovi.setBounds(255, 28, 85, 23);
+		btnRimuovi.setBounds(234, 28, 85, 23);
 		contentPane.add(btnRimuovi);
 		
 		JButton btnModifica = new JButton("Modifica");
@@ -138,7 +138,7 @@ public class ModGruppi extends JFrame{
 				}
 			}
 		});
-		btnModifica.setBounds(162, 28, 85, 23);
+		btnModifica.setBounds(141, 28, 85, 23);
 		contentPane.add(btnModifica);
 	}
 	

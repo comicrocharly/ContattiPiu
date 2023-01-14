@@ -60,7 +60,7 @@ public class ModAlloggio extends JFrame{
 		
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 364, 300);
+		setBounds(100, 100, 342, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -74,7 +74,7 @@ public class ModAlloggio extends JFrame{
 		listAlloggiModel = new DefaultListModel<String>();
 
 		JList<String> listAlloggi = new JList<String>(listAlloggiModel);
-		listAlloggi.setBounds(10, 62, 330, 190);
+		listAlloggi.setBounds(10, 62, 317, 190);
 		contentPane.add(listAlloggi);
 		
 		listAlloggi.addMouseListener(new MouseAdapter() {
@@ -98,7 +98,7 @@ public class ModAlloggio extends JFrame{
 				frame.setVisible(true);
 			}
 		});
-		btnAggiungi.setBounds(65, 28, 85, 23);
+		btnAggiungi.setBounds(70, 30, 86, 23);
 		contentPane.add(btnAggiungi);
 		
 		JButton btnRimuovi = new JButton("Rimuovi");
@@ -126,7 +126,7 @@ public class ModAlloggio extends JFrame{
 				ContactWindow.refreshAlloggiModel();
 			}
 		});
-		btnRimuovi.setBounds(255, 28, 85, 23);
+		btnRimuovi.setBounds(247, 30, 80, 23);
 		contentPane.add(btnRimuovi);
 		
 		JButton btnPrimary = new JButton("★");
@@ -150,7 +150,7 @@ public class ModAlloggio extends JFrame{
 				ContactWindow.refreshAlloggiModel();
 			}
 		});
-		btnPrimary.setBounds(10, 28, 45, 23);
+		btnPrimary.setBounds(10, 30, 45, 23);
 		getContentPane().add(btnPrimary);
 		
 		JButton btnModifica = new JButton("Modifica");
@@ -167,7 +167,7 @@ public class ModAlloggio extends JFrame{
 				
 			}
 		});
-		btnModifica.setBounds(160, 28, 85, 23);
+		btnModifica.setBounds(161, 30, 83, 23);
 		contentPane.add(btnModifica);
 	}
 	
