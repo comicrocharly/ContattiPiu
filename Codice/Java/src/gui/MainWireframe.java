@@ -152,11 +152,11 @@ public class MainWireframe {
 		frame.getContentPane().setLayout(null);
 
 		JTextArea searchBar = new JTextArea();
-		searchBar.setBounds(10, 10, 237, 17);
+		searchBar.setBounds(10, 10, 238, 18);
 		frame.getContentPane().add(searchBar);
 		
 		choice = new Choice();
-		choice.setBounds(339, 7, 81, 15);
+		choice.setBounds(343, 10, 81, 17);
 		frame.getContentPane().add(choice);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -235,10 +235,14 @@ public class MainWireframe {
 			}
 		});
 		
-		btnSearch.setBounds(257, 11, 79, 19);
+		btnSearch.setBounds(258, 10, 79, 18);
 		frame.getContentPane().add(btnSearch);
 		
-		JButton btnRefreshTable = new JButton("");
+		JButton btnRefreshTable = new JButton();
+		btnRefreshTable.setOpaque(false);
+		btnRefreshTable.setContentAreaFilled(false);
+		btnRefreshTable.setBorderPainted(false);
+		
 		btnRefreshTable.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -253,7 +257,7 @@ public class MainWireframe {
 		});
 		btnRefreshTable.setToolTipText("Aggiorna Lista Contatti");
 		btnRefreshTable.setIcon(new ImageIcon(MainWireframe.class.getResource("/img/Button-Refresh-icon.png")));
-		btnRefreshTable.setBounds(426, 4, 31, 26);
+		btnRefreshTable.setBounds(430, 10, 20, 20);
 		frame.getContentPane().add(btnRefreshTable);
 
 		choice.add("Nome");

@@ -262,7 +262,7 @@ public class ContactWindow extends JFrame {
 		txtFieldNome.setFont(new Font("Tahoma", Font.BOLD, 12));
 		txtFieldNome.setBorder(null);
 		txtFieldNome.setEditable(false);
-		txtFieldNome.setBounds(169, 31, 123, 18);
+		txtFieldNome.setBounds(169, 31, 110, 18);
 		contentPane.add(txtFieldNome);
 		
 		JLabel lblRecapiti = new JLabel("Recapiti");
@@ -332,7 +332,10 @@ public class ContactWindow extends JFrame {
 		scrollPaneSocials.setBounds(25, 373, 140, 77);
 		contentPane.add(scrollPaneSocials,listSocials);
 		
-		JButton btnEditName = new JButton("");
+		JButton btnEditName = new JButton();
+		btnEditName.setOpaque(false);
+		btnEditName.setContentAreaFilled(false);
+		btnEditName.setBorderPainted(false);
 		btnEditName.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -342,8 +345,8 @@ public class ContactWindow extends JFrame {
 			}
 		});
 		btnEditName.setToolTipText("Modifica Nome");
-		btnEditName.setIcon(new ImageIcon(ContactWindow.class.getResource("/img/Pencil-icon (2).png")));
-		btnEditName.setBounds(302, 29, 20, 20);
+		btnEditName.setIcon(new ImageIcon(ContactWindow.class.getResource("/img/Pencil-icon.png")));
+		btnEditName.setBounds(289, 29, 20, 20);
 		contentPane.add(btnEditName);
 		
 
