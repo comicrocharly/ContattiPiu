@@ -26,10 +26,13 @@ public class NewEmail extends JFrame{
 	/** The c. */
 	protected Contatto c;
 	
+	/** The text field indirizzo. */
 	protected JTextField textFieldIndirizzo;
 	
+	/** The text field uso. */
 	protected JTextField textFieldUso;
 	
+	/** The btn run. */
 	protected JButton btnRun;
 	/**
 	 * Instantiates a new new email.
@@ -77,6 +80,10 @@ public class NewEmail extends JFrame{
 		btnRun.setBounds(108, 81, 86, 19);
 		contentPane.add(btnRun);
 	}
+	
+	/**
+	 * Run.
+	 */
 	protected void run() {
 		if(textFieldIndirizzo.getText().contains("@") && textFieldIndirizzo.getText().contains(".")) {
 			String data[]= {textFieldIndirizzo.getText().trim(),textFieldUso.getText().trim()};

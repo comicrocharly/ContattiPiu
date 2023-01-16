@@ -24,8 +24,10 @@ public class NewRecapito extends JFrame{
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
+	/** The text field prefisso in. */
 	protected JTextField textFieldPrefissoIn;
 	
+	/** The text field prefisso out. */
 	protected JTextField textFieldPrefissoOut;
 	
 	/** The text field numero in. */
@@ -34,12 +36,16 @@ public class NewRecapito extends JFrame{
 	/** The text field numero out. */
 	protected JTextField textFieldNumeroOut;
 	
+	/** The btn tipo in. */
 	protected JButton btnTipoIn;
 	
+	/** The btn tipo out. */
 	protected JButton btnTipoOut;
 	
+	/** The btn run. */
 	protected JButton btnRun;
 
+	/** The c. */
 	protected Contatto c;
 	/**
 	 * Instantiates a new new recapito.
@@ -138,6 +144,9 @@ public class NewRecapito extends JFrame{
 		});
 	}
 
+	/**
+	 * Switch out.
+	 */
 	protected void switchOut() {
 		if(btnTipoOut.getText().equals("F")) {
 			btnTipoOut.setText("M");
@@ -151,6 +160,9 @@ public class NewRecapito extends JFrame{
 
 	}
 
+	/**
+	 * Switch in.
+	 */
 	protected void switchIn() {
 		if(btnTipoIn.getText().equals("F")) {
 			btnTipoIn.setText("M");
@@ -164,6 +176,9 @@ public class NewRecapito extends JFrame{
 		
 	}
 	
+	/**
+	 * Run.
+	 */
 	protected void run() {
 		if(textFieldPrefissoIn.getText().matches("[0-9]+") && textFieldNumeroIn.getText().matches("[0-9]+")
 				&& textFieldPrefissoOut.getText().matches("[0-9]+") && textFieldNumeroOut.getText().matches("[0-9]+") ){

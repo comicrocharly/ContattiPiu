@@ -7,6 +7,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import model.Indirizzo;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ViewAlloggio.
+ */
 public class ViewAlloggio extends JFrame{
 	/** The Constant serialVersionUID. */
 
@@ -15,6 +19,8 @@ public class ViewAlloggio extends JFrame{
 	//TODO: Auto-generated Javadoc
 	/**
 	 * The Class NewAlloggi.
+	 *
+	 * @param i the i
 	 */
 	ViewAlloggio(Indirizzo i){
 		String nazione, citta, cap, via;

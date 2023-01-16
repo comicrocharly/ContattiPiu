@@ -75,6 +75,7 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 	 * @param fornitore the fornitore
 	 * @param fraseBenvenuto the frase benvenuto
 	 * @param nickname the nickname
+	 * @return the int
 	 */
 	public int setMessagingPR(String email, String fornitore, String fraseBenvenuto, String nickname) {
 
@@ -103,6 +104,14 @@ public class PostMessagingPrDAO implements MessagingPrDAO {
 
 	}
 	
+	/**
+	 * Up messaging pr.
+	 *
+	 * @param provider the provider
+	 * @param fraseBenvenuto the frase benvenuto
+	 * @param nickname the nickname
+	 * @param mPrID the m pr ID
+	 */
 	public void upMessagingPr(String provider, String fraseBenvenuto, String nickname, int mPrID) {
 		PreparedStatement ps;
 		

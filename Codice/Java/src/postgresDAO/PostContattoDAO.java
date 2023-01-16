@@ -268,7 +268,7 @@ public class PostContattoDAO implements ContattoDAO {
 	 * @param nome the nome
 	 * @param cognome the cognome
 	 * @param indirizzoP the indirizzo P
-	 * @throws Exception 
+	 * @throws Exception the exception
 	 */
 	public void setContatto(String nome, String cognome, int indirizzoP) throws Exception {
 
@@ -316,7 +316,7 @@ public class PostContattoDAO implements ContattoDAO {
 	 *
 	 * @param c the c
 	 * @return the int
-	 * @throws Exception 
+	 * @throws Exception the exception
 	 */
 	public int setContatto(Contatto c) throws Exception {
 		// TODO Auto-generated method stub
@@ -356,6 +356,13 @@ public class PostContattoDAO implements ContattoDAO {
 		return null;
 	}
 	
+	/**
+	 * Update name.
+	 *
+	 * @param id the id
+	 * @param Nome the nome
+	 * @param Cognome the cognome
+	 */
 	public void updateName(int id,String Nome,String Cognome) {
 		
 		PreparedStatement ps;

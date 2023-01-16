@@ -20,7 +20,7 @@ public class ViewRecapito extends JFrame{
 	/**
 	 * Instantiates a new new recapito.
 	 *
-	 * @param c the c
+	 * @param r the r
 	 */
 	public ViewRecapito(Recapito r) {
 		setTitle("Vista Recapito");

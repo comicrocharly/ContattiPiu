@@ -53,6 +53,7 @@ public class ContactWindow extends JFrame {
 	/** The lbl foto. */
 	private JLabel lblFoto;
 	
+	/** The txt field nome. */
 	private JTextField txtFieldNome;
 	
 	/** The list recapito model. */
@@ -74,6 +75,7 @@ public class ContactWindow extends JFrame {
 	 * Instantiates a new contact window.
 	 *
 	 * @param c the c
+	 * @param mainFrame the main frame
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public ContactWindow(Contatto c,MainWireframe mainFrame) throws IOException {
@@ -86,6 +88,7 @@ public class ContactWindow extends JFrame {
 	/**
 	 * Initialize.
 	 *
+	 * @param mainFrame the main frame
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public void initialize(MainWireframe mainFrame) throws IOException {
@@ -491,6 +494,9 @@ public class ContactWindow extends JFrame {
 		return c;
 	}
 	
+	/**
+	 * Refresh name.
+	 */
 	public void refreshName() {
 		this.txtFieldNome.setText(c.getNome()+" "+c.getCognome());
 	}

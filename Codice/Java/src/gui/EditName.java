@@ -16,17 +16,28 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EditName.
+ */
 public class EditName extends JFrame {
-	/**
-	 * 
-	 */
+	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The nome text field. */
 	private JTextField nomeTextField;
+	
+	/** The cognome text field. */
 	private JTextField cognomeTextField;
 
 
 	/**
 	 * Create the frame.
+	 *
+	 * @param mainFrame the main frame
+	 * @param contactWindow the contact window
+	 * @param c the c
 	 */
 	public EditName(MainWireframe mainFrame,ContactWindow contactWindow,Contatto c) {
 		setTitle("Modifica Nome");

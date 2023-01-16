@@ -67,15 +67,30 @@ public class Gruppo {
 		 return this.descrizione;
 	 }
  	
+ 	 /**
+ 	  * Sets the group ID.
+ 	  *
+ 	  * @param groupID the new group ID
+ 	  */
  	 public void setGroupID(int groupID) {
  		this.groupID = groupID;
  	}
 
- 	public void setNomeG(String nomeG) {
+ 	/**
+	  * Sets the nome G.
+	  *
+	  * @param nomeG the new nome G
+	  */
+	 public void setNomeG(String nomeG) {
  		this.nomeG = nomeG;
  	}
 
- 	public void setDescrizione(String descrizione) {
+ 	/**
+	  * Sets the descrizione.
+	  *
+	  * @param descrizione the new descrizione
+	  */
+	 public void setDescrizione(String descrizione) {
  		this.descrizione = descrizione;
  	}
 }

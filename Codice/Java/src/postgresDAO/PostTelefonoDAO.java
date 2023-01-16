@@ -163,6 +163,12 @@ public class PostTelefonoDAO implements TelefonoDAO{
 
 	}
 
+	/**
+	 * Up telefono.
+	 *
+	 * @param t the t
+	 * @param oldT the old T
+	 */
 	public void upTelefono(Telefono t, Telefono oldT) {
 		PreparedStatement ps;
 

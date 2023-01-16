@@ -7,11 +7,24 @@ import model.Gruppo;
 import javax.swing.JLabel;
 import java.awt.Color;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UpdateGruppo.
+ */
 public class UpdateGruppo extends NewGruppo{
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The gruppo. */
 	protected Gruppo gruppo;
 	
+	/**
+	 * Instantiates a new update gruppo.
+	 *
+	 * @param c the c
+	 * @param gruppo the gruppo
+	 */
 	public UpdateGruppo(Contatto c, Gruppo gruppo) {
 		super(c);
 		setResizable(false);
@@ -30,6 +43,9 @@ public class UpdateGruppo extends NewGruppo{
 		
 	}
 
+	/**
+	 * Run.
+	 */
 	protected void run() {
 		Exception ex = null;
 

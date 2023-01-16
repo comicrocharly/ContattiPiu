@@ -113,6 +113,13 @@ public class PostGruppoDAO implements GruppoDAO{
 		}
 	}
 
+	/**
+	 * Up gruppo.
+	 *
+	 * @param nomeG the nome G
+	 * @param descrizione the descrizione
+	 * @param groupID the group ID
+	 */
 	public void upGruppo(String nomeG, String descrizione, int groupID) {
 		PreparedStatement ps;
 

@@ -35,6 +35,7 @@ public class ModGruppi extends JFrame{
 	/** The content pane. */
 	protected JPanel contentPane;
 	
+	/** The list gruppi. */
 	JList<String> listGruppi;
 	
 	/**

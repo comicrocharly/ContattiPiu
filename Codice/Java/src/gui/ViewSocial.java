@@ -7,6 +7,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import model.MessagingPr;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ViewSocial.
+ */
 public class ViewSocial extends JFrame{
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
@@ -14,8 +18,7 @@ public class ViewSocial extends JFrame{
 	/**
 	 * Instantiates a new new social.
 	 *
-	 * @param c the c
-	 * @param email the email
+	 * @param mpr the mpr
 	 */
 	public ViewSocial(MessagingPr mpr) {
 		setTitle("Vista Profilo Social");

@@ -40,13 +40,16 @@ public class NewGruppo extends JFrame{
 	/** The list gruppi model. */
 	DefaultListModel<String> listGruppiModel;
 	
+	/** The btn run. */
 	protected JButton btnRun;
 	
 	/** The g list. */
 	protected ArrayList<Gruppo> gList;
 
+	/** The list gruppi. */
 	protected JList<String> listGruppi;
 
+	/** The c. */
 	protected Contatto c;
 	
 	/**
@@ -118,6 +121,9 @@ public class NewGruppo extends JFrame{
 		contentPane.add(btnRun);
 	}
 	
+	/**
+	 * Run.
+	 */
 	protected void run() {
 		Exception ex = null;
 		

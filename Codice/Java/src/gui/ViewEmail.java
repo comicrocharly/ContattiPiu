@@ -7,6 +7,10 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import model.Email;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ViewEmail.
+ */
 public class ViewEmail extends JFrame{
 
 	/** The Constant serialVersionUID. */
@@ -15,7 +19,7 @@ public class ViewEmail extends JFrame{
 	/**
 	 * Instantiates a new new email.
 	 *
-	 * @param c the c
+	 * @param e the e
 	 */
 	public ViewEmail(Email e) {
 		

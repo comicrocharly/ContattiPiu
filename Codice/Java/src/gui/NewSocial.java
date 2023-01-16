@@ -33,10 +33,13 @@ public class NewSocial extends JFrame{
 	/** The text field W frase. */
 	protected JTextField textFieldWFrase;
 	
+	/** The btn run. */
 	protected JButton btnRun;
 	
+	/** The c. */
 	protected Contatto c;
 	
+	/** The email. */
 	protected Email email;
 	/**
 	 * Instantiates a new new social.
@@ -101,6 +104,9 @@ public class NewSocial extends JFrame{
 		contentPane.add(btnRun);
 	}
 
+	/**
+	 * Run.
+	 */
 	protected void run() {
 		if(textFieldNickname.getText().isBlank()==false && textFieldWFrase.getText().isBlank() == false && textFieldProvider.getText().isBlank() == false) {
 			String data[]= {textFieldNickname.getText().trim(),textFieldProvider.getText().trim(),textFieldWFrase.getText().trim()};

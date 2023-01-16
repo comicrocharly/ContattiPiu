@@ -7,13 +7,20 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import model.Gruppo;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ViewGruppo.
+ */
 public class ViewGruppo extends JFrame{
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new view gruppo.
+	 *
+	 * @param g the g
+	 */
 	public ViewGruppo(Gruppo g) {
 		setTitle("Vista Gruppo");
 		setAlwaysOnTop(true);

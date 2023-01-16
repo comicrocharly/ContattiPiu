@@ -88,6 +88,11 @@ public class Recapito {
 		this.contID = contID;
 	}
 	
+	/**
+	 * Sets the rec ID.
+	 *
+	 * @param recID the new rec ID
+	 */
 	public void setRecID(int recID) {
 		this.recID= recID;
 	}

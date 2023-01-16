@@ -33,7 +33,6 @@ public class ModAlloggio extends JFrame{
 	/**
 	 * Instantiates a new mod alloggio.
 	 *
-	 * @param c the c
 	 */
 	
 	/** The c. */

@@ -8,14 +8,27 @@ import model.Email;
 import model.MessagingPr;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UpdateSocial.
+ */
 public class UpdateSocial extends NewSocial{
 
+	/** The email. */
 	private static Email email;
 	
+	/** The s. */
 	private MessagingPr s;
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new update social.
+	 *
+	 * @param c the c
+	 * @param s the s
+	 */
 	public UpdateSocial(Contatto c, MessagingPr s) {
 		super(c, email);
 		this.s=s;
@@ -29,6 +42,9 @@ public class UpdateSocial extends NewSocial{
 
 	}
 
+	/**
+	 * Run.
+	 */
 	protected void run() {
 
 		if(textFieldNickname.getText().isBlank()==false && textFieldWFrase.getText().isBlank() == false && textFieldProvider.getText().isBlank() == false) {

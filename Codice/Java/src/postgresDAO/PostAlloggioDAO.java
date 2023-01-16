@@ -71,7 +71,7 @@ public class PostAlloggioDAO implements AlloggioDAO {
 	 *
 	 * @param contID the cont ID
 	 * @param addrID the addr ID
-	 * @throws SQLException 
+	 * @throws SQLException the SQL exception
 	 */
 	public void setAlloggio(int contID, int addrID) throws SQLException {
 

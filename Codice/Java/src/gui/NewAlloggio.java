@@ -33,8 +33,10 @@ public class NewAlloggio extends JFrame{
 	/** The text field cap. */
 	protected JTextField textFieldCap;
 	
+	/** The btn run. */
 	protected JButton btnRun;
 	
+	/** The c. */
 	protected Contatto c;
 	/**
 	 * Instantiates a new new alloggi.
@@ -105,6 +107,9 @@ public class NewAlloggio extends JFrame{
 		});
 	}
 
+	/**
+	 * Run.
+	 */
 	protected void run() {
 
 		String nazione, citta, cap, via;

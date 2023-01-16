@@ -5,11 +5,24 @@ import controller.Controller;
 import model.Contatto;
 import model.Indirizzo;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UpdateAlloggio.
+ */
 public class UpdateAlloggio extends NewAlloggio{
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+	
+	/** The i. */
 	private Indirizzo i;
 	
+	/**
+	 * Instantiates a new update alloggio.
+	 *
+	 * @param c the c
+	 * @param i the i
+	 */
 	public UpdateAlloggio(Contatto c, Indirizzo i) {
 		super(c);
 		this.i=i;
@@ -25,6 +38,9 @@ public class UpdateAlloggio extends NewAlloggio{
 		
 	}
 
+	/**
+	 * Run.
+	 */
 	protected void run() {
 
 		String nazione, citta, cap, via;

@@ -295,10 +295,10 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 	/**
 	 * Sets the indirizzo.
 	 *
-	 * @param i the i
-	 * @param contID the cont ID
+	 * @param addrID the addr ID
+	 * @param attr the attr
+	 * @param data the data
 	 * @return the int
-	 * @throws Exception 
 	 */
 	
 	
@@ -329,6 +329,12 @@ public class PostIndirizzoDAO implements IndirizzoDAO {
 
 	}
 	
+	/**
+	 * Up indirizzo.
+	 *
+	 * @param indirizzo the indirizzo
+	 * @param addrID the addr ID
+	 */
 	public void upIndirizzo(Indirizzo indirizzo, int addrID) {
 		PreparedStatement ps;
 

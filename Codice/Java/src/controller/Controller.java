@@ -23,10 +23,13 @@ public class Controller {
 	// Lista di contatti caricata
 	private static ArrayList<Contatto> cList;
 
+	/** The i list. */
 	private static ArrayList<Indirizzo> iList;
 	
+	/** The g list. */
 	private static ArrayList<Gruppo> gList;
 	
+	/** The t list. */
 	private static ArrayList<Telefono> tList;
 	
 	/** The connessione. */
@@ -321,7 +324,7 @@ public class Controller {
 	 *
 	 * @param data the data
 	 * @param c the c
-	 * @throws Exception 
+	 * @throws Exception the exception
 	 */
 	public static void insertAlloggio(String[] data, Contatto c) throws Exception {
 		Indirizzo i;
@@ -626,6 +629,13 @@ public class Controller {
 		c.setIndFoto(indFoto);
 	}
 	
+	/**
+	 * Update email.
+	 *
+	 * @param data the data
+	 * @param c the c
+	 * @param e the e
+	 */
 	public static void updateEmail(String[] data, Contatto c, Email e) {
 		String indirizzo, uso;
 		
@@ -640,6 +650,13 @@ public class Controller {
 		
 	}
 
+	/**
+	 * Update alloggio.
+	 *
+	 * @param data the data
+	 * @param c the c
+	 * @param i the i
+	 */
 	public static void updateAlloggio(String[] data, Contatto c, Indirizzo i){
 		int newID;
 		Indirizzo newInd;
@@ -713,6 +730,13 @@ public class Controller {
 		
 	}
 
+	/**
+	 * Update gruppo.
+	 *
+	 * @param data the data
+	 * @param c the c
+	 * @param gruppo the gruppo
+	 */
 	public static void updateGruppo(String[] data, Contatto c, Gruppo gruppo) {
 	 
 		String nomeG, descrizione;
@@ -737,6 +761,13 @@ public class Controller {
 		}
 	}
 	
+	/**
+	 * Update recapito.
+	 *
+	 * @param data the data
+	 * @param c the c
+	 * @param r the r
+	 */
 	public static void updateRecapito(String[] data, Contatto c, Recapito r) {
 		Telefono tIn,tOut;
 		String prefissoIn,prefissoOut,numeroIn,numeroOut,tipoIn,tipoOut;
@@ -792,6 +823,14 @@ public class Controller {
 
 	}
 
+	/**
+	 * Update social.
+	 *
+	 * @param data the data
+	 * @param c the c
+	 * @param email the email
+	 * @param s the s
+	 */
 	public static void updateSocial(String[] data, Contatto c, Email email, MessagingPr s) {
 		String nickname, provider, fraseBenvenuto;
 		
@@ -904,7 +943,7 @@ public class Controller {
 	 *
 	 * @param c the c
 	 * @param re the re
-	 * @throws Exception the exception
+	 * @throws SQLException the SQL exception
 	 */
 	public static void delRecapito(Contatto c, Recapito re) throws SQLException {
 		int contID = c.getContID();
@@ -1011,6 +1050,13 @@ public class Controller {
 	}
 
 	
+	/**
+	 * Update nome.
+	 *
+	 * @param c the c
+	 * @param nome the nome
+	 * @param cognome the cognome
+	 */
 	public static void updateNome(Contatto c,String nome,String cognome) {
 		
 		PostContattoDAO cDAO = new PostContattoDAO();

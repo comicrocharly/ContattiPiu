@@ -99,6 +99,12 @@ public class PostRecapitoDAO implements RecapitoDAO {
 
 	}
 	
+	/**
+	 * Gets the recapiti.
+	 *
+	 * @param tList the t list
+	 * @return the recapiti
+	 */
 	public ArrayList<Recapito> getRecapiti(ArrayList<Telefono> tList) {
 		
 		ArrayList<Recapito> rList = new  ArrayList<Recapito>();
@@ -181,6 +187,7 @@ public class PostRecapitoDAO implements RecapitoDAO {
 	 * @param numeroIn the numero in
 	 * @param prefissoOut the prefisso out
 	 * @param numeroOut the numero out
+	 * @return the int
 	 * @throws Exception the exception
 	 */
 	public int setRecapito(int contID, String prefissoIn, String numeroIn, String prefissoOut, String numeroOut) throws Exception {
@@ -218,6 +225,12 @@ public class PostRecapitoDAO implements RecapitoDAO {
 	}
 	
 
+	/**
+	 * Up tin recapito.
+	 *
+	 * @param tIn the t in
+	 * @param r the r
+	 */
 	public void upTinRecapito(Telefono tIn, Recapito r) {
 		PreparedStatement ps;
 		
@@ -235,6 +248,12 @@ public class PostRecapitoDAO implements RecapitoDAO {
 	}
 	
 
+	/**
+	 * Up tout recapito.
+	 *
+	 * @param tOut the t out
+	 * @param r the r
+	 */
 	public void upToutRecapito(Telefono tOut, Recapito r) {
 		PreparedStatement ps;
 		
@@ -301,6 +320,7 @@ public class PostRecapitoDAO implements RecapitoDAO {
 	 *
 	 * @param recID the rec ID
 	 * @param contID the cont ID
+	 * @throws SQLException the SQL exception
 	 */
 	public void delRecapito(int recID, int contID) throws SQLException {
 		
@@ -314,6 +334,11 @@ public class PostRecapitoDAO implements RecapitoDAO {
 		
 	}
 	
+	/**
+	 * Switch trigger.
+	 *
+	 * @param mode the mode
+	 */
 	public void switchTrigger(String mode) {
 		
 		PreparedStatement ps;

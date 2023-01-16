@@ -6,12 +6,24 @@ import controller.Controller;
 import model.Contatto;
 import model.Recapito;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UpdateRecapito.
+ */
 public class UpdateRecapito extends NewRecapito{
 
+	/** The r. */
 	private Recapito r;
 
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new update recapito.
+	 *
+	 * @param c the c
+	 * @param r the r
+	 */
 	public UpdateRecapito(Contatto c, Recapito r) {
 		super(c);
 		this.r=r;
@@ -39,15 +51,24 @@ public class UpdateRecapito extends NewRecapito{
 
 	}
 
+	/**
+	 * Switch in.
+	 */
 	protected void switchIn() {
 		//Switching has been disabled
 	}
 
+	/**
+	 * Switch out.
+	 */
 	protected void switchOut() {
 		//Switching has been disabled
 
 	}
 
+	/**
+	 * Run.
+	 */
 	protected void run() {
 		if(textFieldPrefissoIn.getText().matches("[0-9]+") && textFieldNumeroIn.getText().matches("[0-9]+")
 				&& textFieldPrefissoOut.getText().matches("[0-9]+") && textFieldNumeroOut.getText().matches("[0-9]+") ){

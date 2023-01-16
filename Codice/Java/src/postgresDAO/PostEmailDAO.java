@@ -339,6 +339,13 @@ public class PostEmailDAO implements EmailDAO{
 
 		}
 
+		/**
+		 * Up email.
+		 *
+		 * @param indirizzo the indirizzo
+		 * @param oldIndirizzo the old indirizzo
+		 * @param uso the uso
+		 */
 		public void upEmail(String indirizzo, String oldIndirizzo, String uso) {
 			PreparedStatement ps;
 

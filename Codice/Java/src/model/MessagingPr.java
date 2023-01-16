@@ -82,6 +82,11 @@ public class MessagingPr {
     	return this.fornitore;
     }
     
+    /**
+     * Sets the id.
+     *
+     * @param ID the new id
+     */
     public void setID(int ID) {
     	this.prID=ID;
     }
