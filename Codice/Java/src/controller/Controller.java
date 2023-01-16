@@ -767,8 +767,9 @@ public class Controller {
 	 * @param data the data
 	 * @param c the c
 	 * @param r the r
+	 * @throws Exception 
 	 */
-	public static void updateRecapito(String[] data, Contatto c, Recapito r) {
+	public static void updateRecapito(String[] data, Contatto c, Recapito r) throws Exception {
 		Telefono tIn,tOut;
 		String prefissoIn,prefissoOut,numeroIn,numeroOut,tipoIn,tipoOut;
 		

@@ -102,8 +102,9 @@ public class PostTelefonoDAO implements TelefonoDAO{
 	 * Sets the telefono.
 	 *
 	 * @param telefono the new telefono
+	 * @throws Exception 
 	 */
-	public void setTelefono(Telefono telefono) {
+	public void setTelefono(Telefono telefono) throws Exception {
 		PreparedStatement ps;
 		
 		String prefisso = telefono.getPrefisso();
@@ -122,7 +123,7 @@ public class PostTelefonoDAO implements TelefonoDAO{
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new Exception(e.getMessage());
 		}
 	}
 

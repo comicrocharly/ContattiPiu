@@ -205,25 +205,14 @@ public class PostRecapitoDAO implements RecapitoDAO {
 			rs = ps.executeQuery();
 			rs.next();
 			recID = rs.getInt(1);
-			
+
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			if(e.getMessage().contains("ERROR: Errore : i tipi non devono essere uguali")) {
-				throw new Exception("I tipi di telefono non devono essere uguali");
-			}
-			else if(e.getMessage().contains("character varying")) {
-				throw new Exception("Il campo Recapito deve essere lungo "+e.getMessage().charAt(e.getMessage().length()-2));
-			}
-			else
-				e.printStackTrace();
+			throw new Exception(e.getMessage());
 		}
-		
 		return recID;
-
-
 	}
-	
+
 
 	/**
 	 * Up tin recapito.

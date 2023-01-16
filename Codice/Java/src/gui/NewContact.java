@@ -201,12 +201,12 @@ public class NewContact extends JFrame {
 						JOptionPane.showMessageDialog(NewContact.this,"Inserimento Riuscito.");
 						setVisible(false);
 						dispose();
+						
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(NewContact.this,"Inserimento Fallito." + "\n" + e1.getMessage());
 					}
-
-
+					
 					
 				}
 			}
